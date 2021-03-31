@@ -1,0 +1,33 @@
+canvas {
+  position: absolute;
+  top:0;
+  left:0;
+  display: block;
+  background-color: #000;
+}
+
+body {
+  overflow: hidden;
+}
+
+.scroll-container {
+  display: flex;
+  width: 100%;
+}
+
+.page1 {
+  background: #92979e;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-size: cover;
+}
+
+.page2 {
+  background: #cacdce;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
