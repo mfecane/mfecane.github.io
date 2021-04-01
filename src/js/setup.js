@@ -1,6 +1,7 @@
 import ScrollTimeline from "js/animation/scroll-timeline";
 
 const scrollContainer = document.querySelector(".scroll-container");
+const nav = document.querySelector(".nav");
 
 let options = {
   scrollStep: 80,
@@ -22,6 +23,19 @@ scrolltimeline.addCallback(
     end: 1800,
     from: 0,
     to: -200,
+  }
+);
+
+
+scrolltimeline.addCallback(
+  (value) => {
+    nav.style.transform = `translateX(${value}px)`;
+  },
+  {
+    start: 0,
+    end: 600,
+    from: -305,
+    to: 0,
   }
 );
 
