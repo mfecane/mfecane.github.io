@@ -1,11 +1,12 @@
 ## TODO:
 
-- [ ] Remove shaders from html
-- [ ] Babel
+- animate shape on scroll
+- add new shape to page 2
 
 ## ideas
 
-- [ ] interlacion
+- interlacion
+- Save this color #0d1014
 
 ## STUFF
 

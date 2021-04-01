@@ -15,9 +15,9 @@ var rules = [
 
 module.exports = {
   mode: "development",
-  entry: "./src/js/main.js",
+  entry: path.resolve(__dirname, "src/js/main.js"),
   output: {
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
   module: {

@@ -1,11 +1,21 @@
 import { mapclamp } from "js/lib/lib";
-import { easeOutCubic } from "js/lib/easing-functions";
+import {
+  easeOutCubic,
+  easeInOutQuint,
+  easeInOutQuad,
+  easeOutBack,
+} from "js/lib/easing-functions";
 
 function clamp(val, min, max) {
   return val < min ? min : val > max ? max : val;
 }
 
 export default class ScrollTimeline {
+  COOLDOWN_TIMEOUT = 100;
+  ANIM_FRAMES = 20;
+
+  EASING_FUNCTION = easeOutCubic;
+
   scrollValue = 0;
   scrollStep = 20;
   maxScrollValue = 1000;
@@ -25,7 +35,7 @@ export default class ScrollTimeline {
   animationFrames = {
     current: 0,
     start: 0,
-    end: 30,
+    end: this.ANIM_FRAMES,
   };
 
   constructor(options) {
@@ -50,7 +60,7 @@ export default class ScrollTimeline {
     this.callbacks.forEach((c) => {
       if (this.scrollValue >= c.start && this.scrollValue <= c.end) {
         let value = mapclamp(this.scrollValue, c.start, c.end, c.from, c.to);
-        c.func(value);
+        c.func(value, (this.scrollValue - c.start) / c.end);
       }
     });
   }
@@ -82,6 +92,7 @@ export default class ScrollTimeline {
   }
 
   start() {
+    this.handleCallbacks();
     window.addEventListener("wheel", this.handleScroll.bind(this));
   }
 
@@ -121,7 +132,7 @@ export default class ScrollTimeline {
   setCoolDownTimeout() {
     this.cooldownTimeout = window.setTimeout(() => {
       this.onCooldown();
-    }, 500);
+    }, this.COOLDOWN_TIMEOUT);
   }
 
   clearCoolDownTimeout() {
@@ -137,6 +148,8 @@ export default class ScrollTimeline {
     this.animation.startScrollValue = this.scrollValue;
     this.animation.targetScrollValue = value;
     this.animationFrames.current = 0;
+    this.animationFrames.end =
+      this.ANIM_FRAMES * this.scrollTimeGrowCoefficient();
 
     if (this.animId) {
       cancelAnimationFrame(this.animId);
@@ -146,11 +159,22 @@ export default class ScrollTimeline {
     this.animate();
   }
 
+  scrollTimeGrowCoefficient() {
+    return (
+      1 +
+      Math.abs(
+        this.animation.targetScrollValue - this.animation.startScrollValue
+      ) /
+        this.scrollStep /
+        2
+    );
+  }
+
   animate() {
-    let t = easeOutCubic(
+    let t = this.EASING_FUNCTION(
       this.animationFrames.current / this.animationFrames.end
     );
-    if (t > 0.9) {
+    if (t > 0.99) {
       t = 1;
     }
     this.scrollValue =

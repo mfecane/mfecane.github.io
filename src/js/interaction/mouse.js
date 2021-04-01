@@ -11,4 +11,6 @@ window.addEventListener("mousemove", (e) => {
   // console.log(`mouse: ${mouse.x}, ${mouse.y}`);
 });
 
-export default mouse;
+export default function () {
+  return mouse;
+}

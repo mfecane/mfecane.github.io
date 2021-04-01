@@ -3,7 +3,7 @@ import { mapclamp } from "js/lib/lib";
 import svgfile from "assets/svg/svg-low.svg";
 import loadSvg from "js/svg/read";
 import tweakshapes from "js/svg/tweakshapes";
-import easeOutCubic from "js/lib/easing-funcions";
+import { easeOutCubic } from "js/lib/easing-functions";
 
 let canvas;
 let ctx;
@@ -11,6 +11,11 @@ const time = { start: Date.now(), current: 0, duration: 2.0, loop: 6 };
 const size = { w: 0, h: 0, cx: 0, cy: 0 };
 let points;
 let shapes;
+let onEnd;
+let element;
+let transform = {
+  scale: 0.4,
+};
 
 class Shape {
   constructor(points) {
@@ -19,7 +24,7 @@ class Shape {
     this.end = 1.0;
     this.width = 5;
     this.drawn = 0;
-    this.color = `rgba(255,255,255,1)`;
+    this.color = `rgba(255,70,28,1)`;
   }
 
   draw(t) {
@@ -31,22 +36,22 @@ class Shape {
     for (let j = this.drawn; j < i; ++j) {
       let w = this.calculateWidth(j);
       const color = this.color;
-      color = "white";
+      color = "rgba(255,70,28,1)";
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.arc(
-        size.cx + this.points[j].x,
-        this.points[j].y,
-        w,
+        size.cx + this.points[j].x * transform.scale,
+        this.points[j].y * transform.scale,
+        w * transform.scale,
         0,
         Math.PI * 2,
         true
       );
       // symmetry
       ctx.arc(
-        size.cx - this.points[j].x,
-        this.points[j].y,
-        w,
+        size.cx - this.points[j].x * transform.scale,
+        this.points[j].y * transform.scale,
+        w * transform.scale,
         0,
         Math.PI * 2,
         true
@@ -72,17 +77,25 @@ const handleShapes = function () {
   });
 };
 
+const setFrame = function (t) {
+  shapes.forEach((el) => {
+    t = easeOutCubic(t);
+    el.draw(t);
+  });
+};
+
 const setCanvasSize = function () {
-  size.w = canvas.width = window.innerWidth;
-  size.h = canvas.height = window.innerHeight;
+  size.w = canvas.width = element.clientWidth;
+  size.h = canvas.height = element.clientHeight;
   size.cx = size.w / 2;
   size.cy = size.h / 2;
 };
 
-const init = function () {
+export const init = function (el) {
+  element = el;
   canvas = document.createElement(`canvas`);
-  document.body.appendChild(canvas);
-  canvas.id = "canvas";
+  element.appendChild(canvas);
+  canvas.id = "logo-canvas";
   ctx = canvas.getContext("2d");
 
   setCanvasSize();
@@ -110,15 +123,16 @@ const createShapes = function () {
 };
 
 const resetCanvas = function () {
-  ctx.fillStyle = "black";
+  ctx.fillStyle = `rgba(0,0,0,0)`;
   ctx.fillRect(0, 0, size.w, size.h);
 };
 
 const handleTime = function (resetCallback) {
   time.current = (Date.now() - time.start) / 1000.0;
   if (time.current > time.loop) {
-    resetCallback();
-    resetTime();
+    onEnd();
+    // resetCallback();
+    // resetTime();
   }
 };
 
@@ -131,4 +145,15 @@ const animate = function () {
   handleTime(resetCanvas);
   handleShapes();
   window.requestAnimationFrame(animate);
+};
+
+export const setCallback = function (callback) {
+  onEnd = callback;
+};
+
+export const start = function (callback) {
+  resetTime();
+  resetCanvas();
+  animate();
+  onEnd = callback;
 };
