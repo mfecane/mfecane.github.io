@@ -46,6 +46,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  background: #05080b center/cover url(assets/img/bg.jpg);
 }
 
 .logo-group {
@@ -67,18 +68,6 @@ body {
   }
 }
 
-.nav {
-  &__link {
-    display: block;
-    text-align: center;
-    font-family: Crimson Text;
-    font-size: 3rem;
-    color: rgb(204, 219, 233);
-    margin: 2rem 0;
-    font-weight: 300;
-  }
-}
-
 .nav-background {
   position: absolute;
   top: 0;
@@ -87,4 +76,54 @@ body {
   width: 20vw;
   z-index: 20;
   background: #000;
+}
+
+.column {
+  &__container {
+    position: absolute;
+    top: 0%;
+    height: 100%;
+    width: 40vw;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-35vw);
+    justify-content: center;
+    align-items: center;
+  }
+  &__logo-container {
+    width: 100%;
+    transition: all 1s ease-out;
+  }
+  &__nav-container {
+  }
+  &__title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.125rem;
+    color: #e2e7e7;
+    font-weight: 400;
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+  }
+  &__subtitle {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.425rem;
+    color: #ff4530;
+    font-weight: 400;
+    letter-spacing: 0.375rem;
+    text-transform: uppercase;
+  }
+}
+
+.nav {
+  &__link {
+    display: block;
+    text-align: center;
+    font-family: Crimson Text;
+    font-size: 2rem;
+    color: rgb(204, 219, 233);
+    margin: 2rem 0;
+    font-weight: 300;
+  }
 }

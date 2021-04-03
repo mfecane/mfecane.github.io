@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "ts/*": ["./src/ts/*"],
+      "shaders/*": ["./src/shaders/*"]
+    }
+  }
+}

@@ -6,8 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rain</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -15,24 +22,24 @@
   <body>
     <noscript>You need to enable JavaScript to view this site.</noscript>
 
-    <div class="nav-background"></div>
-
     <div id="main-bg-canvas-container"></div>
-
-    <div class="logo-group__container">
-      <div id="logo-container" class="logo-group__logo-container"></div>
-      <nav class="logo-group__nav-container">
-        <ul class="nav">
-          <li class="nav__link">Home</li>
-          <li class="nav__link">My works</li>
-          <li class="nav__link">Contacts</li>
-          <li class="nav__link">Technologies</li>
-        </ul>
-      </nav>
-    </div>
 
     <div class="scroll-container">
       <section class="page page1" id="page1">
+        <div class="column__container">
+          <div class="column__logo-container" id="logo-container"></div>
+          <h1 class="column__title">Aleksei Aliapkin</h1>
+          <h2 class="column__subtitle">frontend developer</h2>
+          <nav class="column__nav-container">
+            <ul class="nav">
+              <li class="nav__link">Home</li>
+              <li class="nav__link">My works</li>
+              <li class="nav__link">Contacts</li>
+              <li class="nav__link">Technologies</li>
+            </ul>
+          </nav>
+        </div>
+
         <div class="page1__photo-container">
           <img src="/assets/img/man.png" alt="" class="page1__photo" />
         </div>

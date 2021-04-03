@@ -75,17 +75,18 @@ void main()
 
   vec3 drops = Layer(uv1, t);
   drops += Layer(uv1 * 1.73f + 1.75f, t + 1.87);
-  drops += Layer(uv1 * 1.13f + 7.03f, t + 3.31);
+  // drops += Layer(uv1 * 1.13f + 7.03f, t + 3.31);
 
   float blur = (1.0f - drops.z);
   vec2 uvoff = sampleuv + drops.xy;
   
   // Sampler UV Directions Quality Size Radius Mip
-  vec4 Color = SampleBlur(u_Sampler, sampleuv, 12.0, 6.0, 2.0, vec2(0.05), 2.0);
-  Color = blendScreen(Color, vec4(1.0), 0.05);
+  vec4 Color = texture(u_Sampler, sampleuv, 4.0);
+  //vec4 Color = SampleBlur(u_Sampler, sampleuv, 12.0, 6.0, 2.0, vec2(0.05), 0.0);
+  //Color = blendScreen(Color, vec4(1.0), 0.05);
 
-  float mouseHeat = texture(u_SamplerH, sampleuv).x;
-  blur *= (1.0f - mouseHeat);
+  // float mouseHeat = texture(u_SamplerH, sampleuv).x;
+  // blur *= (1.0f - mouseHeat);
 
   vec4 BaseColor = texture(u_Sampler, uvoff) * 0.9;
   FragColor = mix(BaseColor, Color, blur);

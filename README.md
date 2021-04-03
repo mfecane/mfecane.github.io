@@ -10,6 +10,8 @@
 
 ## STUFF
 
+### GIT STUFF
+
     git config --global alias.s status
     git config --global alias.l "log --oneline -n5"
     git config --global alias.ll "log -n2"
