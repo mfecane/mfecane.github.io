@@ -48,7 +48,10 @@ export default class ScrollTimeline {
     this.snaps = options.snaps
   }
 
-  addCallback(callback: (x: number) => void, options: any): void {
+  addCallback(
+    callback: (x: number, y: number | null) => void,
+    options: any
+  ): void {
     const c = {
       func: callback,
       start: 0,

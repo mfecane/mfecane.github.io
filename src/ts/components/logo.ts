@@ -17,7 +17,7 @@ let element: HTMLDivElement
 const transform = {
   scale: 0.3,
 }
-const globalColor = `rgb(255, 69, 48)`
+const globalColor = `rgb(243, 20, 57)`
 let animId
 const end = false
 

@@ -19,12 +19,25 @@ window.onload = () => {
   const topage2 = document.querySelector('#topage2') as HTMLDivElement
   const topage3 = document.querySelector('#topage3') as HTMLDivElement
 
+  const mouseContainer = document.querySelector(
+    '.mouse__container'
+  ) as HTMLDivElement
+
+  const pagerIndicator = document.querySelector(
+    '.pager__indicator'
+  ) as HTMLDivElement
+
   window.setTimeout(() => {
     logo.init(logoContainer)
     logo.start(() => {
       scrolltimeline.addCallback(
-        (value: number) => {
+        (value, value1) => {
           logo.setFrame(value)
+          if (value1 > 0.1) {
+            mouseContainer.classList.add('fade-out')
+          } else {
+            mouseContainer.classList.remove('fade-out')
+          }
         },
         {
           start: 0,
@@ -75,14 +88,29 @@ window.onload = () => {
     }
   )
 
-  topage1.addEventListener('click', () => {
-    scrolltimeline.setScrollValue(0)
-  })
-  topage2.addEventListener('click', () => {
+  scrolltimeline.addCallback(
+    (value) => {
+      pagerIndicator.style.left = `${value}px`
+    },
+    {
+      start: 0,
+      end: 1800,
+      from: 10,
+      to: 105,
+    }
+  )
+
+  // topage1.addEventListener('click', () => {
+  //   scrolltimeline.setScrollValue(0)
+  // })
+  // topage2.addEventListener('click', () => {
+  //   scrolltimeline.setScrollValue(900)
+  // })
+  // topage3.addEventListener('click', () => {
+  //   scrolltimeline.setScrollValue(1800)
+  // })
+  mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(900)
-  })
-  topage3.addEventListener('click', () => {
-    scrolltimeline.setScrollValue(1800)
   })
 
   scrolltimeline.start()
