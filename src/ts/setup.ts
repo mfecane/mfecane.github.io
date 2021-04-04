@@ -15,10 +15,13 @@ window.onload = () => {
     '#logo-container'
   ) as HTMLDivElement
 
+  const topage1 = document.querySelector('#topage1') as HTMLDivElement
+  const topage2 = document.querySelector('#topage2') as HTMLDivElement
+  const topage3 = document.querySelector('#topage3') as HTMLDivElement
+
   window.setTimeout(() => {
     logo.init(logoContainer)
     logo.start(() => {
-      debugger
       scrolltimeline.addCallback(
         (value: number) => {
           logo.setFrame(value)
@@ -71,6 +74,16 @@ window.onload = () => {
       to: -101,
     }
   )
+
+  topage1.addEventListener('click', () => {
+    scrolltimeline.setScrollValue(0)
+  })
+  topage2.addEventListener('click', () => {
+    scrolltimeline.setScrollValue(900)
+  })
+  topage3.addEventListener('click', () => {
+    scrolltimeline.setScrollValue(1800)
+  })
 
   scrolltimeline.start()
 }

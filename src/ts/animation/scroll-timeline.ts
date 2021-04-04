@@ -10,6 +10,8 @@ function clamp(val: number, min: number, max: number): number {
   return val < min ? min : val > max ? max : val
 }
 
+// TODO: change from frame count to real time
+
 export default class ScrollTimeline {
   COOLDOWN_TIMEOUT = 100
   ANIM_FRAMES = 20
@@ -17,7 +19,7 @@ export default class ScrollTimeline {
   EASING_FUNCTION = easeOutCubic
 
   scrollValue = 0
-  scrollStep = 20
+  scrollStep = 10
   maxScrollValue = 1000
 
   callbacks = []
