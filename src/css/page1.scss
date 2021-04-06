@@ -72,6 +72,7 @@ body {
     transform: translateX(-35vw);
     justify-content: center;
     align-items: center;
+    padding-bottom: 5vh;
   }
   &__logo-container {
     width: 100%;
@@ -86,7 +87,7 @@ body {
     font-weight: 400;
     letter-spacing: 0.25rem;
     text-transform: uppercase;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.5rem 0;
   }
   /* TODO: find better font, thinner, but not super thin */
   &__subtitle {
@@ -97,10 +98,13 @@ body {
     letter-spacing: 0.375rem;
     text-transform: uppercase;
     margin: 0 0 1rem 0;
+    padding: 0.675rem 0 0 0;
+    border-top: 1px $accent solid;
   }
 }
 
 .nav {
+  margin: 0 0 2rem 0;
   &__link {
     display: block;
     text-align: center;
@@ -139,4 +143,10 @@ body {
       height: 105%;
     }
   }
+}
+
+.column__button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
 }

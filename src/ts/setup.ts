@@ -95,8 +95,8 @@ window.onload = () => {
     {
       start: 0,
       end: 1800,
-      from: 10,
-      to: 105,
+      from: 5,
+      to: 135,
     }
   )
 

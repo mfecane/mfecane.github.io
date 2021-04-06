@@ -1,9 +1,9 @@
 {
-  "name": "path-effect",
+  "name": "scroll-effect",
   "version": "1.0.0",
-  "description": "Rain effect using WebGl",
-  "main": "main.js",
-  "url": "http://aaliapkin.github.io/path-effect",
+  "description": "Scroll effect",
+  "main": "main.ts",
+  "url": "http://aaliapkin.github.io/scroll-effect",
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com:aaliapkin/rain-effect.git"

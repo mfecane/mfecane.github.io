@@ -19,7 +19,7 @@ const transform = {
 }
 const globalColor = `rgb(243, 20, 57)`
 let animId
-const end = false
+let end = false
 
 interface Point {
   x: number
@@ -89,7 +89,6 @@ const handleShapes = function () {
 export const setFrame = function (t: number): void {
   resetCanvas()
   t = easeOutCubic(t)
-  console.log('setframe')
 
   shapes.forEach((el) => {
     el.draw(t)
@@ -99,7 +98,6 @@ export const setFrame = function (t: number): void {
 const setCanvasSize = function () {
   size.w = canvas.width = element.clientWidth
   size.h = canvas.height = element.clientWidth * 0.4
-  console.log('element.clientWidth', element.clientWidth)
   transform.scale = element.clientWidth / 1800
 
   size.cx = size.w / 2
