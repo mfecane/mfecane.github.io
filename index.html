@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rain</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap"
+      rel="stylesheet"
+    />
+  <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
+
+  <body>
+    <noscript>You need to enable JavaScript to view this site.</noscript>
+
+    <div id="main-bg-canvas-container"></div>
+
+    <div class="pager__container">
+      <div class="pager__indicator"></div>
+    </div>
+
+    <div class="mouse__container">
+      <div class="mouse__mouse">
+        <div class="mouse__wheel"></div>
+      </div>
+      <div class="mouse__arrow-container">
+        <div class="mouse__arrow-top"></div>
+        <div class="mouse__arrow-bottom"></div>
+      </div>
+    </div>
+
+    <div class="scroll-container">
+      <section class="page page1" id="page1">
+        <div class="column__container">
+          <div class="column__logo-container" id="logo-container"></div>
+          <h1 class="column__title">Aleksei Aliapkin</h1>
+          <h2 class="column__subtitle">frontend developer</h2>
+          <nav class="column__nav-container">
+            <ul class="nav">
+              <li class="nav__link"><a>Home</a></li>
+              <li class="nav__link"><a>My works</a></li>
+              <li class="nav__link"><a>Contacts</a></li>
+              <li class="nav__link"><a>Technologies</a></li>
+            </ul>
+          </nav>
+          <div class="column__button-container">
+            <button class="btn">Contact me</button><button class="btn btn-primary">Download CV</button>
+          </div>
+        </div>
+
+        <div class="page1__photo-container">
+          <img src="f4b0ad6f60e504c8bde8.png" alt="" class="page1__photo" />
+        </div>
+      </section>
+
+      <section class="page page2" id="page2"></section>
+
+      <section class="page page3" id="page3"></section>
+    </div>
+  </body>
+</html>
