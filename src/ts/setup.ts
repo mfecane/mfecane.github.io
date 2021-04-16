@@ -1,6 +1,6 @@
 import ScrollTimeline from 'ts/animation/scroll-timeline'
 import MainBgAnimation from 'ts/components/main-background'
-import * as logo from 'ts/components/logo'
+import SvgPathAnimation from 'ts/components/svg-path-animation'
 
 import mainLogo from 'assets/svg/svg-low.svg'
 
@@ -30,7 +30,7 @@ window.onload = () => {
   ) as HTMLDivElement
 
   window.setTimeout(() => {
-    logo.init(logoContainer, mainLogo)
+    var logo = new SvgPathAnimation(logoContainer, mainLogo)
     logo.start().then(() => {
       scrolltimeline.addCallback(
         (value, value1) => {
