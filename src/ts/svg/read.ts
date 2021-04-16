@@ -1,147 +1,186 @@
-import smoothShapes from 'ts/svg/smooth'
+import { parse } from 'svg-parser'
+import parsePath from 'parse-svg-path'
+import bezier from 'bezier-curve'
+import { mapplain, dist } from 'ts/lib/lib'
 
-const RegEx = { seg: /[A-Za-z][^A-Za-z]+/g }
+let shapesconfig
 
-const loadSvg = function (data) {
-  var element = document.createElement('div')
-  element.innerHTML = data
-  const svg = element.firstChild
-
-  let shapes = collectData(svg)
-  shapes = filterData(shapes)
-  return smoothShapes(shapes)
+interface IPoint {
+  x: number
+  y: number
 }
 
-const analyzeChunk = function (found, arr) {
-  const operation = found[0]
-  var d = found.slice(1)
-  switch (operation) {
-    case 'M':
-      return analyzeM(d, arr)
-    case 'c':
-      return analyzeC(d, arr)
-    case 's':
-      return analyzeS(d, arr)
-    case 'S':
-      return analyzeBigS(d, arr)
-    case 'C':
-      return analyzeBigC(d, arr)
-  }
+const loadSvg = function (data, sc) {
+  const parsed = parse(data)
+  let paths = _parseSvg(parsed)
+  shapesconfig = sc
+
+  paths = paths
+    .filter((el) => el.length > 3)
+    .map((path, index) => {
+      path = path.map(_decodeParsedPathsForBezier)
+      path = _subdivideCurves(path)
+      path = _remapTime(path)
+      path = _filterPointsByTime(path)
+      path = _tweakTime(path, index)
+      return path
+    })
+
+  console.log(
+    'points count',
+    paths.reduce((acc, cur) => acc + cur.length, 0)
+  )
+
+  return paths
 }
 
-const analyzeM = function (found, arr) {
-  const [x, y] = found.split(',')
-  console.assert(arr.length === 0)
-  return { x: +x, y: +y }
-}
-
-function globalPreProcess(str) {
-  str = str.replace(/\-/g, ',-')
-  str = str.replace(/\s/g, '')
-  return str
-}
-
-function preprocess(found) {
-  if (found[0] === ',') {
-    found = found.slice(1)
-  }
-  return found
-}
-
-const analyzeC = function (found, arr) {
-  found = preprocess(found)
-  const arr1 = found.split(',')
-  let x = 0
-  let y = 0
-  x = +arr1[4]
-  y = +arr1[5]
-  const last = arr[arr.length - 1]
-  x += last.x
-  y += last.y
-  return { x, y }
-}
-
-const analyzeS = function (found, arr) {
-  found = preprocess(found)
-  const arr1 = found.split(',')
-  let x = 0
-  let y = 0
-  x = +arr1[2]
-  y = +arr1[3]
-  const last = arr[arr.length - 1]
-  x += last.x
-  y += last.y
-  return { x, y }
-}
-
-const analyzeBigS = function (found, arr) {
-  found = preprocess(found)
-  const arr1 = found.split(',')
-  let x = +arr1[2]
-  let y = +arr1[3]
-  return { x, y }
-}
-
-const analyzeBigC = function (found, arr) {
-  found = preprocess(found)
-  const arr1 = found.split(',')
-  let x = +arr1[4]
-  let y = +arr1[5]
-  return { x, y }
-}
-
-function collectData(svg) {
-  const result = []
-
-  const children = [].slice.call(svg.children)
-  children.forEach((el) => {
-    if (el.nodeName === 'g') {
-      const children1 = [].slice.call(el.children)
-      children1.forEach((el1) => {
-        const arr = []
-        let d = el1.getAttribute('d')
-        d = globalPreProcess(d)
-        let found
-        let i = 0
-        let array1
-        while ((array1 = RegEx.seg.exec(d)) !== null) {
-          found = array1[0]
-          let res = analyzeChunk(found, arr)
-          if (res) {
-            arr.push(res)
-          } else {
-            debugger
-          }
-          i++
-          if (i > 100000) {
-            break
-          }
-        }
-        result.push(arr)
+const _parseSvg = function (parsed) {
+  const paths = []
+  parsed.children.forEach((el1) => {
+    el1.children
+      .filter((el2) => el2.tagName === 'g')
+      .forEach((el2) => {
+        el2.children
+          .filter((el3) => el3.tagName === 'path')
+          .forEach((el3) => {
+            paths.push(parsePath(el3.properties.d))
+          })
       })
+  })
+  return paths
+}
+
+const _decodeParsedPathsForBezier = function (p) {
+  const type = p[0]
+  const data = p.slice(1)
+  const points = []
+
+  for (let i = 0; i < data.length; i += 2) {
+    points.push([data[i], data[i + 1]])
+  }
+
+  return {
+    type,
+    points,
+  }
+}
+
+const _addAll = function (points, point) {
+  return points.map((el) => [el[0] + point[0], el[1] + point[1]])
+}
+
+const _mirrorPoint = function (p, o) {
+  return [2 * o[0] - p[0], 2 * o[1] - p[1]]
+}
+
+const _createFilteredBezier = function (bezierPoints) {
+  let points = []
+  let cur
+  let bez = bezier(0, bezierPoints)
+  let last = { x: bez[0], y: bez[1], d: 0 }
+  points.push({ ...last, d: 0 })
+
+  for (let t = 0; t < 1; t += 0.05) {
+    bez = bezier(t, bezierPoints)
+    cur = {
+      x: bez[0],
+      y: bez[1],
+    }
+    let d = dist(cur, last)
+
+    if (d > 0.5) {
+      points.push({ ...cur, d })
+      last = cur
+    }
+  }
+  return points
+}
+
+const _subdivideCurves = function (paths) {
+  let currentPoint = []
+  let lastBezierPoint = []
+
+  let points = []
+
+  paths.forEach((p) => {
+    let type = p.type
+    let bezierPoints = p.points
+
+    switch (type) {
+      case 'M':
+        currentPoint = bezierPoints[0]
+        lastBezierPoint = bezierPoints[0]
+        break
+      case 's':
+        bezierPoints = _addAll(bezierPoints, currentPoint)
+      case 'S':
+        bezierPoints = [
+          _mirrorPoint(lastBezierPoint, currentPoint),
+          ...bezierPoints,
+        ]
+        break
+      case 'c':
+        bezierPoints = _addAll(bezierPoints, currentPoint)
+      case 'C':
+        bezierPoints = [currentPoint, ...bezierPoints]
+        break
+      default:
+        throw new Error('Not implemented')
+    }
+
+    if (['s', 'S', 'c', 'C'].indexOf(type) !== -1) {
+      currentPoint = bezierPoints[bezierPoints.length - 1]
+      lastBezierPoint = bezierPoints[bezierPoints.length - 2]
+      points = [...points, ..._createFilteredBezier(bezierPoints)]
     }
   })
-  return result.filter((el) => el.length > 2)
+
+  return points
 }
 
-function filterData(shapes) {
-  return shapes.map((el1, index) => {
-    let lastpoint = null
-    return el1.filter((el2) => {
-      if (!lastpoint) {
-        lastpoint = el2
-        return
-      }
-      let dist = Math.sqrt(
-        Math.pow(el2.x - lastpoint.x, 2) + Math.pow(el2.y - lastpoint.y, 2)
-      )
-      if (dist < 2) {
-        return false
-      }
-      lastpoint = el2
-      return true
-    })
+const _remapTime = function (path) {
+  const total = path.reduce((acc, cur) => acc + cur.d, 0)
+  let dist = 0
+  return path.map((el) => {
+    dist += el.d
+    return { x: el.x, y: el.y, t: dist / total }
   })
+}
+
+const _tweakTime = function (path, index) {
+  const { start, duration } = shapesconfig[index]
+  return path.map((point) => _tweakTimePoint(point, start, duration))
+}
+
+const _tweakTimePoint = function (point, start, duration) {
+  return {
+    ...point,
+    t: start + point.t * duration,
+  }
+}
+
+const _filterPointsByTime = function (path) {
+  const result = []
+  let scale = dist(path[0], path[path.length - 1])
+  // and scale
+  // TODO: change to length
+  scale = mapplain(scale, 20, 300, 0.2, 1.0)
+
+  let ct = 0
+  path.forEach((el) => {
+    if (el.t >= ct) {
+      result.push(el)
+      // optimize by path scale
+      let dt = 0.005 + 0.02 * _parabola(el.t)
+      dt /= scale
+      ct += dt
+    }
+  })
+  return result
+}
+
+const _parabola = function (t) {
+  return t * (1 - t) * 4
 }
 
 export default loadSvg

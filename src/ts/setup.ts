@@ -2,6 +2,8 @@ import ScrollTimeline from 'ts/animation/scroll-timeline'
 import MainBgAnimation from 'ts/components/main-background'
 import * as logo from 'ts/components/logo'
 
+import mainLogo from 'assets/svg/svg-low.svg'
+
 window.onload = () => {
   const scrollContainer = document.querySelector(
     '.scroll-container'
@@ -28,8 +30,8 @@ window.onload = () => {
   ) as HTMLDivElement
 
   window.setTimeout(() => {
-    logo.init(logoContainer)
-    logo.start(() => {
+    logo.init(logoContainer, mainLogo)
+    logo.start().then(() => {
       scrolltimeline.addCallback(
         (value, value1) => {
           logo.setFrame(value)
