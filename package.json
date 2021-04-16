@@ -57,6 +57,9 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "cubic-spline": "^3.0.3"
+    "bezier-curve": "^1.0.0",
+    "cubic-spline": "^3.0.3",
+    "parse-svg-path": "^0.1.2",
+    "svg-parser": "^2.0.4"
   }
 }

@@ -1,83 +1,87 @@
-import { mapclamp } from 'ts/lib/lib'
-
 import loadSvg from 'ts/svg/read'
-import tweakshapes from 'ts/svg/tweakshapes'
+import shapesconfig from 'ts/svg/shapes-config'
 import { easeOutCubic } from 'ts/lib/easing-functions'
 
 import svgfile from 'assets/svg/svg-low.svg'
 
 let canvas: HTMLCanvasElement
 let ctx: CanvasRenderingContext2D
-const time = { start: Date.now(), current: 0, duration: 2.0, loop: 2.2 }
+const time = { start: Date.now(), current: 0, duration: 3 }
 const size = { w: 0, h: 0, cx: 0, cy: 0 }
-let points
+// let points
 let shapes
-let onEnd: () => void
-let element: HTMLDivElement
+let parentElement: HTMLDivElement
+let event = new Event('logo-animation-end')
+
 const transform = {
   scale: 0.3,
 }
-const globalColor = `rgb(243, 20, 57)`
 let animId
-let end = false
 
-interface Point {
+interface IPoint {
   x: number
   y: number
+  t: number
 }
 
 class Shape {
-  points: Array<Point> = []
-  start = 0
-  end = 1.0
+  points: Array<IPoint> = []
   width = 5
   drawn = 0
-  color = `rgb(90, 7, 20)`
+  color = `rgb(243, 20, 57)`
 
-  constructor(points) {
+  constructor(points, width) {
     this.points = points
+    this.width = width
   }
 
   draw(t) {
-    if (t < this.start) {
-      return
-    }
-    t = (t - this.start) / (this.end - this.start)
-    let i = Math.floor((this.points.length - 1) * t)
-    for (let j = 0; j < i; ++j) {
-      const w = this.calculateWidth(j)
-      ctx.fillStyle = globalColor
+    ctx.strokeStyle = this.color
+
+    let j = 0
+    for (; j < this.points.length - 2; ++j) {
+      if (this.points[j + 2].t > t) {
+        break
+      }
+
+      var p0 = this.points[j]
+      var p1 = this.points[j + 1]
+      var p2 = this.points[j + 2]
+
+      var x0 = (1.2 * p0.x + p1.x) / 2.2
+      var y0 = (1.2 * p0.y + p1.y) / 2.2
+
+      var x1 = (p1.x + p2.x) / 2
+      var y1 = (p1.y + p2.y) / 2
+
       ctx.beginPath()
-      ctx.arc(
-        size.cx + this.points[j].x * transform.scale,
-        this.points[j].y * transform.scale,
-        w * transform.scale,
-        0,
-        Math.PI * 2,
-        true
-      )
-      // symmetry
-      ctx.arc(
-        size.cx - this.points[j].x * transform.scale,
-        this.points[j].y * transform.scale,
-        w * transform.scale,
-        0,
-        Math.PI * 2,
-        true
-      )
-      ctx.fill()
+      ctx.lineWidth = this._getWidth(j / (this.points.length - 2))
+      // ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.moveTo(x0, y0)
+      ctx.quadraticCurveTo(p1.x, p1.y, x1, y1)
+      ctx.stroke()
     }
-    this.drawn = i
+
+    this.drawn = j
   }
 
-  calculateWidth(j) {
-    let w = j / (this.points.length - 1)
-    w = -w * (w - 1)
-    return mapclamp(w, 0, 1 / 4, 1, this.width)
+  _getWidth(t) {
+    return 0.5 + this._parabola(t) * this.width
+  }
+
+  _parabola(t) {
+    return t * (1 - t) * 4
+  }
+
+  mirror() {
+    let points = this.points.map((p) => ({ ...p, x: 2 * size.cx - p.x }))
+    let shape = new Shape(points, this.width)
+    return shape
   }
 }
 
-const handleShapes = function () {
+const _handleShapes = function () {
   shapes.forEach((el) => {
     let t = time.current / time.duration
     t = t > 1 ? 1 : t
@@ -87,7 +91,7 @@ const handleShapes = function () {
 }
 
 export const setFrame = function (t: number): void {
-  resetCanvas()
+  _clearCanvas()
   t = easeOutCubic(t)
 
   shapes.forEach((el) => {
@@ -95,60 +99,109 @@ export const setFrame = function (t: number): void {
   })
 }
 
-const setCanvasSize = function () {
-  size.w = canvas.width = element.clientWidth
-  size.h = canvas.height = element.clientWidth * 0.4
-  transform.scale = element.clientWidth / 1800
+const _handleResize = function () {
+  size.w = canvas.width = parentElement.clientWidth
+  size.h = canvas.height = parentElement.clientWidth * 0.4
 
   size.cx = size.w / 2
   size.cy = size.h / 2
+
+  //init(parentElement)
 }
 
 export const init = function (el) {
-  element = el
+  parentElement = el
   canvas = document.createElement(`canvas`)
-  element.appendChild(canvas)
+  parentElement.appendChild(canvas)
   canvas.id = 'logo-canvas'
   ctx = canvas.getContext('2d')
 
-  setCanvasSize()
+  _handleResize()
+
   window.addEventListener(`resize`, () => {
     resetTime()
-    resetCanvas()
-    setCanvasSize()
+    _clearCanvas()
+    _handleResize()
   })
 
-  points = loadSvg(svgfile)
-  createShapes()
+  const paths = loadSvg(svgfile, shapesconfig)
+  shapes = _createShapes(paths)
 }
 
-const createShapes = function () {
-  shapes = points.map((el, index) => {
-    let overwrite = {}
-    if (tweakshapes[index]) {
-      overwrite = tweakshapes[index]
-    }
-    const shape = new Shape(el)
-    Object.assign(shape, overwrite)
+const _createShapes = function (paths) {
+  const bounds = _getBounds(paths.reduce((acc, cur) => [...acc, ...cur], []))
+
+  _calculateScale(bounds)
+  paths = paths.map((path) => path.map(_transformPoint))
+
+  const s = paths.map((points, index) => {
+    const { width } = shapesconfig[index]
+    const shape = new Shape(points, (1.8 * width) / transform.scale)
     return shape
   })
+
+  const sm = s.map((shape) => shape.mirror())
+
+  return [...s, ...sm]
 }
 
-const resetCanvas = function () {
+const _getBounds = function (points) {
+  let minx = 0
+  let miny = 0
+  let maxx = 0
+  let maxy = 0
+
+  points.forEach((p) => {
+    if (p.x < minx) {
+      minx = p.x
+    }
+    if (p.y < miny) {
+      miny = p.y
+    }
+    if (p.x > maxx) {
+      maxx = p.x
+    }
+    if (p.y > maxy) {
+      maxy = p.y
+    }
+  })
+
+  return {
+    x: minx,
+    y: miny,
+    width: maxx,
+    height: maxy,
+  }
+}
+
+const _calculateScale = function (bounds) {
+  transform.scale =
+    Math.min(
+      (bounds.width * 2) / canvas.width,
+      (bounds.height * 2) / canvas.height
+    ) + 0.1
+}
+
+const _transformPoint = function (p) {
+  return {
+    ...p,
+    x: size.cx + p.x / transform.scale,
+    y: 0 + p.y / transform.scale,
+  }
+}
+
+const _clearCanvas = function () {
   ctx.clearRect(0, 0, size.w, size.h)
 }
 
-const handleTime = function (resetCallback: () => void) {
+const handleTime = function () {
   time.current = (Date.now() - time.start) / 1000.0
-  if (time.current > time.loop) {
-    if (onEnd) {
-      window.cancelAnimationFrame(animId)
-      onEnd()
-      end = true
-    }
-    // resetCallback();
-    // resetTime();
+  if (time.current > time.duration) {
+    canvas.dispatchEvent(event)
+    window.cancelAnimationFrame(animId)
+    return true
   }
+  return false
 }
 
 const resetTime = function () {
@@ -157,23 +210,18 @@ const resetTime = function () {
 }
 
 const animate = function () {
-  handleTime(resetCanvas)
-  resetCanvas()
-  handleShapes()
+  const end = handleTime()
+  _clearCanvas()
+  _handleShapes()
   if (!end) {
     animId = window.requestAnimationFrame(animate)
   }
 }
 
-export const setCallback = function (callback) {
-  onEnd = callback
-}
-
-export const start = function (callback: () => void | null): void {
-  resetTime()
-  resetCanvas()
-  animate()
-  if (callback) {
-    onEnd = callback
-  }
+export const start = function () {
+  return new Promise((resolve, reject) => {
+    resetTime()
+    animate()
+    canvas.addEventListener('logo-animation-end', () => resolve(null))
+  })
 }

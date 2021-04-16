@@ -29,7 +29,7 @@ window.onload = () => {
 
   window.setTimeout(() => {
     logo.init(logoContainer)
-    logo.start(() => {
+    logo.start().then(() => {
       scrolltimeline.addCallback(
         (value, value1) => {
           logo.setFrame(value)

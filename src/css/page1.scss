@@ -49,6 +49,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: #05080b center/cover url(assets/img/bg.jpg);
+
   &:before {
     content: '';
     position: absolute;
@@ -74,12 +75,23 @@ body {
     align-items: center;
     padding-bottom: 5vh;
   }
+
   &__logo-container {
     width: 100%;
-    transition: all 1s ease-out;
+    padding-bottom: 40%;
+    position: relative;
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
+
   &__nav-container {
   }
+
   &__title {
     font-family: 'Libre Baskerville', serif;
     font-size: 2.125rem;
@@ -88,7 +100,13 @@ body {
     letter-spacing: 0.25rem;
     text-transform: uppercase;
     margin: 0 0 0.5rem 0;
+    transition: letter-spacing 0.2s ease-out;
+    cursor: pointer;
+    &:hover {
+      letter-spacing: 0.325rem;
+    }
   }
+
   /* TODO: find better font, thinner, but not super thin */
   &__subtitle {
     font-family: 'Libre Baskerville', serif;
@@ -105,6 +123,7 @@ body {
 
 .nav {
   margin: 0 0 2rem 0;
+
   &__link {
     display: block;
     text-align: center;
@@ -113,34 +132,42 @@ body {
     color: $light;
     margin: 1.125rem 0;
     font-weight: 300;
-    letter-spacing: 0.25rem;
+    letter-spacing: 0.325rem;
     position: relative;
     cursor: pointer;
     z-index: 25;
+
     & a {
       position: relative;
       z-index: 25;
+      padding: 0px 16px;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 0.3rem;
+        transform: translate(-50%, -50%);
+        transition: all 0.2s ease-out;
+        z-index: 20;
+        border-right: 2px solid $accent;
+        border-left: 2px solid $accent;
+        opacity: 0;
+      }
+
+      &:hover:before {
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+      }
     }
+
     &:hover {
       color: $accent;
-    }
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 1rem;
-      transform: translate(-50%, -50%);
-      background: rgba(20, 32, 41, 0.5);
-      transition: all 0.2s ease-out;
-      z-index: 20;
-    }
-    &:hover:before {
-      width: 120%;
-      height: 105%;
     }
   }
 }
