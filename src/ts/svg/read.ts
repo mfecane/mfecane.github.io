@@ -148,8 +148,10 @@ const _remapTime = function (path) {
 }
 
 const _tweakTime = function (path, index) {
-  const { start, duration } = shapesconfig[index]
-  return path.map((point) => _tweakTimePoint(point, start, duration))
+  // const { start, duration } = shapesconfig[index]
+  // return path.map((point) => _tweakTimePoint(point, start, duration))
+
+  return path
 }
 
 const _tweakTimePoint = function (point, start, duration) {

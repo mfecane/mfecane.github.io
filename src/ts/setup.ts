@@ -1,8 +1,10 @@
 import ScrollTimeline from 'ts/animation/scroll-timeline'
 import MainBgAnimation from 'ts/components/main-background'
 import SvgPathAnimation from 'ts/components/svg-path-animation'
+import SvgPathAnimation2 from 'ts/components/svg-path-animation2'
 
 import mainLogo from 'assets/svg/svg-low.svg'
+import floralPage2Svg from 'assets/svg/second-page-floral.svg'
 
 window.onload = () => {
   const scrollContainer = document.querySelector(
@@ -15,6 +17,10 @@ window.onload = () => {
 
   const logoContainer = document.querySelector(
     '#logo-container'
+  ) as HTMLDivElement
+
+  const floralPage2Container = document.querySelector(
+    '#floralPage2'
   ) as HTMLDivElement
 
   const topage1 = document.querySelector('#topage1') as HTMLDivElement
@@ -49,6 +55,23 @@ window.onload = () => {
         }
       )
     })
+
+    var floralPage2 = new SvgPathAnimation2(
+      floralPage2Container,
+      floralPage2Svg
+    )
+
+    scrolltimeline.addCallback(
+      (value, value1) => {
+        floralPage2.setFrame(value)
+      },
+      {
+        start: 500,
+        end: 900,
+        from: 0,
+        to: 1,
+      }
+    )
   }, 400)
 
   const mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
