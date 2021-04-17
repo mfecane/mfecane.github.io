@@ -2,22 +2,22 @@ import loadSvg from 'ts/svg/read'
 import shapesconfig from 'ts/svg/shapes-config'
 import { easeOutCubic } from 'ts/lib/easing-functions'
 
-interface IPoint {
+export interface IPoint {
   x: number
   y: number
   t: number
 }
 
-type IPath = Array<IPoint>
+export type IPath = Array<IPoint>
 
-interface IBounds {
+export interface IBounds {
   x: number
   y: number
   width: number
   height: number
 }
 
-class Shape {
+export class Shape {
   points: Array<IPoint> = []
   width = 5
   drawn = 0

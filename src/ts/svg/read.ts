@@ -38,13 +38,9 @@ const _parseSvg = function (parsed) {
   const paths = []
   parsed.children.forEach((el1) => {
     el1.children
-      .filter((el2) => el2.tagName === 'g')
-      .forEach((el2) => {
-        el2.children
-          .filter((el3) => el3.tagName === 'path')
-          .forEach((el3) => {
-            paths.push(parsePath(el3.properties.d))
-          })
+      .filter((el3) => el3.tagName === 'path')
+      .forEach((el3) => {
+        paths.push(parsePath(el3.properties.d))
       })
   })
   return paths
