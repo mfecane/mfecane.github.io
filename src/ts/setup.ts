@@ -4,7 +4,10 @@ import SvgPathAnimation from 'ts/components/svg-path-animation'
 import SvgPathAnimation2 from 'ts/components/svg-path-animation2'
 
 import mainLogo from 'assets/svg/svg-low.svg'
+import shapesconfig from 'ts/svg/shapes-config'
+
 import floralPage2Svg from 'assets/svg/second-page-floral.svg'
+import shapesconfig2 from 'ts/svg/shapes-config2'
 
 window.onload = () => {
   const scrollContainer = document.querySelector(
@@ -36,7 +39,7 @@ window.onload = () => {
   ) as HTMLDivElement
 
   window.setTimeout(() => {
-    var logo = new SvgPathAnimation(logoContainer, mainLogo)
+    var logo = new SvgPathAnimation(logoContainer, mainLogo, { shapesconfig })
     logo.start().then(() => {
       scrolltimeline.addCallback(
         (value, value1) => {
@@ -58,7 +61,8 @@ window.onload = () => {
 
     var floralPage2 = new SvgPathAnimation2(
       floralPage2Container,
-      floralPage2Svg
+      floralPage2Svg,
+      { shapesconfig: shapesconfig2 }
     )
 
     scrolltimeline.addCallback(

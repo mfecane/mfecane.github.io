@@ -1,5 +1,4 @@
-import loadSvg from 'ts/svg/read'
-import shapesconfig from 'ts/svg/shapes-config'
+import SvgPath from 'ts/svg/read'
 import { easeOutCubic } from 'ts/lib/easing-functions'
 
 export interface IPoint {
@@ -17,11 +16,18 @@ export interface IBounds {
   height: number
 }
 
+export type TShapesConfig = Array<{
+  wdth: number
+  start: number
+  end: number
+}>
+
 export class Shape {
   points: Array<IPoint> = []
   width = 5
   drawn = 0
   color = `rgb(243, 20, 57)`
+  index = 0
 
   ctx: CanvasRenderingContext2D
   size = { w: 0, h: 0, cx: 0, cy: 0 }
@@ -58,6 +64,12 @@ export class Shape {
       this.ctx.stroke()
     }
 
+    // draw shape numbers
+    // const p = this.points[this.points.length - 1]
+    // this.ctx.font = '20px sans-serif'
+    // this.ctx.fillStyle = 'rgb(255,255,255)'
+    // this.ctx.fillText('' + this.index, p.x + 5, p.y + 5)
+
     this.drawn = j
   }
 
@@ -86,6 +98,7 @@ export default class SvgPathAnimation {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
   parentElement: HTMLDivElement
+  shapesconfig = []
 
   time = { start: Date.now(), current: 0, duration: 3 }
   size = { w: 0, h: 0, cx: 0, cy: 0 }
@@ -95,12 +108,24 @@ export default class SvgPathAnimation {
   transform = { scale: 0.3 }
   animId: number = 0
 
-  constructor(el: HTMLDivElement, svgfile: any) {
+  constructor(
+    el: HTMLDivElement,
+    svgfile: any,
+    options: { shapesconfig: TShapesConfig }
+  ) {
     this.parentElement = el
     this.canvas = document.createElement(`canvas`)
     this.parentElement.appendChild(this.canvas)
     this.canvas.id = 'logo-canvas'
     this.ctx = this.canvas.getContext('2d')
+    this.shapesconfig = options.shapesconfig
+
+    // let res = this.shapesconfig.map((el) => {
+    //   const ret = { ...el, end: el.start + el.duration }
+    //   delete ret.duration
+    //   return ret
+    // })
+    // console.log('this.shapesconfig', JSON.stringify(res))
 
     this._handleResize()
 
@@ -110,7 +135,8 @@ export default class SvgPathAnimation {
       this._handleResize()
     })
 
-    const paths = loadSvg(svgfile, shapesconfig)
+    const svg = new SvgPath(svgfile, { shapesconfig: this.shapesconfig })
+    const paths = svg.loadSvg()
     this.shapes = this._createShapes(paths)
   }
 
@@ -151,7 +177,7 @@ export default class SvgPathAnimation {
     )
 
     const s = paths.map((points: IPath, index: number) => {
-      const { width } = shapesconfig[index]
+      const { width } = this.shapesconfig[index]
       const shape = new Shape(points, (1.8 * width) / this.transform.scale)
       shape.ctx = this.ctx
       shape.size = this.size

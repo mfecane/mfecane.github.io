@@ -1,32 +1,46 @@
 let shapesconfig = []
 
-shapesconfig = [
-  { width: 14, start: 0, duration: 0.46 },
-  { width: 16, start: 0.16, duration: 0.51 },
-  { width: 9, start: 0.27, duration: 0.58 },
-  { width: 9, start: 0.23, duration: 0.58 },
-  { width: 7, start: 0.18, duration: 0.35 },
-  { width: 4, start: 0.42, duration: 0.51 },
-  { width: 10, start: 0.42, duration: 0.58 },
-  { width: 6, start: 0.25, duration: 0.37 },
-  { width: 10, start: 0.23, duration: 0.46 },
-  { width: 7, start: 0.29, duration: 0.47 },
-  { width: 7, start: 0.25, duration: 0.44 },
-  { width: 4, start: 0.32, duration: 0.44 },
-  { width: 7, start: 0.2, duration: 0.43 },
-  { width: 4, start: 0.24, duration: 0.34 },
-  { width: 5, start: 0.38, duration: 0.52 },
-  { width: 6, start: 0.37, duration: 0.58 },
-  { width: 4, start: 0.43, duration: 0.57 },
-  { width: 5, start: 0.39, duration: 0.55 },
-  { width: 6, start: 0.29, duration: 0.4 },
-  { width: 6, start: 0.32, duration: 0.44 },
-  { width: 4, start: 0.42, duration: 0.51 },
-  { width: 5, start: 0.39, duration: 0.49 },
-  { width: 4, start: 0.42, duration: 0.54 },
-  { width: 6, start: 0.21, duration: 0.44 },
-  { width: 6, start: 0.38, duration: 0.5 },
-  { width: 8, start: 0.37, duration: 0.49 },
-]
+shapesconfig[0] = { width: 20, start: 0.3, end: 0.7 }
+shapesconfig[1] = { width: 28, start: 0.0, end: 0.7 }
+shapesconfig[2] = { width: 22, start: 0.2, end: 0.4 }
+shapesconfig[3] = { width: 32, start: 0.2, end: 0.8 }
+shapesconfig[4] = { width: 16, start: 0.5, end: 0.7 }
+shapesconfig[5] = { width: 16, start: 0.3, end: 0.6 }
+shapesconfig[6] = { width: 16, start: 0.3, end: 0.8 }
+shapesconfig[7] = { width: 32, start: 0.5, end: 0.99 }
+shapesconfig[8] = { width: 18, start: 0.3, end: 0.6 }
+shapesconfig[9] = { width: 16, start: 0.2, end: 0.4 }
+shapesconfig[10] = { width: 20, start: 0.4, end: 0.8 }
+shapesconfig[11] = { width: 28, start: 0.3, end: 0.99 }
+shapesconfig[12] = { width: 16, start: 0.6, end: 0.99 }
+shapesconfig[13] = { width: 24, start: 0.0, end: 0.6 }
+shapesconfig[14] = { width: 18, start: 0.3, end: 0.5 }
+shapesconfig[15] = { width: 16, start: 0.1, end: 0.4 }
+shapesconfig[16] = { width: 16, start: 0.2, end: 0.4 }
+shapesconfig[17] = { width: 16, start: 0.6, end: 0.8 }
+shapesconfig[18] = { width: 18, start: 0.4, end: 0.8 }
+shapesconfig[19] = { width: 12, start: 0.3, end: 0.5 }
+shapesconfig[20] = { width: 20, start: 0.2, end: 0.6 }
+shapesconfig[21] = { width: 16, start: 0.5, end: 0.99 }
+shapesconfig[22] = { width: 16, start: 0.3, end: 0.5 }
+shapesconfig[23] = { width: 16, start: 0.2, end: 0.4 }
+shapesconfig[24] = { width: 20, start: 0.3, end: 0.5 }
+shapesconfig[25] = { width: 20, start: 0.6, end: 0.99 }
+shapesconfig[26] = { width: 26, start: 0.5, end: 0.99 }
+shapesconfig[27] = { width: 12, start: 0.35, end: 0.6 }
+shapesconfig[28] = { width: 10, start: 0.6, end: 0.99 }
+shapesconfig[29] = { width: 30, start: 0.0, end: 0.99 }
+shapesconfig[30] = { width: 16, start: 0.5, end: 0.99 }
+shapesconfig[31] = { width: 16, start: 0.6, end: 0.99 }
+shapesconfig[32] = { width: 12, start: 0.9, end: 0.99 }
+shapesconfig[33] = { width: 12, start: 0.6, end: 0.8 }
+shapesconfig[34] = { width: 16, start: 0.9, end: 0.99 }
+shapesconfig[35] = { width: 22, start: 0.5, end: 0.95 }
+shapesconfig[36] = { width: 22, start: 0.6, end: 0.8 }
+shapesconfig[37] = { width: 26, start: 0.3, end: 0.7 }
+shapesconfig[38] = { width: 16, start: 0.5, end: 0.8 }
+shapesconfig[39] = { width: 18, start: 0.6, end: 0.9 }
+shapesconfig[40] = { width: 24, start: 0.45, end: 0.8 }
+shapesconfig[41] = { width: 24, start: 0.6, end: 0.8 }
 
 export default shapesconfig

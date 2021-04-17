@@ -19,7 +19,7 @@ export default class ScrollTimeline {
   EASING_FUNCTION = easeOutCubic
 
   scrollValue = 0
-  scrollStep = 10
+  scrollStep = 8
   maxScrollValue = 1000
 
   callbacks = []

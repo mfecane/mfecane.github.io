@@ -1,7 +1,3 @@
-import loadSvg from 'ts/svg/read'
-import shapesconfig from 'ts/svg/shapes-config'
-import { easeOutCubic } from 'ts/lib/easing-functions'
-
 import SvgPathAnimation, {
   Shape,
   IPath,
@@ -21,11 +17,12 @@ export default class SecondPagePathAnimation extends SvgPathAnimation {
     )
 
     const s = paths.map((points: IPath, index: number) => {
-      const width = 10
-      const shape = new Shape(points, (1.8 * width) / this.transform.scale)
+      const { width } = this?.shapesconfig[index] || { width: 5 }
+      const shape = new Shape(points, (1.2 * width) / this.transform.scale)
       shape.ctx = this.ctx
       shape.size = this.size
-      shape.color = `rgb(50, 56, 83)`
+      shape.color = `rgb(27, 49, 71)`
+      shape.index = index
       return shape
     })
 
@@ -35,16 +32,16 @@ export default class SecondPagePathAnimation extends SvgPathAnimation {
   _calculateScale(bounds: IBounds) {
     this.transform.scale =
       Math.min(
-        (bounds.width * 1.3) / this.canvas.width,
-        (bounds.height * 1.3) / this.canvas.height
-      ) + 0.1
+        (bounds.width * 1.2) / this.canvas.width,
+        (bounds.height * 1.2) / this.canvas.height
+      ) * 1.4
   }
 
   _transformPoint(p: IPoint) {
     return {
       ...p,
-      x: p.x / this.transform.scale,
-      y: 0 + p.y / this.transform.scale,
+      x: -20 + p.x / this.transform.scale,
+      y: p.y / this.transform.scale,
     }
   }
 

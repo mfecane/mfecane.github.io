@@ -2,5 +2,6 @@
 /dist
 /trash
 /.vscode
+/design
 
 /package-lock.json

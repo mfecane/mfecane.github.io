@@ -2,6 +2,7 @@
 
 - animate shape on scroll
 - add new shape to page 2
+- remove filter by point numbers
 
 ## ideas
 
