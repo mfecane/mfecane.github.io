@@ -1,4 +1,4 @@
-@import 'css/config.scss';
+@import "css/config.scss";
 
 body {
   overflow: hidden;
@@ -31,6 +31,7 @@ body {
     width: 50vw;
     height: 100%;
     overflow: hidden;
+    z-index: 1;
   }
 
   &__photo {
@@ -51,7 +52,7 @@ body {
   background: #05080b center/cover url(assets/img/bg.jpg);
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;
@@ -66,19 +67,19 @@ body {
     position: absolute;
     top: 0%;
     height: 100%;
-    width: 45vw;
+    width: 55vw;
     left: 50%;
-    display: flex;
-    flex-direction: column;
     transform: translateX(-35vw);
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 10rem;
+    padding: 10rem 0;
+    z-index: 2;
   }
 
   &__logo-container {
     width: 100%;
-    padding-bottom: 40%;
+    padding-bottom: 70%;
     position: relative;
     canvas {
       position: absolute;
@@ -90,45 +91,66 @@ body {
   }
 
   &__nav-container {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
   }
 
   &__title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 2.125rem;
+    font-family: "Playfair Display", serif;
+    font-size: 8rem;
+    line-height: 7rem;
     color: $light;
     font-weight: 400;
     letter-spacing: 0.25rem;
     text-transform: uppercase;
-    margin: 0 0 0.5rem 0;
-    transition: letter-spacing 0.2s ease-out;
-    cursor: pointer;
+    text-align: right;
+    transition: all 0.2s ease-out;
+    margin-bottom: 1rem;
     &:hover {
-      letter-spacing: 0.325rem;
+      transform: translateX(-1px);
     }
   }
 
   /* TODO: find better font, thinner, but not super thin */
   &__subtitle {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1.425rem;
+    font-family: "Playfair Display", serif;
+    font-size: 4rem;
     color: $accent;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.375rem;
     text-transform: uppercase;
-    margin: 0 0 1rem 0;
-    padding: 0.675rem 0 0 0;
-    border-top: 1px $accent solid;
+    text-align: right;
+    transition: all 0.2s ease-out;
+    &:hover {
+      transform: translateX(-1px);
+    }
+  }
+
+  &__button-container {
+    margin-top: 6rem;
+    grid-column: 1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
   }
 }
 
+.logo-group {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+  border-right: 1px solid #ffffff;
+}
+
 .nav {
-  margin: 0 0 2rem 0;
+  margin-left: 2rem;
 
   &__link {
     display: block;
-    text-align: center;
     font-family: Crimson Text;
-    font-size: 1.625rem;
+    font-size: 2.5rem;
     color: $light;
     margin: 1.125rem 0;
     font-weight: 300;
@@ -137,43 +159,8 @@ body {
     cursor: pointer;
     z-index: 25;
 
-    & a {
-      position: relative;
-      z-index: 25;
-      padding: 0px 16px;
-
-      &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 0.3rem;
-        transform: translate(-50%, -50%);
-        transition: all 0.2s ease-out;
-        z-index: 20;
-        border-right: 2px solid $accent;
-        border-left: 2px solid $accent;
-        opacity: 0;
-      }
-
-      &:hover:before {
-        opacity: 1;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
     &:hover {
       color: $accent;
     }
   }
-}
-
-.column__button-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 8px;
 }

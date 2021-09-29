@@ -3,6 +3,11 @@ import parsePath from 'parse-svg-path'
 import bezier from 'bezier-curve'
 import { mapplain, dist } from 'ts/lib/lib'
 
+type TParsedPoint =
+  | [string, number, number]
+  | [string, number, number, number, number, number, number]
+  | [string, number, number, number, number, number, number, number, number]
+
 interface IPoint {
   x: number
   y: number
@@ -18,8 +23,8 @@ export default class SvgPath {
     this.shapesconfig = options.shapesconfig
   }
 
-  loadSvg() {
-    const parsed = parse(this.data)
+  loadSvg(): Array<Array<IPoint>> {
+    const parsed: Array<TParsedPoint> = parse(this.data)
     let paths = this._parseSvg(parsed)
 
     paths = paths
@@ -41,7 +46,7 @@ export default class SvgPath {
     return paths
   }
 
-  _parseSvg(parsed) {
+  _parseSvg(parsed): Array<Array<TParsedPoint>> {
     const paths = []
     parsed.children.forEach((el1) => {
       el1.children
@@ -53,10 +58,11 @@ export default class SvgPath {
     return paths
   }
 
-  _decodeParsedPathsForBezier(p) {
-    const type = p[0]
+
+  _decodeParsedPathsForBezier(p:TParsedPoint) {
+    const type :string = p[0]
     const data = p.slice(1)
-    const points = []
+    const points : Array<Array<IPoint>> = []
 
     for (let i = 0; i < data.length; i += 2) {
       points.push([data[i], data[i + 1]])
@@ -170,7 +176,7 @@ export default class SvgPath {
     let scale = dist(path[0], path[path.length - 1])
     // and scale
     // TODO: change to length
-    scale = mapplain(scale, 20, 300, 0.2, 1.0)
+    scale = mapplain(scale, 20, 800, 0.2, 1.0)
 
     let ct = 0
     path.forEach((el) => {
@@ -185,7 +191,7 @@ export default class SvgPath {
     return result
   }
 
-  _parabola(t: number) {
+  _parabola(t: number): number {
     return t * (1 - t) * 4
   }
 }

@@ -6,80 +6,86 @@ import SvgPathAnimation2 from 'ts/components/svg-path-animation2'
 import mainLogo from 'assets/svg/svg-low.svg'
 import shapesconfig from 'ts/svg/shapes-config'
 
-import floralPage2Svg from 'assets/svg/second-page-floral.svg'
+import floralPage2Svg from 'assets/svg/second-page-floral2.svg'
 import shapesconfig2 from 'ts/svg/shapes-config2'
 
+let logoContainer: HTMLDivElement
+let scrolltimeline: ScrollTimeline
+let mouseContainer: HTMLDivElement
+let logo: SvgPathAnimation
+let floralPage2Container: HTMLDivElement
+let pagerIndicator: HTMLDivElement
+let mainBgAnimation: MainBgAnimation
+let scrollContainer: HTMLDivElement
+let mainBgCanvasContainer: HTMLDivElement
+
+const setUpMouseAnimation = () => {
+  scrolltimeline.addCallback(
+    (value, value1) => {
+      logo.setFrame(value)
+      if (value1 > 0.1) {
+        mouseContainer.classList.add('fade-out')
+      } else {
+        mouseContainer.classList.remove('fade-out')
+      }
+    },
+    {
+      start: 0,
+      end: 300,
+      from: 1,
+      to: 0,
+    }
+  )
+}
+
+const setUpMainLogoAnimation = () => {
+  const config = {
+    shapesconfig: shapesconfig2, 
+    scale: .5
+  }
+
+  logo = new SvgPathAnimation(logoContainer, floralPage2Svg, config)
+  logo.start().then(setUpMouseAnimation)
+}
+
+const setUpSecondPageFloralAnimation = () => {
+  const floralPage2 = new SvgPathAnimation2(
+    floralPage2Container,
+    floralPage2Svg,
+    { shapesconfig: shapesconfig2 }
+  )
+
+  scrolltimeline.addCallback(
+    (value, value1) => {
+      floralPage2.setFrame(value)
+    },
+    {
+      start: 500,
+      end: 900,
+      from: 0,
+      to: 1,
+    }
+  )
+}
+
 window.onload = () => {
-  const scrollContainer = document.querySelector(
-    '.scroll-container'
-  ) as HTMLDivElement
+  scrollContainer = document.querySelector('.scroll-container')
+  mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
+  logoContainer = document.querySelector('#logo-container')
+  floralPage2Container = document.querySelector('#floralPage2')
+  mouseContainer = document.querySelector('.mouse__container')
+  pagerIndicator = document.querySelector('.pager__indicator')
 
-  const mainBgCanvasContainer = document.querySelector(
-    '#main-bg-canvas-container'
-  ) as HTMLDivElement
-
-  const logoContainer = document.querySelector(
-    '#logo-container'
-  ) as HTMLDivElement
-
-  const floralPage2Container = document.querySelector(
-    '#floralPage2'
-  ) as HTMLDivElement
-
-  const topage1 = document.querySelector('#topage1') as HTMLDivElement
-  const topage2 = document.querySelector('#topage2') as HTMLDivElement
-  const topage3 = document.querySelector('#topage3') as HTMLDivElement
-
-  const mouseContainer = document.querySelector(
-    '.mouse__container'
-  ) as HTMLDivElement
-
-  const pagerIndicator = document.querySelector(
-    '.pager__indicator'
-  ) as HTMLDivElement
+  // const topage1 = document.querySelector('#topage1') as HTMLDivElement
+  // const topage2 = document.querySelector('#topage2') as HTMLDivElement
+  // const topage3 = document.querySelector('#topage3') as HTMLDivElement
 
   window.setTimeout(() => {
-    var logo = new SvgPathAnimation(logoContainer, mainLogo, { shapesconfig })
-    logo.start().then(() => {
-      scrolltimeline.addCallback(
-        (value, value1) => {
-          logo.setFrame(value)
-          if (value1 > 0.1) {
-            mouseContainer.classList.add('fade-out')
-          } else {
-            mouseContainer.classList.remove('fade-out')
-          }
-        },
-        {
-          start: 0,
-          end: 300,
-          from: 1,
-          to: 0,
-        }
-      )
-    })
-
-    var floralPage2 = new SvgPathAnimation2(
-      floralPage2Container,
-      floralPage2Svg,
-      { shapesconfig: shapesconfig2 }
-    )
-
-    scrolltimeline.addCallback(
-      (value, value1) => {
-        floralPage2.setFrame(value)
-      },
-      {
-        start: 500,
-        end: 900,
-        from: 0,
-        to: 1,
-      }
-    )
+    setUpMainLogoAnimation()
+    // setUpSecondPageFloralAnimation()
   }, 400)
 
-  const mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
-
+  mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
   mainBgAnimation.start()
 
   const options = {
@@ -91,7 +97,7 @@ window.onload = () => {
     ],
   }
 
-  const scrolltimeline = new ScrollTimeline(options)
+  scrolltimeline = new ScrollTimeline(options)
 
   scrolltimeline.addCallback(
     (value) => {
