@@ -26,7 +26,7 @@ export class Shape {
   points: Array<IPoint> = []
   width = 5
   drawn = 0
-  color = `rgb(255, 255, 255)`
+  color = `#bec9d1`
   index = 0
   ctx: CanvasRenderingContext2D
   size = { w: 0, h: 0, cx: 0, cy: 0 }

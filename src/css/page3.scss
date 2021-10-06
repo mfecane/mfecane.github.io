@@ -1,0 +1,11 @@
+@import 'css/config.scss';
+
+.page3 {
+  background: $darkbg1;
+  width: 30rem;
+  height: 100vh;
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+  display:flex;
+}

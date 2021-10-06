@@ -1,19 +1,18 @@
 @import 'css/config.scss';
 
 .btn {
-  padding: 0.625rem 1rem;
+  padding: 0.625rem 2rem;
   background: transparent;
-  color: $accent;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: $light;
+  font-family: 'Crimson Text', serif;
+  font-size: 1.625rem;
+  font-weight: 400;
+  letter-spacing: 2px;
   transition-property: background-color, color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   position: relative;
-  border: 1px solid $accent;
+  border: 1px solid $light;
   border-radius: 2px;
 
   &:before {
@@ -37,7 +36,7 @@
     height: 100%;
     //background: yellow;
     transform: translate(-50%, -50%) scale(1.03, 1.1);
-    border: 2px solid rgba($accent, 0.5);
+    border: 2px solid rgba($light, 0.5);
     filter: blur(2px);
     border-radius: 2px;
     transition-property: all;
@@ -45,46 +44,16 @@
     transition-timing-function: ease-in-out;
   }
 
-  &:hover:before {
-    border: 3px solid $accent;
-  }
-
   &:hover {
+    color: #fff;
+    border-color: #fff;
   }
 
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    opacity: 0;
-  }
-
-  &:hover:after {
-    animation: blink 0.3s ease-out none;
-  }
-
-  &-primary {
-    background: $dark;
-    color: $accent;
-    &:hover {
-    }
+  &:hover:before {
+    border: 3px solid #fff;
   }
 }
 
-@keyframes blink {
-  0% {
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 0;
-  }
+body {
+  color: $light;
 }

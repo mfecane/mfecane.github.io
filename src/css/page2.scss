@@ -1,4 +1,4 @@
-@import 'css/config.scss';
+@import "css/config.scss";
 
 .page2 {
   background: $darkbg1;
@@ -8,13 +8,125 @@
   z-index: 0;
   position: relative;
   overflow: hidden;
+  display: flex;
 }
 
-.floralPage2 {
+.page2-left {
+  width: 50%;
+  background-color: $lightbg;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8rem;
+  padding-bottom: 16rem;
+}
+
+.about {
+  &__title {
+    font-family: "Playfair Display", serif;
+    font-size: 6rem;
+    color: $accent;
+    font-weight: 400;
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+    text-align: right;
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    border-top: $dark 1px solid;
+    padding: 2rem 0;
+    color: $dark;
+    font-family: "Lora"; // TODO ::: link this font
+    letter-spacing: 0.05rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+.page2-right {
+  width: 50%;
+  background: $dark;
+  background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
+}
+
+.experience__wrapper {
+  margin: 5rem;
+  display: grid;
+  grid-template-columns: 13rem auto;
+  position: relative;
+}
+
+.experience__wrapper:before {
+  content: "";
+  display: block;
+  width: 1px;
+  left: 20px;
+  top: 160px;
+  bottom: 200px;
   position: absolute;
-  top: 0;
+  background: $light;
+}
+
+.experience__title {
+  grid-column: 2;
+  font-family: "Playfair Display";
+  font-size: 2.5rem;
+  color: $light;
+  border-bottom: 1px solid $light;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.experience__title:not(:last-child) {
+  margin-top: 4rem;
+}
+
+.experience__marker {
+  grid-column: 1;
+  font-family: "Playfair Display";
+  font-size: 2.25rem;
+  color: $light;
+  align-self: center;
+  position: relative;
+  padding-left: 5rem;
+}
+
+.experience__marker:before {
+  position: absolute;
+  top: 50%;
   left: 0;
-  width: 100%;
-  height: 100%;
-  color:rgb(27, 49, 71);
+  width: 3rem;
+  height: 3rem;
+  content: "";
+  background: $light;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 1.25rem 0.25rem $light;
+}
+
+.experience__marker span {
+  display: block;
+  transform: translateY(-8px);
+}
+
+.experience__subtitle {
+  color: $accent;
+  font-weight: bold;
+  grid-column: 2;
+  font-family: "Lora";
+  font-size: 1.75rem;
+  align-self: center;
+}
+
+.experience__description {
+  grid-column: 2;
+  letter-spacing: 1px;
+  line-height: 2.25rem;
+  font-family: "Lora";
+  font-size: 1.5rem;
+  color: $light-dimmed;
+  margin: 0.75rem 0 1.25rem 0;
 }

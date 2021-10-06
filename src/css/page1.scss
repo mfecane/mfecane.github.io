@@ -80,7 +80,9 @@ body {
   &__logo-container {
     width: 100%;
     padding-bottom: 70%;
+    margin-bottom: -5vh;
     position: relative;
+    transform: translateY(-5vh);
     canvas {
       position: absolute;
       top: 0;
@@ -107,6 +109,7 @@ body {
     text-align: right;
     transition: all 0.2s ease-out;
     margin-bottom: 1rem;
+    margin-right: 1rem;
     &:hover {
       transform: translateX(-1px);
     }
@@ -122,18 +125,20 @@ body {
     text-transform: uppercase;
     text-align: right;
     transition: all 0.2s ease-out;
+    margin-right: 1.125rem;
     &:hover {
       transform: translateX(-1px);
     }
   }
 
   &__button-container {
-    margin-top: 6rem;
     grid-column: 1;
     grid-row: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 8px;
+    grid-gap: 1rem;
+    justify-self: end;
+    align-self: end;
   }
 }
 
@@ -141,11 +146,11 @@ body {
   grid-column: 1;
   grid-row: 1;
   align-self: end;
-  border-right: 1px solid #ffffff;
+  border-right: 1px solid $light;
 }
 
 .nav {
-  margin-left: 2rem;
+  margin-left: 3rem;
 
   &__link {
     display: block;
@@ -159,8 +164,12 @@ body {
     cursor: pointer;
     z-index: 25;
 
+    &:last-of-type {
+      margin-bottom:0;
+    }
+
     &:hover {
-      color: $accent;
+      color: #ffffff;
     }
   }
 }

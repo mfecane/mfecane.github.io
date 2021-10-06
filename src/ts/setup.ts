@@ -31,7 +31,7 @@ const setUpMouseAnimation = () => {
     },
     {
       start: 0,
-      end: 300,
+      end: 330,
       from: 1,
       to: 0,
     }
