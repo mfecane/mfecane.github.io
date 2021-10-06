@@ -1,19 +1,20 @@
 @import 'css/config.scss';
 
 .btn {
-  padding: 0.625rem 2rem;
+  padding: 8px 18px;
   background: transparent;
   color: $light;
   font-family: 'Crimson Text', serif;
-  font-size: 1.625rem;
+  font-size: 20px;
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   transition-property: background-color, color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   position: relative;
   border: 1px solid $light;
   border-radius: 2px;
+  white-space: nowrap;
 
   &:before {
     content: '';

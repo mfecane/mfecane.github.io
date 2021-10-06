@@ -221,13 +221,13 @@ export default class SvgPathAnimation {
       Math.max(
         bounds.width / this.canvas.width,
         bounds.height / this.canvas.height
-      ) * .8
+      ) * .9
   }
 
   _transformPoint(p: IPoint): IPoint {
     return {
       ...p,
-      x: 0 + p.x / this.transform.scale - 60,
+      x: 0 + p.x / this.transform.scale - 30,
       y: 0 + p.y / this.transform.scale + 30,
     }
   }

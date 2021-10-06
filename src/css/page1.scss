@@ -62,27 +62,27 @@ body {
   }
 }
 
-.column {
-  &__container {
-    position: absolute;
-    top: 0%;
-    height: 100%;
-    width: 55vw;
-    left: 50%;
-    transform: translateX(-35vw);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 10rem;
-    padding: 10rem 0;
-    z-index: 2;
-  }
+.column__container {
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  width: 55vw;
+  left: 50%;
+  transform: translateX(-35vw);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 100px;
+  padding: 96px 0;
+  z-index: 2;
+}
 
+.column {
   &__logo-container {
     width: 100%;
     padding-bottom: 70%;
     margin-bottom: -5vh;
     position: relative;
-    transform: translateY(-5vh);
+    transform: translateY(-3vh);
     canvas {
       position: absolute;
       top: 0;
@@ -100,16 +100,16 @@ body {
 
   &__title {
     font-family: "Playfair Display", serif;
-    font-size: 8rem;
-    line-height: 7rem;
+    font-size: 64px;
+    line-height: 60px;
     color: $light;
     font-weight: 400;
-    letter-spacing: 0.25rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
     text-align: right;
     transition: all 0.2s ease-out;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+    margin-bottom: 8px;
+    margin-right: 12px;
     &:hover {
       transform: translateX(-1px);
     }
@@ -118,14 +118,14 @@ body {
   /* TODO: find better font, thinner, but not super thin */
   &__subtitle {
     font-family: "Playfair Display", serif;
-    font-size: 4rem;
+    font-size: 36px;
     color: $accent;
     font-weight: 400;
-    letter-spacing: 0.375rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
     text-align: right;
     transition: all 0.2s ease-out;
-    margin-right: 1.125rem;
+    margin-right: 13px;
     &:hover {
       transform: translateX(-1px);
     }
@@ -136,7 +136,7 @@ body {
     grid-row: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    grid-gap: 16px;
     justify-self: end;
     align-self: end;
   }
@@ -150,16 +150,16 @@ body {
 }
 
 .nav {
-  margin-left: 3rem;
+  margin-left: 16px;
 
   &__link {
     display: block;
     font-family: Crimson Text;
-    font-size: 2.5rem;
+    font-size: 24px;
     color: $light;
-    margin: 1.125rem 0;
+    margin: 8px 0;
     font-weight: 300;
-    letter-spacing: 0.325rem;
+    letter-spacing: 2px;
     position: relative;
     cursor: pointer;
     z-index: 25;
