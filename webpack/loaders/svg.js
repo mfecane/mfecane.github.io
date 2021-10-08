@@ -1,6 +1,6 @@
 "use strict";
 
 module.exports = {
-  test: /\.svg$/,
+  test: /\.inline\.svg$/,
   loader: "svg-inline-loader",
 };

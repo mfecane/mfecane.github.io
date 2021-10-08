@@ -18,30 +18,30 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 8rem;
-  padding-bottom: 16rem;
+  padding: 32px;
+  padding-bottom: 64px;
 }
 
 .about {
   &__title {
     font-family: "Playfair Display", serif;
-    font-size: 6rem;
+    font-size: 32px;
     color: $accent;
     font-weight: 400;
-    letter-spacing: 0.25rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     text-align: right;
-    margin-bottom: 2rem;
+    margin-bottom: 12px;
   }
 
   &__text {
     border-top: $dark 1px solid;
-    padding: 2rem 0;
+    padding: 16px 0;
     color: $dark;
     font-family: "Lora"; // TODO ::: link this font
     letter-spacing: 0.05rem;
-    font-size: 2rem;
-    line-height: 2.5rem;
+    font-size: 16px;
+    line-height: 18px;
   }
 }
 
@@ -49,13 +49,25 @@
   width: 50%;
   background: $dark;
   background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
+  position: relative;
+}
+
+.page2-scroller  {
+  z-index: 3;
+  position: absolute;
+  top: 5vmin;
+  bottom: 5vmin;
+  left: 5vmin;
+  right: 5vmin;
 }
 
 .experience__wrapper {
-  margin: 5rem;
+  max-height: 100vh;
+  margin: 40px;
   display: grid;
-  grid-template-columns: 13rem auto;
+  grid-template-columns: 128px auto;
   position: relative;
+  overflow-y: auto;
 }
 
 .experience__wrapper:before {
@@ -63,8 +75,8 @@
   display: block;
   width: 1px;
   left: 20px;
-  top: 160px;
-  bottom: 200px;
+  top: 80px;
+  bottom: 80px;
   position: absolute;
   background: $light;
 }
@@ -72,11 +84,11 @@
 .experience__title {
   grid-column: 2;
   font-family: "Playfair Display";
-  font-size: 2.5rem;
+  font-size: 20px;
   color: $light;
   border-bottom: 1px solid $light;
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
   text-transform: uppercase;
 }
 
@@ -84,32 +96,42 @@
   margin-top: 4rem;
 }
 
-.experience__marker {
+.experience__year {
   grid-column: 1;
-  font-family: "Playfair Display";
-  font-size: 2.25rem;
   color: $light;
-  align-self: center;
   position: relative;
-  padding-left: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.experience__year span {
+  font-family: "Playfair Display";
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.experience__marker {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  background: $dark-dimmed;
+  border-radius: 50%;
+  border: 1px solid $light;
+  box-shadow: 0 0 10px 2px $light;
+  z-index:1;
 }
 
 .experience__marker:before {
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 3rem;
-  height: 3rem;
+  left: 50%;
+  width: 24px;
+  height: 24px;
   content: "";
   background: $light;
   border-radius: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0 0 1.25rem 0.25rem $light;
-}
-
-.experience__marker span {
-  display: block;
-  transform: translateY(-8px);
+  transform: translate(-50%, -50%);
+  z-index:2;
 }
 
 .experience__subtitle {
@@ -117,16 +139,16 @@
   font-weight: bold;
   grid-column: 2;
   font-family: "Lora";
-  font-size: 1.75rem;
+  font-size: 18px;
   align-self: center;
 }
 
 .experience__description {
   grid-column: 2;
   letter-spacing: 1px;
-  line-height: 2.25rem;
   font-family: "Lora";
-  font-size: 1.5rem;
+  font-size: 16px;
+  line-height: 20px;
   color: $light-dimmed;
-  margin: 0.75rem 0 1.25rem 0;
+  margin: 6px 0 10px 0;
 }

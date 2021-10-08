@@ -9,6 +9,7 @@ var rules = [
   require("./webpack/loaders/css"),
   require("./webpack/loaders/image"),
   require("./webpack/loaders/svg"),
+  require("./webpack/loaders/file"),
   require("./webpack/loaders/html"),
   require("./webpack/loaders/babel"),
   // require("./webpack/loaders/html"),

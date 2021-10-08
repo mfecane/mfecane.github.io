@@ -1,9 +1,9 @@
 import { mapclamp } from 'ts/lib/lib'
 import {
   easeOutCubic,
-  easeInOutQuint,
-  easeInOutQuad,
-  easeOutBack,
+  // easeInOutQuint,
+  // easeInOutQuad,
+  // easeOutBack,
 } from 'ts/lib/easing-functions'
 
 function clamp(val: number, min: number, max: number): number {
@@ -11,6 +11,12 @@ function clamp(val: number, min: number, max: number): number {
 }
 
 // TODO: change from frame count to real time
+
+interface callback {
+  func: (x: number) => void
+  from: number
+  to: number
+}
 
 export default class ScrollTimeline {
   COOLDOWN_TIMEOUT = 100
@@ -22,7 +28,7 @@ export default class ScrollTimeline {
   scrollStep = 8
   maxScrollValue = 1000
 
-  callbacks = []
+  callbacks: Array<callback> = []
   elements = []
 
   cooldownTimeout = null
@@ -49,30 +55,33 @@ export default class ScrollTimeline {
   }
 
   addCallback(
-    callback: (x: number, y: number | null) => void,
-    options: any
+    func: (x: number) => void,
+    options: {
+      from: number
+      to: number
+    }
   ): void {
-    const c = {
-      func: callback,
-      start: 0,
-      end: this.maxScrollValue,
+    const callback = {
+      func: func,
       from: 0,
-      to: 1,
+      to: this.maxScrollValue,
       ...options,
     }
-    this.callbacks.push(c)
+    this.callbacks.push(callback)
   }
 
-  handleCallbacks() {
-    this.callbacks.forEach((c) => {
-      if (this.scrollValue >= c.start && this.scrollValue <= c.end) {
-        let value = mapclamp(this.scrollValue, c.start, c.end, c.from, c.to)
-        c.func(value, (this.scrollValue - c.start) / c.end)
+  handleCallbacks(): void {
+    this.callbacks.forEach((callback) => {
+      if (this.scrollValue < callback.from || this.scrollValue > callback.to) {
+        return
       }
+      callback.func(
+        (this.scrollValue - callback.from) / (callback.to - callback.from)
+      )
     })
   }
 
-  addElement(selector, property, units, options) {
+  addElement(selector, property, units, options): void {
     let elements = document.querySelectorAll(selector)
     let e = {
       elements,
@@ -87,7 +96,7 @@ export default class ScrollTimeline {
     this.elements.push(e)
   }
 
-  handleElements() {
+  handleElements(): void {
     this.elements.forEach((e) => {
       e.elements.forEach((e1) => {
         if (this.scrollValue >= e.start && this.scrollValue <= e.end) {
@@ -98,13 +107,26 @@ export default class ScrollTimeline {
     })
   }
 
-  start() {
+  start(): void {
     this.handleCallbacks()
-    window.addEventListener('wheel', this.handleScroll.bind(this))
+    document.addEventListener('wheel', this.handleScroll.bind(this))
   }
 
-  handleScroll(e) {
-    let value = e.deltaY
+  checkScrollBlocker(e): boolean {
+    if (Array.isArray(e.path)) {
+      return e.path.some((el) => {
+        return el.classList?.contains('prevent-scroll')
+      })
+    }
+    return false
+  }
+
+  handleScroll(e): void {
+    if (this.checkScrollBlocker(e)) {
+      return
+    }
+
+    const value = e.deltaY
     if (value > 0) {
       this.setScrollValue(this.animation.targetScrollValue + this.scrollStep)
     } else if (value < 0) {

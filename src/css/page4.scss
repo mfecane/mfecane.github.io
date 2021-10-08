@@ -1,12 +1,14 @@
-@import 'css/config.scss';
+@import "css/config.scss";
 
 .page4 {
+  flex: 0 0 auto;
   background: $light;
-  min-width: 100vw;
-  width: 100vw;
+  width: 70vw;
   height: 100vh;
   z-index: 0;
   position: relative;
   overflow: hidden;
-  display:flex;
+  display: flex;
+  background: $dark;
+  background: radial-gradient(farthest-corner circle at 30% 20%, $dark-dimmed 0%, $dark 100%);
 }
