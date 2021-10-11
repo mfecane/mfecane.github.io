@@ -1,60 +1,53 @@
-@import 'css/config.scss';
-
-.btn {
-  padding: 8px 18px;
-  background: transparent;
-  color: $light;
-  font-family: 'Crimson Text', serif;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  transition-property: background-color, color;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
-  position: relative;
-  border: 1px solid $light;
-  border-radius: 2px;
-  white-space: nowrap;
-
-  &:before {
-    content: '';
-    clip-path: polygon(
-      -5% -10%,
-      -5% 110%,
-      2% 110%,
-      2% 2%,
-      98% 2%,
-      98% 98%,
-      2% 98%,
-      0% 110%,
-      105% 110%,
-      105% -10%
-    );
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    //background: yellow;
-    transform: translate(-50%, -50%) scale(1.03, 1.1);
-    border: 2px solid rgba($light, 0.5);
-    filter: blur(2px);
-    border-radius: 2px;
-    transition-property: all;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out;
-  }
-
-  &:hover {
-    color: #fff;
-    border-color: #fff;
-  }
-
-  &:hover:before {
-    border: 3px solid #fff;
-  }
-}
+@import "css/config.scss";
 
 body {
   color: $light;
 }
+
+.curtain {
+  background: black;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.btn {
+  width: 12rem;
+  padding: 4px 12px;
+  background: transparent;
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.btn_primary {
+  background: $accent;
+  color: $dark;
+  border: 2px solid $accent;
+}
+
+.btn_primary:hover {
+  color: white;
+  background: rgb(255, 143, 52);
+}
+
+.btn_secondary {
+  background: transparent;
+  color: $accent;
+  border: 2px solid $accent;
+}
+
+.btn_secondary:hover {
+  color: white;
+  background: rgba(255, 116, 2, 0.466);
+}
+
+
+
+

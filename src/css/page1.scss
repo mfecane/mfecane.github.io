@@ -15,6 +15,8 @@ body {
 }
 
 .page1 {
+  width: 100vw;
+  height: 100vh;
   flex: 0 0 100vw;
   z-index: 2;
   background-size: cover;
@@ -78,7 +80,7 @@ body {
 
 .column__title {
   font-family: "Playfair Display", serif;
-  font-size: 8vmin;
+  font-size: 9vmin;
   line-height: 8.25vmin;
   letter-spacing: 0.225vmin;
   font-weight: 400;
@@ -97,7 +99,7 @@ body {
   font-family: "Playfair Display", serif;
   font-size: 4vmin;
   line-height: 4.25vmin;
-  letter-spacing: 0.125vmin;
+  letter-spacing: 0.2vmin;
   color: $accent;
   font-weight: 400;
   text-transform: uppercase;
@@ -115,7 +117,7 @@ body {
     padding-bottom: 70%;
     margin-bottom: -5vh;
     position: relative;
-    transform: translateY(-3vh);
+    transform: translateY(-2vh);
     canvas {
       position: absolute;
       top: 0;
@@ -135,18 +137,9 @@ body {
 
 /* TODO: find better font, thinner, but not super thin */
 .column__button-container {
-  grid-column: 1;
-  grid-row: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
-  justify-self: end;
+  display: flex;
   align-self: end;
-}
-
-.column__button-container .btn {
-  padding: 0.25vmin 3vmin;
-  font-size: 2vmin;
+  justify-self: end;
 }
 
 .logo-group {

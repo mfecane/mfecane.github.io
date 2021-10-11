@@ -5,23 +5,10 @@
     <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rain</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap"
-      rel="stylesheet"
-    />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lora&family=Crimson+Text&family=Playfair+Display&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Playfair+Display&family=Cormorant+Garamond&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -45,123 +32,121 @@
       </div>
     </div>
 
-    <div class="scroll-container">
-      <section class="page page1" id="page1">
-        <!-- TODO ::: slowly floating elements -->
-        <!-- TODO ::: move this container away more slowly -->
-        <!-- TODO ::: floating ghost of title -->
-        <div class="column__container">
-          <div class="logo-group">
-            <div class="column__logo-container" id="logo-container"></div>
-            <h1 class="column__title">Aleksei Aliapkin</h1>
-            <h2 class="column__subtitle">frontend<br />developer</h2>
-          </div>
-          <nav class="column__nav-container">
-            <ul class="nav">
-              <li class="nav__link"><a>Home</a></li>
-              <li class="nav__link"><a>My works</a></li>
-              <li class="nav__link"><a>Contacts</a></li>
-              <li class="nav__link"><a>Technologies</a></li>
-            </ul>
-          </nav>
-          <div class="column__button-container">
-            <button class="btn">Contact me</button
-            ><button class="btn">Download CV</button>
-          </div>
-        </div>
+    <div class="curtain"></div>
 
-        <!-- TODO ::: make this 3d -->
-        <div class="page1__photo-container">
-          <img src="/assets/img/man.png" alt="" class="page1__photo" />
+    <section class="page page1" id="page1">
+      <!-- TODO ::: slowly floating elements -->
+      <!-- TODO ::: move this container away more slowly -->
+      <!-- TODO ::: floating ghost of title -->
+      <div class="column__container">
+        <div class="logo-group">
+          <div class="column__logo-container" id="logo-container"></div>
+          <h1 class="column__title">Aleksei Aliapkin</h1>
+          <h2 class="column__subtitle">frontend<br />developer</h2>
         </div>
-      </section>
+        <nav class="column__nav-container">
+          <ul class="nav">
+            <li class="nav__link"><a>Home</a></li>
+            <li class="nav__link"><a>My works</a></li>
+            <li class="nav__link"><a>Contacts</a></li>
+            <li class="nav__link"><a>Technologies</a></li>
+          </ul>
+        </nav>
+        <div class="column__button-container">
+          <button class="btn btn_primary">Contact me</button
+          ><button class="btn btn_secondary">Download CV</button>
+        </div>
+      </div>
 
-      <section class="page page2" id="page2">
-        <div class="page2-left">
-          <h3 class="about__title">ABOUT ME</h3>
-          <article class="about__text">
-            Hi, my name is Aliapkin Aleksei and i am a front-end developer
-            located in Moscow, Russia. I started out with React + Redux, later
-            switching to Vue.js + Vuex. My background is mathematics and i have
-            previously worked in the banking industry.
+      <!-- TODO ::: make this 3d -->
+      <div class="page1__photo-container">
+        <img src="/assets/img/man.png" alt="" class="page1__photo" />
+      </div>
+    </section>
+
+    <section class="page page2" id="page2">
+      <div class="page2-left">
+        <h3 class="about__title">ABOUT ME</h3>
+        <article class="about__text">
+          Hi, my name is Aliapkin Aleksei and i am a front-end developer located
+          in Moscow, Russia. I started out with React + Redux, later switching
+          to Vue.js + Vuex. My background is mathematics and i have previously
+          worked in the banking industry.
+        </article>
+      </div>
+      <div class="page2-right">
+        <div class="page2-scroller prevent-scroll"></div>
+
+        <div class="experience__wrapper">
+          <h3 class="experience__title">WORK EXPERIENCE</h3>
+
+          <div class="experience__year">
+            <div class="experience__marker"></div>
+            <span>2020</span>
+          </div>
+
+          <h4 class="experience__subtitle">
+            Frontend web development. Gridnine systems.
+          </h4>
+
+          <article class="experience__description">
+            I was developing Frontend for a client's application using mostly
+            Vue.js and Vuex. I did my tasks timely and received positive
+            feedback for my work.
+          </article>
+
+          <div class="experience__year">
+            <div class="experience__marker"></div>
+            <span>2020</span>
+          </div>
+
+          <h4 class="experience__subtitle">
+            Frontend web development. Gridnine systems.
+          </h4>
+
+          <article class="experience__description">
+            I was developing Frontend for a client's application using mostly
+            Vue.js and Vuex. I did my tasks timely and received positive
+            feedback for my work.
+          </article>
+
+          <h3 class="experience__title">Education</h3>
+
+          <div class="experience__year">
+            <div class="experience__marker"></div>
+            <span>2020</span>
+          </div>
+
+          <h4 class="experience__subtitle">
+            Frontend web development. Gridnine systems.
+          </h4>
+
+          <article class="experience__description">
+            I was developing Frontend for a client's application using mostly
+            Vue.js and Vuex. I did my tasks timely and received positive
+            feedback for my work.
+          </article>
+
+          <div class="experience__year">
+            <div class="experience__marker"></div>
+            <span>2020</span>
+          </div>
+
+          <h4 class="experience__subtitle">
+            Frontend web development. Gridnine systems.
+          </h4>
+
+          <article class="experience__description">
+            I was developing Frontend for a client's application using mostly
+            Vue.js and Vuex. I did my tasks timely and received positive
+            feedback for my work.
           </article>
         </div>
-        <div class="page2-right">
+      </div>
+    </section>
 
-          <div class="page2-scroller prevent-scroll">
-
-          </div>
-
-          <div class="experience__wrapper">
-            <h3 class="experience__title">WORK EXPERIENCE</h3>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
-            </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
-            </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-
-            <h3 class="experience__title">Education</h3>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
-            </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
-            </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="page page3" id="page3">
-        <div class="tech__container prevent-scroll">
+    <section class="page page3" id="page3">
+      <div class="tech__container prevent-scroll">
         <div class="tech__item">
           <div class="tech__item-inner">
             <div class="tech__image icon icon--vue"></div>
@@ -198,9 +183,8 @@
           </div>
         </div>
       </div>
-      </section>
+    </section>
 
-      <section class="page page4" id="page4">shite</section>
-    </div>
+    <section class="page page4" id="page4">shite</section>
   </body>
 </html>

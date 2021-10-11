@@ -37,6 +37,7 @@ export class Shape {
   }
 
   draw(t: number): void {
+    // console.log("t", t)
     this.ctx.strokeStyle = this.color
 
     let j = 0
@@ -151,8 +152,6 @@ export default class SvgPathAnimation {
 
   setFrame(t: number): void {
     this._clearCanvas()
-    t = easeOutCubic(t)
-
     this.shapes.forEach((el: Shape) => {
       el.draw(t)
     })
@@ -178,7 +177,7 @@ export default class SvgPathAnimation {
 
     const s = paths.map((points: IPath, index: number) => {
       const { width } = this.shapesconfig[index]
-      const shape = new Shape(points, (1.2 * width) / this.transform.scale)
+      const shape = new Shape(points, (1 * width) / this.transform.scale)
       shape.ctx = this.ctx
       shape.size = this.size
       return shape
