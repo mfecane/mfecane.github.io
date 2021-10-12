@@ -26,7 +26,7 @@ export class Shape {
   points: Array<IPoint> = []
   width = 5
   drawn = 0
-  color = `#bec9d1`
+  color = `#eaecee`
   index = 0
   ctx: CanvasRenderingContext2D
   size = { w: 0, h: 0, cx: 0, cy: 0 }
@@ -37,7 +37,6 @@ export class Shape {
   }
 
   draw(t: number): void {
-    // console.log("t", t)
     this.ctx.strokeStyle = this.color
 
     let j = 0

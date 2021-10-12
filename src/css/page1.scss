@@ -80,35 +80,27 @@ body {
 
 .column__title {
   font-family: "Playfair Display", serif;
-  font-size: 9vmin;
+  font-size: 72px;
   line-height: 8.25vmin;
   letter-spacing: 0.225vmin;
   font-weight: 400;
   color: $light;
   text-transform: uppercase;
   text-align: right;
-  transition: all 0.2s ease-out;
-  margin-bottom: 0.125vmin;
-  margin-right: 0.2vmin;
-  &:hover {
-    transform: translateX(-1px);
-  }
+  margin-bottom: 8px;
+  margin-right: 4px;
 }
 
 .column__subtitle {
-  font-family: "Playfair Display", serif;
-  font-size: 4vmin;
+  font-family: "Libre Baskerville", serif;
+  font-size: 32px;
   line-height: 4.25vmin;
   letter-spacing: 0.2vmin;
   color: $accent;
   font-weight: 400;
   text-transform: uppercase;
   text-align: right;
-  transition: all 0.2s ease-out;
-  margin-right: 0.4vmin;
-  &:hover {
-    transform: translateX(-1px);
-  }
+  margin-right: 6px;
 }
 
 .column {
@@ -155,21 +147,22 @@ body {
   &__link {
     display: block;
     font-family: Crimson Text;
-    font-size: 3vmin;
+    font-size: 24px;
     color: $light;
-    margin: 1vmin 0;
+    margin: 6px 0;
     font-weight: 300;
     letter-spacing: 0.125vmin;
     position: relative;
     cursor: pointer;
     z-index: 25;
+    transition: 0.3s all ease-out;
 
     &:last-of-type {
       margin-bottom:0;
     }
 
     &:hover {
-      color: #ffffff;
+      color: $accent;
     }
   }
 }

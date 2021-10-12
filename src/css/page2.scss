@@ -6,53 +6,56 @@
   width: 100vw;
   height: 100vh;
   z-index: 0;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
   display: flex;
 }
 
 .page2-left {
-  width: 50%;
+  flex: 0 0 30%;
   background-color: $lightbg;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 32px;
   padding-bottom: 64px;
 }
 
-.about {
-  &__title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    color: $accent;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: right;
-    margin-bottom: 12px;
-  }
+.about__title {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  line-height: 36px;
+  color: $accent;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: right;
+  margin-bottom: 32px;
+}
 
-  &__text {
-    border-top: $dark 1px solid;
-    padding: 16px 0;
-    color: $dark;
-    font-family: "Lora"; // TODO ::: link this font
-    letter-spacing: 0.05rem;
-    font-size: 16px;
-    line-height: 18px;
-  }
+.about__text {
+  text-align: right;
+  border-top: $dark 1px solid;
+  padding: 16px 0;
+  color: $dark;
+  font-family: "Lora";
+  letter-spacing: 1px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .page2-right {
-  width: 50%;
+  flex: 0 0 70%;
   background: $dark;
   background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
   position: relative;
+  overflow:hidden;
 }
 
-.page2-scroller  {
+.page2-scroller {
   z-index: 3;
   position: absolute;
   top: 5vmin;
@@ -118,7 +121,7 @@
   border-radius: 50%;
   border: 1px solid $light;
   box-shadow: 0 0 10px 2px $light;
-  z-index:1;
+  z-index: 1;
 }
 
 .experience__marker:before {
@@ -131,7 +134,7 @@
   background: $light;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  z-index:2;
+  z-index: 2;
 }
 
 .experience__subtitle {

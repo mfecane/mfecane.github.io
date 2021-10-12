@@ -8,7 +8,6 @@ import shapesconfig from 'ts/svg/shapes-config'
 
 import floralPage2Svg from 'assets/svg/second-page-floral2.inline.svg'
 import shapesconfig2 from 'ts/svg/shapes-config2'
-import { easeInCubic } from 'ts/lib/easing-functions'
 
 import { mapclamp } from 'ts/lib/lib'
 
@@ -21,31 +20,22 @@ let mainBgAnimation: MainBgAnimation
 let scrollContainer: HTMLDivElement
 let mainBgCanvasContainer: HTMLDivElement
 let experienceWrapper: HTMLDivElement
-let page2Scroller: HTMLDivElement
 let page1: HTMLDivElement
 let page2: HTMLDivElement
 let curtain: HTMLDivElement
 
 const handleFirstPageScroll = (value) => {
-  const val = (window.innerWidth * -value) / 2
-  page1.style.transform = `translateX(${val}px)`
+  console.log(value);
+
+  const val1 = (window.innerWidth * -value) / 2
+  page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value > 0.5 ? 'hidden' : 'visible'
-}
 
-const handleMainBg = (value) => {
-  const val = (window.innerWidth * -value) / 4
-  mainBgCanvasContainer.style.transform = `translateX(${val}px)`
+  const val2 = (window.innerWidth * -value) / 4
+  mainBgCanvasContainer.style.transform = `translateX(${val2}px)`
   mainBgCanvasContainer.style.visibility = value > 0.5 ? 'hidden' : 'visible'
-}
-
-const handleCurtain = (value) => {
-  const left = mapclamp(value, 0, 0.5, 100, 0)
-  const width = mapclamp(Math.abs(value - 1 / 2), 0, 1 / 2, 100, 0)
-  curtain.style.width = `${width}vw`
-  curtain.style.left = `${left}vw`
-}
-
-const handleMouseWidget = (value) => {
+  
+  // TODO(AAl): this shouldn't happen each frame, check performance
   if (value > 0.1) {
     mouseContainer.classList.add('fade-out')
   } else {
@@ -53,9 +43,18 @@ const handleMouseWidget = (value) => {
   }
 }
 
+const handleCurtain = (value) => {
+  console.log(value)
+  const left = mapclamp(value, 0, 0.5, 100, 0)
+  const width = mapclamp(Math.abs(value - 1 / 2), 0, 1 / 2, 100, 0)
+  curtain.style.width = `${width}vw`
+  curtain.style.left = `${left}vw`
+}
+
 const handleSecondPageScroll = (value) => {
   const scrollvalue = -value * window.innerWidth
   page2.style.transform = `translateX(${scrollvalue}px)`
+  page2.style.visibility = value > -0.5 && value < 0.5 ? 'visible' : 'hidden'
 }
 
 const animateMainLogo = (value) => {
@@ -64,17 +63,11 @@ const animateMainLogo = (value) => {
 }
 
 const setUpMouseAnimation = () => {
-  scrolltimeline.addState({
-    setter: animateMainLogo,
-    page: 0,
-    from: 0,
-    val: 0,
-    to: 1,
+  scrolltimeline.addTransition({
+    func: animateMainLogo,
+    range: [0, 1],
+    mapping: [0, 1]
   })
-}
-
-const handleScroll = () => {
-  // check overflow
 }
 
 const setUpMainLogoAnimation = () => {
@@ -94,7 +87,6 @@ window.onload = () => {
   mouseContainer = document.querySelector('.mouse__container')
   pagerIndicator = document.querySelector('.pager__indicator')
   experienceWrapper = document.querySelector('.experience__wrapper')
-  page2Scroller = document.querySelector('.page2-scroller')
   page1 = document.querySelector('.page1')
   page2 = document.querySelector('.page2')
   curtain = document.querySelector('.curtain')
@@ -115,36 +107,24 @@ window.onload = () => {
 
   scrolltimeline.addTransition({
     func: handleCurtain,
-    page: 0,
+    range: [0, 1]
   })
 
-  scrolltimeline.addState({
-    setter: handleFirstPageScroll,
-    page: 0,
-    from: 0,
-    val: 0,
-    to: 1,
+  scrolltimeline.addTransition({
+    func: handleFirstPageScroll,
+    range: [0, 1]
   })
 
-  scrolltimeline.addState({
-    setter: handleFirstPageScroll,
-    page: 0,
-    from: 0,
-    val: 0,
-    to: 1,
+  scrolltimeline.addTransition({
+    func: handleSecondPageScroll,
+    range: [0, 2],
+    mapping: [-1, 0, 1]
   })
 
-  scrolltimeline.addState({
-    setter: handleMainBg,
-    page: 0,
-    from: 0,
-    val: 0,
-    to: 1,
+  scrolltimeline.addTransition({
+    func: handleCurtain,
+    range: [1, 2]
   })
-
-  // scrolltimeline.addCallback(handleMouseWidget, {
-  //   segment: 0,
-  // })
 
   // scrolltimeline.addCallback(handleSecondPageScroll, {
   //   segment: 1,
@@ -154,10 +134,6 @@ window.onload = () => {
   //   const v = 5 + (130 * value) / 5
   //   pagerIndicator.style.left = `${v}px`
   // }, {})
-
-  page2Scroller.addEventListener('scroll', (e) => {
-    experienceWrapper.dispatchEvent(e)
-  })
 
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)

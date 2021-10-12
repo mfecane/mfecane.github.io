@@ -1,5 +1,9 @@
 import { mapclamp } from 'ts/lib/lib'
-import { easeOutCubic, easeInOutSquare, easeInSquare } from 'ts/lib/easing-functions'
+import {
+  easeOutCubic,
+  easeOutSquare,
+  easeInSquare,
+} from 'ts/lib/easing-functions'
 
 function clamp(val: number, min: number, max: number): number {
   return val < min ? min : val > max ? max : val
@@ -9,15 +13,9 @@ function clamp(val: number, min: number, max: number): number {
 
 interface transition {
   func: (x: number) => void
-  page: number
-}
-
-interface state {
-  from: number
-  to: number
-  val: number
-  page: number
-  setter: (x: number) => void
+  range: Array<number>
+  mapping?: Array<number>
+  value?: number | null
 }
 
 interface options {
@@ -34,11 +32,10 @@ export default class ScrollTimeline {
   scrollStep = 0.05
 
   transitions: Array<transition> = []
-  states: Array<state> = []
   pageCount = 3
-  currentPage = 0
 
   _scrollValue = 0 // refactor to 0 - 1
+  _currentPage = 0
   _cooldownTimeout = null
   _animId = null
   _lastPage = -1
@@ -59,50 +56,78 @@ export default class ScrollTimeline {
     this.scrollStep = options.scrollStep || this.scrollStep
   }
 
-  get pageValue(): number {
-    const value = this._scrollValue - this.currentPage
-    if (this._lastPage < this.currentPage) {
-      return easeInSquare(value)
-    } else {
-      return easeOutSquare(value)
+  set scrollValue(value: number) {
+    this._scrollValue = value
+    const tmp = this._currentPage
+    this._currentPage = Math.floor(this._scrollValue)
+    // TODO ::: dont update if equal
+
+    if (tmp !== this._currentPage) {
+      this._lastPage = tmp
     }
   }
 
-  addTransition(transition: transition): void {
-    this.transitions.push(transition)
+  get scrollValue(): number {
+    return this._scrollValue
   }
 
-  addState(state: state): void {
-    this.states.push(state)
+  addTransition(transition: transition): void {
+    if (!transition.mapping) {
+      transition.mapping = [0, 1]
+    }
+    this.transitions.push(transition)
   }
 
   handleCallbacks(): void {
     this.handleTransitions()
-    this.handleStates()
+  }
+
+  _inRange(range: Array<number>, value: number): boolean {
+    return range[0] <= value && value <= range[1]
+  }
+
+  _mapValues(
+    range: Array<number>,
+    mapping: Array<number>,
+    parameter: number
+  ): number {
+    if (parameter <= range[0]) {
+      return mapping[0]
+    }
+
+    if (parameter >= range[1]) {
+      return mapping[mapping.length - 1]
+    }
+
+    const intervalLength = (range[1] - range[0]) / (mapping.length - 1)
+    const intervalIndex = Math.floor((parameter - range[0]) / intervalLength)
+    const intervalValue = parameter % intervalLength
+
+    const start = mapping[intervalIndex]
+    const end = mapping[intervalIndex + 1]
+
+    const result = start + ((end - start) * intervalValue) / intervalLength
+    return result
   }
 
   handleTransitions(): void {
-    this.transitions.forEach((cb) => {
-      if (this.currentPage === cb.page) {
-        cb.func(this.pageValue)
+    this.transitions.forEach((tr) => {
+      const value = this._mapValues(tr.range, tr.mapping, this.scrollValue)
+      if (tr.value !== value) {
+        tr.value = value
+        tr.func(value)
       }
     })
   }
 
-  handleStates(): void {
-    this.states.forEach((el) => {
-      let value = 0
-      if (el.page == this.currentPage) {
-        value = el.to * this.pageValue + (1 - this.pageValue) * el.val
-        el.setter(value)
-      } else if (el.page === this.currentPage - 1) {
-        value = this.pageValue * el.val + el.from * (1 - this.pageValue)
-        el.setter(value)
-      }
+  initTransitions(): void {
+    this.transitions.forEach((tr) => {
+      tr.func(tr.mapping[0])
     })
   }
 
   start(): void {
+    this.initTransitions()
     this.handleCallbacks()
     document.addEventListener('wheel', this.handleScroll.bind(this))
   }
@@ -130,9 +155,9 @@ export default class ScrollTimeline {
   }
 
   onCooldown(): void {
-    const rounded = Math.round(this._scrollValue)
+    const rounded = Math.round(this.scrollValue)
     const THRESHOLD = 0.01
-    if (Math.abs(rounded - this._scrollValue) > THRESHOLD) {
+    if (Math.abs(rounded - this.scrollValue) > THRESHOLD) {
       this.setScrollValue(rounded)
     }
   }
@@ -153,7 +178,7 @@ export default class ScrollTimeline {
   setScrollValue(value: number): void {
     value = clamp(value, 0, this.pageCount)
 
-    this.animation.startScrollValue = this._scrollValue
+    this.animation.startScrollValue = this.scrollValue
     this.animation.targetScrollValue = value
     this.animationFrames.current = 0
     this.animationFrames.end =
@@ -185,7 +210,7 @@ export default class ScrollTimeline {
     if (t > 0.99) {
       t = 1
     }
-    this._scrollValue =
+    this.scrollValue =
       this.animation.startScrollValue +
       (this.animation.targetScrollValue - this.animation.startScrollValue) * t
 
