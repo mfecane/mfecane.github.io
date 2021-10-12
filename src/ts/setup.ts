@@ -9,7 +9,7 @@ import shapesconfig from 'ts/svg/shapes-config'
 import floralPage2Svg from 'assets/svg/second-page-floral2.inline.svg'
 import shapesconfig2 from 'ts/svg/shapes-config2'
 
-import { mapclamp } from 'ts/lib/lib'
+import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
 
 let logoContainer: HTMLDivElement
 let scrolltimeline: ScrollTimeline
@@ -24,17 +24,21 @@ let page1: HTMLDivElement
 let page2: HTMLDivElement
 let curtain: HTMLDivElement
 
-const handleFirstPageScroll = (value) => {
-  console.log(value);
+const firstTransition = (value) => {
+  console.log(value)
 
-  const val1 = (window.innerWidth * -value) / 2
+  const val1 = map01(value, 0, -window.innerWidth / 2)
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value > 0.5 ? 'hidden' : 'visible'
 
-  const val2 = (window.innerWidth * -value) / 4
+  const val2 = map01(value, 0, -window.innerWidth / 4)
   mainBgCanvasContainer.style.transform = `translateX(${val2}px)`
   mainBgCanvasContainer.style.visibility = value > 0.5 ? 'hidden' : 'visible'
-  
+
+  const val3 =  map01(value, window.innerWidth, 0)
+  page2.style.transform = `translateX(${val3}px)`
+  page2.style.visibility = value > 0.5 ? 'hidden' : 'visible'
+
   // TODO(AAl): this shouldn't happen each frame, check performance
   if (value > 0.1) {
     mouseContainer.classList.add('fade-out')
@@ -49,6 +53,7 @@ const handleCurtain = (value) => {
   const width = mapclamp(Math.abs(value - 1 / 2), 0, 1 / 2, 100, 0)
   curtain.style.width = `${width}vw`
   curtain.style.left = `${left}vw`
+  curtain.style.visibility = 'hidden'
 }
 
 const handleSecondPageScroll = (value) => {
@@ -65,8 +70,7 @@ const animateMainLogo = (value) => {
 const setUpMouseAnimation = () => {
   scrolltimeline.addTransition({
     func: animateMainLogo,
-    range: [0, 1],
-    mapping: [0, 1]
+    page: 0,
   })
 }
 
@@ -101,29 +105,38 @@ window.onload = () => {
   const options = {
     scrollStep: 0.1,
     pageCount: 3,
+    pages: [
+      {
+        step: 0.05,
+        snap: true,
+      },
+      {
+        step: 0.02,
+        snap: false,
+      },
+    ],
   }
 
   scrolltimeline = new ScrollTimeline(options)
 
   scrolltimeline.addTransition({
     func: handleCurtain,
-    range: [0, 1]
+    page: 0,
   })
 
   scrolltimeline.addTransition({
-    func: handleFirstPageScroll,
-    range: [0, 1]
+    func: firstTransition,
+    page: 0,
   })
 
   scrolltimeline.addTransition({
     func: handleSecondPageScroll,
-    range: [0, 2],
-    mapping: [-1, 0, 1]
+    page: 0,
   })
 
   scrolltimeline.addTransition({
     func: handleCurtain,
-    range: [1, 2]
+    page: 0,
   })
 
   // scrolltimeline.addCallback(handleSecondPageScroll, {
