@@ -66,14 +66,17 @@ export default class ScrollTimeline {
 
   set scrollValue(value: number) {
     this._scrollValue = value
-    this._currentPage = Math.floor(this._scrollValue)
+    this._currentPage = Math.min(
+      Math.floor(this._scrollValue),
+      this.pages.length - 1
+    )
   }
 
   get scrollValue(): number {
     return this._scrollValue
   }
 
-// sort callbacks  by page
+  // sort callbacks  by page
 
   addTransition(transition: transition): void {
     this.transitions.push(transition)
@@ -112,14 +115,15 @@ export default class ScrollTimeline {
   }
 
   handleTransitions(): void {
+    // console.log("this.scrollValue", this.scrollValue)
     const currentPage = Math.floor(this.scrollValue)
     const currentPageValue = this.scrollValue - currentPage
     this.transitions.forEach((tr) => {
       let value
       if (tr.page > currentPage) {
-        value = 1
-      } else if (tr.page < currentPage) {
         value = 0
+      } else if (tr.page < currentPage) {
+        value = 1
       } else {
         value = currentPageValue
       }
@@ -145,9 +149,9 @@ export default class ScrollTimeline {
   //   return false
   // }
 
-  getScrollStep():number {
+  getScrollStep(): number {
     // TODO : on page chacnge
-    return this.pages[this._currentPage].step || this.scrollStep;
+    return this.pages[this._currentPage].step || this.scrollStep
     // yeah unnecessary fallback
   }
 
@@ -158,9 +162,13 @@ export default class ScrollTimeline {
 
     const value = e.deltaY
     if (value > 0) {
-      this.setScrollValue(this.animation.targetScrollValue + this.getScrollStep())
+      this.setScrollValue(
+        this.animation.targetScrollValue + this.getScrollStep()
+      )
     } else if (value < 0) {
-      this.setScrollValue(this.animation.targetScrollValue - this.getScrollStep())
+      this.setScrollValue(
+        this.animation.targetScrollValue - this.getScrollStep()
+      )
     }
   }
 
@@ -188,7 +196,7 @@ export default class ScrollTimeline {
   }
 
   setScrollValue(value: number): void {
-    value = clamp(value, 0, this.pageCount)
+    value = clamp(value, 0, this.pages.length)
 
     this.animation.startScrollValue = this.scrollValue
     this.animation.targetScrollValue = value

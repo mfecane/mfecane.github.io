@@ -2,6 +2,7 @@ import ScrollTimeline from 'ts/animation/scroll-pager'
 import MainBgAnimation from 'ts/components/main-background'
 import SvgPathAnimation from 'ts/components/svg-path-animation'
 import SvgPathAnimation2 from 'ts/components/svg-path-animation2'
+import { easeOutSquare } from 'ts/lib/easing-functions'
 
 import mainLogo from 'assets/svg/svg-low.inline.svg'
 import shapesconfig from 'ts/svg/shapes-config'
@@ -23,21 +24,47 @@ let experienceWrapper: HTMLDivElement
 let page1: HTMLDivElement
 let page2: HTMLDivElement
 let curtain: HTMLDivElement
+let page1Photo: HTMLImageElement
+let page2left: HTMLDivElement
+let page2right: HTMLDivElement
+let page2title: HTMLDivElement
+
+let mainBgAnimatinoCompleteFlag = false
 
 const firstTransition = (value) => {
-  console.log(value)
+  value = easeOutSquare(value)
 
-  const val1 = map01(value, 0, -window.innerWidth / 2)
+  const val1 = map01(value, 0, (-window.innerWidth / 3) * 2)
   page1.style.transform = `translateX(${val1}px)`
-  page1.style.visibility = value > 0.5 ? 'hidden' : 'visible'
+  page1.style.visibility = value === 1 ? 'hidden' : 'visible'
 
   const val2 = map01(value, 0, -window.innerWidth / 4)
   mainBgCanvasContainer.style.transform = `translateX(${val2}px)`
-  mainBgCanvasContainer.style.visibility = value > 0.5 ? 'hidden' : 'visible'
+  mainBgCanvasContainer.style.visibility = value === 1 ? 'hidden' : 'visible'
 
-  const val3 =  map01(value, window.innerWidth, 0)
-  page2.style.transform = `translateX(${val3}px)`
-  page2.style.visibility = value > 0.5 ? 'hidden' : 'visible'
+  // const val3 =  map01(value, window.innerWidth, 0)
+  // page2.style.transform = `translateX(${val3}px)`
+  page2.style.visibility = value === 0 ? 'hidden' : 'visible'
+
+  // const val4 =  map01(value, 0, -window.innerWidth/2)
+  // const val7 =  map01(value, 0, -window.innerWidth/4)
+  // const val5 =  map01(value, 0, 720)
+  // const val6 =  map01(value, 1, 0)
+  // page1Photo.style.transform = `translate(${val4}px, ${val7}px) rotate(${val5}deg) scale(${val6})`
+
+  const val8 = mapclamp(value, 0.5, 0.9, -page2left.offsetWidth, 0)
+  page2left.style.transform = `translateX(${val8}px)`
+
+  const val9 = mapplain(value, 0, 1, page2right.offsetWidth, 0)
+  page2right.style.transform = `translateX(${val9}px)`
+
+  const val10 = mapplain(value, 0.7, 1, -100, 0)
+  page2title.style.transform = `translateY(${val10}px)`
+  const val11 = mapplain(value, 0.7, 1, 0, 1)
+  page2title.style.opacity = `${val11}`
+
+  // const val5 =  map01(value, 0, window.innerHeight)
+  // page1Photo.style.transform = `translateY(${val5}px)`
 
   // TODO(AAl): this shouldn't happen each frame, check performance
   if (value > 0.1) {
@@ -45,33 +72,19 @@ const firstTransition = (value) => {
   } else {
     mouseContainer.classList.remove('fade-out')
   }
+
+  if (mainBgAnimatinoCompleteFlag) {
+    const v = mapclamp(value, 0, 0.6, 1, 0)
+    logo.setFrame(v)
+  }
 }
 
 const handleCurtain = (value) => {
-  console.log(value)
   const left = mapclamp(value, 0, 0.5, 100, 0)
   const width = mapclamp(Math.abs(value - 1 / 2), 0, 1 / 2, 100, 0)
   curtain.style.width = `${width}vw`
   curtain.style.left = `${left}vw`
   curtain.style.visibility = 'hidden'
-}
-
-const handleSecondPageScroll = (value) => {
-  const scrollvalue = -value * window.innerWidth
-  page2.style.transform = `translateX(${scrollvalue}px)`
-  page2.style.visibility = value > -0.5 && value < 0.5 ? 'visible' : 'hidden'
-}
-
-const animateMainLogo = (value) => {
-  const v = mapclamp(value, 0, 0.6, 1, 0)
-  logo.setFrame(v)
-}
-
-const setUpMouseAnimation = () => {
-  scrolltimeline.addTransition({
-    func: animateMainLogo,
-    page: 0,
-  })
 }
 
 const setUpMainLogoAnimation = () => {
@@ -81,7 +94,9 @@ const setUpMainLogoAnimation = () => {
   }
 
   logo = new SvgPathAnimation(logoContainer, floralPage2Svg, config)
-  logo.start().then(setUpMouseAnimation)
+  logo.start().then(() => {
+    mainBgAnimatinoCompleteFlag = true
+  })
 }
 
 window.onload = () => {
@@ -91,9 +106,16 @@ window.onload = () => {
   mouseContainer = document.querySelector('.mouse__container')
   pagerIndicator = document.querySelector('.pager__indicator')
   experienceWrapper = document.querySelector('.experience__wrapper')
+
+  // page1
   page1 = document.querySelector('.page1')
+  page1Photo = document.querySelector('.page1__photo')
+
   page2 = document.querySelector('.page2')
   curtain = document.querySelector('.curtain')
+  page2left = document.querySelector('.page2-left')
+  page2right = document.querySelector('.page2-right')
+  page2title = document.querySelector('.about__title')
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
@@ -126,11 +148,6 @@ window.onload = () => {
 
   scrolltimeline.addTransition({
     func: firstTransition,
-    page: 0,
-  })
-
-  scrolltimeline.addTransition({
-    func: handleSecondPageScroll,
     page: 0,
   })
 

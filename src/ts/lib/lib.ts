@@ -24,7 +24,7 @@ export function mapplain(
 }
 
 export function map01(x: number, min: number, max: number): number {
-  return min + x * max
+  return min + x * (max - min)
 }
 
 export function hexToRgb(hex: string): string {

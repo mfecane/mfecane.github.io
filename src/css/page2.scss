@@ -1,7 +1,6 @@
 @import "css/config.scss";
 
 .page2 {
-  background: $darkbg1;
   min-width: 100vw;
   width: 100vw;
   height: 100vh;
@@ -11,6 +10,7 @@
   left: 0;
   overflow: hidden;
   display: flex;
+  z-index: 4;
 }
 
 .page2-left {
