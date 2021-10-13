@@ -158,3 +158,15 @@
   background: $light;
   transition: all 0.3s ease-out;
 }
+
+
+.contacts {
+  position:absolute;
+  width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
+  top:0;
+  left:100vw;
+  background-color: $light;
+  z-index: 5;
+}

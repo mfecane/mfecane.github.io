@@ -28,6 +28,8 @@ let page1Photo: HTMLImageElement
 let page2left: HTMLDivElement
 let page2right: HTMLDivElement
 let page2title: HTMLDivElement
+let placeholderScroller: HTMLDivElement
+let contacts: HTMLDivElement
 
 let mainBgAnimatinoCompleteFlag = false
 
@@ -79,6 +81,25 @@ const firstTransition = (value) => {
   }
 }
 
+const handleSecondPage = (value) => {
+  const val1 = map01(
+    value,
+    0,
+    -placeholderScroller.offsetHeight + page2right.offsetHeight
+  )
+  placeholderScroller.style.top = `${val1}px`
+}
+
+const handleContacts = (value) => {
+  const val1 = map01(
+    value,
+    window.innerWidth,
+    0
+  )
+  contacts.style.left = `${val1}px`
+}
+
+
 const handleCurtain = (value) => {
   const left = mapclamp(value, 0, 0.5, 100, 0)
   const width = mapclamp(Math.abs(value - 1 / 2), 0, 1 / 2, 100, 0)
@@ -116,6 +137,8 @@ window.onload = () => {
   page2left = document.querySelector('.page2-left')
   page2right = document.querySelector('.page2-right')
   page2title = document.querySelector('.about__title')
+  placeholderScroller = document.querySelector('.placeholder-scroller')
+  contacts = document.querySelector('.contacts');
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
@@ -125,26 +148,28 @@ window.onload = () => {
   mainBgAnimation.start()
 
   const options = {
-    scrollStep: 0.1,
-    pageCount: 3,
     pages: [
       {
         step: 0.05,
         snap: true,
       },
       {
-        step: 0.02,
+        step: 0.03,
         snap: false,
       },
+      {
+        step: 0.05,
+        snap: true,
+      }
     ],
   }
 
   scrolltimeline = new ScrollTimeline(options)
 
-  scrolltimeline.addTransition({
-    func: handleCurtain,
-    page: 0,
-  })
+  // scrolltimeline.addTransition({
+  //   func: handleCurtain,
+  //   page: 0,
+  // })
 
   scrolltimeline.addTransition({
     func: firstTransition,
@@ -152,8 +177,13 @@ window.onload = () => {
   })
 
   scrolltimeline.addTransition({
-    func: handleCurtain,
-    page: 0,
+    func: handleSecondPage,
+    page: 1,
+  })
+
+  scrolltimeline.addTransition({
+    func: handleContacts,
+    page: 2,
   })
 
   // scrolltimeline.addCallback(handleSecondPageScroll, {
