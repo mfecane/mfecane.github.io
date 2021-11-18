@@ -142,6 +142,7 @@ body {
 
 .nav {
   margin-left: 16px;
+  color: #ff9d00;
 
   &__link {
     display: block;
@@ -154,7 +155,7 @@ body {
     position: relative;
     cursor: pointer;
     z-index: 3;
-    transition: 0.3s all ease-out;
+    transition: 0.15s all ease-out;
 
     &:last-of-type {
       margin-bottom:0;

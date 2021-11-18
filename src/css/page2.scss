@@ -4,7 +4,6 @@
   min-width: 100vw;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -15,7 +14,7 @@
 
 .page2-left {
   flex: 0 0 30%;
-  background-color: $lightbg;
+  background-color: $darkbg1;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -40,12 +39,13 @@
   text-align: right;
   border-top: $dark 1px solid;
   padding: 16px 0;
-  color: $dark;
+  color: $light-dimmed;
   font-family: "Lora";
   letter-spacing: 1px;
   font-size: 16px;
   line-height: 20px;
 }
+
 .page2-scroller {
   z-index: 3;
   position: absolute;
@@ -62,89 +62,6 @@
   grid-template-columns: 128px auto;
   position: relative;
   overflow-y: auto;
-}
-
-.experience__wrapper:before {
-  content: "";
-  display: block;
-  width: 1px;
-  left: 20px;
-  top: 80px;
-  bottom: 80px;
-  position: absolute;
-  background: $light;
-}
-
-.experience__title {
-  grid-column: 2;
-  font-family: "Playfair Display";
-  font-size: 20px;
-  color: $light;
-  border-bottom: 1px solid $light;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.experience__title:not(:last-child) {
-  margin-top: 4rem;
-}
-
-.experience__year {
-  grid-column: 1;
-  color: $light;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.experience__year span {
-  font-family: "Playfair Display";
-  font-size: 16px;
-  margin-left: 8px;
-}
-
-.experience__marker {
-  position: relative;
-  width: 27px;
-  height: 27px;
-  background: $dark-dimmed;
-  border-radius: 50%;
-  border: 1px solid $light;
-  box-shadow: 0 0 10px 2px $light;
-  z-index: 1;
-}
-
-.experience__marker:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  content: "";
-  background: $light;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.experience__subtitle {
-  color: $accent;
-  font-weight: bold;
-  grid-column: 2;
-  font-family: "Lora";
-  font-size: 18px;
-  align-self: center;
-}
-
-.experience__description {
-  grid-column: 2;
-  letter-spacing: 1px;
-  font-family: "Lora";
-  font-size: 16px;
-  line-height: 20px;
-  color: $light-dimmed;
-  margin: 6px 0 10px 0;
 }
 
 .page2-right {
@@ -193,4 +110,63 @@
 
 .placeholder:nth-child(6) {
   background-color: rgb(214, 99, 99);
+}
+
+.exp__container {
+  margin: 80px 120px;
+}
+
+.exp__title {
+  font-family: "Playfair Display", serif;
+  color: $accent;
+  font-size: 36px;
+  font-weight: normal;
+  letter-spacing: 3px;
+}
+
+.exp__item {
+  display: flex;
+  align-items: flex-start;
+  margin: 30px 0 40px 0;
+  gap: 50px;
+}
+
+.exp__year {
+  font-family: "Lora";
+  color: $light;
+  font-size: 22px;
+  letter-spacing: 1px;
+  flex: 0 0 80px;
+}
+
+.exp__details {
+}
+
+.exp__name {
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: "Lora";
+  color: $accent;
+  margin: 0 0 4px 0;
+}
+
+.exp__place {
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: "Lora";
+  color: $light;
+}
+
+.exp__descr {
+  font-style: normal;
+  font-size: 16px;
+  font-family: "Lora";
+  letter-spacing: 1px;
+  line-height: 24px;
+  color: $light-dimmed;
+  margin: 10px 0;
 }

@@ -11,6 +11,7 @@ import floralPage2Svg from 'assets/svg/second-page-floral2.inline.svg'
 import shapesconfig2 from 'ts/svg/shapes-config2'
 
 import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
+import AnimColor from 'ts/components/anim-color'
 
 let logoContainer: HTMLDivElement
 let scrolltimeline: ScrollTimeline
@@ -36,7 +37,7 @@ let mainBgAnimatinoCompleteFlag = false
 const firstTransition = (value) => {
   value = easeOutSquare(value)
 
-  const val1 = map01(value, 0, (-window.innerWidth / 3) * 2)
+  const val1 = map01(value, 0, (-window.innerWidth / 2) * 1)
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value === 1 ? 'hidden' : 'visible'
 
@@ -158,7 +159,7 @@ window.onload = () => {
         snap: false,
       },
       {
-        step: 0.05,
+        step: 0.1,
         snap: true,
       }
     ],
@@ -200,4 +201,8 @@ window.onload = () => {
   })
 
   scrolltimeline.start()
+
+  const animColor = new AnimColor()
+  animColor.init()
+  animColor.update()
 }
