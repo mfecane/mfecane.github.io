@@ -5,6 +5,7 @@
 - remove filter by point numbers
 - make bg transparent, keep only some solid backgrounds, f.e. hi my name bg keep
 - make only rain move, since it can be moved infinitely
+- make red dimmer
 
 ## ideas
 

@@ -10,6 +10,7 @@ import vertexShaderSource2 from 'shaders/rain.vert'
 import fragmentShaderSource2 from 'shaders/rain.frag'
 
 import bg from 'assets/img/bg.jpg'
+import ScrollTimeline from 'ts/animation/scroll-pager'
 
 class Animation {
   cnv: HTMLCanvasElement = null
@@ -47,14 +48,15 @@ class Animation {
   targetTextureWidth = 0
   targetTextureHeight = 0
   frameBuffer: WebGLFramebuffer | null = null
+  _scrollTimeline
 
   constructor(element: HTMLDivElement) {
     this.element = element
     this.createCanvas()
   }
 
-  start(): void {
-    this.updateAnimation()
+  set scrollTimeline(value: ScrollTimeline) {
+    this._scrollTimeline = value
   }
 
   calculateMVP(): void {
@@ -293,13 +295,14 @@ class Animation {
     }
   }
 
+
   // animation loop
-  updateAnimation(): void {
+  animate(): void {
     this.updateCanvas()
     // this.calculateFps()
 
     window.requestAnimationFrame(() => {
-      this.updateAnimation()
+      this.animate()
     })
   }
 }

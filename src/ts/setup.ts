@@ -100,30 +100,21 @@ const setUpMainLogoAnimation = () => {
 }
 
 window.onload = () => {
-  scrollContainer = document.querySelector('.scroll-container')
   mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
-  pagerIndicator = document.querySelector('.pager__indicator')
 
   // page1
   page1 = document.querySelector('.page1')
-  page1Photo = document.querySelector('.page1__photo')
 
   page2 = document.querySelector('.page2')
   curtain = document.querySelector('.curtain')
-  page2left = document.querySelector('.page2-left')
-  page2right = document.querySelector('.page2-right')
-  page2title = document.querySelector('.about__title')
-  placeholderScroller = document.querySelector('.placeholder-scroller')
   contacts = document.querySelector('.contacts');
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
   }, 400)
 
-  mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
-  mainBgAnimation.start()
 
   const options = {
     pages: [
@@ -144,40 +135,26 @@ window.onload = () => {
 
   scrolltimeline = new ScrollTimeline(options)
 
-  // scrolltimeline.addTransition({
-  //   func: handleCurtain,
-  //   page: 0,
-  // })
-
   scrolltimeline.addTransition({
     func: firstTransition,
     page: 0,
   })
-
-  // scrolltimeline.addTransition({
-  //   func: handleSecondPage,
-  //   page: 1,
-  // })
 
   scrolltimeline.addTransition({
     func: handleContacts,
     page: 1,
   })
 
-  // scrolltimeline.addCallback(handleSecondPageScroll, {
-  //   segment: 1,
-  // })
-
-  // scrolltimeline.addCallback((value) => {
-  //   const v = 5 + (130 * value) / 5
-  //   pagerIndicator.style.left = `${v}px`
-  // }, {})
-
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)
   })
 
   scrolltimeline.start()
+
+  mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
+  mainBgAnimation.scrollTimeline = scrolltimeline;
+  mainBgAnimation.animate()
+
 
   const animColor = new AnimColor()
   animColor.init()
