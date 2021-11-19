@@ -95,7 +95,6 @@ export const blendHslColors = function (
   } else {
     h = c1[0] * v + c2[0] * (1 - v)
   }
-  console.log(h)
   h = h - Math.floor(h)
   return [h, c1[1] * v + c2[1] * (1 - v), c1[2] * v + c2[2] * (1 - v)]
 }

@@ -24,7 +24,7 @@
 
     <div class="mouse__container">
       <div class="mouse__mouse">
-        <div class="mouse__wheel"></div>
+        <div class="mouse__wheel anim-background-color"></div>
       </div>
       <div class="mouse__arrow-container">
         <div class="mouse__arrow-top"></div>
@@ -68,26 +68,151 @@
     </section>
 
     <section class="page page2" id="page2">
-      <div class="page2-left">
-        <h3 class="about__title anim-color">HI, MY NAME IS ALIAPKIN ALEKSEI</h3>
-        <article class="about__text">
-          Hi, my name is Aliapkin Aleksei and i am a front-end developer located
-          in Moscow, Russia. I started out with React + Redux, later switching
-          to Vue.js + Vuex. My background is mathematics and i have previously
-          worked in the banking industry.
-        </article>
+      <div
+        class="page2-left scroll-anim"
+        data-anim-type="second-page-left"
+        data-anim-page="0"
+      >
+        <div
+          class="scroll-anim"
+          data-anim-type="slide-from"
+          data-anim-from="left"
+          data-anim-page="0"
+        >
+          <h3 class="about__title anim-color anim-border-color">
+            HI, MY NAME IS ALIAPKIN ALEKSEI
+          </h3>
+
+          <article
+            class="about__text scroll-anim"
+            data-anim-type="slide-from"
+            data-anim-from="left"
+            data-anim-from-value="50"
+            data-anim-page="0"
+          >
+            Hi, my name is Aliapkin Aleksei and i am a front-end developer
+            located in Moscow, Russia. I started out with React + Redux, later
+            switching to Vue.js + Vuex. My background is mathematics and i have
+            previously worked in the banking industry.
+          </article>
+
+          <h3 class="about__title anim-color anim-border-color">
+            TECHNOLOGIES
+          </h3>
+
+          <div class="tech__container">
+            <div class="tech__row">
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".85"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--vue anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".90"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--js anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".95"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--react anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay="1"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--redux anim-background-color"
+                ></div>
+              </div>
+            </div>
+            <div class="tech__row">
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".90"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--sass anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".95"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--jquery anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay="1"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--git anim-background-color"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="page2-right">
-        <div class="placeholder-scroller">
+      <div
+        class="page2-right scroll-anim"
+        data-anim-type="second-page-right"
+        data-anim-page="0"
+      >
+        <div
+          class="placeholder-scroller scroll-anim"
+          data-anim-type="slide-from"
+          data-anim-from="right"
+          data-anim-page="0"
+        >
           <div class="exp__container">
             <h3 class="exp__title anim-color">WORK EXPERIENCE</h3>
 
             <ul>
-
               <li class="exp__item">
                 <span class="exp__year">2020</span>
                 <div class="exp__details">
-                  <h4 class="exp__name anim-color">FRONTEND WEB DEVELOP STEMS</h4>
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
                   <em class="exp__place">GRIDNINE SYSTEMS</em>
                   <p class="exp__descr">
                     I was developing Frontend for a client's application using
@@ -100,7 +225,9 @@
               <li class="exp__item">
                 <span class="exp__year">2020</span>
                 <div class="exp__details">
-                  <h4 class="exp__name anim-color">FRONTEND WEB DEVELOP STEMS</h4>
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
                   <em class="exp__place">GRIDNINE SYSTEMS</em>
                   <p class="exp__descr">
                     I was developing Frontend for a client's application using
@@ -113,7 +240,9 @@
               <li class="exp__item">
                 <span class="exp__year">2020</span>
                 <div class="exp__details">
-                  <h4 class="exp__name anim-color">FRONTEND WEB DEVELOP STEMS</h4>
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
                   <em class="exp__place">GRIDNINE SYSTEMS</em>
                   <p class="exp__descr">
                     I was developing Frontend for a client's application using
@@ -122,30 +251,17 @@
                   </p>
                 </div>
               </li>
-
-              <li class="exp__item">
-                <span class="exp__year">2020</span>
-                <div class="exp__details">
-                  <h4 class="exp__name anim-color">FRONTEND WEB DEVELOP STEMS</h4>
-                  <em class="exp__place">GRIDNINE SYSTEMS</em>
-                  <p class="exp__descr">
-                    I was developing Frontend for a client's application using
-                    mostly Vue.js and Vuex. I did my tasks timely and received
-                    positive feedback for my work.
-                  </p>
-                </div>
-              </li>
-
             </ul>
 
             <h3 class="exp__title anim-color">EDUCAISHUN</h3>
 
             <ul>
-
               <li class="exp__item">
                 <span class="exp__year">2020</span>
                 <div class="exp__details">
-                  <h4 class="exp__name anim-color">FRONTEND WEB DEVELOP STEMS</h4>
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
                   <em class="exp__place">GRIDNINE SYSTEMS</em>
                   <p class="exp__descr">
                     I was developing Frontend for a client's application using
@@ -154,9 +270,7 @@
                   </p>
                 </div>
               </li>
-
             </ul>
-
           </div>
         </div>
         <!-- <div class="placeholder-scroller">

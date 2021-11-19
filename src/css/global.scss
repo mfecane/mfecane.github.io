@@ -48,6 +48,95 @@ body {
   background: rgba(255, 116, 2, 0.466);
 }
 
+.icon {
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+
+  &--html {
+    mask-image: url("assets/svg/icons/html.svg");
+  }
+
+  &--react {
+    mask-image: url("assets/svg/icons/react.svg");
+  }
+
+  &--vue {
+    mask-image: url("assets/svg/icons/vue.svg");
+  }
+
+  &--redux {
+    mask-image: url("assets/svg/icons/redux.svg");
+  }
+
+  &--openweathermap {
+    mask-image: url("assets/svg/icons/openweathermap.svg");
+  }
+
+  &--bootstrap {
+    mask-image: url("assets/svg/icons/bootstrap.svg");
+  }
+
+  &--ffmpeg {
+    mask-image: url("assets/svg/icons/ffmpeg.svg");
+  }
+
+  &--cpp {
+    mask-image: url("assets/svg/icons/cpp.svg");
+  }
+
+  &--qt {
+    mask-image: url("assets/svg/icons/qt.svg");
+  }
+
+  &--opengl {
+    mask-image: url("assets/svg/icons/opengl.svg");
+  }
+
+  &--webgl {
+    mask-image: url("assets/svg/icons/webgl.svg");
+  }
+
+  &--js {
+    mask-image: url("assets/svg/icons/js.svg");
+  }
+
+  &--jquery {
+    mask-image: url("assets/svg/icons/jquery.svg");
+  }
+
+  &--git {
+    mask-image: url("assets/svg/icons/git.svg");
+  }
+
+  &--sass {
+    mask-image: url("assets/svg/icons/sass.svg");
+  }
+
+  &--mail {
+    mask-image: url("assets/svg/icons/mail.svg");
+  }
+
+  &--phone {
+    mask-image: url("assets/svg/icons/phone.svg");
+  }
+
+  &--github {
+    mask-image: url("assets/svg/icons/github.svg");
+  }
+
+  &--telegram {
+    mask-image: url("assets/svg/icons/telegram.svg");
+  }
+
+  &--mail {
+    mask-image: url("assets/svg/icons/mail.svg");
+  }
+
+  &--inst {
+    mask-image: url("assets/svg/icons/inst.svg");
+  }
+}
 
 
 

@@ -70,7 +70,7 @@ class Animation {
     const far = 1.0
 
     // prettier-ignore
-    this.proj = [ 
+    this.proj = [
       2 / (right - left),                   0,                 0,  -(right + left) / (right - left),
                        0,  2 / (top - bottom),                 0,  -(top + bottom) / (top - bottom),
                        0,                   0,  2 / (far - near),      -(far + near) / (far - near),
@@ -101,9 +101,9 @@ class Animation {
 
     // prettier-ignore
     const positions = [
-      -1.0, -1.0, 
-       1.0, -1.0, 
-       1.0,  1.0, 
+      -1.0, -1.0,
+       1.0, -1.0,
+       1.0,  1.0,
       -1.0,  1.0
     ];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
@@ -113,7 +113,7 @@ class Animation {
 
     // prettier-ignore
     const indices = [
-      0, 1, 2, 
+      0, 1, 2,
       2, 3, 0
     ];
 
@@ -142,6 +142,7 @@ class Animation {
     this.rainShader.addUniform('u_MouseInt', '1f')
     this.rainShader.addUniform('u_asp', '1f')
     this.rainShader.addUniform('u_mouseshift', '1f')
+    this.rainShader.addUniform('u_xPos', '1f')
 
     this.startTime = Date.now()
 

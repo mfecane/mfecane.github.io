@@ -34,7 +34,7 @@ export default class AnimColor {
   elementsColor = null
   elementsBorderColor = null
   elementsHoverColor = null
-  duration = 12000
+  duration = 8000
 
   init(): void {
     this.elementsBackgroundColor = document.querySelectorAll(
@@ -113,9 +113,13 @@ export default class AnimColor {
     this.elementsBorderColor.forEach((el) => {
       this.setElementColor(el, 'borderColor')
     })
+  }
 
+  animate(): void {
+    this.update();
+    
     window.requestAnimationFrame(() => {
-      this.update()
+      this.animate()
     })
   }
 }
