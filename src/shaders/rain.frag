@@ -70,7 +70,7 @@ void main()
     sampleuv = (uv - vec2(0.5)) * vec2(imgasp, 1.0) + vec2(0.5);
   }
 
-  vec2 uv1 = uv * asp;
+  vec2 uv1 = uv * asp + vec2(u_xPos, 0.0);
 
   FragColor = vec4(0.0f);
 

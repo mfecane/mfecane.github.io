@@ -182,9 +182,15 @@ class Animation {
   }
 
   drawImage(): void {
+    // TODO store max scroll value in timepline as well
+    const scrollValue = this._scrollTimeline.scrollValue / 3
+
     const gl = this.gl
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     this.rainShader.useProgram()
+
+    console.log('scrollValue', scrollValue);
+
     this.rainShader.setUniform('u_MVP', this.proj)
     this.rainShader.setUniform('u_time', this.time)
     this.rainShader.setUniform('u_Size', this.psize)
@@ -192,6 +198,8 @@ class Animation {
     this.rainShader.setUniform('u_MouseInt', this.mouseintensity)
     this.rainShader.setUniform('u_asp', this.size.w / this.size.h)
     this.rainShader.setUniform('u_mouseshift', this.mouseshift)
+    this.rainShader.setUniform('u_xPos', scrollValue)
+
     gl.activeTexture(gl.TEXTURE0)
     gl.bindTexture(gl.TEXTURE_2D, this.texture)
     this.rainShader.setUniform('u_Sampler', 0)

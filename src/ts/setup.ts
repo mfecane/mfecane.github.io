@@ -41,9 +41,9 @@ const firstTransition = (value) => {
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value === 1 ? 'hidden' : 'visible'
 
-  const val2 = map01(value, 0, -window.innerWidth / 4)
-  mainBgCanvasContainer.style.transform = `translateX(${val2}px)`
-  mainBgCanvasContainer.style.visibility = value === 1 ? 'hidden' : 'visible'
+  // const val2 = map01(value, 0, -window.innerWidth / 4)
+  // mainBgCanvasContainer.style.transform = `translateX(${val2}px)`
+  // mainBgCanvasContainer.style.visibility = value === 1 ? 'hidden' : 'visible'
 
   page2.style.visibility = value === 0 ? 'hidden' : 'visible'
 
@@ -104,7 +104,6 @@ window.onload = () => {
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
 
-  // page1
   page1 = document.querySelector('.page1')
 
   page2 = document.querySelector('.page2')
