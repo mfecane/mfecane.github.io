@@ -16,10 +16,15 @@ uniform float u_MouseInt;
 uniform float u_asp;
 uniform vec2 u_Mouse;
 uniform float u_xPos;
+uniform float u_desaturate;
 
 $N21
 $blendScreen
 $sampleBlur
+$desaturate
+$blendOverlay
+$blendSoftLight
+$blendColor
 
 vec3 Layer(vec2 UV, float t) {
 
@@ -86,10 +91,12 @@ void main()
   vec4 Color = SampleBlur(u_Sampler, sampleuv, 12.0, 6.0, 2.0, vec2(0.05), 0.0);
   // Color = blendScreen(Color, vec4(1.0), 0.05);
 
-   float mouseHeat = texture(u_SamplerH, sampleuv).x;
-   blur *= (1.0f - mouseHeat);
+  float mouseHeat = texture(u_SamplerH, sampleuv).x;
+  blur *= (1.0f - mouseHeat);
 
   vec4 BaseColor = texture(u_Sampler, uvoff) * 0.9;
+
   FragColor = mix(BaseColor, Color, blur);
+  FragColor = vec4(blendColor(FragColor.rgb, vec3(45.0/255.0, 44.0/255.0, 66.0/255.0), u_desaturate), 1.0);
   // FragColor = vec4(mouseHeat);
 }

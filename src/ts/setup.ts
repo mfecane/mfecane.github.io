@@ -37,7 +37,7 @@ let mainBgAnimatinoCompleteFlag = false
 const firstTransition = (value) => {
   value = easeOutSquare(value)
 
-  const val1 = map01(value, 0, (-window.innerWidth / 2) * 1)
+  const val1 = map01(value, 0, (-window.innerWidth / 5 * 3) * 1)
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value === 1 ? 'hidden' : 'visible'
 

@@ -145,6 +145,7 @@ class Animation {
     this.rainShader.addUniform('u_asp', '1f')
     this.rainShader.addUniform('u_mouseshift', '1f')
     this.rainShader.addUniform('u_xPos', '1f')
+    this.rainShader.addUniform('u_desaturate', '1f')
 
     this.startTime = Date.now()
 
@@ -184,12 +185,12 @@ class Animation {
   drawImage(): void {
     // TODO store max scroll value in timepline as well
     const scrollValue = this._scrollTimeline.scrollValue / 3
+    const desaturate = mapclamp(this._scrollTimeline.scrollValue, 0, 1, 0, 0.8)
 
     const gl = this.gl
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     this.rainShader.useProgram()
-
-    console.log('scrollValue', scrollValue);
+    console.log('desaturate', desaturate)
 
     this.rainShader.setUniform('u_MVP', this.proj)
     this.rainShader.setUniform('u_time', this.time)
@@ -199,6 +200,7 @@ class Animation {
     this.rainShader.setUniform('u_asp', this.size.w / this.size.h)
     this.rainShader.setUniform('u_mouseshift', this.mouseshift)
     this.rainShader.setUniform('u_xPos', scrollValue)
+    this.rainShader.setUniform('u_desaturate', desaturate)
 
     gl.activeTexture(gl.TEXTURE0)
     gl.bindTexture(gl.TEXTURE_2D, this.texture)
