@@ -1,58 +1,88 @@
 @import "css/config.scss";
 
 .page2 {
-  background: $darkbg1;
   min-width: 100vw;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
   display: flex;
+  z-index: 4;
 }
 
 .page2-left {
-  width: 50%;
-  background-color: $lightbg;
+  flex: 0 0 30%;
+  background-color: $darkbg1;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: flex-end;
-  padding: 32px;
-  padding-bottom: 64px;
+  justify-content: center;
+  padding: 0 55px 0 80px;
 }
 
-.about {
-  &__title {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    color: $accent;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: right;
-    margin-bottom: 12px;
-  }
-
-  &__text {
-    border-top: $dark 1px solid;
-    padding: 16px 0;
-    color: $dark;
-    font-family: "Lora"; // TODO ::: link this font
-    letter-spacing: 0.05rem;
-    font-size: 16px;
-    line-height: 18px;
-  }
+.about__title {
+  align-self: stretch;
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  line-height: 28px;
+  color: $accent;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: right;
+  margin-bottom: 32px;
+  border-bottom: $accent 1px solid;
+  padding-bottom: 4px;
 }
 
-.page2-right {
-  width: 50%;
-  background: $dark;
-  background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
+.about__text {
+  text-align: right;
+  padding: 12px 0;
+  color: $light-dimmed;
+  font-family: "Lora" serif;
+  letter-spacing: 1px;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0px 0px 50px 0px;
+}
+
+.tech__container {
+  flex: 0 0 120px;
+  z-index: 0;
+  align-self: center;
+}
+
+.tech__row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin: auto;
+}
+
+.tech__item {
+  flex: 0 0 50px;
   position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid $accent;
 }
 
-.page2-scroller  {
+.tech__image {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  background: $accent;
+}
+
+.page2-scroller {
   z-index: 3;
   position: absolute;
   top: 5vmin;
@@ -61,94 +91,79 @@
   right: 5vmin;
 }
 
-.experience__wrapper {
-  max-height: 100vh;
-  margin: 40px;
-  display: grid;
-  grid-template-columns: 128px auto;
+.page2-right {
+  flex: 0 0 70%;
+  // background: $dark;
+  // background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
   position: relative;
-  overflow-y: auto;
+  overflow: hidden;
+  overflow: hidden;
 }
 
-.experience__wrapper:before {
-  content: "";
-  display: block;
-  width: 1px;
-  left: 20px;
-  top: 80px;
-  bottom: 80px;
+.placeholder-scroller {
+  top: 0;
+  left: 0;
+  width: 100%;
   position: absolute;
-  background: $light;
-}
-
-.experience__title {
-  grid-column: 2;
-  font-family: "Playfair Display";
-  font-size: 20px;
-  color: $light;
-  border-bottom: 1px solid $light;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.experience__title:not(:last-child) {
-  margin-top: 4rem;
-}
-
-.experience__year {
-  grid-column: 1;
-  color: $light;
-  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
-.experience__year span {
-  font-family: "Playfair Display";
-  font-size: 16px;
-  margin-left: 8px;
+.exp__container {
+  margin: 60px 100px;
 }
 
-.experience__marker {
-  position: relative;
-  width: 27px;
-  height: 27px;
-  background: $dark-dimmed;
-  border-radius: 50%;
-  border: 1px solid $light;
-  box-shadow: 0 0 10px 2px $light;
-  z-index:1;
-}
-
-.experience__marker:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  content: "";
-  background: $light;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index:2;
-}
-
-.experience__subtitle {
+.exp__title {
+  font-family: "Playfair Display", serif;
   color: $accent;
-  font-weight: bold;
-  grid-column: 2;
-  font-family: "Lora";
-  font-size: 18px;
-  align-self: center;
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 2px;
 }
 
-.experience__description {
-  grid-column: 2;
-  letter-spacing: 1px;
+.exp__item {
+  display: flex;
+  align-items: flex-start;
+  margin: 26px 0 32px 0;
+  gap: 40px;
+}
+
+.exp__year {
   font-family: "Lora";
-  font-size: 16px;
-  line-height: 20px;
+  color: $light;
+  font-size: 18px;
+  letter-spacing: 1px;
+  flex: 0 0 60px;
+}
+
+.exp__details {
+}
+
+.exp__name {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: "Lora";
+  color: $accent;
+  margin: 0 0 4px 0;
+}
+
+.exp__place {
+  text-transform: uppercase;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: "Lora";
   color: $light-dimmed;
-  margin: 6px 0 10px 0;
+}
+
+.exp__descr {
+  font-style: normal;
+  font-size: 14px;
+  font-family: "Lora";
+  letter-spacing: 1px;
+  line-height: 18px;
+  color: $light-dimmed;
+  margin: 10px 0;
 }

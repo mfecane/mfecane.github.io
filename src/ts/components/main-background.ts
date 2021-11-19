@@ -10,6 +10,7 @@ import vertexShaderSource2 from 'shaders/rain.vert'
 import fragmentShaderSource2 from 'shaders/rain.frag'
 
 import bg from 'assets/img/bg.jpg'
+import ScrollTimeline from 'ts/animation/scroll-pager'
 
 class Animation {
   cnv: HTMLCanvasElement = null
@@ -47,14 +48,15 @@ class Animation {
   targetTextureWidth = 0
   targetTextureHeight = 0
   frameBuffer: WebGLFramebuffer | null = null
+  _scrollTimeline
 
   constructor(element: HTMLDivElement) {
     this.element = element
     this.createCanvas()
   }
 
-  start(): void {
-    this.updateAnimation()
+  set scrollTimeline(value: ScrollTimeline) {
+    this._scrollTimeline = value
   }
 
   calculateMVP(): void {
@@ -70,7 +72,7 @@ class Animation {
     const far = 1.0
 
     // prettier-ignore
-    this.proj = [ 
+    this.proj = [
       2 / (right - left),                   0,                 0,  -(right + left) / (right - left),
                        0,  2 / (top - bottom),                 0,  -(top + bottom) / (top - bottom),
                        0,                   0,  2 / (far - near),      -(far + near) / (far - near),
@@ -101,9 +103,9 @@ class Animation {
 
     // prettier-ignore
     const positions = [
-      -1.0, -1.0, 
-       1.0, -1.0, 
-       1.0,  1.0, 
+      -1.0, -1.0,
+       1.0, -1.0,
+       1.0,  1.0,
       -1.0,  1.0
     ];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW)
@@ -113,7 +115,7 @@ class Animation {
 
     // prettier-ignore
     const indices = [
-      0, 1, 2, 
+      0, 1, 2,
       2, 3, 0
     ];
 
@@ -142,6 +144,8 @@ class Animation {
     this.rainShader.addUniform('u_MouseInt', '1f')
     this.rainShader.addUniform('u_asp', '1f')
     this.rainShader.addUniform('u_mouseshift', '1f')
+    this.rainShader.addUniform('u_xPos', '1f')
+    this.rainShader.addUniform('u_desaturate', '1f')
 
     this.startTime = Date.now()
 
@@ -179,9 +183,15 @@ class Animation {
   }
 
   drawImage(): void {
+    // TODO store max scroll value in timepline as well
+    const scrollValue = this._scrollTimeline.scrollValue / 3
+    const desaturate = mapclamp(this._scrollTimeline.scrollValue, 0, 1, 0, 0.8)
+
     const gl = this.gl
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     this.rainShader.useProgram()
+    console.log('desaturate', desaturate)
+
     this.rainShader.setUniform('u_MVP', this.proj)
     this.rainShader.setUniform('u_time', this.time)
     this.rainShader.setUniform('u_Size', this.psize)
@@ -189,6 +199,9 @@ class Animation {
     this.rainShader.setUniform('u_MouseInt', this.mouseintensity)
     this.rainShader.setUniform('u_asp', this.size.w / this.size.h)
     this.rainShader.setUniform('u_mouseshift', this.mouseshift)
+    this.rainShader.setUniform('u_xPos', scrollValue)
+    this.rainShader.setUniform('u_desaturate', desaturate)
+
     gl.activeTexture(gl.TEXTURE0)
     gl.bindTexture(gl.TEXTURE_2D, this.texture)
     this.rainShader.setUniform('u_Sampler', 0)
@@ -292,13 +305,14 @@ class Animation {
     }
   }
 
+
   // animation loop
-  updateAnimation(): void {
+  animate(): void {
     this.updateCanvas()
     // this.calculateFps()
 
     window.requestAnimationFrame(() => {
-      this.updateAnimation()
+      this.animate()
     })
   }
 }

@@ -26,7 +26,7 @@ export class Shape {
   points: Array<IPoint> = []
   width = 5
   drawn = 0
-  color = `#bec9d1`
+  color = `#eaecee`
   index = 0
   ctx: CanvasRenderingContext2D
   size = { w: 0, h: 0, cx: 0, cy: 0 }
@@ -151,8 +151,6 @@ export default class SvgPathAnimation {
 
   setFrame(t: number): void {
     this._clearCanvas()
-    t = easeOutCubic(t)
-
     this.shapes.forEach((el: Shape) => {
       el.draw(t)
     })
@@ -178,7 +176,7 @@ export default class SvgPathAnimation {
 
     const s = paths.map((points: IPath, index: number) => {
       const { width } = this.shapesconfig[index]
-      const shape = new Shape(points, (1.2 * width) / this.transform.scale)
+      const shape = new Shape(points, (1 * width) / this.transform.scale)
       shape.ctx = this.ctx
       shape.size = this.size
       return shape

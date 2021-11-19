@@ -15,13 +15,19 @@ uniform sampler2D u_SamplerH;
 uniform float u_MouseInt;
 uniform float u_asp;
 uniform vec2 u_Mouse;
+uniform float u_xPos;
+uniform float u_desaturate;
 
 $N21
 $blendScreen
 $sampleBlur
+$desaturate
+$blendOverlay
+$blendSoftLight
+$blendColor
 
 vec3 Layer(vec2 UV, float t) {
-  
+
   vec2 asp = vec2(2.0f, 1.0f); // y: 2, x: 1
   vec2 uv1 = UV * u_Size * asp;
   uv1.y = -uv1.y;
@@ -31,7 +37,7 @@ vec3 Layer(vec2 UV, float t) {
 
   float n = N21(id);
   t += n * 6.2831;
-  
+
   float w = UV.y * 10.0f;
   float x = (n - 0.5f) * .8f;
   x += (.4f - abs(x)) * sin(3.0f * w) * pow(sin(w), 6.0f) * .45f;
@@ -63,13 +69,13 @@ void main()
 
   float imgasp = u_asp / 1.4; // image aspect ratio
   vec2 sampleuv;
-  if (imgasp > 1.0) { 
+  if (imgasp > 1.0) {
     sampleuv = (uv - vec2(0.5)) * vec2(1.0, 1.0 / imgasp) + vec2(0.5);
   } else {
     sampleuv = (uv - vec2(0.5)) * vec2(imgasp, 1.0) + vec2(0.5);
   }
 
-  vec2 uv1 = uv * asp;
+  vec2 uv1 = uv * asp + vec2(u_xPos, 0.0);
 
   FragColor = vec4(0.0f);
 
@@ -79,16 +85,18 @@ void main()
 
   float blur = (1.0f - drops.z);
   vec2 uvoff = sampleuv + drops.xy;
-  
+
   // Sampler UV Directions Quality Size Radius Mip
   // vec4 Color = texture(u_Sampler, sampleuv, 4.0);
   vec4 Color = SampleBlur(u_Sampler, sampleuv, 12.0, 6.0, 2.0, vec2(0.05), 0.0);
   // Color = blendScreen(Color, vec4(1.0), 0.05);
 
-   float mouseHeat = texture(u_SamplerH, sampleuv).x;
-   blur *= (1.0f - mouseHeat);
+  float mouseHeat = texture(u_SamplerH, sampleuv).x;
+  blur *= (1.0f - mouseHeat);
 
   vec4 BaseColor = texture(u_Sampler, uvoff) * 0.9;
+
   FragColor = mix(BaseColor, Color, blur);
+  FragColor = vec4(blendColor(FragColor.rgb, vec3(45.0/255.0, 44.0/255.0, 66.0/255.0), u_desaturate), 1.0);
   // FragColor = vec4(mouseHeat);
 }

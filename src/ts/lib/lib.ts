@@ -23,6 +23,10 @@ export function mapplain(
   return out
 }
 
+export function map01(x: number, min: number, max: number): number {
+  return min + x * (max - min)
+}
+
 export function hexToRgb(hex: string): string {
   var bigint = parseInt(hex, 16)
   var r = (bigint >> 16) & 255

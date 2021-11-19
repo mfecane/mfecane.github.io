@@ -5,23 +5,10 @@
     <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rain</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap"
-      rel="stylesheet"
-    />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lora&family=Crimson+Text&family=Playfair+Display&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Playfair+Display&family=Cormorant+Garamond&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -31,13 +18,13 @@
 
     <div id="main-bg-canvas-container"></div>
 
-    <div class="pager__container">
+    <!-- <div class="pager__container">
       <div class="pager__indicator"></div>
-    </div>
+    </div> -->
 
     <div class="mouse__container">
       <div class="mouse__mouse">
-        <div class="mouse__wheel"></div>
+        <div class="mouse__wheel anim-background-color"></div>
       </div>
       <div class="mouse__arrow-container">
         <div class="mouse__arrow-top"></div>
@@ -45,162 +32,280 @@
       </div>
     </div>
 
-    <div class="scroll-container">
-      <section class="page page1" id="page1">
-        <!-- TODO ::: slowly floating elements -->
-        <!-- TODO ::: move this container away more slowly -->
-        <!-- TODO ::: floating ghost of title -->
-        <div class="column__container">
-          <div class="logo-group">
-            <div class="column__logo-container" id="logo-container"></div>
-            <h1 class="column__title">Aleksei Aliapkin</h1>
-            <h2 class="column__subtitle">frontend<br />developer</h2>
-          </div>
-          <nav class="column__nav-container">
-            <ul class="nav">
-              <li class="nav__link"><a>Home</a></li>
-              <li class="nav__link"><a>My works</a></li>
-              <li class="nav__link"><a>Contacts</a></li>
-              <li class="nav__link"><a>Technologies</a></li>
-            </ul>
-          </nav>
-          <div class="column__button-container">
-            <button class="btn">Contact me</button
-            ><button class="btn">Download CV</button>
-          </div>
+    <section class="page page1" id="page1">
+      <!-- TODO ::: slowly floating elements -->
+      <!-- TODO ::: move this container away more slowly -->
+      <!-- TODO ::: floating ghost of title -->
+      <div class="column__container">
+        <div class="logo-group">
+          <div class="column__logo-container" id="logo-container"></div>
+          <h1 class="column__title">Aleksei Aliapkin</h1>
+          <h2 class="column__subtitle anim-color">frontend<br />developer</h2>
         </div>
-
-        <!-- TODO ::: make this 3d -->
-        <div class="page1__photo-container">
-          <img src="/assets/img/man.png" alt="" class="page1__photo" />
+        <nav class="column__nav-container">
+          <ul class="nav">
+            <li class="nav__link anim-hover-color"><a>Home</a></li>
+            <li class="nav__link anim-hover-color"><a>My works</a></li>
+            <li class="nav__link anim-hover-color"><a>Contacts</a></li>
+            <li class="nav__link anim-hover-color"><a>Technologies</a></li>
+          </ul>
+        </nav>
+        <div class="column__button-container">
+          <button
+            class="btn btn_primary anim-border-color anim-background-color"
+          >
+            Contact me</button
+          ><button class="btn btn_secondary anim-border-color anim-color">
+            Download CV
+          </button>
         </div>
-      </section>
+      </div>
 
-      <section class="page page2" id="page2">
-        <div class="page2-left">
-          <h3 class="about__title">ABOUT ME</h3>
-          <article class="about__text">
+      <!-- TODO ::: make this 3d -->
+      <div class="page1__photo-container">
+        <img src="/assets/img/man.png" alt="" class="page1__photo" />
+      </div>
+    </section>
+
+    <section class="page page2" id="page2">
+      <div
+        class="page2-left scroll-anim"
+        data-anim-type="second-page-left"
+        data-anim-page="0"
+      >
+        <div
+          class="scroll-anim"
+          data-anim-type="slide-from"
+          data-anim-from="left"
+          data-anim-page="0"
+        >
+          <h3 class="about__title anim-color anim-border-color">
+            HI, MY NAME IS ALIAPKIN ALEKSEI
+          </h3>
+
+          <article
+            class="about__text scroll-anim"
+            data-anim-type="slide-from"
+            data-anim-from="left"
+            data-anim-from-value="50"
+            data-anim-page="0"
+          >
             Hi, my name is Aliapkin Aleksei and i am a front-end developer
             located in Moscow, Russia. I started out with React + Redux, later
             switching to Vue.js + Vuex. My background is mathematics and i have
             previously worked in the banking industry.
           </article>
-        </div>
-        <div class="page2-right">
 
-          <div class="page2-scroller prevent-scroll">
+          <h3 class="about__title anim-color anim-border-color">
+            TECHNOLOGIES
+          </h3>
 
-          </div>
-
-          <div class="experience__wrapper">
-            <h3 class="experience__title">WORK EXPERIENCE</h3>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
+          <div class="tech__container">
+            <div class="tech__row">
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".85"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--vue anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".90"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--js anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".95"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--react anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay="1"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--redux anim-background-color"
+                ></div>
+              </div>
             </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
+            <div class="tech__row">
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".90"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--sass anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay=".95"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--jquery anim-background-color"
+                ></div>
+              </div>
+              <div
+                class="tech__item anim-border-color scroll-anim"
+                data-anim-type="slide-from"
+                data-anim-from="left"
+                data-anim-delay="1"
+                data-anim-from-value="100"
+                data-anim-page="0"
+              >
+                <div
+                  class="tech__image icon icon--git anim-background-color"
+                ></div>
+              </div>
             </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-
-            <h3 class="experience__title">Education</h3>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
-            </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-
-            <div class="experience__year">
-              <div class="experience__marker"></div>
-              <span>2020</span>
-            </div>
-
-            <h4 class="experience__subtitle">
-              Frontend web development. Gridnine systems.
-            </h4>
-
-            <article class="experience__description">
-              I was developing Frontend for a client's application using mostly
-              Vue.js and Vuex. I did my tasks timely and received positive
-              feedback for my work.
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="page page3" id="page3">
-        <div class="tech__container prevent-scroll">
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--vue"></div>
-          </div>
-        </div>
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--js"></div>
-          </div>
-        </div>
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--react"></div>
-          </div>
-        </div>
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--redux"></div>
-          </div>
-        </div>
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--sass"></div>
-          </div>
-        </div>
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--jquery"></div>
-          </div>
-        </div>
-        <div class="tech__item">
-          <div class="tech__item-inner">
-            <div class="tech__image icon icon--git"></div>
           </div>
         </div>
       </div>
-      </section>
+      <div
+        class="page2-right scroll-anim"
+        data-anim-type="second-page-right"
+        data-anim-page="0"
+      >
+        <div
+          class="placeholder-scroller scroll-anim"
+          data-anim-type="slide-from"
+          data-anim-from="right"
+          data-anim-page="0"
+        >
+          <div class="exp__container">
+            <h3 class="exp__title anim-color">WORK EXPERIENCE</h3>
 
-      <section class="page page4" id="page4">shite</section>
-    </div>
+            <ul>
+              <li class="exp__item">
+                <span class="exp__year">2020</span>
+                <div class="exp__details">
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
+                  <em class="exp__place">GRIDNINE SYSTEMS</em>
+                  <p class="exp__descr">
+                    I was developing Frontend for a client's application using
+                    mostly Vue.js and Vuex. I did my tasks timely and received
+                    positive feedback for my work.
+                  </p>
+                </div>
+              </li>
+
+              <li class="exp__item">
+                <span class="exp__year">2020</span>
+                <div class="exp__details">
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
+                  <em class="exp__place">GRIDNINE SYSTEMS</em>
+                  <p class="exp__descr">
+                    I was developing Frontend for a client's application using
+                    mostly Vue.js and Vuex. I did my tasks timely and received
+                    positive feedback for my work.
+                  </p>
+                </div>
+              </li>
+
+              <li class="exp__item">
+                <span class="exp__year">2020</span>
+                <div class="exp__details">
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
+                  <em class="exp__place">GRIDNINE SYSTEMS</em>
+                  <p class="exp__descr">
+                    I was developing Frontend for a client's application using
+                    mostly Vue.js and Vuex. I did my tasks timely and received
+                    positive feedback for my work.
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <h3 class="exp__title anim-color">EDUCAISHUN</h3>
+
+            <ul>
+              <li class="exp__item">
+                <span class="exp__year">2020</span>
+                <div class="exp__details">
+                  <h4 class="exp__name anim-color">
+                    FRONTEND WEB DEVELOP STEMS
+                  </h4>
+                  <em class="exp__place">GRIDNINE SYSTEMS</em>
+                  <p class="exp__descr">
+                    I was developing Frontend for a client's application using
+                    mostly Vue.js and Vuex. I did my tasks timely and received
+                    positive feedback for my work.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="placeholder-scroller">
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+          <div class="placeholder"></div>
+        </div> -->
+      </div>
+    </section>
+
+    <section class="contacts">
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+      <div class="anim-background-color"></div>
+    </section>
   </body>
 </html>
