@@ -2,7 +2,9 @@ import ScrollTimeline from 'ts/animation/scroll-pager'
 import {
   easeInSquare,
   easeOutBack,
+  easeOutCubic,
   easeOutSquare,
+  easeInCubic,
 } from 'ts/lib/easing-functions'
 import { mapclamp, mapplain } from 'ts/lib/lib'
 
@@ -22,14 +24,16 @@ const transitions = [
       const [from = 'left', fromValue = '200', delay = '1'] = args
       const dir = from === 'right' ? 1 : -1
 
+      // TODO looks like a bullshit tweak this
       if (delay) {
-        value = 1 - (1 - value * +delay)
+        value = 1 - (1 - value) * +delay * +delay * +delay
       }
+      1 - (1 - 0.9) * 0.8
 
       const val1 = mapclamp(easeOutSquare(value), 0.7, 1, +fromValue * dir, 0)
       el.element.style.transform = `translateX(${val1}px)`
 
-      const val2 = mapclamp(easeOutSquare(value), 0.7, 1, 0, 1)
+      const val2 = mapclamp(easeInSquare(value), 0.2, 1, 0, 1)
       el.element.style.opacity = `${val2}`
     },
   },
@@ -44,12 +48,11 @@ const transitions = [
   {
     code: 'second-page-right',
     callback: (el: ScrollTimeLineElement, value: number) => {
-      console.log(value)
       const val = easeOutSquare(value)
       const val9 = mapplain(val, 0, 1, el.element.offsetWidth, 0)
       el.element.style.transform = `translateX(${val9}px)`
 
-      const val2 = mapclamp(easeOutSquare(value), 0.7, 1, 0, 1)
+      const val2 = mapclamp(val, 0.2, 1, 0, 1)
       el.element.style.opacity = `${val2}`
     },
   },

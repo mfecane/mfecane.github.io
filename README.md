@@ -12,6 +12,7 @@
 - add adaptive
 - add fingeer manipulation
 - figure out how to use fucking partials
+- can scroll up down only in the middle of element, show it with cursor
 
 ## ideas
 
