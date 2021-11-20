@@ -15,11 +15,17 @@
 }
 
 .works__container {
+  max-height: 100vh;
   width: 60vw;
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow-y: scroll;
+}
+
+.works__container::-webkit-scrollbar {
+  display: none;
 }
 
 .works__title {
@@ -56,4 +62,74 @@
 .works-item__container {
   height: 300px;
   background-color: $darkbg1;
+  display: flex;
+}
+
+.works-item__container:nth-child(odd) {
+  flex-direction:row-reverse;
+}
+
+.works-item__layout {
+  padding: 16px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.works-item__title {
+  flex: 0 0 auto;
+  font-family: "Lora", serif;
+  color: $accent;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.works-item__text {
+  flex: 1 0 auto;
+  color: $light-dimmed;
+  font-family: "Lora" serif;
+  letter-spacing: 1px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.works-item__image {
+  min-width: 300px;
+  overflow: hidden;
+}
+
+.works-item__image video {
+  margin: 0px;
+  padding: 0px;
+  object-fit: cover;
+  max-width: 300px;
+  object-position: center center;
+  transform: scale(1.05) translate(0, 0);
+  /* This is stupid */
+  transition: all 0.3s ease-out 0s;
+}
+
+.works-item__image video:hover {
+  transform: scale(1.2) translate(0, 5%);
+  transition: all 0.3s ease-out 0s;
+}
+
+.works-item__buttons-container {
+  flex: 0 0 auto;
+  justify-self: flex-end;
+  display: flex;
+}
+
+.works-item__button {
+  color: $accent;
+  width: 160px;
+  height: 30px;
+  text-transform: uppercase;
+  font-family: "Lora", serif;
+  font-weight: bold;
+  color: $dark;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-right: 10px;
 }

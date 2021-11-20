@@ -1,12 +1,7 @@
 ## TODO:
 
-- serialize trtansition
 - slightly zoom in to background for small parallax
-- animate shape on scroll
-- add new shape to page 2
-- remove filter by point numbers
-- make bg transparent, keep only some solid backgrounds, f.e. hi my name bg keep
-- make only rain move, since it can be moved infinitely
+- remove filter by point numbers qhe??
 - make red dimmer
 - save scroll on media change
 - add contacts by shrink works
@@ -14,7 +9,8 @@
 - add fingeer manipulation
 - figure out how to use fucking partials
 - can scroll up down only in the middle of element, show it with cursor
-- add transition to all anim styles
+- add transition 3ms to all anim styles
+- replace cursor with mouse to show scrolling
 
 ## ideas
 

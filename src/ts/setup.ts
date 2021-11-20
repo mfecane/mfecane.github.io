@@ -157,4 +157,8 @@ window.onload = () => {
   scrollTimelineSetup.scrollTimeline = scrolltimeline
   scrollTimelineSetup.init()
   scrollTimelineSetup.animate()
+
+  // setTimeout(() => {
+  //   scrolltimeline.setScrollValue(2)
+  // }, 500)
 }
