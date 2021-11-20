@@ -60,7 +60,6 @@ const transitions = [
   {
     code: 'third-page',
     callback: (el: Transition, value: number): void => {
-      console.log(value)
       const val = easeOutSquare(value)
       const val8 = mapclamp(val, 0.5, 0.9, 0, -el.element.offsetWidth)
       el.element.style.transform = `translateX(${val8}px)`
@@ -109,16 +108,29 @@ class Transition {
         val = 0
         return
       }
+      this.checkDisplay(val)
       return this.transitionIn(this, val, this.argsIn)
     }
 
     if (page >= this.page) {
+      val = 1-value
       if (page > this.page) {
-        val = 1
+        val = 0
         return
       }
-      return this.transitionOut(this, 1 - val, this.argsOut)
+      this.checkDisplay(val)
+      return this.transitionOut(this, val, this.argsOut)
     }
+  }
+
+  checkDisplay(value) {
+    if(value === 0) {
+      this.element.style.visibility = 'hidden'
+      console.log('hide');
+      return;
+    }
+    console.log('show');
+    this.element.style.visibility = 'visible'
   }
 }
 
