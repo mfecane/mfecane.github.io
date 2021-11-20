@@ -190,7 +190,7 @@ class Animation {
     const gl = this.gl
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     this.rainShader.useProgram()
-    console.log('desaturate', desaturate)
+    // console.log('desaturate', desaturate)
 
     this.rainShader.setUniform('u_MVP', this.proj)
     this.rainShader.setUniform('u_time', this.time)

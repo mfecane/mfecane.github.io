@@ -76,6 +76,12 @@ export default class ScrollTimeline {
     return this._scrollValue
   }
 
+  getScrollValueWithPage(): [number, number] {
+    const currentPage = Math.floor(this._scrollValue)
+    const value = this._scrollValue - currentPage
+    return [currentPage, value];
+  }
+
   // sort callbacks  by page
 
   addTransition(transition: transition): void {

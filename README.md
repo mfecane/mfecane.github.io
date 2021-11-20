@@ -1,11 +1,17 @@
 ## TODO:
 
+- serialize trtansition
 - animate shape on scroll
 - add new shape to page 2
 - remove filter by point numbers
 - make bg transparent, keep only some solid backgrounds, f.e. hi my name bg keep
 - make only rain move, since it can be moved infinitely
 - make red dimmer
+- save scroll on media change
+- add contacts by shrink works
+- add adaptive
+- add fingeer manipulation
+- figure out how to use fucking partials
 
 ## ideas
 
