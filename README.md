@@ -1,6 +1,7 @@
 ## TODO:
 
 - serialize trtansition
+- slightly zoom in to background for small parallax
 - animate shape on scroll
 - add new shape to page 2
 - remove filter by point numbers
@@ -13,6 +14,7 @@
 - add fingeer manipulation
 - figure out how to use fucking partials
 - can scroll up down only in the middle of element, show it with cursor
+- add transition to all anim styles
 
 ## ideas
 

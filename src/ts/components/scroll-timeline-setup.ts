@@ -14,6 +14,8 @@ type TransitionCallback = (
   args: Array<string> | null
 ) => void
 
+// TODO add state of element to data ; ready
+
 const transitions = [
   {
     code: 'slide-from',
@@ -60,9 +62,14 @@ const transitions = [
   {
     code: 'third-page',
     callback: (el: Transition, value: number): void => {
-      const val = easeOutSquare(value)
-      const val8 = mapclamp(val, 0.5, 0.9, 0, -el.element.offsetWidth)
-      el.element.style.transform = `translateX(${val8}px)`
+      let val = easeOutSquare(value)
+
+      let transform = `translateX(${-el.element.offsetWidth}px) `
+        transform += `scale(${val}, ${val})`
+      el.element.style.transform = transform
+
+      val = easeInCubic(value)
+      el.element.style.opacity = `${val}`
     },
   },
 ]
@@ -113,7 +120,7 @@ class Transition {
     }
 
     if (page >= this.page) {
-      val = 1-value
+      val = 1 - value
       if (page > this.page) {
         val = 0
         return
@@ -124,12 +131,10 @@ class Transition {
   }
 
   checkDisplay(value) {
-    if(value === 0) {
+    if (value === 0) {
       this.element.style.visibility = 'hidden'
-      console.log('hide');
-      return;
+      return
     }
-    console.log('show');
     this.element.style.visibility = 'visible'
   }
 }

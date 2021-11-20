@@ -119,6 +119,29 @@
   font-size: 30px;
   font-weight: normal;
   letter-spacing: 2px;
+  display:flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.exp__title span {
+  flex: 1 0 max-content;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.exp__title div {
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.exp__title div div {
+  content: "";
+  height: 1px;
+  top: 50%;
+  left:0;
+  width: 100%;
+  background-color: $accent;
 }
 
 .exp__item {

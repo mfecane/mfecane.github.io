@@ -21,6 +21,7 @@ let logo: SvgPathAnimation
 let pagerIndicator: HTMLDivElement
 let mainBgAnimation: MainBgAnimation
 let scrollContainer: HTMLDivElement
+let scrollBlocker: HTMLElement
 let mainBgCanvasContainer: HTMLDivElement
 let page1: HTMLDivElement
 let page2: HTMLDivElement
@@ -37,7 +38,7 @@ let mainBgAnimatinoCompleteFlag = false
 const firstTransition = (value) => {
   value = easeOutSquare(value)
 
-  const val1 = map01(value, 0, (-window.innerWidth / 5 * 3) * 1)
+  const val1 = map01(value, 0, (-window.innerWidth / 5) * 3 * 1)
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value === 1 ? 'hidden' : 'visible'
 
@@ -61,11 +62,7 @@ const firstTransition = (value) => {
 }
 
 const handleContacts = (value) => {
-  const val1 = map01(
-    value,
-    window.innerWidth,
-    0
-  )
+  const val1 = map01(value, window.innerWidth, 0)
   contacts.style.left = `${val1}px`
 }
 
@@ -81,21 +78,29 @@ const setUpMainLogoAnimation = () => {
   })
 }
 
+const handleScrollBlocker = (value) => {
+  if (value > 0.95) {
+    scrollBlocker.dataset.scrollBlock = ''
+  } else {
+    delete scrollBlocker.dataset.scrollBlock
+  }
+}
+
 window.onload = () => {
   mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
+  scrollBlocker = document.querySelector('.works__container')
 
   page1 = document.querySelector('.page1')
 
   page2 = document.querySelector('.page2')
   curtain = document.querySelector('.curtain')
-  contacts = document.querySelector('.contacts');
+  contacts = document.querySelector('.contacts')
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
   }, 400)
-
 
   const options = {
     pages: [
@@ -110,7 +115,7 @@ window.onload = () => {
       {
         step: 0.05,
         snap: true,
-      }
+      },
     ],
   }
 
@@ -121,6 +126,19 @@ window.onload = () => {
     page: 0,
   })
 
+  // TODO quick and dirty solution, refacor
+  // add full callback, without pagination
+
+  scrolltimeline.addTransition({
+    func: handleScrollBlocker,
+    page: 1,
+  })
+
+  scrolltimeline.addTransition({
+    func: (value) => handleScrollBlocker(1 - value),
+    page: 2,
+  })
+
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)
   })
@@ -128,15 +146,14 @@ window.onload = () => {
   scrolltimeline.start()
 
   mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
-  mainBgAnimation.scrollTimeline = scrolltimeline;
+  mainBgAnimation.scrollTimeline = scrolltimeline
   mainBgAnimation.animate()
-
 
   const animColor = new AnimColor()
   animColor.init()
   animColor.animate()
 
-  const scrollTimelineSetup = new ScrollTimelineSetup();
+  const scrollTimelineSetup = new ScrollTimelineSetup()
   scrollTimelineSetup.scrollTimeline = scrolltimeline
   scrollTimelineSetup.init()
   scrollTimelineSetup.animate()

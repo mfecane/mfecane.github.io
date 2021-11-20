@@ -146,14 +146,15 @@ export default class ScrollTimeline {
     document.addEventListener('wheel', this.handleScroll.bind(this))
   }
 
-  // checkScrollBlocker(e): boolean {
-  //   if (Array.isArray(e.path)) {
-  //     return e.path.some((el) => {
-  //       return el.classList?.contains('prevent-scroll')
-  //     })
-  //   }
-  //   return false
-  // }
+  checkScrollBlocker(event): boolean {
+    const path = event.path || (event.composedPath && event.composedPath());
+    if (Array.isArray(path)) {
+      return path.some((el) => {
+        return typeof el.dataset?.scrollBlock !== 'undefined'
+      })
+    }
+    return false
+  }
 
   getScrollStep(): number {
     // TODO : on page chacnge
@@ -162,9 +163,9 @@ export default class ScrollTimeline {
   }
 
   handleScroll(e): void {
-    // if (this.checkScrollBlocker(e)) {
-    //   return
-    // }
+    if (this.checkScrollBlocker(e)) {
+      return
+    }
 
     const value = e.deltaY
     if (value > 0) {
