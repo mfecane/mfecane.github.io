@@ -29,7 +29,7 @@ interface options {
 }
 
 export default class ScrollTimeline {
-  COOLDOWN_TIMEOUT = 100
+  COOLDOWN_TIMEOUT = 20
   ANIM_FRAMES = 20
 
   EASING_FUNCTION = easeOutCubic
@@ -217,6 +217,9 @@ export default class ScrollTimeline {
     this.clearCoolDownTimeout()
     this.animate()
   }
+
+  // TODO wtf is this shit comment pls
+  // TODO tweak cooldown params
 
   scrollTimeGrowCoefficient(): number {
     return (
