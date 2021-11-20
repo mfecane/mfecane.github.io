@@ -102,5 +102,6 @@ void main()
     vec3(45.0 / 255.0, 44.0 / 255.0, 58.0 / 255.0), u_desaturate),
     1.0
   );
-  // FragColor = vec4(mouseHeat);
+  // it's dead jim
+  // FragColor = vec4(mouseHeat,mouseHeat,mouseHeat,1.0);
 }

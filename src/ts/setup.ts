@@ -141,6 +141,11 @@ window.onload = () => {
     page: 2,
   })
 
+  scrolltimeline.addTransition({
+    func: (value) => handleScrollBlocker(1 - value),
+    page: 3,
+  })
+
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)
   })

@@ -3,12 +3,13 @@
 .page4 {
   flex: 0 0 auto;
   background: $light;
-  width: 70vw;
+  left: 100vw;
+  top:0;
+  width: 30vw;
   height: 100vh;
   z-index: 0;
-  position: relative;
+  position: absolute;
   overflow: hidden;
   display: flex;
-  background: $dark;
-  background: radial-gradient(farthest-corner circle at 30% 20%, $dark-dimmed 0%, $dark 100%);
+  background: $darkbg1;
 }

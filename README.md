@@ -12,6 +12,7 @@
 - add transition 3ms to all anim styles
 - replace cursor with mouse to show scrolling
 - make scroll timeline only timeline
+- add radial gradients
 
 ## ideas
 

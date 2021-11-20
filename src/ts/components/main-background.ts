@@ -9,7 +9,7 @@ import fragmentShaderSource1 from 'shaders/heatmap.frag'
 import vertexShaderSource2 from 'shaders/rain.vert'
 import fragmentShaderSource2 from 'shaders/rain.frag'
 
-import bg from 'assets/img/bg.jpg'
+import bg from '/assets/img/bg.jpg'
 import ScrollTimeline from 'ts/animation/scroll-pager'
 
 class Animation {
@@ -85,7 +85,8 @@ class Animation {
     this.element.appendChild(this.cnv)
     this.cnv.id = 'canvas'
 
-    const gl = (this.gl = this.cnv.getContext('webgl2'))
+    this.gl = this.cnv.getContext('webgl2')
+    const gl = this.gl
 
     this.setCanvasSize()
     window.addEventListener(`resize`, () => {
