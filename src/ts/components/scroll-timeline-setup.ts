@@ -8,19 +8,20 @@ import {
 } from 'ts/lib/easing-functions'
 import { mapclamp, mapplain } from 'ts/lib/lib'
 
-interface ScrollTimeLineElement {
-  element: HTMLElement
-  page: number
-  transitionIn: string
-  transitionOut: string
-  argsIn: Array<string>
-  argsOut: Array<string>
-}
+type TransitionCallback = (
+  el: Transition,
+  value: number,
+  args: Array<string> | null
+) => void
 
 const transitions = [
   {
     code: 'slide-from',
-    callback: (el: ScrollTimeLineElement, value: number, args: Array<string>) => {
+    callback: (
+      el: Transition,
+      value: number,
+      args: Array<string> | null
+    ): void => {
       const [from = 'left', fromValue = '200', delay = '1'] = args
       const dir = from === 'right' ? 1 : -1
 
@@ -39,7 +40,7 @@ const transitions = [
   },
   {
     code: 'second-page-left',
-    callback: (el: ScrollTimeLineElement, value: number) => {
+    callback: (el: Transition, value: number): void => {
       const val = easeOutSquare(value)
       const val8 = mapclamp(val, 0.5, 0.9, -el.element.offsetWidth, 0)
       el.element.style.transform = `translateX(${val8}px)`
@@ -47,7 +48,7 @@ const transitions = [
   },
   {
     code: 'second-page-right',
-    callback: (el: ScrollTimeLineElement, value: number) => {
+    callback: (el: Transition, value: number): void => {
       const val = easeOutSquare(value)
       const val9 = mapplain(val, 0, 1, el.element.offsetWidth, 0)
       el.element.style.transform = `translateX(${val9}px)`
@@ -56,10 +57,73 @@ const transitions = [
       el.element.style.opacity = `${val2}`
     },
   },
+  {
+    code: 'third-page',
+    callback: (el: Transition, value: number): void => {
+      console.log(value)
+      const val = easeOutSquare(value)
+      const val8 = mapclamp(val, 0.5, 0.9, 0, -el.element.offsetWidth)
+      el.element.style.transform = `translateX(${val8}px)`
+    },
+  },
 ]
 
+class Transition {
+  currentValue = -1
+  currentPage = -1
+  element: HTMLElement
+  page: number
+  transitionIn: TransitionCallback
+  transitionOut: TransitionCallback
+  argsIn: Array<string>
+  argsOut: Array<string>
+
+  constructor(el: HTMLElement) {
+    this.element = el
+    this.page = +el.dataset.transitionPage
+
+    this.transitionIn = transitions.find((cb) => {
+      return cb.code === el.dataset.transitionIn
+    }).callback
+    this.transitionOut = transitions.find((cb) => {
+      return cb.code === el.dataset.transitionOut
+    }).callback
+    const transitionInArgs = el.dataset.transitionInArgs || ''
+    const transitionOutArgs = el.dataset.transitionOutArgs || ''
+    this.argsIn = transitionInArgs.split('|')
+    this.argsOut = transitionOutArgs.split('|')
+  }
+
+  update(page, value) {
+    if (this.currentValue === value && this.currentPage === page) {
+      return
+    }
+
+    this.currentValue = value
+    this.currentPage = page
+
+    let val = value
+
+    if (page <= this.page - 1) {
+      if (page < this.page - 1) {
+        val = 0
+        return
+      }
+      return this.transitionIn(this, val, this.argsIn)
+    }
+
+    if (page >= this.page) {
+      if (page > this.page) {
+        val = 1
+        return
+      }
+      return this.transitionOut(this, 1 - val, this.argsOut)
+    }
+  }
+}
+
 export default class ScrollTimelineSetup {
-  elements: Array<ScrollTimeLineElement> = []
+  elements: Array<Transition> = []
   _scrollTimeline: ScrollTimeline = null
 
   set scrollTimeline(value: ScrollTimeline) {
@@ -71,30 +135,13 @@ export default class ScrollTimelineSetup {
       document.querySelectorAll('[data-transition]')
     )
     this.elements = elementList.map((el: HTMLElement) => {
-      const transitionInArgs = el.dataset.transitionInArgs || ''
-      const transitionOutArgs = el.dataset.transitionOutArgs || ''
-
-      return {
-        element: el,
-        page: +el.dataset.transitionPage,
-        transitionIn: el.dataset.transitionIn,
-        transitionOut: el.dataset.transitionOut,
-        argsIn: transitionInArgs.split('|'),
-        argsOut: transitionOutArgs.split('|'),
-      }
+      return new Transition(el)
     })
-  }
-
-  updateTitleFromTop(el: ScrollTimeLineElement, value: number): void {
-    const val10 = mapplain(value, 0.7, 1, -100, 0)
-    el.element.style.transform = `translateY(${val10}px)`
-    const val11 = mapplain(value, 0.7, 1, 0, 1)
-    el.element.style.opacity = `${val11}`
   }
 
   update(): void {
     // TODO refactor
-    const [currentPage, value] = this._scrollTimeline.getScrollValueWithPage()
+    const [page, value] = this._scrollTimeline.getScrollValueWithPage()
     // TODO create filter
     // TODO fix page numbering
     // TODO cache value
@@ -107,28 +154,7 @@ export default class ScrollTimelineSetup {
       //   )
       // })
       .forEach((el) => {
-        let val = value
-        let cb
-
-        if (currentPage <= el.page - 1) {
-          if (currentPage < el.page - 1) {
-            val = 0
-          }
-          cb = transitions.find((cb) => {
-            return cb.code === el.transitionIn
-          })
-          cb.callback(el, val, el.argsIn)
-        }
-
-        if (currentPage >= el.page) {
-          if (currentPage > el.page) {
-            val = 0
-          }
-          cb = transitions.find((cb) => {
-            return cb.code === el.transitionOut
-          })
-          cb.callback(el, 1 - val, el.argsOut)
-        }
+        el.update(page, value)
       })
   }
 

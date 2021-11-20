@@ -60,15 +60,6 @@ const firstTransition = (value) => {
   }
 }
 
-// const handleSecondPage = (value) => {
-//   const val1 = map01(
-//     value,
-//     0,
-//     -placeholderScroller.offsetHeight + page2right.offsetHeight
-//   )
-//   placeholderScroller.style.top = `${val1}px`
-// }
-
 const handleContacts = (value) => {
   const val1 = map01(
     value,
@@ -76,15 +67,6 @@ const handleContacts = (value) => {
     0
   )
   contacts.style.left = `${val1}px`
-}
-
-
-const handleCurtain = (value) => {
-  const left = mapclamp(value, 0, 0.5, 100, 0)
-  const width = mapclamp(Math.abs(value - 1 / 2), 0, 1 / 2, 100, 0)
-  curtain.style.width = `${width}vw`
-  curtain.style.left = `${left}vw`
-  curtain.style.visibility = 'hidden'
 }
 
 const setUpMainLogoAnimation = () => {
@@ -122,11 +104,11 @@ window.onload = () => {
         snap: true,
       },
       {
-        step: 0.1,
+        step: 0.05,
         snap: true,
       },
       {
-        step: 0.1,
+        step: 0.05,
         snap: true,
       }
     ],
@@ -137,11 +119,6 @@ window.onload = () => {
   scrolltimeline.addTransition({
     func: firstTransition,
     page: 0,
-  })
-
-  scrolltimeline.addTransition({
-    func: handleContacts,
-    page: 1,
   })
 
   mouseContainer.addEventListener('click', () => {
