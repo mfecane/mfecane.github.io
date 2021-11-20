@@ -11,6 +11,7 @@
 - can scroll up down only in the middle of element, show it with cursor
 - add transition 3ms to all anim styles
 - replace cursor with mouse to show scrolling
+- make scroll timeline only timeline
 
 ## ideas
 

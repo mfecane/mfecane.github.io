@@ -63,9 +63,10 @@ const transitions = [
     code: 'third-page',
     callback: (el: Transition, value: number): void => {
       let val = easeOutSquare(value)
-
-      let transform = `translateX(${-el.element.offsetWidth}px) `
-        transform += `scale(${val}, ${val})`
+      let scale =  mapplain(val, 0, 1, 0.4, 1)
+      let trans =  mapplain(val, 0, 1, -el.element.offsetHeight, 0)
+      let transform = `translate(${-el.element.offsetWidth}px, ${trans}px) `
+        transform += `scale(${scale}, ${scale})`
       el.element.style.transform = transform
 
       val = easeInCubic(value)

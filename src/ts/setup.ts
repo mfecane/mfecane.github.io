@@ -81,8 +81,10 @@ const setUpMainLogoAnimation = () => {
 const handleScrollBlocker = (value) => {
   if (value > 0.95) {
     scrollBlocker.dataset.scrollBlock = ''
+    scrollBlocker.style.overflowY = 'scroll'
   } else {
     delete scrollBlocker.dataset.scrollBlock
+    scrollBlocker.style.overflowY = 'hidden'
   }
 }
 
