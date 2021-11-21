@@ -1,10 +1,9 @@
 ## TODO:
 
-- slightly zoom in to background for small parallax
 - remove filter by point numbers qhe??
 - make red dimmer
 - save scroll on media change
-- add contacts by shrink works
+- add contacts by shrink works this suck
 - add adaptive
 - add fingeer manipulation
 - figure out how to use fucking partials
@@ -12,8 +11,10 @@
 - add transition 3ms to all anim styles
 - replace cursor with mouse to show scrolling
 - make scroll timeline only timeline
-- add radial gradients
 - keyframe-based api
+- clean up shaders
+- put exp and works and all the content into single container sroll there, and
+move that container
 
 ## ideas
 

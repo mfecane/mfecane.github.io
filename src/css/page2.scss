@@ -15,6 +15,7 @@
 .page2-left {
   flex: 0 0 30%;
   background-color: $darkbg1;
+  background: radial-gradient(farthest-corner circle at 80% 30%, $darkbg1 0%, $darkbg2 100%);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -107,7 +108,6 @@
 
   position: absolute;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

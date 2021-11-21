@@ -100,11 +100,11 @@ void main()
   vec4 BaseColor = texture(u_Sampler, uvoff) * 0.9;
 
   FragColor = mix(BaseColor, Color, blur);
-  // FragColor = vec4(
-  //   blendColor(FragColor.rgb * (1.0 - u_desaturate / 3.0),
-  //   vec3(45.0 / 255.0, 44.0 / 255.0, 58.0 / 255.0), u_desaturate),
-  //   1.0
-  // );
+  FragColor = vec4(
+    blendColor(FragColor.rgb * (1.0 - u_desaturate / 3.0),
+    vec3(50.0 / 255.0, 59.0 / 255.0, 74.0 / 255.0), u_desaturate),
+    1.0
+  );
   // // it's dead jim
   // // FragColor = vec4(mouseHeat,mouseHeat,mouseHeat,1.0);
   // FragColor = BaseColor;
