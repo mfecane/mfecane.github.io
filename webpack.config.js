@@ -2,10 +2,9 @@
 
 var path = require("path");
 
-var plugins = require("./webpack/plugins");
-
 var rules = [
   require("./webpack/loaders/glsl"),
+  // require("./webpack/loaders/url"),
   require("./webpack/loaders/css"),
   require("./webpack/loaders/image"),
   require("./webpack/loaders/svg"),
@@ -38,8 +37,8 @@ module.exports = {
     },
   },
   devServer: {
-    contentBase: path.resolve(__dirname, "dist"),
+    contentBase: path.resolve(__dirname, "dist2"),
   },
   devtool: "source-map",
-  plugins: plugins,
+  plugins: require("./webpack/plugins"),
 };

@@ -3,6 +3,7 @@
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = {
-  test: /\.(jpe?g|png|gif)$/i,
-  type: "asset",
+  test: /\.(jpe?g|png|gif|svg)$/i,
+  type: "asset/resource",
+  exclude: /\.(inline)\.(svg)$/i
 };
