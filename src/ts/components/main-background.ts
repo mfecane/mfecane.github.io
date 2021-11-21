@@ -9,6 +9,7 @@ import fragmentShaderSource1 from 'shaders/heatmap.frag'
 import vertexShaderSource2 from 'shaders/rain.vert'
 import fragmentShaderSource2 from 'shaders/rain.frag'
 
+// import bg from '/assets/img/bg_test.jpg'
 import bg from '/assets/img/bg.jpg'
 import ScrollTimeline from 'ts/animation/scroll-pager'
 
@@ -143,21 +144,25 @@ class Animation {
     this.rainShader.addUniform('u_SamplerH', '1i')
     this.rainShader.addUniform('u_Mouse', '2f')
     this.rainShader.addUniform('u_MouseInt', '1f')
-    this.rainShader.addUniform('u_asp', '1f')
+    this.rainShader.addUniform('u_screenAspect', '1f')
+    this.rainShader.addUniform('u_imageAspect', '1f')
     this.rainShader.addUniform('u_mouseshift', '1f')
     this.rainShader.addUniform('u_xPos', '1f')
     this.rainShader.addUniform('u_desaturate', '1f')
 
     this.startTime = Date.now()
 
-    this.texture = new Texture(gl).fromUrl(bg)
+    this.texture = new Texture(gl)
+    this.texture.fromUrl(bg)
 
     // TODO: should be 1 dimentional
     this.targetTextureWidth = this.size.w
     this.targetTextureHeight = this.size.h
 
-    this.texture2 = new Texture(gl).empty(256, 256)
-    this.texture3 = new Texture(gl).empty(256, 256)
+    this.texture2 = new Texture(gl)
+    this.texture2.empty(256, 256)
+    this.texture3 = new Texture(gl)
+    this.texture3.empty(256, 256)
 
     // Create and bind the framebuffer
     this.frameBuffer = gl.createFramebuffer()
@@ -169,7 +174,7 @@ class Animation {
       gl.FRAMEBUFFER,
       attachmentPoint,
       gl.TEXTURE_2D,
-      this.texture2,
+      this.texture2.texture,
       0
     )
   }
@@ -198,16 +203,17 @@ class Animation {
     this.rainShader.setUniform('u_Size', this.psize)
     this.rainShader.setUniform('u_Mouse', this.uvmouse.x, this.uvmouse.y)
     this.rainShader.setUniform('u_MouseInt', this.mouseintensity)
-    this.rainShader.setUniform('u_asp', this.size.w / this.size.h)
+    this.rainShader.setUniform('u_screenAspect', this.size.w / this.size.h)
+    this.rainShader.setUniform('u_imageAspect', this.texture.width / this.texture.height)
     this.rainShader.setUniform('u_mouseshift', this.mouseshift)
     this.rainShader.setUniform('u_xPos', scrollValue)
     this.rainShader.setUniform('u_desaturate', desaturate)
 
     gl.activeTexture(gl.TEXTURE0)
-    gl.bindTexture(gl.TEXTURE_2D, this.texture)
+    gl.bindTexture(gl.TEXTURE_2D, this.texture.texture)
     this.rainShader.setUniform('u_Sampler', 0)
     gl.activeTexture(gl.TEXTURE1)
-    gl.bindTexture(gl.TEXTURE_2D, this.texture2)
+    gl.bindTexture(gl.TEXTURE_2D, this.texture2.texture)
     this.rainShader.setUniform('u_SamplerH', 1)
     this.gl.viewport(0, 0, this.size.w, this.size.h)
     gl.clearColor(0.0, 0.0, 0.0, 1.0)
@@ -219,13 +225,13 @@ class Animation {
     const gl = this.gl
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer)
     gl.activeTexture(gl.TEXTURE0)
-    gl.bindTexture(gl.TEXTURE_2D, this.texture2)
+    gl.bindTexture(gl.TEXTURE_2D, this.texture2.texture)
     const attachmentPoint = gl.COLOR_ATTACHMENT0
     gl.framebufferTexture2D(
       gl.FRAMEBUFFER,
       attachmentPoint,
       gl.TEXTURE_2D,
-      this.texture2,
+      this.texture2.texture,
       0
     )
     this.heatmapShader.useProgram()
@@ -234,7 +240,7 @@ class Animation {
     this.heatmapShader.setUniform('u_MVP', this.proj)
     this.heatmapShader.setUniform('u_asp', this.size.w / this.size.h)
     gl.activeTexture(gl.TEXTURE1)
-    gl.bindTexture(gl.TEXTURE_2D, this.texture3)
+    gl.bindTexture(gl.TEXTURE_2D, this.texture3.texture)
     this.heatmapShader.setUniform('u_Sampler', 1)
     gl.viewport(0, 0, this.targetTextureWidth / 4, this.targetTextureHeight / 4)
     gl.clearColor(0.0, 0.0, 0.0, 1.0)

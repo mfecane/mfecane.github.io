@@ -1,5 +1,5 @@
 export default class Texture {
-  texture: WebGLTexture = null
+  _texture: WebGLTexture = null
   gl: WebGL2RenderingContext = null
   level = 0
   internalFormat = 0
@@ -15,6 +15,10 @@ export default class Texture {
   targetTextureWidth = 0
   targetTextureHeight = 0
 
+  get texture():WebGLTexture {
+    return this._texture
+  }
+
   constructor(gl: WebGL2RenderingContext) {
     this.gl = gl
     this.pixel = new Uint8Array([106, 163, 149, 255])
@@ -28,8 +32,8 @@ export default class Texture {
   fromUrl(url: string): WebGLTexture {
     const gl = this.gl
 
-    this.texture = gl.createTexture()
-    gl.bindTexture(gl.TEXTURE_2D, this.texture)
+    this._texture = gl.createTexture()
+    gl.bindTexture(gl.TEXTURE_2D, this._texture)
     gl.texImage2D(
       gl.TEXTURE_2D,
       this.level,
@@ -44,7 +48,7 @@ export default class Texture {
 
     const image = new Image()
     image.onload = () => {
-      gl.bindTexture(gl.TEXTURE_2D, this.texture)
+      gl.bindTexture(gl.TEXTURE_2D, this._texture)
       gl.texImage2D(
         gl.TEXTURE_2D,
         this.level,
@@ -53,6 +57,9 @@ export default class Texture {
         this.srcType,
         image
       )
+
+      this.width = image.width
+      this.height = image.height
 
       gl.generateMipmap(gl.TEXTURE_2D)
 
@@ -64,14 +71,14 @@ export default class Texture {
     }
     image.src = url
 
-    return this.texture
+    return this._texture
   }
 
   empty(targetTextureWidth: number, targetTextureHeight: number): WebGLTexture {
     const gl = this.gl
 
-    this.texture = gl.createTexture()
-    gl.bindTexture(gl.TEXTURE_2D, this.texture)
+    this._texture = gl.createTexture()
+    gl.bindTexture(gl.TEXTURE_2D, this._texture)
 
     this.data = null
 
@@ -95,6 +102,6 @@ export default class Texture {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
 
-    return this.texture
+    return this._texture
   }
 }

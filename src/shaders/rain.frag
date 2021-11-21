@@ -13,7 +13,8 @@ uniform float u_Size;
 uniform sampler2D u_Sampler;
 uniform sampler2D u_SamplerH;
 uniform float u_MouseInt;
-uniform float u_asp;
+uniform float u_screenAspect;
+uniform float u_imageAspect;
 uniform vec2 u_Mouse;
 uniform float u_xPos;
 uniform float u_desaturate;
@@ -63,19 +64,23 @@ vec3 Layer(vec2 UV, float t) {
 
 void main()
 {
-  vec2 asp = vec2(u_asp, 1.0);
+  vec2 asp = vec2(u_screenAspect, 1.0);
   // cycle time to avoid precision drop
   float t = mod(u_time, 72000.0);
 
-  float imgasp = u_asp / 1.4; // image aspect ratio
+  // TODO fix this
+  float imgasp = u_screenAspect / u_imageAspect; // image aspect ratio
+
+  // uv to sample image and keep aspect ratio
   vec2 sampleuv;
   if (imgasp > 1.0) {
-    sampleuv = (uv - vec2(0.5)) * vec2(1.0, 1.0 / imgasp) + vec2(0.5);
+    sampleuv = (uv - vec2(0.5)) * vec2(1.0, 1.0 / imgasp) * 0.8 + vec2(0.5) - vec2(0.1, 0.0);
   } else {
-    sampleuv = (uv - vec2(0.5)) * vec2(imgasp, 1.0) + vec2(0.5);
+    sampleuv = (uv - vec2(0.5)) * vec2(imgasp, 1.0) * 0.8 + vec2(0.5) - vec2(0.1, 0.0);
   }
 
-  vec2 uv1 = uv * asp + vec2(u_xPos, 0.0);
+  sampleuv = sampleuv + vec2(u_xPos / 5.0, 0.0);
+  vec2 uv1 = uv * asp + vec2(u_xPos / 1.5, 0.0);
 
   FragColor = vec4(0.0f);
 
@@ -89,19 +94,18 @@ void main()
   // Sampler UV Directions Quality Size Radius Mip
   // vec4 Color = texture(u_Sampler, sampleuv, 4.0);
   vec4 Color = SampleBlur(u_Sampler, sampleuv, 12.0, 6.0, 2.0, vec2(0.05), 0.0);
-  // Color = blendScreen(Color, vec4(1.0), 0.05);
-
-  float mouseHeat = texture(u_SamplerH, sampleuv).x;
-  blur *= (1.0f - mouseHeat);
+  // float mouseHeat = texture(u_SamplerH, sampleuv).x;
+  // blur *= (1.0f - mouseHeat);
 
   vec4 BaseColor = texture(u_Sampler, uvoff) * 0.9;
 
   FragColor = mix(BaseColor, Color, blur);
-  FragColor = vec4(
-    blendColor(FragColor.rgb * (1.0 - u_desaturate / 3.0),
-    vec3(45.0 / 255.0, 44.0 / 255.0, 58.0 / 255.0), u_desaturate),
-    1.0
-  );
-  // it's dead jim
-  // FragColor = vec4(mouseHeat,mouseHeat,mouseHeat,1.0);
+  // FragColor = vec4(
+  //   blendColor(FragColor.rgb * (1.0 - u_desaturate / 3.0),
+  //   vec3(45.0 / 255.0, 44.0 / 255.0, 58.0 / 255.0), u_desaturate),
+  //   1.0
+  // );
+  // // it's dead jim
+  // // FragColor = vec4(mouseHeat,mouseHeat,mouseHeat,1.0);
+  // FragColor = BaseColor;
 }

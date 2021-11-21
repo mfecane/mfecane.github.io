@@ -48,12 +48,12 @@ export default class AnimColor {
   buildColors() { // TODO make async
     const max = 512
     const arr = []
-  
+
     for (let i = 0; i < max; ++i) {
       const color = blendHslColorsArr(this.colorsConfig, i, max)
       arr.push(hslToRgb(...color))
     }
-  
+
     return arr
   }
 
@@ -73,7 +73,8 @@ export default class AnimColor {
   }
 
   setElementColor(el, prop: string): void {
-    const offset = -el.offsetLeft * 2 + el.offsetTop * 5
+    const l = el.getBoundingClientRect()
+    const offset = -l.x * 2 + l.y * 5
     const color = this.getColor(offset)
     el.style.transition = 'none'
     el.style[prop] = `rgba(${color}, 1)`
@@ -117,7 +118,7 @@ export default class AnimColor {
 
   animate(): void {
     this.update();
-    
+
     window.requestAnimationFrame(() => {
       this.animate()
     })
