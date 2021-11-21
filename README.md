@@ -13,6 +13,7 @@
 - replace cursor with mouse to show scrolling
 - make scroll timeline only timeline
 - add radial gradients
+- keyframe-based api
 
 ## ideas
 
