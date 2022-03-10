@@ -50,6 +50,7 @@ class Animation {
   targetTextureHeight = 0
   frameBuffer: WebGLFramebuffer | null = null
   _scrollTimeline
+  _desaturate = 0
 
   constructor(element: HTMLDivElement) {
     this.element = element
@@ -189,10 +190,7 @@ class Animation {
   }
 
   drawImage(): void {
-    // TODO store max scroll value in timepline as well
     const scrollValue = this._scrollTimeline.scrollValue / 3
-    const desaturate = mapclamp(this._scrollTimeline.scrollValue, 0, 1, 0, 0.8)
-
     const gl = this.gl
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     this.rainShader.useProgram()
@@ -207,7 +205,7 @@ class Animation {
     this.rainShader.setUniform('u_imageAspect', this.texture.width / this.texture.height)
     this.rainShader.setUniform('u_mouseshift', this.mouseshift)
     this.rainShader.setUniform('u_xPos', scrollValue)
-    this.rainShader.setUniform('u_desaturate', desaturate)
+    this.rainShader.setUniform('u_desaturate', this._desaturate)
 
     gl.activeTexture(gl.TEXTURE0)
     gl.bindTexture(gl.TEXTURE_2D, this.texture.texture)
@@ -312,6 +310,9 @@ class Animation {
     }
   }
 
+  desaturate(value: number): void {
+    this._desaturate = value || 0
+  }
 
   // animation loop
   animate(): void {

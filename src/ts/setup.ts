@@ -79,15 +79,31 @@ const setUpMainLogoAnimation = () => {
   })
 }
 
-const handleScrollBlocker = (value) => {
-  if (value > 0.95) {
-    scrollBlocker.dataset.scrollBlock = ''
-    scrollBlocker.style.overflowY = 'scroll'
-  } else {
-    delete scrollBlocker.dataset.scrollBlock
-    scrollBlocker.style.overflowY = 'hidden'
+const desaturateInCallback = (value)=>{
+  const val1 = mapclamp(value, 0, 1, 0, 0.8)
+  if(mainBgAnimation) {
+    mainBgAnimation.desaturate(val1)
   }
 }
+
+const desaturateOutCallback = (value)=>{
+  desaturateInCallback(1 - value)
+}
+
+// TODO ::: sell printer
+// TODO ::: tablet
+// TODO ::: fill linkedin
+
+
+// const handleScrollBlocker = (value) => {
+//   if (value > 0.95) {
+//     scrollBlocker.dataset.scrollBlock = ''
+//     scrollBlocker.style.overflowY = 'scroll'
+//   } else {
+//     delete scrollBlocker.dataset.scrollBlock
+//     scrollBlocker.style.overflowY = 'hidden'
+//   }
+// }
 
 window.onload = () => {
   mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
@@ -116,6 +132,18 @@ window.onload = () => {
         snap: true,
       },
       {
+        step: 0.2,
+        snap: true,
+      },
+      {
+        step: 0.2,
+        snap: true,
+      },
+      {
+        step: 0.2,
+        snap: true,
+      },
+      {
         step: 0.05,
         snap: true,
       },
@@ -129,23 +157,33 @@ window.onload = () => {
     page: 0,
   })
 
+  scrolltimeline.addTransition({
+    func: desaturateInCallback,
+    page: 0,
+  })
+
+  scrolltimeline.addTransition({
+    func: desaturateOutCallback,
+    page: options.pages.length - 1, // last page
+  })
+
   // TODO quick and dirty solution, refacor
   // add full callback, without pagination
 
-  scrolltimeline.addTransition({
-    func: handleScrollBlocker,
-    page: 1,
-  })
+  // scrolltimeline.addTransition({
+  //   func: handleScrollBlocker,
+  //   page: 1,
+  // })
 
-  scrolltimeline.addTransition({
-    func: (value) => handleScrollBlocker(1 - value),
-    page: 2,
-  })
+  // scrolltimeline.addTransition({
+  //   func: (value) => handleScrollBlocker(1 - value),
+  //   page: 2,
+  // })
 
-  scrolltimeline.addTransition({
-    func: (value) => handleScrollBlocker(1 - value),
-    page: 3,
-  })
+  // scrolltimeline.addTransition({
+  //   func: (value) => handleScrollBlocker(1 - value),
+  //   page: 3,
+  // })
 
   contactsLink.addEventListener('click', ()=> {
     scrolltimeline.setScrollValue(3)

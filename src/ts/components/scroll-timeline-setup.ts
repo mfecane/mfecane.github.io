@@ -16,6 +16,26 @@ type TransitionCallback = (
 
 // TODO add state of element to data ; ready
 
+/*
+
+  Example
+
+  <div
+    data-transition
+    data-transition-page="2"
+    data-transition-in="transition-id"
+    data-transition-in-args="value1|value2|value3"
+    data-transition-out="transition-id"
+    data-transition-out-args="value1|value2|value3"
+  >
+  </div>
+
+  args is array if values
+
+*/
+
+// List of callbacks used by transition
+
 const transitions = [
   {
     code: 'slide-from',
@@ -88,6 +108,28 @@ const transitions = [
     },
   },
   {
+    code: 'works-in',
+    callback: (el: Transition, value: number): void => {
+      const val = easeOutSquare(value)
+      const val8 = mapclamp(val, 0.5, 0.9, -150, -50)
+      el.element.style.transform = `translate(-50%, ${val8}%)`
+
+      const val2 = easeInCubic(value)
+      el.element.style.opacity = `${val2}`
+    },
+  },
+  {
+    code: 'works-out',
+    callback: (el: Transition, value: number): void => {
+      const val = easeOutSquare(value)
+      const val8 = mapclamp(val, 0.5, 0.9, 50, -50)
+      el.element.style.transform = `translate(-50%, ${val8}%)`
+
+      const val2 = easeInCubic(value)
+      el.element.style.opacity = `${val2}`
+    },
+  },
+  {
     code: 'contacts-page',
     callback: (el: Transition, value: number): void => {
       let val = easeOutSquare(value)
@@ -97,6 +139,8 @@ const transitions = [
   },
 ]
 
+// Transition object is constructed for each element with transition on the page
+
 class Transition {
   currentValue = -1
   currentPage = -1
@@ -104,6 +148,7 @@ class Transition {
   page: number
   transitionIn: TransitionCallback
   transitionOut: TransitionCallback
+  args: Array<string>
   argsIn: Array<string>
   argsOut: Array<string>
 
@@ -111,16 +156,29 @@ class Transition {
     this.element = el
     this.page = +el.dataset.transitionPage
 
-    this.transitionIn = transitions.find((cb) => {
-      return cb.code === el.dataset.transitionIn
+    if (el.dataset.transition) {
+      this.transitionIn = this.findTransition(el.dataset.transition)
+      this.transitionOut = this.transitionIn
+
+      this.argsIn = (el.dataset.transitionArgs || '').split('|')
+      this.argsOut = this.argsIn
+    }
+
+    if (el.dataset.transitionIn) {
+      this.transitionIn = this.findTransition(el.dataset.transitionIn)
+      this.argsIn = (el.dataset.transitionInArgs || '').split('|')
+    }
+
+    if (el.dataset.transitionOut) {
+      this.transitionOut = this.findTransition(el.dataset.transitionOut)
+      this.argsOut = (el.dataset.transitionOutArgs || '').split('|')
+    }
+  }
+
+  findTransition(transition) {
+    return transitions.find((cb) => {
+      return cb.code === transition
     }).callback
-    this.transitionOut = transitions.find((cb) => {
-      return cb.code === el.dataset.transitionOut
-    }).callback
-    const transitionInArgs = el.dataset.transitionInArgs || ''
-    const transitionOutArgs = el.dataset.transitionOutArgs || ''
-    this.argsIn = transitionInArgs.split('|')
-    this.argsOut = transitionOutArgs.split('|')
   }
 
   update(page, value) {

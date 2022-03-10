@@ -57,9 +57,16 @@
 }
 
 .works-item__container {
-  height: 300px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  width: 60vw;
+  height: 60vh;
   background-color: $darkbg1;
   display: flex;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 10;
 }
 
 .works-item__container:nth-child(odd) {

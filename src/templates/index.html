@@ -1,298 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Rain</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Playfair+Display&family=Cormorant+Garamond&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <noscript>You need to enable JavaScript to view this site.</noscript>
+<head>
+  <meta charset="utf-8" />
+  <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Playfair+Display&family=Cormorant+Garamond&display=swap"
+    rel="stylesheet" />
+</head>
 
-    <div id="main-bg-canvas-container"></div>
+<body>
+  <noscript>You need to enable JavaScript to view this site.</noscript>
 
-    <!-- <div class="pager__container">
+  <div id="main-bg-canvas-container"></div>
+
+  <!-- <div class="pager__container">
       <div class="pager__indicator"></div>
     </div> -->
 
-    <div class="mouse__container">
-      <div class="mouse__mouse">
-        <div class="mouse__wheel anim-background-color"></div>
+  <div class="mouse__container">
+    <div class="mouse__mouse">
+      <div class="mouse__wheel anim-background-color"></div>
+    </div>
+    <div class="mouse__arrow-container">
+      <div class="mouse__arrow-top"></div>
+      <div class="mouse__arrow-bottom"></div>
+    </div>
+  </div>
+
+  <section class="page page1" id="page1">
+    <!-- TODO slowly floating elements -->
+    <!-- TODO move this container away more slowly -->
+    <!-- TODO floating ghost of title -->
+    <div class="column__container">
+      <div class="logo-group">
+        <div class="column__logo-container" id="logo-container"></div>
+        <!-- <h1 class="column__title">Aleksei Aliapkin</h1> -->
+        <img src="/assets/svg/title.svg" alt="" class="column__title-image" width="400px" height="125px" />
+        <h2 class="column__subtitle anim-color">frontend<br />developer</h2>
       </div>
-      <div class="mouse__arrow-container">
-        <div class="mouse__arrow-top"></div>
-        <div class="mouse__arrow-bottom"></div>
+      <nav class="column__nav-container">
+        <ul class="nav">
+          <li class="nav__link anim-hover-color"><a>Home</a></li>
+          <li class="nav__link anim-hover-color"><a>My works</a></li>
+          <li class="nav__link anim-hover-color"><a id="contacts-link">Contacts</a></li>
+          <li class="nav__link anim-hover-color"><a>Technologies</a></li>
+        </ul>
+      </nav>
+      <div class="column__button-container">
+        <button class="btn btn_primary anim-border-color anim-background-color">
+          Contact me</button><button class="btn btn_secondary anim-border-color anim-color">
+          Download CV
+        </button>
       </div>
     </div>
 
-    <section class="page page1" id="page1">
-      <!-- TODO slowly floating elements -->
-      <!-- TODO move this container away more slowly -->
-      <!-- TODO floating ghost of title -->
-      <div class="column__container">
-        <div class="logo-group">
-          <div class="column__logo-container" id="logo-container"></div>
-          <!-- <h1 class="column__title">Aleksei Aliapkin</h1> -->
-          <img src="/assets/svg/title.svg" alt="" class="column__title-image" width="400px" height="125px" />
-          <h2 class="column__subtitle anim-color">frontend<br />developer</h2>
+    <!-- TODO make this 3d -->
+    <div class="page1__photo-container">
+      <img src="/assets/img/man.png" alt="" class="page1__photo" />
+    </div>
+  </section>
+
+  <section class="page page2" id="page2">
+    <div class="page2-left" data-transition data-transition-page="1" data-transition-in="second-page-left"
+      data-transition-in-args="" data-transition-out="second-page-left" data-transition-out-args="">
+      <div class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
+        data-transition-out="slide-from">
+        <h3 class="about__title anim-color anim-border-color">
+          HI, MY NAME IS ALIAPKIN ALEKSEI
+        </h3>
+
+        <article class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
+          data-transition-in-args="|50|" data-transition-out="slide-from" data-transition-out-args="|50|">
+          Hi, my name is Aliapkin Aleksei and i am a front-end developer
+          located in Moscow, Russia. I started out with React + Redux, later
+          switching to Vue.js + Vuex. My background is mathematics and i have
+          previously worked in the banking industry.
+        </article>
+
+        <h3 class="about__title anim-color anim-border-color">
+          TECHNOLOGIES
+        </h3>
+
+        <div class="tech__container">
+          <div class="tech__row">
+            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
+              data-transition-in="slide-from" data-transition-in-args="|100|1" data-transition-out="slide-from"
+              data-transition-out-args="|100|1">
+              <div class="tech__image icon icon--vue anim-background-color"></div>
+            </div>
+            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
+              data-transition-in="slide-from" data-transition-in-args="|100|.95" data-transition-out="slide-from"
+              data-transition-out-args="|100|.95">
+              <div class="tech__image icon icon--js anim-background-color"></div>
+            </div>
+            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
+              data-transition-in="slide-from" data-transition-in-args="|100|.90" data-transition-out="slide-from"
+              data-transition-out-args="|100|.90">
+              <div class="tech__image icon icon--react anim-background-color"></div>
+            </div>
+            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
+              data-transition-in="slide-from" data-transition-in-args="|100|.85" data-transition-out="slide-from"
+              data-transition-out-args="|100|.85">
+              <div class="tech__image icon icon--redux anim-background-color"></div>
+            </div>
+          </div>
+          <div class="tech__row">
+            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
+              data-transition-in="slide-from" data-transition-in-args="|100|1" data-transition-out="slide-from"
+              data-transition-out-args="|100|1">
+              <div class="tech__image icon icon--sass anim-background-color"></div>
+            </div>
+            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
+              data-transition-in="slide-from" data-transition-in-args="|100|.95" data-transition-out="slide-from"
+              data-transition-out-args="|100|.95">
+              <div class="tech__image icon icon--jquery anim-background-color"></div>
+            </div>
+            <div class="tech__item anim-border-color" data-transition="slide-from" data-transition-page="1"
+              data-transition-args="|100|.9">
+              <div class="tech__image icon icon--git anim-background-color"></div>
+            </div>
+          </div>
         </div>
-        <nav class="column__nav-container">
-          <ul class="nav">
-            <li class="nav__link anim-hover-color"><a>Home</a></li>
-            <li class="nav__link anim-hover-color"><a>My works</a></li>
-            <li class="nav__link anim-hover-color"><a id="contacts-link">Contacts</a></li>
-            <li class="nav__link anim-hover-color"><a>Technologies</a></li>
+      </div>
+    </div>
+
+    <div class="page2-right" data-transition-page="1" data-transition="second-page-right">
+      <!-- TODO center this -->
+      <div class="placeholder-scroller">
+        <div class="exp__container">
+          <h3 class="exp__title anim-color">
+            <span>WORK EXPERIENCE</span>
+            <div>
+              <div class="anim-background-color"></div>
+            </div>
+          </h3>
+
+          <ul>
+            <li class="exp__item">
+              <span class="exp__year">2020</span>
+              <div class="exp__details">
+                <h4 class="exp__name anim-color">
+                  FRONTEND WEB DEVELOP STEMS
+                </h4>
+                <em class="exp__place">GRIDNINE SYSTEMS</em>
+                <p class="exp__descr">
+                  I was developing Frontend for a client's application using
+                  mostly Vue.js and Vuex. I did my tasks timely and received
+                  positive feedback for my work.
+                </p>
+              </div>
+            </li>
+
+            <li class="exp__item">
+              <span class="exp__year">2020</span>
+              <div class="exp__details">
+                <h4 class="exp__name anim-color">
+                  FRONTEND WEB DEVELOP STEMS
+                </h4>
+                <em class="exp__place">GRIDNINE SYSTEMS</em>
+                <p class="exp__descr">
+                  I was developing Frontend for a client's application using
+                  mostly Vue.js and Vuex. I did my tasks timely and received
+                  positive feedback for my work.
+                </p>
+              </div>
+            </li>
+
+            <li class="exp__item">
+              <span class="exp__year">2020</span>
+              <div class="exp__details">
+                <h4 class="exp__name anim-color">
+                  FRONTEND WEB DEVELOP STEMS
+                </h4>
+                <em class="exp__place">GRIDNINE SYSTEMS</em>
+                <p class="exp__descr">
+                  I was developing Frontend for a client's application using
+                  mostly Vue.js and Vuex. I did my tasks timely and received
+                  positive feedback for my work.
+                </p>
+              </div>
+            </li>
           </ul>
-        </nav>
-        <div class="column__button-container">
-          <button
-            class="btn btn_primary anim-border-color anim-background-color"
-          >
-            Contact me</button
-          ><button class="btn btn_secondary anim-border-color anim-color">
-            Download CV
-          </button>
-        </div>
-      </div>
 
-      <!-- TODO make this 3d -->
-      <div class="page1__photo-container">
-        <img src="/assets/img/man.png" alt="" class="page1__photo" />
-      </div>
-    </section>
-
-    <section class="page page2" id="page2">
-      <div
-        class="page2-left"
-        data-transition
-        data-transition-page="1"
-        data-transition-in="second-page-left"
-        data-transition-in-args=""
-        data-transition-out="second-page-left"
-        data-transition-out-args=""
-      >
-        <div
-          class="about__text"
-          data-transition
-          data-transition-page="1"
-          data-transition-in="slide-from"
-          data-transition-out="slide-from"
-        >
-          <h3 class="about__title anim-color anim-border-color">
-            HI, MY NAME IS ALIAPKIN ALEKSEI
+          <h3 class="exp__title anim-color">
+            <span>EDUCAISHUN</span>
+            <div>
+              <div class="anim-background-color"></div>
+            </div>
           </h3>
 
-          <article
-            class="about__text"
-            data-transition
-            data-transition-page="1"
-            data-transition-in="slide-from"
-            data-transition-in-args="|50|"
-            data-transition-out="slide-from"
-            data-transition-out-args="|50|"
-          >
-            Hi, my name is Aliapkin Aleksei and i am a front-end developer
-            located in Moscow, Russia. I started out with React + Redux, later
-            switching to Vue.js + Vuex. My background is mathematics and i have
-            previously worked in the banking industry.
-          </article>
-
-          <h3 class="about__title anim-color anim-border-color">
-            TECHNOLOGIES
-          </h3>
-
-          <div class="tech__container">
-            <div class="tech__row">
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|1"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|1"
-              >
-                <div
-                  class="tech__image icon icon--vue anim-background-color"
-                ></div>
+          <ul>
+            <li class="exp__item">
+              <span class="exp__year">2020</span>
+              <div class="exp__details">
+                <h4 class="exp__name anim-color">
+                  FRONTEND WEB DEVELOP STEMS
+                </h4>
+                <em class="exp__place">GRIDNINE SYSTEMS</em>
+                <p class="exp__descr">
+                  I was developing Frontend for a client's application using
+                  mostly Vue.js and Vuex. I did my tasks timely and received
+                  positive feedback for my work.
+                </p>
               </div>
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|.95"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|.95"
-              >
-                <div
-                  class="tech__image icon icon--js anim-background-color"
-                ></div>
-              </div>
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|.90"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|.90"
-              >
-                <div
-                  class="tech__image icon icon--react anim-background-color"
-                ></div>
-              </div>
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|.85"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|.85"
-              >
-                <div
-                  class="tech__image icon icon--redux anim-background-color"
-                ></div>
-              </div>
-            </div>
-            <div class="tech__row">
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|1"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|1"
-              >
-                <div
-                  class="tech__image icon icon--sass anim-background-color"
-                ></div>
-              </div>
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|.95"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|.95"
-              >
-                <div
-                  class="tech__image icon icon--jquery anim-background-color"
-                ></div>
-              </div>
-              <div
-                class="tech__item anim-border-color"
-                data-transition
-                data-transition-page="1"
-                data-transition-in="slide-from"
-                data-transition-in-args="|100|.9"
-                data-transition-out="slide-from"
-                data-transition-out-args="|100|.9"
-              >
-                <div
-                  class="tech__image icon icon--git anim-background-color"
-                ></div>
-              </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
-      <div
-        class="page2-right"
-        data-transition
-        data-transition-page="1"
-        data-transition-in="second-page-right"
-        data-transition-out="second-page-right"
-      >
-        <!-- TODO center this -->
-        <div class="placeholder-scroller">
-          <div class="exp__container">
-            <h3 class="exp__title anim-color">
-              <span>WORK EXPERIENCE</span>
-              <div><div class="anim-background-color"></div></div>
-            </h3>
-
-            <ul>
-              <li class="exp__item">
-                <span class="exp__year">2020</span>
-                <div class="exp__details">
-                  <h4 class="exp__name anim-color">
-                    FRONTEND WEB DEVELOP STEMS
-                  </h4>
-                  <em class="exp__place">GRIDNINE SYSTEMS</em>
-                  <p class="exp__descr">
-                    I was developing Frontend for a client's application using
-                    mostly Vue.js and Vuex. I did my tasks timely and received
-                    positive feedback for my work.
-                  </p>
-                </div>
-              </li>
-
-              <li class="exp__item">
-                <span class="exp__year">2020</span>
-                <div class="exp__details">
-                  <h4 class="exp__name anim-color">
-                    FRONTEND WEB DEVELOP STEMS
-                  </h4>
-                  <em class="exp__place">GRIDNINE SYSTEMS</em>
-                  <p class="exp__descr">
-                    I was developing Frontend for a client's application using
-                    mostly Vue.js and Vuex. I did my tasks timely and received
-                    positive feedback for my work.
-                  </p>
-                </div>
-              </li>
-
-              <li class="exp__item">
-                <span class="exp__year">2020</span>
-                <div class="exp__details">
-                  <h4 class="exp__name anim-color">
-                    FRONTEND WEB DEVELOP STEMS
-                  </h4>
-                  <em class="exp__place">GRIDNINE SYSTEMS</em>
-                  <p class="exp__descr">
-                    I was developing Frontend for a client's application using
-                    mostly Vue.js and Vuex. I did my tasks timely and received
-                    positive feedback for my work.
-                  </p>
-                </div>
-              </li>
-            </ul>
-
-            <h3 class="exp__title anim-color">
-              <span>EDUCAISHUN</span>
-              <div><div class="anim-background-color"></div></div>
-            </h3>
-
-            <ul>
-              <li class="exp__item">
-                <span class="exp__year">2020</span>
-                <div class="exp__details">
-                  <h4 class="exp__name anim-color">
-                    FRONTEND WEB DEVELOP STEMS
-                  </h4>
-                  <em class="exp__place">GRIDNINE SYSTEMS</em>
-                  <p class="exp__descr">
-                    I was developing Frontend for a client's application using
-                    mostly Vue.js and Vuex. I did my tasks timely and received
-                    positive feedback for my work.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- <div class="placeholder-scroller">
+      <!-- <div class="placeholder-scroller">
           <div class="placeholder"></div>
           <div class="placeholder"></div>
           <div class="placeholder"></div>
@@ -300,161 +220,158 @@
           <div class="placeholder"></div>
           <div class="placeholder"></div>
         </div> -->
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <section
-      class="page page3"
-      data-transition
-      data-transition-page="2"
-      data-transition-in="third-page"
-      data-transition-out="third-page-out"
-    >
-      <div class="works__container">
-        <h3 class="works__title anim-color">
-          <span>MY WORKS</span>
-          <div><div class="anim-background-color"></div></div>
-        </h3>
-
-        <div class="works-item__container shadow">
-          <div class="works-item__layout">
-            <h4 class="works-item__title anim-color anim-border-color">
-              Weather app
-            </h4>
-            <p class="works-item__text">
-              Application, which displays current weather, 5 day forecast, and
-              hourly weather for the next 24 hours. Using both OpenWeatherMap
-              API and WeatherAPI.com.
-            </p>
-            <div class="works-item__buttons-container">
-              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-                <i class="icon icon--github"></i>GitHub
-              </button>
-              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-                GitHub
-              </button>
-            </div>
-          </div>
-          <div class="works-item__image">
-            <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
-              <video
-                src="/assets/video/weather-app.webm"
-                autoplay
-                muted
-                loop
-              ></video>
-            </a>
-          </div>
-        </div>
-
-        <div class="works-item__container shadow">
-          <div class="works-item__layout">
-            <h4 class="works-item__title anim-color anim-border-color">
-              Weather app
-            </h4>
-            <p class="works-item__text">
-              Application, which displays current weather, 5 day forecast, and
-              hourly weather for the next 24 hours. Using both OpenWeatherMap
-              API and WeatherAPI.com.
-            </p>
-            <div class="works-item__buttons-container">
-              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-                <i class="icon icon--github"></i>GitHub
-              </button>
-              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-                GitHub
-              </button>
-            </div>
-          </div>
-          <div class="works-item__image">
-            <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
-              <video
-                src="/assets/video/to-do_list.webm"
-                autoplay
-                muted
-                loop
-              ></video>
-            </a>
-          </div>
-        </div>
-
-        <div class="works-item__container shadow">
-          <div class="works-item__layout">
-            <h4 class="works-item__title anim-color anim-border-color">
-              Weather app
-            </h4>
-            <p class="works-item__text">
-              Application, which displays current weather, 5 day forecast, and
-              hourly weather for the next 24 hours. Using both OpenWeatherMap
-              API and WeatherAPI.com.
-            </p>
-            <div class="works-item__buttons-container">
-              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-                <i class="icon icon--github"></i>GitHub
-              </button>
-              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-                GitHub
-              </button>
-            </div>
-          </div>
-          <div class="works-item__image">
-            <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
-              <video
-                src="/assets/video/to-do_list.webm"
-                autoplay
-                muted
-                loop
-              ></video>
-            </a>
-          </div>
+  <section class="works-item__container shadow" data-transition data-transition-page="2" data-transition-in="works-in"
+    data-transition-out="works-out">
+    <div class="works-item__layout">
+      <h4 class="works-item__title anim-color anim-border-color">
+        Weather app
+      </h4>
+      <p class="works-item__text">
+        Application, which displays current weather, 5 day forecast, and
+        hourly weather for the next 24 hours. Using both OpenWeatherMap
+        API and WeatherAPI.com.
+      </p>
+      <div class="works-item__buttons-container">
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i>GitHub
+        </button>
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            GitHub
+          </button>
         </div>
       </div>
-    </section>
+      <div class=" works-item__image">
+          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
+            <video src="/assets/video/weather-app.webm" autoplay muted loop></video>
+          </a>
+      </div>
+  </section>
 
-    <section
-      class="page page4"
-      data-transition
-      data-transition-page="3"
-      data-transition-in="contacts-page"
-      data-transition-out="contacts-page"
-    >
+  <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
+    data-transition-out="works-out">
+    <div class="works-item__layout">
+      <h4 class="works-item__title anim-color anim-border-color">
+        Weather app
+      </h4>
+      <p class="works-item__text">
+        Application, which displays current weather, 5 day forecast, and
+        hourly weather for the next 24 hours. Using both OpenWeatherMap
+        API and WeatherAPI.com.
+      </p>
+      <div class="works-item__buttons-container">
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i>GitHub
+        </button>
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            GitHub
+          </button>
+        </div>
+      </div>
+      <div class=" works-item__image">
+          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
+            <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
+          </a>
+      </div>
+  </section>
+
+  <section class="works-item__container shadow" data-transition data-transition-page="4" data-transition-in="works-in"
+    data-transition-out="works-out">
+    <div class="works-item__layout">
+      <h4 class="works-item__title anim-color anim-border-color">
+        Weather app
+      </h4>
+      <p class="works-item__text">
+        Application, which displays current weather, 5 day forecast, and
+        hourly weather for the next 24 hours. Using both OpenWeatherMap
+        API and WeatherAPI.com.
+      </p>
+      <div class="works-item__buttons-container">
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i>GitHub
+        </button>
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            GitHub
+          </button>
+        </div>
+      </div>
+      <div class=" works-item__image">
+          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
+            <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
+          </a>
+      </div>
+  </section>
+
+  <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
+    data-transition-out="works-out">
+    <div class="works-item__layout">
+      <h4 class="works-item__title anim-color anim-border-color">
+        Weather app
+      </h4>
+      <p class="works-item__text">
+        Application, which displays current weather, 5 day forecast, and
+        hourly weather for the next 24 hours. Using both OpenWeatherMap
+        API and WeatherAPI.com.
+      </p>
+      <div class="works-item__buttons-container">
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i>GitHub
+        </button>
+        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            GitHub
+          </button>
+        </div>
+      </div>
+      <div class=" works-item__image">
+          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
+            <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
+          </a>
+      </div>
+  </section>
+
+  <section class="page page4" data-transition data-transition-page="6" data-transition-in="contacts-page"
+    data-transition-out="contacts-page">
     <div class="contacts__container">
       <h3 class="contacts__title anim-color">
         <span>Contacts</span>
-        <div><div class="anim-background-color"></div></div>
+        <div>
+          <div class="anim-background-color"></div>
+        </div>
       </h3>
 
       <ul class="contact__list">
-          <li class="contact__item">
-              <a href="mailto: aaliapkin@gmail.com" target="_blank" class="anim-color">
-                  <span class="contact__icon icon icon--mail anim-background-color"></span>
-                  aaliapkin@gmail.com
-              </a>
-          </li>
-          <li class="contact__item">
-              <a href="tel:+7 (916) 426-5709" target="_blank" class="anim-color">
-                  <span class="contact__icon icon icon--phone anim-background-color"></span>
-                  +7 (916) 426-5709
-              </a>
-          </li>
-          <li class="contact__item">
-              <a href="https://github.com/aaliapkin" target="_blank" class="anim-color">
-                  <span class="contact__icon icon icon--github anim-background-color"></span>
-                  aaliapkin
-              </a>
-          </li>
-          <li class="contact__item">
-              <a href="https://t.me/aaliapkin" target="_blank" class="anim-color">
-                  <span class="contact__icon icon icon--telegram anim-background-color"></span>
-                  aaliapkin
-              </a>
-          </li>
-          <li class="contact__item">
-              <a href="https://www.instagram.com/hatis_ustes" target="_blank" class="anim-color">
-                  <span class="contact__icon icon icon--inst anim-background-color"></span>
-                  hatis_ustes
-              </a>
-          </li>
+        <li class="contact__item">
+          <a href="mailto: aaliapkin@gmail.com" target="_blank" class="anim-color">
+            <span class="contact__icon icon icon--mail anim-background-color"></span>
+            aaliapkin@gmail.com
+          </a>
+        </li>
+        <li class="contact__item">
+          <a href="tel:+7 (916) 426-5709" target="_blank" class="anim-color">
+            <span class="contact__icon icon icon--phone anim-background-color"></span>
+            +7 (916) 426-5709
+          </a>
+        </li>
+        <li class="contact__item">
+          <a href="https://github.com/aaliapkin" target="_blank" class="anim-color">
+            <span class="contact__icon icon icon--github anim-background-color"></span>
+            aaliapkin
+          </a>
+        </li>
+        <li class="contact__item">
+          <a href="https://t.me/aaliapkin" target="_blank" class="anim-color">
+            <span class="contact__icon icon icon--telegram anim-background-color"></span>
+            aaliapkin
+          </a>
+        </li>
+        <li class="contact__item">
+          <a href="https://www.instagram.com/hatis_ustes" target="_blank" class="anim-color">
+            <span class="contact__icon icon icon--inst anim-background-color"></span>
+            hatis_ustes
+          </a>
+        </li>
       </ul>
 
       <!-- <button class="button-glitch">
@@ -462,6 +379,7 @@
       </button> -->
 
     </div>
-    </section>
-  </body>
+  </section>
+</body>
+
 </html>
