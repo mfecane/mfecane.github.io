@@ -33,6 +33,9 @@ let page2title: HTMLDivElement
 let placeholderScroller: HTMLDivElement
 let contacts: HTMLDivElement
 let contactsLink: HTMLElement
+let worksTitle: HTMLDivElement
+
+
 
 let mainBgAnimatinoCompleteFlag = false
 
@@ -90,10 +93,28 @@ const desaturateOutCallback = (value)=>{
   desaturateInCallback(1 - value)
 }
 
+
+const worksTitleInCallback = (value)=>{
+  if(!worksTitle) {
+    return
+  }
+  const val1 = mapclamp(easeOutSquare(value), 0, 1, -50, 5)
+  worksTitle.style.left=`${val1}vw`
+}
+
+const worksTitleOutCallback = (value)=>{
+  if(!worksTitle) {
+    return
+  }
+  const val1 = mapclamp(easeOutSquare(value), 0.2, 1, 5, -50)
+  worksTitle.style.left=`${val1}vw`
+}
+
+
+
 // TODO ::: sell printer
 // TODO ::: tablet
 // TODO ::: fill linkedin
-
 
 // const handleScrollBlocker = (value) => {
 //   if (value > 0.95) {
@@ -116,6 +137,7 @@ window.onload = () => {
   page2 = document.querySelector('.page2')
   curtain = document.querySelector('.curtain')
   contacts = document.querySelector('.contacts')
+  worksTitle = document.querySelector('.works-title')
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
@@ -132,15 +154,15 @@ window.onload = () => {
         snap: true,
       },
       {
-        step: 0.2,
+        step: 0.12,
         snap: true,
       },
       {
-        step: 0.2,
+        step: 0.12,
         snap: true,
       },
       {
-        step: 0.2,
+        step: 0.12,
         snap: true,
       },
       {
@@ -165,6 +187,16 @@ window.onload = () => {
   scrolltimeline.addTransition({
     func: desaturateOutCallback,
     page: options.pages.length - 1, // last page
+  })
+
+  scrolltimeline.addTransition({
+    func: worksTitleInCallback,
+    page: 1,
+  })
+
+  scrolltimeline.addTransition({
+    func: worksTitleOutCallback,
+    page: 5, // last page
   })
 
   // TODO quick and dirty solution, refacor

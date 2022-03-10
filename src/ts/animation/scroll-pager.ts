@@ -85,6 +85,7 @@ export default class ScrollTimeline {
   // sort callbacks  by page
 
   addTransition(transition: transition): void {
+    transition.value = 0
     this.transitions.push(transition)
   }
 

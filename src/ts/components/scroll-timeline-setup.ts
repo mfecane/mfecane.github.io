@@ -112,7 +112,7 @@ const transitions = [
     callback: (el: Transition, value: number): void => {
       const val = easeOutSquare(value)
       const val8 = mapclamp(val, 0.5, 0.9, -150, -50)
-      el.element.style.transform = `translate(-50%, ${val8}%)`
+      el.element.style.transform = `translate(-35%, ${val8}%)`
 
       const val2 = easeInCubic(value)
       el.element.style.opacity = `${val2}`
@@ -123,7 +123,7 @@ const transitions = [
     callback: (el: Transition, value: number): void => {
       const val = easeOutSquare(value)
       const val8 = mapclamp(val, 0.5, 0.9, 50, -50)
-      el.element.style.transform = `translate(-50%, ${val8}%)`
+      el.element.style.transform = `translate(-35%, ${val8}%)`
 
       const val2 = easeInCubic(value)
       el.element.style.opacity = `${val2}`
@@ -252,6 +252,12 @@ export default class ScrollTimelineSetup {
       //   )
       // })
       .forEach((el) => {
+        if (Math.abs(el.page - page) > 1 ) {
+          el.element.style.visibility = 'hidden'
+          return
+        }
+
+        el.element.style.visibility = 'visible'
         el.update(page, value)
       })
   }
