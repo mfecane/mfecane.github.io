@@ -3,6 +3,7 @@ import {
   easeOutCubic,
   easeOutSquare,
   easeInSquare,
+  easeInOutCubic,
 } from 'ts/lib/easing-functions'
 
 function clamp(val: number, min: number, max: number): number {
@@ -10,6 +11,7 @@ function clamp(val: number, min: number, max: number): number {
 }
 
 // TODO: change from frame count to real time
+// TODO: remove all the callbacks
 
 interface transition {
   func: (x: number) => void
@@ -30,7 +32,7 @@ interface options {
 
 export default class ScrollTimeline {
   COOLDOWN_TIMEOUT = 20
-  ANIM_FRAMES = 20
+  ANIM_FRAMES = 40
 
   EASING_FUNCTION = easeOutCubic
 
@@ -81,7 +83,7 @@ export default class ScrollTimeline {
   getScrollValueWithPage(): [number, number] {
     const currentPage = Math.floor(this._scrollValue)
     const value = this._scrollValue - currentPage
-    return [currentPage, value];
+    return [currentPage, value]
   }
 
   // sort callbacks  by page
@@ -89,6 +91,10 @@ export default class ScrollTimeline {
   addTransition(transition: transition): void {
     transition.value = 0
     this.transitions.push(transition)
+  }
+
+  addPageChangeCallback(func): void {
+    this.pageChangeCallbacks.push(func)
   }
 
   handleCallbacks(): void {
@@ -144,7 +150,7 @@ export default class ScrollTimeline {
     })
 
     if (this._lastPage !== currentPage) {
-      this.pageChangeCallbacks.forEach(func=>(func(currentPage)))
+      this.pageChangeCallbacks.forEach((func) => func(currentPage))
     }
 
     this._lastPage = currentPage
@@ -156,7 +162,7 @@ export default class ScrollTimeline {
   }
 
   checkScrollBlocker(event): boolean {
-    const path = event.path || (event.composedPath && event.composedPath());
+    const path = event.path || (event.composedPath && event.composedPath())
     if (Array.isArray(path)) {
       return path.some((el) => {
         return typeof el.dataset?.scrollBlock !== 'undefined'
@@ -172,9 +178,9 @@ export default class ScrollTimeline {
   }
 
   handleScroll(e): void {
-    if (this.checkScrollBlocker(e)) {
-      return
-    }
+    // if (this.checkScrollBlocker(e)) {
+    //   return
+    // }
 
     const value = e.deltaY
     if (value > 0) {
@@ -228,29 +234,23 @@ export default class ScrollTimeline {
     this.animate()
   }
 
-  // TODO wtf is this shit comment pls
-  // TODO tweak cooldown params
+  // increase anim_frames if target is very big
 
   scrollTimeGrowCoefficient(): number {
-    return (
-      1 +
+    // usually around 40 - 90
+    const steps =
       Math.abs(
         this.animation.targetScrollValue - this.animation.startScrollValue
-      ) /
-        this.scrollStep /
-        2
-    )
-  }
+      ) / this.scrollStep
 
-  addPageChangeCallback(func):void {
-    this.pageChangeCallbacks.push(func)
+    return 1 + steps / 50
   }
 
   animate(): void {
     let t = this.EASING_FUNCTION(
-      this.animationFrames.current / this.animationFrames.end
+      this.animationFrames.current / (this.animationFrames.end + 2) // overflow a bit
     )
-    if (t > 0.99) {
+    if (t > 0.999) {
       t = 1
     }
     this.scrollValue =

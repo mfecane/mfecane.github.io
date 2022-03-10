@@ -114,7 +114,7 @@ const transitions = [
       const val8 = mapclamp(val, 0.5, 0.9, -150, -50)
       el.element.style.transform = `translate(-35%, ${val8}%)`
 
-      const val2 = easeInCubic(value)
+      const val2 = mapclamp(val, 0.5, 0.95, 0, 1)
       el.element.style.opacity = `${val2}`
     },
   },
@@ -125,7 +125,7 @@ const transitions = [
       const val8 = mapclamp(val, 0.5, 0.9, 50, -50)
       el.element.style.transform = `translate(-35%, ${val8}%)`
 
-      const val2 = easeInCubic(value)
+      const val2 = mapclamp(val, 0.3, 0.9, 0, 1)
       el.element.style.opacity = `${val2}`
     },
   },
@@ -140,6 +140,7 @@ const transitions = [
 ]
 
 // Transition object is constructed for each element with transition on the page
+// declarative approach is used
 
 class Transition {
   currentValue = -1

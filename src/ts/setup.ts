@@ -1,7 +1,6 @@
 import ScrollTimeline from 'ts/animation/scroll-pager'
 import MainBgAnimation from 'ts/components/main-background'
 import SvgPathAnimation from 'ts/components/svg-path-animation'
-import SvgPathAnimation2 from 'ts/components/svg-path-animation2'
 import { easeOutSquare } from 'ts/lib/easing-functions'
 
 import mainLogo from 'assets/svg/svg-low.inline.svg'
@@ -45,10 +44,10 @@ const firstTransition = (value) => {
     mouseContainer.classList.remove('fade-out')
   }
 
-  setScrollerOpacity(mapclamp(value, 0.5, 1, 0, 1))
+  setScrollerOpacity(mapclamp(value, 0.5, 1, 0, 0.7))
 
   if (logoAnimationFinished) {
-    const v = mapclamp(value, 0, 0.6, 0.7, 0)
+    const v = mapclamp(value, 0, 0.6, 1, 0)
     logo.setFrame(v)
   }
 }
@@ -189,7 +188,7 @@ window.onload = () => {
 
   const animColor = new AnimColor()
   animColor.init()
-  animColor.animate()
+  // animColor.animate()
 
   const scrollTimelineSetup = new ScrollTimelineSetup()
   scrollTimelineSetup.scrollTimeline = scrolltimeline
