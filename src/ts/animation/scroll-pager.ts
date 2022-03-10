@@ -37,6 +37,8 @@ export default class ScrollTimeline {
   scrollStep = 0.05
 
   transitions: Array<transition> = []
+  pageChangeCallbacks = []
+
   pageCount = 3
 
   _scrollValue = 0 // refactor to 0 - 1
@@ -140,6 +142,12 @@ export default class ScrollTimeline {
         tr.func(value)
       }
     })
+
+    if (this._lastPage !== currentPage) {
+      this.pageChangeCallbacks.forEach(func=>(func(currentPage)))
+    }
+
+    this._lastPage = currentPage
   }
 
   start(): void {
@@ -232,6 +240,10 @@ export default class ScrollTimeline {
         this.scrollStep /
         2
     )
+  }
+
+  addPageChangeCallback(func):void {
+    this.pageChangeCallbacks.push(func)
   }
 
   animate(): void {

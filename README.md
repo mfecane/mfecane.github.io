@@ -15,6 +15,7 @@
 - clean up shaders
 - put exp and works and all the content into single container sroll there, and move that container
 - layout contacts
+- remove unused fonts
 
 ## ideas
 

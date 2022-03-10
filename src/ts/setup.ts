@@ -14,30 +14,20 @@ import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
 import AnimColor from 'ts/components/anim-color'
 import ScrollTimelineSetup from './components/scroll-timeline-setup'
 
+import { initScroller, update, setScrollerOpacity } from 'ts/components/scroller'
+
 let logoContainer: HTMLDivElement
 let scrolltimeline: ScrollTimeline
 let mouseContainer: HTMLDivElement
 let logo: SvgPathAnimation
-let pagerIndicator: HTMLDivElement
 let mainBgAnimation: MainBgAnimation
-let scrollContainer: HTMLDivElement
-let scrollBlocker: HTMLElement
 let mainBgCanvasContainer: HTMLDivElement
 let page1: HTMLDivElement
 let page2: HTMLDivElement
-let curtain: HTMLDivElement
-let page1Photo: HTMLImageElement
-let page2left: HTMLDivElement
-let page2right: HTMLDivElement
-let page2title: HTMLDivElement
-let placeholderScroller: HTMLDivElement
-let contacts: HTMLDivElement
 let contactsLink: HTMLElement
 let worksTitle: HTMLDivElement
 
-
-
-let mainBgAnimatinoCompleteFlag = false
+let logoAnimationFinished = false
 
 const firstTransition = (value) => {
   value = easeOutSquare(value)
@@ -45,10 +35,6 @@ const firstTransition = (value) => {
   const val1 = map01(value, 0, (-window.innerWidth / 5) * 3 * 1)
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value === 1 ? 'hidden' : 'visible'
-
-  // const val2 = map01(value, 0, -window.innerWidth / 4)
-  // mainBgCanvasContainer.style.transform = `translateX(${val2}px)`
-  // mainBgCanvasContainer.style.visibility = value === 1 ? 'hidden' : 'visible'
 
   page2.style.visibility = value === 0 ? 'hidden' : 'visible'
 
@@ -59,15 +45,12 @@ const firstTransition = (value) => {
     mouseContainer.classList.remove('fade-out')
   }
 
-  if (mainBgAnimatinoCompleteFlag) {
-    const v = mapclamp(value, 0, 0.6, 1, 0)
+  setScrollerOpacity(mapclamp(value, 0.5, 1, 0, 1))
+
+  if (logoAnimationFinished) {
+    const v = mapclamp(value, 0, 0.6, 0.7, 0)
     logo.setFrame(v)
   }
-}
-
-const handleContacts = (value) => {
-  const val1 = map01(value, window.innerWidth, 0)
-  contacts.style.left = `${val1}px`
 }
 
 const setUpMainLogoAnimation = () => {
@@ -78,71 +61,42 @@ const setUpMainLogoAnimation = () => {
 
   logo = new SvgPathAnimation(logoContainer, floralPage2Svg, config)
   logo.start().then(() => {
-    mainBgAnimatinoCompleteFlag = true
+    logoAnimationFinished = true
   })
 }
 
-const desaturateInCallback = (value)=>{
+const desaturateInCallback = (value) => {
   const val1 = mapclamp(value, 0, 1, 0, 0.8)
-  if(mainBgAnimation) {
+  if (mainBgAnimation) {
     mainBgAnimation.desaturate(val1)
   }
 }
 
-const desaturateOutCallback = (value)=>{
+const desaturateOutCallback = (value) => {
   desaturateInCallback(1 - value)
 }
 
-
-const worksTitleInCallback = (value)=>{
-  if(!worksTitle) {
+const worksTitleInCallback = (value) => {
+  if (!worksTitle) {
     return
   }
   const val1 = mapclamp(easeOutSquare(value), 0, 1, -50, 5)
-  worksTitle.style.left=`${val1}vw`
+  worksTitle.style.left = `${val1}vw`
 }
 
-const worksTitleOutCallback = (value)=>{
-  if(!worksTitle) {
+const worksTitleOutCallback = (value) => {
+  if (!worksTitle) {
     return
   }
   const val1 = mapclamp(easeOutSquare(value), 0.2, 1, 5, -50)
-  worksTitle.style.left=`${val1}vw`
+  worksTitle.style.left = `${val1}vw`
 }
-
-
 
 // TODO ::: sell printer
 // TODO ::: tablet
 // TODO ::: fill linkedin
 
-// const handleScrollBlocker = (value) => {
-//   if (value > 0.95) {
-//     scrollBlocker.dataset.scrollBlock = ''
-//     scrollBlocker.style.overflowY = 'scroll'
-//   } else {
-//     delete scrollBlocker.dataset.scrollBlock
-//     scrollBlocker.style.overflowY = 'hidden'
-//   }
-// }
-
-window.onload = () => {
-  mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
-  logoContainer = document.querySelector('#logo-container')
-  mouseContainer = document.querySelector('.mouse__container')
-  scrollBlocker = document.querySelector('.works__container')
-  contactsLink =document.querySelector('#contacts-link')
-  page1 = document.querySelector('.page1')
-
-  page2 = document.querySelector('.page2')
-  curtain = document.querySelector('.curtain')
-  contacts = document.querySelector('.contacts')
-  worksTitle = document.querySelector('.works-title')
-
-  window.setTimeout(() => {
-    setUpMainLogoAnimation()
-  }, 400)
-
+const setUpScrollTimeLine = () => {
   const options = {
     pages: [
       {
@@ -196,28 +150,10 @@ window.onload = () => {
 
   scrolltimeline.addTransition({
     func: worksTitleOutCallback,
-    page: 5, // last page
+    page: options.pages.length - 1, // last page
   })
 
-  // TODO quick and dirty solution, refacor
-  // add full callback, without pagination
-
-  // scrolltimeline.addTransition({
-  //   func: handleScrollBlocker,
-  //   page: 1,
-  // })
-
-  // scrolltimeline.addTransition({
-  //   func: (value) => handleScrollBlocker(1 - value),
-  //   page: 2,
-  // })
-
-  // scrolltimeline.addTransition({
-  //   func: (value) => handleScrollBlocker(1 - value),
-  //   page: 3,
-  // })
-
-  contactsLink.addEventListener('click', ()=> {
+  contactsLink.addEventListener('click', () => {
     scrolltimeline.setScrollValue(3)
   })
 
@@ -225,7 +161,27 @@ window.onload = () => {
     scrolltimeline.setScrollValue(1)
   })
 
+  scrolltimeline.addPageChangeCallback(
+    update
+  )
+
   scrolltimeline.start()
+}
+
+window.onload = () => {
+  mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
+  logoContainer = document.querySelector('#logo-container')
+  mouseContainer = document.querySelector('.mouse__container')
+  contactsLink = document.querySelector('#contacts-link')
+  page1 = document.querySelector('.page1')
+  page2 = document.querySelector('.page2')
+  worksTitle = document.querySelector('.works-title')
+
+  window.setTimeout(() => {
+    setUpMainLogoAnimation()
+  }, 400)
+
+  setUpScrollTimeLine()
 
   mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
   mainBgAnimation.scrollTimeline = scrolltimeline
@@ -240,7 +196,9 @@ window.onload = () => {
   scrollTimelineSetup.init()
   scrollTimelineSetup.animate()
 
-  // setTimeout(() => {
-  //   scrolltimeline.setScrollValue(2)
-  // }, 500)
+  initScroller({
+    callback: (page) => {
+      scrolltimeline.setScrollValue(page)
+    },
+  })
 }
