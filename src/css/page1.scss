@@ -136,6 +136,7 @@ body {
 /* TODO: find better font, thinner, but not super thin */
 .column__button-container {
   display: flex;
+  gap: 8px;
   align-self: end;
   justify-self: end;
 }

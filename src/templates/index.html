@@ -47,7 +47,7 @@
           <ul class="nav">
             <li class="nav__link anim-hover-color"><a>Home</a></li>
             <li class="nav__link anim-hover-color"><a>My works</a></li>
-            <li class="nav__link anim-hover-color"><a>Contacts</a></li>
+            <li class="nav__link anim-hover-color"><a id="contacts-link">Contacts</a></li>
             <li class="nav__link anim-hover-color"><a>Technologies</a></li>
           </ul>
         </nav>
@@ -327,10 +327,10 @@
               API and WeatherAPI.com.
             </p>
             <div class="works-item__buttons-container">
-              <button class="works-item__button anim-background-color">
+              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
                 <i class="icon icon--github"></i>GitHub
               </button>
-              <button class="works-item__button anim-background-color">
+              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
                 GitHub
               </button>
             </div>
@@ -358,10 +358,10 @@
               API and WeatherAPI.com.
             </p>
             <div class="works-item__buttons-container">
-              <button class="works-item__button anim-background-color">
+              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
                 <i class="icon icon--github"></i>GitHub
               </button>
-              <button class="works-item__button anim-background-color">
+              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
                 GitHub
               </button>
             </div>
@@ -389,10 +389,10 @@
               API and WeatherAPI.com.
             </p>
             <div class="works-item__buttons-container">
-              <button class="works-item__button anim-background-color">
+              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
                 <i class="icon icon--github"></i>GitHub
               </button>
-              <button class="works-item__button anim-background-color">
+              <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
                 GitHub
               </button>
             </div>
@@ -418,7 +418,50 @@
       data-transition-in="contacts-page"
       data-transition-out="contacts-page"
     >
-      popka
+    <div class="contacts__container">
+      <h3 class="contacts__title anim-color">
+        <span>Contacts</span>
+        <div><div class="anim-background-color"></div></div>
+      </h3>
+
+      <ul class="contact__list">
+          <li class="contact__item">
+              <a href="mailto: aaliapkin@gmail.com" target="_blank" class="anim-color">
+                  <span class="contact__icon icon icon--mail anim-background-color"></span>
+                  aaliapkin@gmail.com
+              </a>
+          </li>
+          <li class="contact__item">
+              <a href="tel:+7 (916) 426-5709" target="_blank" class="anim-color">
+                  <span class="contact__icon icon icon--phone anim-background-color"></span>
+                  +7 (916) 426-5709
+              </a>
+          </li>
+          <li class="contact__item">
+              <a href="https://github.com/aaliapkin" target="_blank" class="anim-color">
+                  <span class="contact__icon icon icon--github anim-background-color"></span>
+                  aaliapkin
+              </a>
+          </li>
+          <li class="contact__item">
+              <a href="https://t.me/aaliapkin" target="_blank" class="anim-color">
+                  <span class="contact__icon icon icon--telegram anim-background-color"></span>
+                  aaliapkin
+              </a>
+          </li>
+          <li class="contact__item">
+              <a href="https://www.instagram.com/hatis_ustes" target="_blank" class="anim-color">
+                  <span class="contact__icon icon icon--inst anim-background-color"></span>
+                  hatis_ustes
+              </a>
+          </li>
+      </ul>
+
+      <!-- <button class="button-glitch">
+        Glitched button
+      </button> -->
+
+    </div>
     </section>
   </body>
 </html>

@@ -21,20 +21,23 @@ body {
   font-family: "Crimson Text", serif;
   font-size: 20px;
   font-weight: 400;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-out;
   white-space: nowrap;
   letter-spacing: 1px;
+  border-radius: 2px;
 }
 
 .btn_primary {
   background: $accent;
   color: $dark;
-  border: 2px solid $accent;
+  border: 1px solid $accent;
 }
 
 .btn_primary:hover {
-  color: white;
-  background: rgb(197, 91, 4);
+  box-shadow: inset 0px 0px 2px 1px $light;
+
+  border-color: $light !important;
+  color: $light;
 }
 
 .btn_secondary {
@@ -44,8 +47,9 @@ body {
 }
 
 .btn_secondary:hover {
-  color: white;
-  background: rgba(255, 116, 2, 0.466);
+  box-shadow: inset 0px 0px 2px 1px $light;
+  border-color: $light !important;
+  color: $light !important;
 }
 
 .icon {
@@ -142,3 +146,92 @@ body {
   box-shadow: 4px 4px 12px 1px rgba(0, 0, 0, 0.4);
 }
 
+/* CSS */
+.button-glitch,
+.button-glitch:after {
+  width: 192px;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-family: "Crimson Text", serif;
+  background-color: $accent;
+  border: 1px solid $accent;
+  border-radius: 2px;
+  color: $light;
+  letter-spacing: 1px;
+  outline: transparent;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-glitch:after {
+  --slice-0: inset(50% 50% 50% 50%);
+  --slice-1: inset(80% -6px 0 0);
+  --slice-2: inset(50% -6px 30% 0);
+  --slice-3: inset(10% -6px 85% 0);
+  --slice-4: inset(40% -6px 43% 0);
+  --slice-5: inset(80% -6px 5% 0);
+
+  content: "###ERROR###";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+  clip-path: var(--slice-0);
+}
+
+.button-glitch:hover:after {
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--slice-1);
+    transform: translate(-20px, -10px);
+  }
+  10% {
+    clip-path: var(--slice-3);
+    transform: translate(10px, 10px);
+  }
+  20% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 10px);
+  }
+  30% {
+    clip-path: var(--slice-3);
+    transform: translate(0px, 5px);
+  }
+  40% {
+    clip-path: var(--slice-2);
+    transform: translate(-5px, 0px);
+  }
+  50% {
+    clip-path: var(--slice-3);
+    transform: translate(5px, 0px);
+  }
+  60% {
+    clip-path: var(--slice-4);
+    transform: translate(5px, 10px);
+  }
+  70% {
+    clip-path: var(--slice-2);
+    transform: translate(-10px, 10px);
+  }
+  80% {
+    clip-path: var(--slice-5);
+    transform: translate(20px, -10px);
+  }
+  90% {
+    clip-path: var(--slice-1);
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    clip-path: var(--slice-1);
+    transform: translate(0);
+  }
+}

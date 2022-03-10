@@ -75,7 +75,8 @@
 
 .works-item__title {
   flex: 0 0 auto;
-  font-family: "Lora", serif;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
   color: $accent;
   font-size: 18px;
   letter-spacing: 2px;
@@ -118,19 +119,16 @@
   flex: 0 0 auto;
   justify-self: flex-end;
   display: flex;
+  gap: 8px;
 }
 
-.works-item__button {
-  color: $accent;
-  width: 160px;
-  height: 30px;
+.works-item__button.btn {
+  padding: 2px 8px;
   text-transform: uppercase;
-  font-family: "Lora", serif;
   font-weight: bold;
   color: $dark;
   font-size: 16px;
   letter-spacing: 1px;
-  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,4 +141,12 @@
   width: 20px;
   height: 20px;
   background-color: $dark;
+  transition: all 0.15s ease-out;
+}
+
+.works-item__button:hover .icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: $light;
 }

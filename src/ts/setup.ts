@@ -32,6 +32,7 @@ let page2right: HTMLDivElement
 let page2title: HTMLDivElement
 let placeholderScroller: HTMLDivElement
 let contacts: HTMLDivElement
+let contactsLink: HTMLElement
 
 let mainBgAnimatinoCompleteFlag = false
 
@@ -93,7 +94,7 @@ window.onload = () => {
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
   scrollBlocker = document.querySelector('.works__container')
-
+  contactsLink =document.querySelector('#contacts-link')
   page1 = document.querySelector('.page1')
 
   page2 = document.querySelector('.page2')
@@ -144,6 +145,10 @@ window.onload = () => {
   scrolltimeline.addTransition({
     func: (value) => handleScrollBlocker(1 - value),
     page: 3,
+  })
+
+  contactsLink.addEventListener('click', ()=> {
+    scrolltimeline.setScrollValue(3)
   })
 
   mouseContainer.addEventListener('click', () => {
