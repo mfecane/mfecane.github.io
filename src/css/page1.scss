@@ -182,7 +182,7 @@ body {
 
 .scroller__line {
   display: flex;
-  gap: 48px;
+  gap: 64px;
   position: relative;
 }
 
@@ -211,18 +211,18 @@ body {
 }
 
 .scroller__tick:hover {
-  box-shadow: 0px 0px 2px 3px $accent;
+  box-shadow: 0px 0px 5px 3px $accent;
 }
 
 .scroller__tick--active:before {
   position: absolute;
-  width:4px;
-  height:4px;
-  border-radius: 2px;
+  width:6px;
+  height:6px;
+  border-radius: 3px;
   content: '';
   top:50%;
   left:50%;
-  background-color: $accent;
+  background-color: white;
   transform: translate(-50%, -50%);
 }
 
@@ -232,7 +232,7 @@ body {
   top:0;
   display: flex;
   justify-content: space-between;
-  font-family: Roboto;
+  font-family: Poppins;
   color:rgb(192, 192, 192);
   transform: translate(-7%, -18px);
 }

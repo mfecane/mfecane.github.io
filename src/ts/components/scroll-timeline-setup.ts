@@ -111,10 +111,10 @@ const transitions = [
     code: 'works-in',
     callback: (el: Transition, value: number): void => {
       const val = easeOutSquare(value)
-      const val8 = mapclamp(val, 0.5, 0.9, -150, -50)
+      const val8 = mapclamp(val, 0.3, 0.9, -150, -50)
       el.element.style.transform = `translate(-35%, ${val8}%)`
 
-      const val2 = mapclamp(val, 0.5, 0.95, 0, 1)
+      const val2 = mapclamp(val, 0.3, 0.9, 0, 1)
       el.element.style.opacity = `${val2}`
     },
   },
@@ -122,7 +122,7 @@ const transitions = [
     code: 'works-out',
     callback: (el: Transition, value: number): void => {
       const val = easeOutSquare(value)
-      const val8 = mapclamp(val, 0.5, 0.9, 50, -50)
+      const val8 = mapclamp(val, 0.3, 0.9, 50, -50)
       el.element.style.transform = `translate(-35%, ${val8}%)`
 
       const val2 = mapclamp(val, 0.3, 0.9, 0, 1)

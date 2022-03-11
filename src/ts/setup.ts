@@ -13,7 +13,11 @@ import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
 import AnimColor from 'ts/components/anim-color'
 import ScrollTimelineSetup from './components/scroll-timeline-setup'
 
-import { initScroller, update, setScrollerOpacity } from 'ts/components/scroller'
+import {
+  initScroller,
+  update,
+  setScrollerOpacity,
+} from 'ts/components/scroller'
 
 let logoContainer: HTMLDivElement
 let scrolltimeline: ScrollTimeline
@@ -23,7 +27,6 @@ let mainBgAnimation: MainBgAnimation
 let mainBgCanvasContainer: HTMLDivElement
 let page1: HTMLDivElement
 let page2: HTMLDivElement
-let contactsLink: HTMLElement
 let worksTitle: HTMLDivElement
 
 let logoAnimationFinished = false
@@ -152,26 +155,41 @@ const setUpScrollTimeLine = () => {
     page: options.pages.length - 1, // last page
   })
 
-  contactsLink.addEventListener('click', () => {
-    scrolltimeline.setScrollValue(3)
-  })
-
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)
   })
 
-  scrolltimeline.addPageChangeCallback(
-    update
-  )
+  scrolltimeline.addPageChangeCallback(update)
 
   scrolltimeline.start()
+}
+
+const setUpMenu = () => {
+  // document.querySelector('#home-link').addEventListener('click', () => {
+  //   scrolltimeline.setScrollValue(0)
+  // })
+
+  document.querySelector('#exp-link').addEventListener('click', () => {
+    scrolltimeline.setScrollValue(1)
+  })
+
+  document.querySelector('#works-link').addEventListener('click', () => {
+    scrolltimeline.setScrollValue(2)
+  })
+
+  document.querySelector('#contacts-link').addEventListener('click', () => {
+    scrolltimeline.setScrollValue(7)
+  })
+
+  document.querySelector('#contacts-button').addEventListener('click', () => {
+    scrolltimeline.setScrollValue(7)
+  })
 }
 
 window.onload = () => {
   mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
-  contactsLink = document.querySelector('#contacts-link')
   page1 = document.querySelector('.page1')
   page2 = document.querySelector('.page2')
   worksTitle = document.querySelector('.works-title')
@@ -181,6 +199,7 @@ window.onload = () => {
   }, 400)
 
   setUpScrollTimeLine()
+  setUpMenu()
 
   mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
   mainBgAnimation.scrollTimeline = scrolltimeline
@@ -188,7 +207,7 @@ window.onload = () => {
 
   const animColor = new AnimColor()
   animColor.init()
-  // animColor.animate()
+  animColor.animate()
 
   const scrollTimelineSetup = new ScrollTimelineSetup()
   scrollTimelineSetup.scrollTimeline = scrolltimeline

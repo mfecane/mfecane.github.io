@@ -9,7 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Playfair+Display&family=Cormorant+Garamond&display=swap"
+    href="https://fonts.googleapis.com/css2?family=family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Cormorant+Garamond&display=swap"
+    rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
     rel="stylesheet" />
 </head>
 
@@ -64,17 +69,19 @@
         <img src="/assets/svg/title.svg" alt="" class="column__title-image" width="400px" height="125px" />
         <h2 class="column__subtitle anim-color">frontend<br />developer</h2>
       </div>
-      <nav class="column__nav-container">
+      <nav class="column__nav-container" style="visibility: hidden;">
         <ul class="nav">
-          <li class="nav__link anim-hover-color"><a>Home</a></li>
-          <li class="nav__link anim-hover-color"><a>My works</a></li>
+          <!-- <li class="nav__link anim-hover-color"><a id="home-link">Home</a></li> -->
+          <li class="nav__link anim-hover-color"><a id="exp-link">Experience</a></li>
+          <li class="nav__link anim-hover-color"><a id="works-link">My works</a></li>
           <li class="nav__link anim-hover-color"><a id="contacts-link">Contacts</a></li>
-          <li class="nav__link anim-hover-color"><a>Technologies</a></li>
         </ul>
       </nav>
       <div class="column__button-container">
-        <button class="btn btn_primary anim-border-color anim-background-color">
-          Contact me</button><button class="btn btn_secondary anim-border-color anim-color">
+        <button class="btn btn_primary anim-border-color anim-background-color" id="contacts-button">
+          Contact me
+        </button>
+        <button class="btn btn_secondary anim-border-color anim-color">
           Download CV
         </button>
       </div>
@@ -101,6 +108,8 @@
           located in Moscow, Russia. I started out with React + Redux, later
           switching to Vue.js + Vuex. My background is mathematics and i have
           previously worked in the banking industry.
+
+          Russia
         </article>
 
         <h3 class="about__title anim-color anim-border-color">
