@@ -133,8 +133,9 @@ const transitions = [
     code: 'contacts-page',
     callback: (el: Transition, value: number): void => {
       let val = easeOutSquare(value)
-      let trans = mapplain(val, 0, 1, 0, -el.element.offsetWidth)
-      el.element.style.transform = `translateX(${trans}px)`
+      el.element.style.transform = `translate(-50%, -50%) scale(${val})`
+      const op = mapplain(val, 0.4, .9, 0, 1)
+      el.element.style.opacity = `${op}`
     },
   },
 ]

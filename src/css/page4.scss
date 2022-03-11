@@ -2,17 +2,15 @@
 
 .page4 {
   flex: 0 0 auto;
-  background: $light;
-  left: 100vw;
-  top: 0;
+  left: 50%;
+  top: 50%;
   width: 40vw;
-  height: 100vh;
-  z-index: 5;
+  height: 50vh;
   position: absolute;
   overflow: hidden;
   display: flex;
-  background: $darkbg1;
   z-index: 15;
+  transform: translate(-50%, -50%)
 }
 
 // TODO refactor into title
@@ -22,7 +20,6 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  margin: 0 40px;
 }
 
 .contacts__title {
@@ -41,20 +38,6 @@
   flex: 1 0 max-content;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.contacts__title div {
-  flex: 1 1 100%;
-  position: relative;
-}
-
-.contacts__title div div {
-  content: '';
-  height: 1px;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  background-color: $accent;
 }
 
 .contact__list {
