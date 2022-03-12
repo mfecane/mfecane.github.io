@@ -35,6 +35,11 @@ let avatarImage: HTMLImageElement
 
 let logoAnimationFinished = false
 
+const DISPLAY_MODE = {
+  ANIMATED: 0,
+  STATIC: 1,
+}
+
 const firstTransition = (value) => {
   value = easeOutSquare(value)
 
@@ -105,33 +110,16 @@ const handleCameraCallback = (value)=>{
 // TODO ::: tablet
 // TODO ::: fill linkedin
 
+// prettier-ignore
 const setUpScrollTimeLine = () => {
   const options = {
     pages: [
-      {
-        step: 0.05,
-        snap: true,
-      },
-      {
-        step: 0.05,
-        snap: true,
-      },
-      {
-        step: 0.12,
-        snap: true,
-      },
-      {
-        step: 0.12,
-        snap: true,
-      },
-      {
-        step: 0.12,
-        snap: true,
-      },
-      {
-        step: 0.05,
-        snap: true,
-      },
+      { step: 0.05, snap: true, },
+      { step: 0.05, snap: true, },
+      { step: 0.12, snap: true, },
+      { step: 0.12, snap: true, },
+      { step: 0.12, snap: true, },
+      { step: 0.05, snap: true, },
     ],
   }
 
@@ -198,7 +186,19 @@ const setUpMenu = () => {
   })
 }
 
-window.onload = () => {
+const checkBrowser = () => {
+  const width = window.innerWidth
+  const height = window.innerHeight
+
+  // TODO ::: restore this
+  if (900 < width && 700 < height && height < width) {
+    return DISPLAY_MODE.ANIMATED
+  }
+
+  return DISPLAY_MODE.STATIC
+}
+
+const setUpAnimationComponents = () => {
   mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
@@ -238,4 +238,24 @@ window.onload = () => {
       scrolltimeline.setScrollValue(page)
     },
   })
+}
+
+const setUpStaticComponents = () => {
+  const body = document.getElementsByTagName('body')[0]
+  body.classList.add('static-mode')
+}
+
+const setUpWebSite = () => {
+  const animType = checkBrowser()
+
+  switch (animType) {
+    case DISPLAY_MODE.ANIMATED:
+      return setUpAnimationComponents()
+    case DISPLAY_MODE.STATIC:
+      return setUpStaticComponents()
+  }
+}
+
+window.onload = () => {
+  setUpWebSite()
 }

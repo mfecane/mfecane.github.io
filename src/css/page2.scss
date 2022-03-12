@@ -12,6 +12,12 @@
   z-index: 4;
 }
 
+.static-mode .page2 {
+  position: static;
+  flex-direction: column;
+  height: auto;
+}
+
 .page2-left {
   flex: 0 0 30%;
   background-color: $darkbg1;
@@ -95,20 +101,13 @@
   flex: 0 0 70%;
   // background: $dark;
   // background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
-  position: relative;
+
   overflow: hidden;
 }
 
 .placeholder-scroller {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-self: center;
 }
 
 .exp__container {

@@ -14,6 +14,16 @@
   transform: translate(-50%, -50%)
 }
 
+.static-mode .page4 {
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
+  min-width: none;
+  height: auto;
+  transform: none;
+}
+
 // TODO refactor into title
 
 .contacts__container {
