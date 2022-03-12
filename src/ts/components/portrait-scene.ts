@@ -3,6 +3,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import diffuseTextureSource from 'assets/img/avatar-tx.png'
 
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
+import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js'
+
+// import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+// import { UnrealBloomPass } from 'ts/three/TransparentBackgroundFixedUnrealBloomPass'
+
+
+import { BloomPass } from './jsm/postprocessing/BloomPass.js';
+import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass';
+
 import { mapclamp } from 'ts/lib/lib'
 
 let scene
@@ -12,6 +23,7 @@ let renderer
 let domElement
 let object
 let light
+let composer
 
 const width = 800
 const height = 1200
@@ -65,15 +77,29 @@ export const initScene = () => {
       map: diffuseTexture,
       color: 0xffffff,
       flatShading: true,
-      "alphaTest": 0.6,
+      alphaTest: 0.6,
     })
 
     material.alphaTest
 
     object.material = material
 
-    light = new THREE.AmbientLight( 0xffffff ); // soft white light
-    scene.add( light );
+    light = new THREE.AmbientLight(0xffffff) // soft white light
+    scene.add(light)
+
+
+
+    composer = new EffectComposer(renderer)
+
+    const renderPass = new RenderPass(scene, camera)
+    composer.addPass(renderPass)
+
+    // const glitchPass = new GlitchPass()
+    // glitchPass.goWild = false
+    // composer.addPass(glitchPass)
+
+    const effectFilmBW = new FilmPass( 0.3, 1, 2048, false );
+    composer.addPass(effectFilmBW)
 
     animate()
 
@@ -87,12 +113,14 @@ export const setCameraOffset = (val1, val2) => {
 }
 
 export const setLightColor = (value) => {
-  const val = mapclamp(value, 0, 1, 255, 0);
-  const color = `rgb(${Math.floor(val)}, ${Math.floor(val)}, ${Math.floor(val)})`
+  const val = mapclamp(value, 0, 1, 255, 0)
+  const color = `rgb(${Math.floor(val)}, ${Math.floor(val)}, ${Math.floor(
+    val
+  )})`
   light.color = new THREE.Color(color)
 }
 
 function animate() {
-  renderer.render(scene, camera)
+  composer.render()
   requestAnimationFrame(animate)
 }
