@@ -13,6 +13,8 @@ import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
 import AnimColor from 'ts/components/anim-color'
 import ScrollTimelineSetup from './components/scroll-timeline-setup'
 
+import { initScene, setCameraOffset } from 'ts/components/portrait-scene'
+
 import {
   initScroller,
   update,
@@ -28,6 +30,8 @@ let mainBgCanvasContainer: HTMLDivElement
 let page1: HTMLDivElement
 let page2: HTMLDivElement
 let worksTitle: HTMLDivElement
+let photoContainer: HTMLDivElement
+let avatarImage: HTMLImageElement
 
 let logoAnimationFinished = false
 
@@ -37,8 +41,6 @@ const firstTransition = (value) => {
   const val1 = map01(value, 0, (-window.innerWidth / 5) * 3 * 1)
   page1.style.transform = `translateX(${val1}px)`
   page1.style.visibility = value === 1 ? 'hidden' : 'visible'
-
-  page2.style.visibility = value === 0 ? 'hidden' : 'visible'
 
   // TODO(AAl): this shouldn't happen each frame, check performance
   if (value > 0.1) {
@@ -92,6 +94,11 @@ const worksTitleOutCallback = (value) => {
   }
   const val1 = mapclamp(easeOutSquare(value), 0.2, 1, 5, -50)
   worksTitle.style.left = `${val1}vw`
+}
+
+const handleCameraCallback = (value)=>{
+  const val = mapclamp(easeOutSquare(value), 0, 0.6, -0.2, 0.4)
+  setCameraOffset(val)
 }
 
 // TODO ::: sell printer
@@ -155,6 +162,11 @@ const setUpScrollTimeLine = () => {
     page: options.pages.length - 1, // last page
   })
 
+  scrolltimeline.addTransition({
+    func: handleCameraCallback,
+    page: 0,
+  })
+
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)
   })
@@ -193,6 +205,8 @@ window.onload = () => {
   page1 = document.querySelector('.page1')
   page2 = document.querySelector('.page2')
   worksTitle = document.querySelector('.works-title')
+  photoContainer = document.querySelector('.page1__photo-container')
+  avatarImage = document.querySelector('.page1__photo')
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
@@ -213,6 +227,11 @@ window.onload = () => {
   scrollTimelineSetup.scrollTimeline = scrolltimeline
   scrollTimelineSetup.init()
   scrollTimelineSetup.animate()
+
+  initScene().then((domElement) => {
+    avatarImage.style.display = 'none'
+    photoContainer.appendChild(domElement)
+  })
 
   initScroller({
     callback: (page) => {

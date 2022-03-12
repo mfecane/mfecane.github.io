@@ -1,18 +1,18 @@
-"use strict";
+'use strict'
 
-var path = require("path");
-const root = path.resolve(__dirname, "..");
+var path = require('path')
+const root = path.resolve(__dirname, '..')
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const ErrorOverlayPlugin = require("error-overlay-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
 
 module.exports = [
   new HtmlWebpackPlugin({
-    template: path.resolve(root, "src/templates/index.html"),
+    template: path.resolve(root, 'src/templates/index.html'),
   }),
   // new CopyPlugin({
   //   patterns: [
@@ -39,4 +39,7 @@ module.exports = [
   //     ],
   //   },
   // }),
-];
+  new CopyPlugin({
+    patterns: ['assets/scenes/*.glb'],
+  }),
+]
