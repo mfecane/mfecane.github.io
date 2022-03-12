@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import diffuseTextureSource from 'assets/img/avatar-tx.png'
+
+import { mapclamp } from 'ts/lib/lib'
 
 let scene
 let camera
@@ -10,11 +11,10 @@ let glb
 let renderer
 let domElement
 let object
+let light
 
 const width = 800
 const height = 1200
-
-let cameraShift = 0
 
 export const initScene = () => {
   scene = new THREE.Scene()
@@ -30,19 +30,12 @@ export const initScene = () => {
     factor
   )
 
-  // camera.position.x = cameraShift
-  // camera.position.y = 0
-  // camera.position.z = 22
-
-  // camera.lookAt(0.0, 0.0, 0.0)
-
   const loader = new GLTFLoader()
 
   const draco = new DRACOLoader()
   draco.setDecoderConfig({ type: 'js' })
   draco.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/')
   loader.setDRACOLoader(draco)
-  var t = 0
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
   renderer.setSize(width, height)
@@ -50,23 +43,20 @@ export const initScene = () => {
 
   return new Promise((resolve, reject) => {
     loader.load(
-      // resource URL
       'assets/scenes/scene.glb',
-      // called when the resource is loaded
       (glb) => {
         resolve(glb)
       },
-      // called while loading is progressing
       function (xhr) {
         console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
       },
-      // called when loading has errors
       function (error) {
-        console.log('An error happened')
+        throw new Error('Asset loading error: ' + error)
       }
     )
   }).then((res) => {
     glb = res.scene
+
     object = glb.children[0]
     scene.add(object)
 
@@ -82,7 +72,7 @@ export const initScene = () => {
 
     object.material = material
 
-    const light = new THREE.AmbientLight( 0xffffff ); // soft white light
+    light = new THREE.AmbientLight( 0xffffff ); // soft white light
     scene.add( light );
 
     animate()
@@ -91,14 +81,18 @@ export const initScene = () => {
   })
 }
 
-export const setCameraOffset = (value) => {
-  cameraShift = value
-  object.rotation.y = value
+export const setCameraOffset = (val1, val2) => {
+  object.rotation.y = val1
+  object.rotation.x = val2
+}
+
+export const setLightColor = (value) => {
+  const val = mapclamp(value, 0, 1, 255, 0);
+  const color = `rgb(${Math.floor(val)}, ${Math.floor(val)}, ${Math.floor(val)})`
+  light.color = new THREE.Color(color)
 }
 
 function animate() {
   renderer.render(scene, camera)
-  // camera.position.x = cameraShift
-  // camera.lookAt(0.0, 0.0, 0.0)
   requestAnimationFrame(animate)
 }

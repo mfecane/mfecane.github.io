@@ -29,6 +29,15 @@
   padding: 0 55px 0 80px;
 }
 
+.dynamic-mode .page2-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100vh;
+  z-index: 10;
+}
+
 .about__title {
   align-self: stretch;
   display: block;
@@ -98,11 +107,17 @@
 }
 
 .page2-right {
-  flex: 0 0 70%;
-  // background: $dark;
-  // background: radial-gradient(farthest-corner circle at 80% 30%, $dark-dimmed 0%, $dark 100%);
-
   overflow: hidden;
+  display: grid;
+}
+
+.dynamic-mode .page2-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  z-index: 10;
 }
 
 .placeholder-scroller {

@@ -13,7 +13,8 @@ import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
 import AnimColor from 'ts/components/anim-color'
 import ScrollTimelineSetup from './components/scroll-timeline-setup'
 
-import { initScene, setCameraOffset } from 'ts/components/portrait-scene'
+import { initScene, setCameraOffset, setLightColor } from 'ts/components/portrait-scene'
+import mouse from 'ts/interaction/mouse'
 
 import {
   initScroller,
@@ -101,9 +102,14 @@ const worksTitleOutCallback = (value) => {
   worksTitle.style.left = `${val1}vw`
 }
 
-const handleCameraCallback = (value)=>{
-  const val = mapclamp(easeOutSquare(value), 0, 0.6, -0.2, 0.4)
-  setCameraOffset(val)
+const handleAvatarLook = (e) => {
+  const val1 = mapclamp(e.x, 0, window.innerWidth, 0.2, -0.1)
+  const val2 = mapclamp(e.y, 0, window.innerHeight, -0.05, 0.05)
+  setCameraOffset(val1, val2)
+}
+
+const handleAvatarLight = (value) => {
+  setLightColor(value)
 }
 
 // TODO ::: sell printer
@@ -114,12 +120,12 @@ const handleCameraCallback = (value)=>{
 const setUpScrollTimeLine = () => {
   const options = {
     pages: [
-      { step: 0.05, snap: true, },
-      { step: 0.05, snap: true, },
+      { step: 0.1, snap: true, },
+      { step: 0.1, snap: true, },
       { step: 0.12, snap: true, },
       { step: 0.12, snap: true, },
       { step: 0.12, snap: true, },
-      { step: 0.05, snap: true, },
+      { step: 0.1, snap: true, },
     ],
   }
 
@@ -150,13 +156,14 @@ const setUpScrollTimeLine = () => {
     page: options.pages.length - 1, // last page
   })
 
-  scrolltimeline.addTransition({
-    func: handleCameraCallback,
-    page: 0,
-  })
-
   mouseContainer.addEventListener('click', () => {
     scrolltimeline.setScrollValue(1)
+  })
+
+
+  scrolltimeline.addTransition({
+    func: handleAvatarLight,
+    page: 0 // last page
   })
 
   scrolltimeline.addPageChangeCallback(update)
@@ -199,6 +206,7 @@ const checkBrowser = () => {
 }
 
 const setUpAnimationComponents = () => {
+  const body = document.getElementsByTagName('body')[0]
   mainBgCanvasContainer = document.querySelector('#main-bg-canvas-container')
   logoContainer = document.querySelector('#logo-container')
   mouseContainer = document.querySelector('.mouse__container')
@@ -207,6 +215,8 @@ const setUpAnimationComponents = () => {
   worksTitle = document.querySelector('.works-title')
   photoContainer = document.querySelector('.page1__photo-container')
   avatarImage = document.querySelector('.page1__photo')
+
+  body.classList.add('dynamic-mode')
 
   window.setTimeout(() => {
     setUpMainLogoAnimation()
@@ -231,6 +241,7 @@ const setUpAnimationComponents = () => {
   initScene().then((domElement) => {
     avatarImage.style.display = 'none'
     photoContainer.appendChild(domElement)
+    document.addEventListener('mousemove', handleAvatarLook)
   })
 
   initScroller({
