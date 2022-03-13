@@ -27,7 +27,7 @@
   font-size: 60px;
   line-height: 54px;
   font-weight: 400;
-  color: $light;
+  color: $accent;
   text-transform: uppercase;
 }
 
@@ -35,13 +35,26 @@
   text-align: right;
   margin-bottom: 8px;
   margin-right: 4px;
+  font-size: 60px;
+  line-height: 54px;
 }
+
+.static-mode .works-title__heading {
+  white-space: nowrap;
+  font-size: 42px;
+}
+
 
 .works-item__container {
   opacity: 1;
   display: flex;
   background-color: $darkbg1;
   border-radius: 2px;
+}
+
+.static-mode .works-item__container {
+  margin: 80px 0;
+  min-height: 400px;
 }
 
 .dynamic-mode .works-item__container {
@@ -72,6 +85,8 @@
 .works-item__title {
   flex: 0 0 auto;
   font-family: "Playfair Display", serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-weight: bold;
   color: $accent;
   font-size: 18px;
@@ -83,9 +98,9 @@
 .works-item__text {
   flex: 1 0 40%;
   color: $light-dimmed;
-  font-family: "Lora" serif;
-  font-size: 14px;
-  line-height: 18px;
+  font-family: $mainFont;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .works-item__image {

@@ -1,7 +1,7 @@
 import ScrollTimeline from 'ts/animation/scroll-pager'
 import MainBgAnimation from 'ts/components/main-background'
 import SvgPathAnimation from 'ts/components/svg-path-animation'
-import { easeOutSquare } from 'ts/lib/easing-functions'
+import { easeOutCubic, easeOutSquare } from 'ts/lib/easing-functions'
 
 import mainLogo from 'assets/svg/svg-low.inline.svg'
 import shapesconfig from 'ts/svg/shapes-config'
@@ -103,7 +103,7 @@ const worksTitleOutCallback = (value) => {
   if (!worksTitle) {
     return
   }
-  const val1 = mapclamp(easeOutSquare(value), 0.2, 1, 5, -50)
+  const val1 = mapclamp(easeOutCubic(value), 0.2, 1, 5, -50)
   worksTitle.style.left = `${val1}vw`
 }
 

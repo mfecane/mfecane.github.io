@@ -18,7 +18,7 @@ body {
   width: 12rem;
   padding: 4px 12px;
   background: transparent;
-  font-family: "Crimson Text", serif;
+  font-family: $headerFont, serif;
   font-size: 20px;
   font-weight: 400;
   transition: all 0.15s ease-out;
@@ -153,3 +153,16 @@ a {
 a:hover {
   color: $light;
 }
+
+.static-mode .container {
+  width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (max-width: 1100px) {
+    margin: 0 80px;
+    width: 100%;
+  }
+}
+
+

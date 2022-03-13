@@ -58,9 +58,9 @@
   text-align: right;
   padding: 12px 0;
   color: $light-dimmed;
-  font-family: Poppins;
-  font-size: 14px;
-  line-height: 22px;
+  font-family: $mainFont;
+  font-size: 16px;
+  line-height: 20px;
   margin: 0px 0px 50px 0px;
 }
 
@@ -68,6 +68,9 @@
   margin: 5px 0;
 }
 
+.static-mode .about__container {
+  margin: 50px 0 50px 0;
+}
 
 .tech__container {
   flex: 0 0 120px;
@@ -83,6 +86,10 @@
   margin: auto;
 }
 
+.dynamic-mode .tech__row {
+
+}
+
 .tech__item {
   flex: 0 0 50px;
   position: relative;
@@ -90,6 +97,12 @@
   height: 50px;
   border-radius: 50%;
   border: 2px solid $accent;
+}
+
+.static-mode .tech__item {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
 }
 
 .tech__image {
@@ -125,12 +138,16 @@
   z-index: 10;
 }
 
+.static-mode .page2-right {
+  margin: 80px 0;
+}
+
 .placeholder-scroller {
   display: grid;
   place-self: center;
 }
 
-.exp__container {
+.dynamic-mode .exp__container {
   margin: 0 100px;
 }
 
@@ -173,7 +190,7 @@
 }
 
 .exp__year {
-  font-family: "Lora";
+  font-family: $mainFont;
   color: $light;
   font-size: 18px;
   letter-spacing: 1px;
@@ -188,7 +205,7 @@
   font-size: 18px;
   letter-spacing: 1px;
   font-weight: bold;
-  font-family: "Lora";
+  font-family: $mainFont;
   color: $accent;
   margin: 0 0 4px 0;
 }
@@ -197,19 +214,19 @@
   display: block;
   text-transform: uppercase;
   font-style: normal;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
   font-weight: bold;
-  font-family: "Lora";
+  font-family: $mainFont;
   color: $light-dimmed;
 }
 
 .exp__descr {
   font-style: normal;
-  font-size: 14px;
-  font-family: "Lora";
+  font-size: 16px;
+  font-family: $mainFont;
   letter-spacing: 1px;
-  line-height: 18px;
+  line-height: 20px;
   color: $light-dimmed;
   margin: 10px 0;
 }

@@ -1,32 +1,29 @@
 @import 'css/config.scss';
 
 .page4 {
-  flex: 0 0 auto;
+  display: flex;
+  z-index: 15;
+}
+
+.dynamic-mode .page4 {
+  position: absolute;
+  overflow: hidden;
   left: 50%;
   top: 50%;
   width: 40vw;
   min-width: 500px;
   height: 70vh;
-  position: absolute;
-  overflow: hidden;
-  display: flex;
-  z-index: 15;
   transform: translate(-50%, -50%)
 }
 
 .static-mode .page4 {
-  position: static;
-  top: auto;
-  left: auto;
-  width: auto;
-  min-width: none;
-  height: auto;
-  transform: none;
+  background: radial-gradient(farthest-corner circle at 80% 30%, $darkbg1 0%, $darkbg2 100%);
+  padding: 80px 120px;
 }
 
 // TODO refactor into title
 
-.contacts__container {
+.dynamic-mode .contacts__container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -59,7 +56,7 @@
 }
 
 .contact__item a {
-  font-family: Poppins;
+  font-family: $mainFont;
   font-size: 18px;
   letter-spacing: 2px;
   text-transform: uppercase;

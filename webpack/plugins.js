@@ -40,6 +40,6 @@ module.exports = [
   //   },
   // }),
   new CopyPlugin({
-    patterns: ['assets/scenes/*.glb'],
+    patterns: ['assets/scenes/*.glb', { from: 'cv/*.pdf', to: 'assets/' }],
   }),
 ]
