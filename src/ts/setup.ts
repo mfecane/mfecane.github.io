@@ -135,6 +135,7 @@ const setUpScrollTimeLine = () => {
       { step: 0.12, snap: true, },
       { step: 0.12, snap: true, },
       { step: 0.1, snap: true, },
+      { step: 0.1, snap: true, },
     ],
   }
 
@@ -176,7 +177,7 @@ const setUpScrollTimeLine = () => {
   })
 
   document.querySelector('#contacts-button').addEventListener('click', () => {
-    scrolltimeline.setScrollValue(7)
+    scrolltimeline.setScrollValue(options.pages.length - 1)
   })
 
   scrolltimeline.addPageChangeCallback(update)
@@ -221,7 +222,7 @@ const setUpAnimationComponents = () => {
 
   const animColor = new AnimColor()
   animColor.init()
-  // animColor.animate()
+  animColor.animate()
 
   const scrollTimelineSetup = new ScrollTimelineSetup()
   scrollTimelineSetup.scrollTimeline = scrolltimeline

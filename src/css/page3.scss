@@ -57,7 +57,7 @@
 }
 
 
-.works-item__container:nth-child(odd) {
+.works-item__container:nth-child(even) {
   flex-direction: row-reverse;
 }
 
@@ -75,23 +75,21 @@
   font-weight: bold;
   color: $accent;
   font-size: 18px;
-  letter-spacing: 2px;
   margin-bottom: 10px;
   padding-bottom: 7px;
   border-bottom: solid 1px $accent;
 }
 
 .works-item__text {
-  flex: 1 0 50%;
+  flex: 1 0 40%;
   color: $light-dimmed;
   font-family: "Lora" serif;
-  letter-spacing: 1px;
   font-size: 14px;
   line-height: 18px;
 }
 
 .works-item__image {
-  flex: 1 0 50%;
+  flex: 1 0 60%;
   overflow: hidden;
   position: relative;
   border-radius: 2px;
@@ -137,15 +135,15 @@
   flex: 0 0 auto;
   justify-self: flex-end;
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
 .works-item__button.btn {
   padding: 2px 8px;
-  text-transform: uppercase;
   font-weight: bold;
   color: $dark;
-  font-size: 16px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,8 +177,8 @@
 }
 
 .works-item__icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid $accent;
   display: grid;
@@ -189,8 +187,8 @@
 .works-item__icon .icon {
   background: $accent;
   place-self: center;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .works-item__icon--react {

@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rain</title>
+  <title>Aleksei Aliapkin - FrontEnd developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -40,11 +40,13 @@
       <div class="scroller__tick"></div>
       <div class="scroller__tick"></div>
       <div class="scroller__tick"></div>
+      <div class="scroller__tick"></div>
     </div>
     <div class="scroller__labels">
       <div>Home</div>
       <div>Experience</div>
       <div>Works</div>
+      <div></div>
       <div></div>
       <div></div>
       <div></div>
@@ -240,7 +242,46 @@
     data-transition-out="works-out">
     <div class="works-item__layout">
       <h4 class="works-item__title anim-color anim-border-color">
-        Weather app
+        <a target="_blank" href="https://mfecane.github.io/boot/">Boot store app</a>
+      </h4>
+      <p class="works-item__text">
+        An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and
+        material colors for different parts.
+        All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced. Rendering
+        was
+        done using
+        THREE.JS.
+      </p>
+      <div class="works-item__technologies">
+        <div class="works-item__icon">
+          <i class="icon icon--react">
+          </i>
+        </div>
+        <div class="works-item__icon">
+          <i class="icon icon--webgl">
+          </i>
+        </div>
+      </div>
+      <div class="works-item__buttons-container">
+        <a target="_blank" href="https://github.com/mfecane/boot">
+          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class=" works-item__image">
+      <a target="_blank" href="https://mfecane.github.io/boot/">
+        <video src="/assets/video/bootDemo.webm" autoplay muted loop></video>
+      </a>
+    </div>
+  </section>
+
+  <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
+    data-transition-out="works-out">
+    <div class="works-item__layout">
+      <h4 class="works-item__title anim-color anim-border-color">
+        <a target="_blank" href="https://mfecane.github.io/weather-app/">Weather app</a>
       </h4>
       <p class="works-item__text">
         Application, which displays current weather, 5 day forecast, and
@@ -272,88 +313,125 @@
     </div>
   </section>
 
-  <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
-    data-transition-out="works-out">
-    <div class="works-item__layout">
-      <h4 class="works-item__title anim-color anim-border-color">
-        Weather app
-      </h4>
-      <p class="works-item__text">
-        Application, which displays current weather, 5 day forecast, and
-        hourly weather for the next 24 hours. Using both OpenWeatherMap
-        API and WeatherAPI.com.
-      </p>
-      <div class="works-item__buttons-container">
-        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i>GitHub
-        </button>
-        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            GitHub
-          </button>
-        </div>
-      </div>
-      <div class=" works-item__image">
-          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
-            <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
-          </a>
-      </div>
-  </section>
-
   <section class="works-item__container shadow" data-transition data-transition-page="4" data-transition-in="works-in"
     data-transition-out="works-out">
     <div class="works-item__layout">
       <h4 class="works-item__title anim-color anim-border-color">
-        Weather app
+        <a target="_blank" href="https://mfecane.github.io/to-do_app/">Todo app</a>
       </h4>
       <p class="works-item__text">
-        Application, which displays current weather, 5 day forecast, and
-        hourly weather for the next 24 hours. Using both OpenWeatherMap
-        API and WeatherAPI.com.
+        Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.
       </p>
-      <div class="works-item__buttons-container">
-        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i>GitHub
-        </button>
-        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            GitHub
-          </button>
+      <div class="works-item__technologies">
+        <div class="works-item__icon">
+          <i class="icon icon--react">
+          </i>
+        </div>
+        <div class="works-item__icon">
+          <i class="icon icon--bootstrap">
+          </i>
         </div>
       </div>
-      <div class=" works-item__image">
-          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
-            <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
-          </a>
+      <div class="works-item__buttons-container">
+        <a target="_blank" href="https://github.com/mfecane/to-do_app">
+          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+          </button>
+        </a>
       </div>
+    </div>
+    <div class=" works-item__image">
+      <a target="_blank" href="https://mfecane.github.io/to-do_app/">
+        <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
+      </a>
+    </div>
   </section>
 
   <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
     data-transition-out="works-out">
     <div class="works-item__layout">
       <h4 class="works-item__title anim-color anim-border-color">
-        Weather app
+        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">Mandelbruh</a>
       </h4>
       <p class="works-item__text">
-        Application, which displays current weather, 5 day forecast, and
-        hourly weather for the next 24 hours. Using both OpenWeatherMap
-        API and WeatherAPI.com.
+        Several implementations of mandelbrot fractal zooming applications. There are CPU,
+        GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of
+        floating point numbers in WebGL, zooming in web version is limited.
       </p>
-      <div class="works-item__buttons-container">
-        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i>GitHub
-        </button>
-        <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            GitHub
-          </button>
+      <div class="works-item__technologies">
+        <div class="works-item__icon">
+          <i class="icon icon--cpp">
+          </i>
+        </div>
+        <div class="works-item__icon">
+          <i class="icon icon--opengl">
+          </i>
+        </div>
+        <div class="works-item__icon">
+          <i class="icon icon--webgl">
+          </i>
         </div>
       </div>
-      <div class=" works-item__image">
-          <a target="_blank" href="https://aaliapkin.github.io/weather-app/">
-            <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
-          </a>
+      <div class="works-item__buttons-container">
+        <a target="_blank" href="https://github.com/mfecane/web-mandelbrot">
+          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub (web)</span>
+          </button>
+        </a>
+        <a target="_blank" href="https://github.com/mfecane/mandelbruh">
+          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub (OpenGl)</span>
+          </button>
+        </a>
       </div>
+    </div>
+    <div class=" works-item__image">
+      <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
+        <video src="/assets/video/mandelbruh.webm" autoplay muted loop></video>
+      </a>
+    </div>
   </section>
 
-  <section class="page page4" data-transition data-transition-page="6" data-transition-in="contacts-page"
+  <section class="works-item__container shadow" data-transition data-transition-page="6" data-transition-in="works-in"
+    data-transition-out="works-out">
+    <div class="works-item__layout">
+      <h4 class="works-item__title anim-color anim-border-color">
+        <a target="_blank" href="https://github.com/mfecane/rec_app/releases">Screen recording app</a>
+      </h4>
+      <p class="works-item__text">
+        Windows application for easy creating time lapse recordings of user screen. This app was developed for myself
+        for recording of my drawing and sculpting sessions.
+      </p>
+      <div class="works-item__technologies">
+        <div class="works-item__icon">
+          <i class="icon icon--ffmpeg">
+          </i>
+        </div>
+        <div class="works-item__icon">
+          <i class="icon icon--cpp">
+          </i>
+        </div>
+        <div class="works-item__icon">
+          <i class="icon icon--qt">
+          </i>
+        </div>
+      </div>
+      <div class="works-item__buttons-container">
+        <a target="_blank" href="https://github.com/mfecane/rec_app">
+          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class=" works-item__image">
+      <a target="_blank">
+        <video src="/assets/video/rec-app.webm" autoplay muted loop></video>
+      </a>
+    </div>
+  </section>
+
+  <section class="page page4" data-transition data-transition-page="7" data-transition-in="contacts-page"
     data-transition-out="contacts-page">
     <div class="contacts__container">
       <h3 class="contacts__title anim-color">
@@ -374,9 +452,9 @@
           </a>
         </li>
         <li class="contact__item">
-          <a href="https://github.com/aaliapkin" target="_blank" class="anim-color">
+          <a href="https://github.com/mfecane" target="_blank" class="anim-color">
             <span class="contact__icon icon icon--github anim-background-color"></span>
-            aaliapkin
+            Mfecane
           </a>
         </li>
         <li class="contact__item">
