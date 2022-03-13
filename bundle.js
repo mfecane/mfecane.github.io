@@ -1674,7 +1674,7 @@ const worksTitleOutCallback = value => {
     return;
   }
 
-  const val1 = (0,ts_lib_lib__WEBPACK_IMPORTED_MODULE_6__.mapclamp)((0,ts_lib_easing_functions__WEBPACK_IMPORTED_MODULE_3__.easeOutSquare)(value), 0.2, 1, 5, -50);
+  const val1 = (0,ts_lib_lib__WEBPACK_IMPORTED_MODULE_6__.mapclamp)((0,ts_lib_easing_functions__WEBPACK_IMPORTED_MODULE_3__.easeOutCubic)(value), 0.2, 1, 5, -50);
   worksTitle.style.left = `${val1}vw`;
 };
 
@@ -1789,8 +1789,8 @@ const setUpAnimationComponents = () => {
   mainBgAnimation.scrollTimeline = scrolltimeline;
   mainBgAnimation.animate();
   const animColor = new ts_components_anim_color__WEBPACK_IMPORTED_MODULE_7__["default"]();
-  animColor.init();
-  animColor.animate();
+  animColor.init(); // animColor.animate()
+
   const scrollTimelineSetup = new _components_scroll_timeline_setup__WEBPACK_IMPORTED_MODULE_8__["default"]();
   scrollTimelineSetup.scrollTimeline = scrolltimeline;
   scrollTimelineSetup.init();

@@ -8,12 +8,10 @@
   <title>Aleksei Aliapkin - FrontEnd developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=family=Libre+Baskerville&family=Lora&family=Lora&family=Crimson+Text&family=Cormorant+Garamond&display=swap"
-    rel="stylesheet" />
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+text&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
 <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
 
 <body>
@@ -65,9 +63,10 @@
         <button class="btn btn_primary anim-border-color anim-background-color" id="contacts-button">
           Contact me
         </button>
-        <button class="btn btn_secondary anim-border-color anim-color">
-          Download CV
-        </button>
+        <a target="_blank" href="/assets/cv/cv.pdf">
+          <button class="btn btn_secondary anim-border-color anim-color">
+            Download CV
+          </button></a>
       </div>
     </div>
     <div class="page1__photo-container">
@@ -77,70 +76,77 @@
 
   <div class="page2-left" data-transition data-transition-page="1" data-transition-in="second-page-left"
     data-transition-in-args="" data-transition-out="second-page-left" data-transition-out-args="">
-    <div class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
-      data-transition-out="slide-from">
-      <h3 class="about__title anim-color anim-border-color">
-        HI, MY NAME IS ALIAPKIN ALEKSEI
-      </h3>
+    <div class="about__container container">
 
-      <article class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
-        data-transition-in-args="|50|" data-transition-out="slide-from" data-transition-out-args="|50|">
-        <p>
-          Hi, my name is Aliapkin Aleksei and i am a front-end developer
-          located in Moscow, Russia.
-        </p>
+      <div class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
+        data-transition-out="slide-from">
+        <h3 class="about__title anim-color anim-border-color">
+          HI, MY NAME IS ALIAPKIN ALEKSEI
+        </h3>
 
-        <p>
-          Senior front-end developer specializing in Javascript, Vue and
-          jQuery technologies. I performed well, and received rapid career
-          growth to became a team leader. I have a strong mathematical
-          background and significant artistic skills, in particular 3D
-          modeling.
-        </p>
+        <article class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
+          data-transition-in-args="|50|" data-transition-out="slide-from" data-transition-out-args="|50|">
+          <p>
+            Hi, my name is Aliapkin Aleksei and i am a front-end developer
+            located in Moscow, Russia.
+          </p>
 
-      </article>
+          <p>
+            Senior front-end developer specializing in Javascript, Vue and
+            jQuery technologies. I performed well, and received rapid career
+            growth to became a team leader. I have a strong mathematical
+            background and significant artistic skills, in particular 3D
+            modeling.
+          </p>
 
-      <h3 class="about__title anim-color anim-border-color">
-        TECHNOLOGIES
-      </h3>
+        </article>
 
-      <div class="tech__container">
-        <div class="tech__row">
-          <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-            data-transition-in="slide-from" data-transition-in-args="|100|1" data-transition-out="slide-from"
-            data-transition-out-args="|100|1">
-            <div class="tech__image icon icon--vue anim-background-color"></div>
+        <h3 class="about__title anim-color anim-border-color">
+          TECHNOLOGIES
+        </h3>
+
+        <div class="tech__container">
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|1">
+            <div class="tech__item-inner">
+              <div class="tech__image icon icon--vue anim-background-color"></div>
+            </div>
           </div>
-          <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-            data-transition-in="slide-from" data-transition-in-args="|100|.95" data-transition-out="slide-from"
-            data-transition-out-args="|100|.95">
-            <div class="tech__image icon icon--js anim-background-color"></div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.95">
+            <div class="tech__item-inner">
+              <div class="tech__image icon icon--js anim-background-color"></div>
+            </div>
           </div>
-          <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-            data-transition-in="slide-from" data-transition-in-args="|100|.90" data-transition-out="slide-from"
-            data-transition-out-args="|100|.90">
-            <div class="tech__image icon icon--react anim-background-color"></div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-            data-transition-in="slide-from" data-transition-in-args="|100|.85" data-transition-out="slide-from"
-            data-transition-out-args="|100|.85">
-            <div class="tech__image icon icon--redux anim-background-color"></div>
-          </div>
-        </div>
-        <div class="tech__row">
-          <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-            data-transition-in="slide-from" data-transition-in-args="|100|1" data-transition-out="slide-from"
-            data-transition-out-args="|100|1">
-            <div class="tech__image icon icon--sass anim-background-color"></div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-            data-transition-in="slide-from" data-transition-in-args="|100|.95" data-transition-out="slide-from"
-            data-transition-out-args="|100|.95">
-            <div class="tech__image icon icon--jquery anim-background-color"></div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition="slide-from" data-transition-page="1"
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
             data-transition-args="|100|.9">
-            <div class="tech__image icon icon--git anim-background-color"></div>
+            <div class="tech__item-inner">
+              <div class="tech__image icon icon--react anim-background-color"></div>
+            </div>
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.85">
+            <div class=" tech__item-inner">
+              <div class="tech__image icon icon--redux anim-background-color"></div>
+            </div>
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.8">
+            <div class="tech__item-inner">
+              <div class="tech__image icon icon--sass anim-background-color"></div>
+            </div>
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.75">
+            <div class="tech__item-inner">
+              <div class="tech__image icon icon--jquery anim-background-color"></div>
+            </div>
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.7">
+            <div class="tech__item-inner">
+              <div class="tech__image icon icon--git anim-background-color"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -148,292 +154,301 @@
   </div>
 
   <div class="page2-right" data-transition-page="1" data-transition="second-page-right">
-    <!-- TODO center this -->
-    <div class="placeholder-scroller">
-      <div class="exp__container">
-        <h3 class="exp__title anim-color">
-          <span>WORK EXPERIENCE</span>
-          <div>
-            <div class="anim-background-color"></div>
+    <div class="exp__container container">
+      <h3 class="exp__title anim-color">
+        <span>WORK EXPERIENCE</span>
+        <div>
+          <div class="anim-background-color"></div>
+        </div>
+      </h3>
+
+      <ul>
+        <li class="exp__item">
+          <span class="exp__year">2021 - NOW</span>
+          <div class="exp__details">
+            <h4 class="exp__name anim-color">
+              Senior developer/Team lead, Online Reservation Systems
+            </h4>
+            <em class="exp__place">Online Reservation Systems</em>
+            <p class="exp__descr">
+              Shortly after joining became team lead.
+              Started to manage team's tasks, perform code reviews
+              I take only most complex tasks.
+              I perform different related activities, such as
+              DevOps tasks, deployment, developement of in-house e2e testing helper
+              framework.
+            </p>
           </div>
-        </h3>
+        </li>
 
-        <ul>
-          <li class="exp__item">
-            <span class="exp__year">2021 - NOW</span>
-            <div class="exp__details">
-              <h4 class="exp__name anim-color">
-                Senior developer/Team lead, Online Reservation Systems
-              </h4>
-              <em class="exp__place">Online Reservation Systems</em>
-              <p class="exp__descr">
-                Shortly after joining became team lead.
-                Started to manage team's tasks, perform code reviews
-                I take only most complex tasks.
-                I perform different related activities, such as
-                DevOps tasks, deployment, developement of in-house e2e testing helper
-                framework.
-              </p>
-            </div>
-          </li>
-
-          <li class="exp__item">
-            <span class="exp__year">2020 - 2021</span>
-            <div class="exp__details">
-              <h4 class="exp__name anim-color">
-                Frontend Developer
-              </h4>
-              <em class="exp__place">GRIDNINE SYSTEMS</em>
-              <p class="exp__descr">
-                Finished my tasks timely with good quality. Received positive
-                feedback from client for my work.
-              </p>
-            </div>
-          </li>
-
-          <li class="exp__item">
-            <span class="exp__year">2008 - 2019</span>
-            <div class="exp__details">
-              <h4 class="exp__name anim-color">
-                Financial analyst
-              </h4>
-              <p class="exp__descr">
-                Previously I was working in largest Russian banks as financial analyst, such as Rosbank, Societe
-                Generale Group, Open Bank, Russian Standard Bank. I started my career in Russian branch of KPMG as audit
-                associate.
-              </p>
-            </div>
-          </li>
-        </ul>
-
-        <h3 class="exp__title anim-color">
-          <span>EDUCATION</span>
-          <div>
-            <div class="anim-background-color"></div>
+        <li class="exp__item">
+          <span class="exp__year">2020 - 2021</span>
+          <div class="exp__details">
+            <h4 class="exp__name anim-color">
+              Frontend Developer
+            </h4>
+            <em class="exp__place">GRIDNINE SYSTEMS</em>
+            <p class="exp__descr">
+              Finished my tasks timely with good quality. Received positive
+              feedback from client for my work.
+            </p>
           </div>
-        </h3>
+        </li>
 
-        <ul>
-          <li class="exp__item">
-            <span class="exp__year">2002 - 2007</span>
-            <div class="exp__details">
-              <h4 class="exp__name anim-color">
-                Lomonosov Moscow State University
-              </h4>
-              <em class="exp__place">department of mechanics and mathematics</em>
-              <p class="exp__descr">
-                Graduated from department of mechanics and
-                mathematics. Received specialist degree with honors.
-                Specialized in optimization of control of dynamic
-                systems
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
+        <li class="exp__item">
+          <span class="exp__year">2008 - 2019</span>
+          <div class="exp__details">
+            <h4 class="exp__name anim-color">
+              Financial analyst
+            </h4>
+            <p class="exp__descr">
+              Previously I was working in largest Russian banks as financial analyst, such as Rosbank, Societe
+              Generale Group, Open Bank, Russian Standard Bank. I started my career in Russian branch of KPMG as audit
+              associate.
+            </p>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="exp__title anim-color">
+        <span>EDUCATION</span>
+        <div>
+          <div class="anim-background-color"></div>
+        </div>
+      </h3>
+
+      <ul>
+        <li class="exp__item">
+          <span class="exp__year">2002 - 2007</span>
+          <div class="exp__details">
+            <h4 class="exp__name anim-color">
+              Lomonosov Moscow State University
+            </h4>
+            <em class="exp__place">department of mechanics and mathematics</em>
+            <p class="exp__descr">
+              Graduated from department of mechanics and
+              mathematics. Received specialist degree with honors.
+              Specialized in optimization of control of dynamic
+              systems
+            </p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <div class="works-title">
-    <h3 class="works-title__heading anim-color">MY<br>WORKS</h3>
-  </div>
+  <div class="works-container container">
 
-  <section class="works-item__container shadow" data-transition data-transition-page="2" data-transition-in="works-in"
-    data-transition-out="works-out">
-    <div class="works-item__layout">
-      <h4 class="works-item__title anim-color anim-border-color">
-        <a target="_blank" href="https://mfecane.github.io/boot/">Boot store app</a>
-      </h4>
-      <p class="works-item__text">
-        An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and
-        material colors for different parts.
-        All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced. Rendering
-        was
-        done using
-        THREE.JS.
-      </p>
-      <div class="works-item__technologies">
-        <div class="works-item__icon">
-          <i class="icon icon--react">
-          </i>
+    <div class="works-title">
+      <h3 class="works-title__heading anim-color">MY WORKS</h3>
+    </div>
+
+    <section class="works-item__container shadow" data-transition data-transition-page="2" data-transition-in="works-in"
+      data-transition-out="works-out">
+      <div class="works-item__layout">
+        <a target="_blank" href="https://mfecane.github.io/boot/">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Boot store app
+          </h4>
+        </a>
+        <p class="works-item__text">
+          An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and
+          material colors for different parts.
+          All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced.
+          Rendering
+          was
+          done using
+          THREE.JS.
+        </p>
+        <div class="works-item__technologies">
+          <div class="works-item__icon">
+            <i class="icon icon--react">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--webgl">
+            </i>
+          </div>
         </div>
-        <div class="works-item__icon">
-          <i class="icon icon--webgl">
-          </i>
+        <div class="works-item__buttons-container">
+          <a target="_blank" href="https://github.com/mfecane/boot">
+            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+            </button>
+          </a>
         </div>
       </div>
-      <div class="works-item__buttons-container">
-        <a target="_blank" href="https://github.com/mfecane/boot">
-          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-          </button>
+      <div class=" works-item__image">
+        <a target="_blank" href="https://mfecane.github.io/boot/">
+          <video src="968a7929a15c028f57a3.webm" autoplay muted loop></video>
         </a>
       </div>
-    </div>
-    <div class=" works-item__image">
-      <a target="_blank" href="https://mfecane.github.io/boot/">
-        <video src="968a7929a15c028f57a3.webm" autoplay muted loop></video>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
-    data-transition-out="works-out">
-    <div class="works-item__layout">
-      <h4 class="works-item__title anim-color anim-border-color">
-        <a target="_blank" href="https://mfecane.github.io/weather-app/">Weather app</a>
-      </h4>
-      <p class="works-item__text">
-        Application, which displays current weather, 5 day forecast, and
-        hourly weather for the next 24 hours. Using both OpenWeatherMap
-        API and WeatherAPI.com.
-      </p>
-      <div class="works-item__technologies">
-        <div class="works-item__icon">
-          <i class="icon icon--react">
-          </i>
+    <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
+      data-transition-out="works-out">
+      <div class="works-item__layout">
+        <a target="_blank" href="https://mfecane.github.io/weather-app/">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Weather app
+          </h4>
+        </a>
+        <p class="works-item__text">
+          Application, which displays current weather, 5 day forecast, and
+          hourly weather for the next 24 hours. Using both OpenWeatherMap
+          API and WeatherAPI.com.
+        </p>
+        <div class="works-item__technologies">
+          <div class="works-item__icon">
+            <i class="icon icon--react">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--redux">
+            </i>
+          </div>
         </div>
-        <div class="works-item__icon">
-          <i class="icon icon--redux">
-          </i>
+        <div class="works-item__buttons-container">
+          <a target="_blank" href="https://github.com/mfecane/weather-app">
+            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+            </button>
+          </a>
         </div>
       </div>
-      <div class="works-item__buttons-container">
-        <a target="_blank" href="https://github.com/mfecane/weather-app">
-          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-          </button>
+      <div class=" works-item__image">
+        <a target="_blank" href="https://mfecane.github.io/weather-app/">
+          <video src="79f2e7ed6be3111e0565.webm" autoplay muted loop></video>
         </a>
       </div>
-    </div>
-    <div class=" works-item__image">
-      <a target="_blank" href="https://mfecane.github.io/weather-app/">
-        <video src="79f2e7ed6be3111e0565.webm" autoplay muted loop></video>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  <section class="works-item__container shadow" data-transition data-transition-page="4" data-transition-in="works-in"
-    data-transition-out="works-out">
-    <div class="works-item__layout">
-      <h4 class="works-item__title anim-color anim-border-color">
-        <a target="_blank" href="https://mfecane.github.io/to-do_app/">Todo app</a>
-      </h4>
-      <p class="works-item__text">
-        Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.
-      </p>
-      <div class="works-item__technologies">
-        <div class="works-item__icon">
-          <i class="icon icon--react">
-          </i>
+    <section class="works-item__container shadow" data-transition data-transition-page="4" data-transition-in="works-in"
+      data-transition-out="works-out">
+      <div class="works-item__layout">
+        <h4 class="works-item__title anim-color anim-border-color">
+          <a target="_blank" href="https://mfecane.github.io/to-do_app/">Todo app</a>
+        </h4>
+        <p class="works-item__text">
+          Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.
+        </p>
+        <div class="works-item__technologies">
+          <div class="works-item__icon">
+            <i class="icon icon--react">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--bootstrap">
+            </i>
+          </div>
         </div>
-        <div class="works-item__icon">
-          <i class="icon icon--bootstrap">
-          </i>
+        <div class="works-item__buttons-container">
+          <a target="_blank" href="https://github.com/mfecane/to-do_app">
+            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+            </button>
+          </a>
         </div>
       </div>
-      <div class="works-item__buttons-container">
-        <a target="_blank" href="https://github.com/mfecane/to-do_app">
-          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-          </button>
+      <div class=" works-item__image">
+        <a target="_blank" href="https://mfecane.github.io/to-do_app/">
+          <video src="67ce3334b8ec393ca2ea.webm" autoplay muted loop></video>
         </a>
       </div>
-    </div>
-    <div class=" works-item__image">
-      <a target="_blank" href="https://mfecane.github.io/to-do_app/">
-        <video src="67ce3334b8ec393ca2ea.webm" autoplay muted loop></video>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
-    data-transition-out="works-out">
-    <div class="works-item__layout">
-      <h4 class="works-item__title anim-color anim-border-color">
-        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">Mandelbruh</a>
-      </h4>
-      <p class="works-item__text">
-        Several implementations of mandelbrot fractal zooming applications. There are CPU,
-        GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of
-        floating point numbers in WebGL, zooming in web version is limited.
-      </p>
-      <div class="works-item__technologies">
-        <div class="works-item__icon">
-          <i class="icon icon--cpp">
-          </i>
+    <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
+      data-transition-out="works-out">
+      <div class="works-item__layout">
+        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Mandelbruh
+          </h4>
+        </a>
+        <p class="works-item__text">
+          Several implementations of mandelbrot fractal zooming applications. There are CPU,
+          GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of
+          floating point numbers in WebGL, zooming in web version is limited.
+        </p>
+        <div class="works-item__technologies">
+          <div class="works-item__icon">
+            <i class="icon icon--cpp">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--opengl">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--webgl">
+            </i>
+          </div>
         </div>
-        <div class="works-item__icon">
-          <i class="icon icon--opengl">
-          </i>
-        </div>
-        <div class="works-item__icon">
-          <i class="icon icon--webgl">
-          </i>
-        </div>
-      </div>
-      <div class="works-item__buttons-container">
-        <a target="_blank" href="https://github.com/mfecane/web-mandelbrot">
-          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+        <div class="works-item__buttons-container">
+          <a target="_blank" href="https://github.com/mfecane/web-mandelbrot">
+            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
             <i class=" icon icon--github"></i><span>GitHub (web)</span>
-          </button>
-        </a>
-        <a target="_blank" href="https://github.com/mfecane/mandelbruh">
-          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            </button>
+          </a>
+          <a target="_blank" href="https://github.com/mfecane/mandelbruh">
+            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
             <i class=" icon icon--github"></i><span>GitHub (OpenGl)</span>
-          </button>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class=" works-item__image">
+        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
+          <video src="db114775199e0630ad7f.webm" autoplay muted loop></video>
         </a>
       </div>
-    </div>
-    <div class=" works-item__image">
-      <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
-        <video src="db114775199e0630ad7f.webm" autoplay muted loop></video>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  <section class="works-item__container shadow" data-transition data-transition-page="6" data-transition-in="works-in"
-    data-transition-out="works-out">
-    <div class="works-item__layout">
-      <h4 class="works-item__title anim-color anim-border-color">
-        <a target="_blank" href="https://github.com/mfecane/rec_app/releases">Screen recording app</a>
-      </h4>
-      <p class="works-item__text">
-        Windows application for easy creating time lapse recordings of user screen. This app was developed for myself
-        for recording of my drawing and sculpting sessions.
-      </p>
-      <div class="works-item__technologies">
-        <div class="works-item__icon">
-          <i class="icon icon--ffmpeg">
-          </i>
+    <section class="works-item__container shadow" data-transition data-transition-page="6" data-transition-in="works-in"
+      data-transition-out="works-out">
+      <div class="works-item__layout">
+        <a target="_blank" href="https://github.com/mfecane/rec_app/releases">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Screen recording app
+          </h4>
+        </a>
+        <p class="works-item__text">
+          Windows application for easy creating time lapse recordings of user screen. This app was developed for myself
+          for recording of my drawing and sculpting sessions.
+        </p>
+        <div class="works-item__technologies">
+          <div class="works-item__icon">
+            <i class="icon icon--ffmpeg">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--cpp">
+            </i>
+          </div>
+          <div class="works-item__icon">
+            <i class="icon icon--qt">
+            </i>
+          </div>
         </div>
-        <div class="works-item__icon">
-          <i class="icon icon--cpp">
-          </i>
-        </div>
-        <div class="works-item__icon">
-          <i class="icon icon--qt">
-          </i>
+        <div class="works-item__buttons-container">
+          <a target="_blank" href="https://github.com/mfecane/rec_app">
+            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
+            <i class=" icon icon--github"></i><span>GitHub</span>
+            </button>
+          </a>
         </div>
       </div>
-      <div class="works-item__buttons-container">
-        <a target="_blank" href="https://github.com/mfecane/rec_app">
-          <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-          </button>
+      <div class=" works-item__image">
+        <a target="_blank">
+          <video src="f9e097d62488db567b02.webm" autoplay muted loop></video>
         </a>
       </div>
-    </div>
-    <div class=" works-item__image">
-      <a target="_blank">
-        <video src="f9e097d62488db567b02.webm" autoplay muted loop></video>
-      </a>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <section class="page page4" data-transition data-transition-page="7" data-transition-in="contacts-page"
     data-transition-out="contacts-page">
-    <div class="contacts__container">
+    <div class="contacts__container container">
       <h3 class="contacts__title anim-color">
         <span>Contacts</span>
       </h3>
