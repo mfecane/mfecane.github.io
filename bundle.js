@@ -697,9 +697,9 @@ const height = 1200;
 const aspect = width / height;
 const initScene = width => {
   scene = new three__WEBPACK_IMPORTED_MODULE_8__.Scene();
-  const factor = 3;
+  const factor = 2.8;
   const height = width / aspect;
-  camera = new three__WEBPACK_IMPORTED_MODULE_8__.OrthographicCamera(-factor, factor, -factor / aspect - 0.6, factor / aspect - 0.6, -factor, factor);
+  camera = new three__WEBPACK_IMPORTED_MODULE_8__.OrthographicCamera(-factor, factor, -factor / aspect - 1, factor / aspect - 1, -factor, factor);
   const loader = new three_examples_jsm_loaders_GLTFLoader__WEBPACK_IMPORTED_MODULE_0__.GLTFLoader();
   const draco = new three_examples_jsm_loaders_DRACOLoader__WEBPACK_IMPORTED_MODULE_1__.DRACOLoader();
   draco.setDecoderConfig({
