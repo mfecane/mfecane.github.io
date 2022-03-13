@@ -1763,7 +1763,7 @@ const checkBrowser = () => {
   const width = window.innerWidth;
   const height = window.innerHeight; // TODO ::: restore this
 
-  if (900 < width && 700 < height && height < width) {
+  if (900 < width && 600 < height && height < width) {
     return DISPLAY_MODE.ANIMATED;
   }
 
