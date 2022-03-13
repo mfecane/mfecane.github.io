@@ -190,7 +190,7 @@ const checkBrowser = () => {
   const height = window.innerHeight
 
   // TODO ::: restore this
-  if (900 < width && 700 < height && height < width) {
+  if (900 < width && 600 < height && height < width) {
     return DISPLAY_MODE.ANIMATED
   }
 
@@ -222,7 +222,7 @@ const setUpAnimationComponents = () => {
 
   const animColor = new AnimColor()
   animColor.init()
-  animColor.animate()
+  // animColor.animate()
 
   const scrollTimelineSetup = new ScrollTimelineSetup()
   scrollTimelineSetup.scrollTimeline = scrolltimeline

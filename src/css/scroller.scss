@@ -2,7 +2,7 @@
 
 .scroller__container {
   position: absolute;
-  bottom: 5vh;
+  bottom: 3vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 25;
@@ -60,13 +60,20 @@
 
 .scroller__labels {
   position: absolute;
-  width: 114%;
+  width: 110%;
   top:0;
   display: flex;
   justify-content: space-between;
   font-family: $mainFont;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
   color:rgb(192, 192, 192);
-  transform: translate(-7%, -18px);
+  transform: translate(-5%, -18px);
+}
+
+.scroller__labels div:nth-child(3) {
+  transform: translateX(2px);
 }
 
 .scroller__labels div {

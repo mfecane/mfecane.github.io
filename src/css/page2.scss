@@ -41,17 +41,19 @@
 .about__title {
   align-self: stretch;
   display: block;
-  font-family: "Playfair Display", serif;
+  font-family: $headerFont, serif;
   font-size: 24px;
   line-height: 28px;
   color: $accent;
   font-weight: 400;
-  letter-spacing: 1px;
   text-transform: uppercase;
   text-align: right;
   margin-bottom: 32px;
   border-bottom: $accent 1px solid;
   padding-bottom: 4px;
+}
+
+.about__main {
 }
 
 .about__text {
@@ -61,42 +63,42 @@
   font-family: $mainFont;
   font-size: 16px;
   line-height: 20px;
-  margin: 0px 0px 50px 0px;
+  margin: 0px 0px 40px 0px;
 }
 
 .about__text p {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .static-mode .about__container {
   margin: 50px 0 50px 0;
 }
 
+.dynamic-mode .about__container {
+  width: 100%;
+}
+
 .tech__container {
   flex: 0 0 120px;
   z-index: 0;
   align-self: center;
-}
-
-.tech__row {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 22px;
-  margin: auto;
+  margin: 45px auto;
 }
 
-.dynamic-mode .tech__row {
-
+.dynamic-mode .tech__item:nth-child(even) .tech__item-inner {
+  transform: translateY(60px);
 }
 
 .tech__item {
-  flex: 0 0 50px;
+  flex: 0 0 auto;
   position: relative;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid $accent;
+}
+
+.dynamic-mode .tech__item {
+  flex: 0 0 auto;
 }
 
 .static-mode .tech__item {
@@ -110,9 +112,25 @@
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  width: 50%;
-  height: 50%;
+  width: 24px;
+  height: 24px;
   background: $accent;
+}
+
+.dynamic-mode .tech__item:nth-child(odd) {
+  transform: translateY(50px);
+}
+
+.tech__item-inner:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid $accent;
 }
 
 .page2-scroller {
@@ -148,16 +166,19 @@
 }
 
 .dynamic-mode .exp__container {
-  margin: 0 100px;
+  margin: auto 100px;
+
+  @media (max-height: 750px) {
+    margin: auto 40px;
+  }
 }
 
 .exp__title {
-  font-family: "Playfair Display", serif;
+  font-family: $headerFont, serif;
   color: $accent;
   font-size: 30px;
   font-weight: normal;
-  letter-spacing: 2px;
-  display:flex;
+  display: flex;
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -177,7 +198,7 @@
   content: "";
   height: 1px;
   top: 50%;
-  left:0;
+  left: 0;
   width: 100%;
   background-color: $accent;
 }
@@ -187,6 +208,11 @@
   align-items: flex-start;
   margin: 26px 0 32px 0;
   gap: 40px;
+
+  @media (max-height: 750px) {
+    margin: 10px 0 10px 0;
+    gap: 20px;
+  }
 }
 
 .exp__year {
