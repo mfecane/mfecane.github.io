@@ -32,14 +32,14 @@ const aspect = width / height
 export const initScene = (width) => {
   scene = new THREE.Scene()
 
-  const factor = 3
+  const factor = 2.8
   const height = width / aspect
 
   camera = new THREE.OrthographicCamera(
     -factor,
     factor,
-    -factor / aspect - 0.6,
-    factor / aspect - 0.6,
+    -factor / aspect - 1,
+    factor / aspect - 1,
     -factor,
     factor
   )

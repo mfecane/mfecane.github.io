@@ -23,7 +23,7 @@
 }
 
 .works-title__heading {
-  font-family: "Playfair Display", serif;
+  font-family: $headerFont, serif;
   font-size: 60px;
   line-height: 54px;
   font-weight: 400;
@@ -31,7 +31,14 @@
   text-transform: uppercase;
 }
 
+.static-mode .works-title__heading {
+  white-space: nowrap;
+  font-size: 42px;
+}
+
 .dynamic-mode .works-title__heading {
+  display: inline-block;
+  max-width: 220px;
   text-align: right;
   margin-bottom: 8px;
   margin-right: 4px;
@@ -39,17 +46,13 @@
   line-height: 54px;
 }
 
-.static-mode .works-title__heading {
-  white-space: nowrap;
-  font-size: 42px;
-}
-
-
 .works-item__container {
   opacity: 1;
   display: flex;
   background-color: $darkbg1;
   border-radius: 2px;
+  padding: 32px;
+  gap: 18px;
 }
 
 .static-mode .works-item__container {
@@ -69,14 +72,12 @@
   z-index: 10;
 }
 
-
 .works-item__container:nth-child(even) {
   flex-direction: row-reverse;
 }
 
 .works-item__layout {
   flex: 1 1 auto;
-  padding: 24px;
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -84,9 +85,8 @@
 
 .works-item__title {
   flex: 0 0 auto;
-  font-family: "Playfair Display", serif;
+  font-family: $headerFont, serif;
   text-transform: uppercase;
-  letter-spacing: 1px;
   font-weight: bold;
   color: $accent;
   font-size: 18px;
@@ -95,8 +95,12 @@
   border-bottom: solid 1px $accent;
 }
 
+.works-item__title:hover {
+  color: white !important;
+}
+
 .works-item__text {
-  flex: 1 0 40%;
+  flex: 1 0 auto;
   color: $light-dimmed;
   font-family: $mainFont;
   font-size: 16px;
@@ -104,46 +108,20 @@
 }
 
 .works-item__image {
-  flex: 1 0 60%;
+  flex: 1 0 auto;
   overflow: hidden;
   position: relative;
   border-radius: 2px;
 }
 
-.works-item__image a {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  border-radius: 2px;
-}
-
 .works-item__image video {
-  margin: 0px;
-  padding: 0px;
   object-fit: cover;
   width: 100%;
   height: 100%;
   object-position: center center;
   transform: scale(1.0);
   transition: all 0.3s ease-out 0s;
-  border-radius: 2px;
-}
-
-.works-item__container .works-item__image video {
-  border-radius: 2px;
-}
-
-.works-item__container:nth-child(odd) .works-item__image video {
-  border-radius: 2px;
-}
-
-.works-item__image video:hover {
-  transform: scale(1.05);
-  transition: all 0.3s ease-out 0s;
+  border-radius: 4px;
 }
 
 .works-item__buttons-container {

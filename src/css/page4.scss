@@ -32,12 +32,11 @@
 }
 
 .contacts__title {
-  font-family: 'Playfair Display', serif;
+  font-family: $headerFont, serif;
   text-transform: uppercase;
   color: $accent;
   font-size: 48px;
   font-weight: normal;
-  letter-spacing: 2px;
 }
 
 .contacts__title span {

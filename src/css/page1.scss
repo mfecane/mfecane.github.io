@@ -64,6 +64,10 @@ body.dynamic-mode {
   max-width: 400px;
 }
 
+.static-mode .page1__photo {
+  max-width: 30vw;
+}
+
 .static-mode .page1 {
   position: static;
 }
@@ -107,10 +111,9 @@ body.dynamic-mode {
 }
 
 .column__title {
-  font-family: 'Playfair Display', serif;
+  font-family: $headerFont, serif;
   font-size: 72px;
   line-height: 8.25vmin;
-  letter-spacing: 0.225vmin;
   font-weight: 400;
   color: $light;
   text-transform: uppercase;
@@ -126,10 +129,9 @@ body.dynamic-mode {
 }
 
 .column__subtitle {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 32px;
-  line-height: 4.25vmin;
-  letter-spacing: 0.2vmin;
+  font-family: $headerFont, serif;
+  font-size: 36px;
+  letter-spacing: 1px;
   color: $accent;
   font-weight: 400;
   text-transform: uppercase;
@@ -172,7 +174,6 @@ body.dynamic-mode {
     color: $light;
     margin: 6px 0;
     font-weight: 300;
-    letter-spacing: 0.125vmin;
     position: relative;
     cursor: pointer;
     z-index: 3;

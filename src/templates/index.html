@@ -8,7 +8,9 @@
   <title>Aleksei Aliapkin - FrontEnd developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+text&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
 </head>
 
@@ -62,9 +64,9 @@
           Contact me
         </button>
         <a target="_blank" href="/assets/cv/cv.pdf">
-        <button class="btn btn_secondary anim-border-color anim-color">
-          Download CV
-        </button></a>
+          <button class="btn btn_secondary anim-border-color anim-color">
+            Download CV
+          </button></a>
       </div>
     </div>
     <div class="page1__photo-container">
@@ -76,7 +78,7 @@
     data-transition-in-args="" data-transition-out="second-page-left" data-transition-out-args="">
     <div class="about__container container">
 
-      <div class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
+      <div class="about__main" data-transition data-transition-page="1" data-transition-in="slide-from"
         data-transition-out="slide-from">
         <h3 class="about__title anim-color anim-border-color">
           HI, MY NAME IS ALIAPKIN ALEKSEI
@@ -104,39 +106,45 @@
         </h3>
 
         <div class="tech__container">
-          <div class="tech__row">
-            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-              data-transition-in="slide-from" data-transition-in-args="|100|1" data-transition-out="slide-from"
-              data-transition-out-args="|100|1">
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|1">
+            <div class="tech__item-inner">
               <div class="tech__image icon icon--vue anim-background-color"></div>
             </div>
-            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-              data-transition-in="slide-from" data-transition-in-args="|100|.95" data-transition-out="slide-from"
-              data-transition-out-args="|100|.95">
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.95">
+            <div class="tech__item-inner">
               <div class="tech__image icon icon--js anim-background-color"></div>
             </div>
-            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-              data-transition-in="slide-from" data-transition-in-args="|100|.90" data-transition-out="slide-from"
-              data-transition-out-args="|100|.90">
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.9">
+            <div class="tech__item-inner">
               <div class="tech__image icon icon--react anim-background-color"></div>
             </div>
-            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-              data-transition-in="slide-from" data-transition-in-args="|100|.85" data-transition-out="slide-from"
-              data-transition-out-args="|100|.85">
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.85">
+            <div class=" tech__item-inner">
               <div class="tech__image icon icon--redux anim-background-color"></div>
             </div>
-            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-              data-transition-in="slide-from" data-transition-in-args="|100|1" data-transition-out="slide-from"
-              data-transition-out-args="|100|1">
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.8">
+            <div class="tech__item-inner">
               <div class="tech__image icon icon--sass anim-background-color"></div>
             </div>
-            <div class="tech__item anim-border-color" data-transition data-transition-page="1"
-              data-transition-in="slide-from" data-transition-in-args="|100|.95" data-transition-out="slide-from"
-              data-transition-out-args="|100|.95">
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.75">
+            <div class="tech__item-inner">
               <div class="tech__image icon icon--jquery anim-background-color"></div>
             </div>
-            <div class="tech__item anim-border-color" data-transition="slide-from" data-transition-page="1"
-              data-transition-args="|100|.9">
+          </div>
+          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
+            data-transition-args="|100|.7">
+            <div class="tech__item-inner">
               <div class="tech__image icon icon--git anim-background-color"></div>
             </div>
           </div>
@@ -238,9 +246,11 @@
     <section class="works-item__container shadow" data-transition data-transition-page="2" data-transition-in="works-in"
       data-transition-out="works-out">
       <div class="works-item__layout">
-        <h4 class="works-item__title anim-color anim-border-color">
-          <a target="_blank" href="https://mfecane.github.io/boot/">Boot store app</a>
-        </h4>
+        <a target="_blank" href="https://mfecane.github.io/boot/">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Boot store app
+          </h4>
+        </a>
         <p class="works-item__text">
           An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and
           material colors for different parts.
@@ -278,9 +288,11 @@
     <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
       data-transition-out="works-out">
       <div class="works-item__layout">
-        <h4 class="works-item__title anim-color anim-border-color">
-          <a target="_blank" href="https://mfecane.github.io/weather-app/">Weather app</a>
-        </h4>
+        <a target="_blank" href="https://mfecane.github.io/weather-app/">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Weather app
+          </h4>
+        </a>
         <p class="works-item__text">
           Application, which displays current weather, 5 day forecast, and
           hourly weather for the next 24 hours. Using both OpenWeatherMap
@@ -348,9 +360,11 @@
     <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
       data-transition-out="works-out">
       <div class="works-item__layout">
-        <h4 class="works-item__title anim-color anim-border-color">
-          <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">Mandelbruh</a>
-        </h4>
+        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Mandelbruh
+          </h4>
+        </a>
         <p class="works-item__text">
           Several implementations of mandelbrot fractal zooming applications. There are CPU,
           GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of
@@ -393,9 +407,11 @@
     <section class="works-item__container shadow" data-transition data-transition-page="6" data-transition-in="works-in"
       data-transition-out="works-out">
       <div class="works-item__layout">
-        <h4 class="works-item__title anim-color anim-border-color">
-          <a target="_blank" href="https://github.com/mfecane/rec_app/releases">Screen recording app</a>
-        </h4>
+        <a target="_blank" href="https://github.com/mfecane/rec_app/releases">
+          <h4 class="works-item__title anim-color anim-border-color">
+            Screen recording app
+          </h4>
+        </a>
         <p class="works-item__text">
           Windows application for easy creating time lapse recordings of user screen. This app was developed for myself
           for recording of my drawing and sculpting sessions.

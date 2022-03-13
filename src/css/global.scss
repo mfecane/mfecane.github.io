@@ -18,8 +18,8 @@ body {
   width: 12rem;
   padding: 4px 12px;
   background: transparent;
-  font-family: $headerFont, serif;
-  font-size: 20px;
+  font-family: $mainFont, serif;
+  font-size: 18px;
   font-weight: 400;
   transition: all 0.15s ease-out;
   white-space: nowrap;
@@ -147,7 +147,7 @@ body {
 }
 
 a {
-  color: $accent;
+  color: inherit;
 }
 
 a:hover {
