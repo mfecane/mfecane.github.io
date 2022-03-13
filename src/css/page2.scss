@@ -64,6 +64,11 @@
   margin: 0px 0px 50px 0px;
 }
 
+.about__text p {
+  margin: 5px 0;
+}
+
+
 .tech__container {
   flex: 0 0 120px;
   z-index: 0;
@@ -172,6 +177,7 @@
   color: $light;
   font-size: 18px;
   letter-spacing: 1px;
+  white-space: nowrap;
   flex: 0 0 60px;
 }
 
@@ -188,6 +194,7 @@
 }
 
 .exp__place {
+  display: block;
   text-transform: uppercase;
   font-style: normal;
   font-size: 14px;

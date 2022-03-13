@@ -117,7 +117,7 @@ export const setLightColor = (value) => {
 }
 
 export const setGlitchPassState = (value) => {
-  const randomCheck = Math.random() < 0.3
+  const randomCheck = Math.random() < 0.2
   if (value && randomCheck) {
     glitchPass = new GlitchPass()
     composer.addPass(glitchPass)

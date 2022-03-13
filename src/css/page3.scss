@@ -1,60 +1,59 @@
 @import "css/config.scss";
 
-.works__title {
-  font-family: "Playfair Display", serif;
-  color: $accent;
-  font-size: 30px;
-  font-weight: normal;
-  letter-spacing: 2px;
-  display: flex;
-  gap: 10px;
-  margin: 60px 0 10px 0;
+
+.works-title {
+  position: static;
+  top: auto;
+  left: auto;
+  width: auto;
 }
 
-.works__title span {
-  flex: 1 0 max-content;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.works__title div {
-  flex: 1 1 100%;
-  position: relative;
-}
-
-.works__title div div {
-  content: "";
-  height: 1px;
+.dynamic-mode .works-title {
+  position: absolute;
   top: 50%;
-  left: 0;
-  width: 100%;
-  background-color: $accent;
+  left: -50vw;
+  transform: translateY(-50%);
+  width: 18vw;
+  height: 60vh;
+  border-right: 1px solid white;
+  padding-right: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.works-title__heading {
+  font-family: "Playfair Display", serif;
+  font-size: 60px;
+  line-height: 54px;
+  font-weight: 400;
+  color: $light;
+  text-transform: uppercase;
+}
+
+.dynamic-mode .works-title__heading {
+  text-align: right;
+  margin-bottom: 8px;
+  margin-right: 4px;
 }
 
 .works-item__container {
+  opacity: 1;
+  display: flex;
+  background-color: $darkbg1;
+  border-radius: 2px;
+}
+
+.dynamic-mode .works-item__container {
   position: absolute;
   left: 50%;
   top: 50%;
   opacity: 0;
   width: 60vw;
   height: 60vh;
-  background-color: $darkbg1;
   display: flex;
   transform: translateX(-40%) translateY(-50%);
   z-index: 10;
-}
-
-.static-mode .works-item__container {
-  position: static;
-  left: auto;
-  top: auto;
-  opacity: 1;
-  width: auto;
-  height: auto;
-  background-color: $darkbg1;
-  display: flex;
-  transform: none;
-  z-index: auto;
 }
 
 
@@ -63,6 +62,7 @@
 }
 
 .works-item__layout {
+  flex: 1 1 auto;
   padding: 24px;
   align-self: stretch;
   display: flex;
@@ -82,7 +82,7 @@
 }
 
 .works-item__text {
-  flex: 1 0 auto;
+  flex: 1 0 50%;
   color: $light-dimmed;
   font-family: "Lora" serif;
   letter-spacing: 1px;
@@ -91,23 +91,45 @@
 }
 
 .works-item__image {
-  min-width: 300px;
+  flex: 1 0 50%;
   overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+
+.works-item__image a {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
 }
 
 .works-item__image video {
   margin: 0px;
   padding: 0px;
   object-fit: cover;
-  max-width: 300px;
+  width: 100%;
+  height: 100%;
   object-position: center center;
-  transform: scale(1.05) translate(0, 0);
-  /* This is stupid */
+  transform: scale(1.0);
   transition: all 0.3s ease-out 0s;
+  border-radius: 2px;
+}
+
+.works-item__container .works-item__image video {
+  border-radius: 2px;
+}
+
+.works-item__container:nth-child(odd) .works-item__image video {
+  border-radius: 2px;
 }
 
 .works-item__image video:hover {
-  transform: scale(1.2) translate(0, 5%);
+  transform: scale(1.05);
   transition: all 0.3s ease-out 0s;
 }
 
@@ -124,7 +146,6 @@
   font-weight: bold;
   color: $dark;
   font-size: 16px;
-  letter-spacing: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,6 +161,10 @@
   transition: all 0.15s ease-out;
 }
 
+.works-item__button span {
+  transform: translateY(2px);
+}
+
 .works-item__button:hover .icon {
   display: block;
   width: 20px;
@@ -147,35 +172,30 @@
   background-color: $light;
 }
 
-.works-title {
-  position: absolute;
-  top: 50%;
-  left: -50vw;
-  transform: translateY(-50%);
-  transform: translateY(20%);
-  width: 20vw;
+.works-item__technologies {
+  margin: 5px 0 20px 0;
+  display: flex;
+  gap: 8px;
 }
 
-.static-mode .works-title {
-  position: static;
-  top: auto;
-  left: auto;
-  width: auto;
+.works-item__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid $accent;
+  display: grid;
 }
 
-.works-title__heading {
-  font-family: "Playfair Display", serif;
-  font-size: 80px;
-  line-height: 8.25vmin;
-  letter-spacing: 0.225vmin;
-  font-weight: 400;
-  color: $light;
-  text-transform: uppercase;
-  text-align: right;
-  margin-bottom: 8px;
-  margin-right: 4px;
+.works-item__icon .icon {
+  background: $accent;
+  place-self: center;
+  width: 18px;
+  height: 18px;
 }
 
-.static-mode .works-title__heading {
-  text-align: unset;
+.works-item__icon--react {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid $accent;
 }

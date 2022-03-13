@@ -221,7 +221,7 @@ const setUpAnimationComponents = () => {
 
   const animColor = new AnimColor()
   animColor.init()
-  animColor.animate()
+  // animColor.animate()
 
   const scrollTimelineSetup = new ScrollTimelineSetup()
   scrollTimelineSetup.scrollTimeline = scrolltimeline

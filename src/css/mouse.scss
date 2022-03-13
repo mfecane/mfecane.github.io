@@ -4,7 +4,7 @@
   display: none;
 }
 
-.mouse__container.fade-out {
+.dynamic-mode .mouse__container.fade-out {
   opacity: 0;
   pointer-events: none;
 }
