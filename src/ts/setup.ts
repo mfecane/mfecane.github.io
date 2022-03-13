@@ -13,7 +13,12 @@ import { mapclamp, mapplain, map01 } from 'ts/lib/lib'
 import AnimColor from 'ts/components/anim-color'
 import ScrollTimelineSetup from './components/scroll-timeline-setup'
 
-import { initScene, setCameraOffset, setLightColor } from 'ts/components/portrait-scene'
+import {
+  initScene as initPortraitScene,
+  setCameraOffset,
+  setLightColor,
+  setGlitchPassState,
+} from 'ts/components/portrait-scene'
 import mouse from 'ts/interaction/mouse'
 
 import {
@@ -108,6 +113,10 @@ const handleAvatarLook = (e) => {
   setCameraOffset(val1, val2)
 }
 
+const handleGlitch = (value) => {
+  setGlitchPassState(value)
+}
+
 const handleAvatarLight = (value) => {
   setLightColor(value)
 }
@@ -166,31 +175,13 @@ const setUpScrollTimeLine = () => {
     page: 0 // last page
   })
 
-  scrolltimeline.addPageChangeCallback(update)
-
-  scrolltimeline.start()
-}
-
-const setUpMenu = () => {
-  // document.querySelector('#home-link').addEventListener('click', () => {
-  //   scrolltimeline.setScrollValue(0)
-  // })
-
-  document.querySelector('#exp-link').addEventListener('click', () => {
-    scrolltimeline.setScrollValue(1)
-  })
-
-  document.querySelector('#works-link').addEventListener('click', () => {
-    scrolltimeline.setScrollValue(2)
-  })
-
-  document.querySelector('#contacts-link').addEventListener('click', () => {
-    scrolltimeline.setScrollValue(7)
-  })
-
   document.querySelector('#contacts-button').addEventListener('click', () => {
     scrolltimeline.setScrollValue(7)
   })
+
+  scrolltimeline.addPageChangeCallback(update)
+
+  scrolltimeline.start()
 }
 
 const checkBrowser = () => {
@@ -223,7 +214,6 @@ const setUpAnimationComponents = () => {
   }, 400)
 
   setUpScrollTimeLine()
-  setUpMenu()
 
   mainBgAnimation = new MainBgAnimation(mainBgCanvasContainer)
   mainBgAnimation.scrollTimeline = scrolltimeline
@@ -238,10 +228,13 @@ const setUpAnimationComponents = () => {
   scrollTimelineSetup.init()
   scrollTimelineSetup.animate()
 
-  initScene().then((domElement) => {
+  initPortraitScene(photoContainer.offsetWidth).then((domElement) => {
     avatarImage.style.display = 'none'
     photoContainer.appendChild(domElement)
     document.addEventListener('mousemove', handleAvatarLook)
+
+    domElement.addEventListener('mouseenter', handleGlitch.bind(null, true))
+    domElement.addEventListener('mouseleave', handleGlitch.bind(null, false))
   })
 
   initScroller({

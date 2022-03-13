@@ -10,9 +10,8 @@ import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js'
 // import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 // import { UnrealBloomPass } from 'ts/three/TransparentBackgroundFixedUnrealBloomPass'
 
-
-import { BloomPass } from './jsm/postprocessing/BloomPass.js';
-import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass';
+// import { BloomPass } from 'three/examples/jsm/postprocessing/BloomPass.js';
+import { FilmPass } from 'three/examples/jsm/postprocessing/FilmPass'
 
 import { mapclamp } from 'ts/lib/lib'
 
@@ -24,20 +23,23 @@ let domElement
 let object
 let light
 let composer
+let glitchPass
 
 const width = 800
 const height = 1200
+const aspect = width / height
 
-export const initScene = () => {
+export const initScene = (width) => {
   scene = new THREE.Scene()
 
   const factor = 3
+  const height = width / aspect
 
   camera = new THREE.OrthographicCamera(
     -factor,
     factor,
-    (-factor / width) * height,
-    (factor / width) * height,
+    -factor / aspect - 0.6,
+    factor / aspect - 0.6,
     -factor,
     factor
   )
@@ -87,18 +89,12 @@ export const initScene = () => {
     light = new THREE.AmbientLight(0xffffff) // soft white light
     scene.add(light)
 
-
-
     composer = new EffectComposer(renderer)
 
     const renderPass = new RenderPass(scene, camera)
     composer.addPass(renderPass)
 
-    // const glitchPass = new GlitchPass()
-    // glitchPass.goWild = false
-    // composer.addPass(glitchPass)
-
-    const effectFilmBW = new FilmPass( 0.3, 1, 2048, false );
+    const effectFilmBW = new FilmPass(0.3, 1, 2048, false)
     composer.addPass(effectFilmBW)
 
     animate()
@@ -118,6 +114,18 @@ export const setLightColor = (value) => {
     val
   )})`
   light.color = new THREE.Color(color)
+}
+
+export const setGlitchPassState = (value) => {
+  const randomCheck = Math.random() < 0.3
+  if (value && randomCheck) {
+    glitchPass = new GlitchPass()
+    composer.addPass(glitchPass)
+    console.log('pass added')
+  } else {
+    composer.removePass(glitchPass)
+    console.log('pass removed')
+  }
 }
 
 function animate() {
