@@ -129,10 +129,9 @@ body.dynamic-mode {
 }
 
 .column__subtitle {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 32px;
-  line-height: 4.25vmin;
-  letter-spacing: 0.2vmin;
+  font-family: $headerFont, serif;
+  font-size: 36px;
+  letter-spacing: 1px;
   color: $accent;
   font-weight: 400;
   text-transform: uppercase;
