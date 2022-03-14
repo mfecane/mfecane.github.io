@@ -7,6 +7,7 @@ import 'css/mouse.scss'
 import 'css/scroller.scss'
 import 'css/pager.scss'
 import 'css/global.scss'
+import 'css/loading.scss'
 
 
 import 'ts/setup'

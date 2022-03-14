@@ -38,6 +38,7 @@ let page2: HTMLDivElement
 let worksTitle: HTMLDivElement
 let photoContainer: HTMLDivElement
 let avatarImage: HTMLImageElement
+let loadingScreen: HTMLDivElement
 
 let logoAnimationFinished = false
 
@@ -119,6 +120,13 @@ const handleGlitch = (value) => {
 
 const handleAvatarLight = (value) => {
   setLightColor(value)
+}
+
+const hideLoadingScreen = ()=> {
+  loadingScreen.classList.add('fade-out')
+  setTimeout(()=> {
+    loadingScreen.classList.add('hidden')
+  }, 1500)
 }
 
 // TODO ::: sell printer
@@ -207,6 +215,7 @@ const setUpAnimationComponents = () => {
   worksTitle = document.querySelector('.works-title')
   photoContainer = document.querySelector('.page1__photo-container')
   avatarImage = document.querySelector('.page1__photo')
+  loadingScreen = document.querySelector('.loading-screen')
 
   body.classList.add('dynamic-mode')
 
@@ -236,6 +245,8 @@ const setUpAnimationComponents = () => {
 
     domElement.addEventListener('mouseenter', handleGlitch.bind(null, true))
     domElement.addEventListener('mouseleave', handleGlitch.bind(null, false))
+
+    hideLoadingScreen()
   })
 
   initScroller({
