@@ -99,10 +99,15 @@ void main()
 
   vec4 BaseColor = texture(u_Sampler, uvoff) * 0.9;
 
+  float vignette = smoothstep(0.0, 0.2, uv.y) * smoothstep(1.0, 0.8, uv.y) * 0.8 + 0.2;
+
   FragColor = mix(BaseColor, Color, blur);
   FragColor = vec4(
-    blendColor(FragColor.rgb * (1.0 - u_desaturate / 3.0),
-    vec3(50.0 / 255.0, 59.0 / 255.0, 74.0 / 255.0), u_desaturate),
+    blendColor(
+      FragColor.rgb * (1.0 - u_desaturate / 3.0),
+      vec3(50.0 / 255.0, 59.0 / 255.0, 74.0 / 255.0),
+      u_desaturate
+    ) * vignette,
     1.0
   );
   // // it's dead jim
