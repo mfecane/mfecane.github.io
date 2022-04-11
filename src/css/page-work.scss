@@ -1,0 +1,135 @@
+@import "css/config.scss";
+
+.works-page {
+  min-width: 100vw;
+  display: inline-flex;
+  gap: 80px;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  pointer-events: all;
+  padding: 0 150px 0 50px;
+}
+
+.works-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 360px;
+  transform: translateY(50px);
+}
+
+.works-item:nth-child(even) {
+  flex-direction: column-reverse;
+  transform: translateY(-50px);
+}
+
+.work-item__descr-container {
+  border-left: 5px solid $accent;
+  padding-left: 16px;
+}
+
+.works-item__title {
+  color: $accent;
+  font-family: $headerFont;
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+  transition: all 200ms ease-in;
+  letter-spacing: 1px;
+}
+
+.works-item__title:hover {
+  color: white;
+}
+
+.works-item__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.works-item__tag {
+  border-radius: 4px;
+  background-color: #242c36;
+  color: #778290;
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.works-item__descr-text {
+  color: $light2;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.works-item__buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.works-item__button {
+  min-width: 120px;
+  width: auto;
+  padding: 2px 15px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.works-item__image {
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+  position: relative;
+}
+
+.works-item__image video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center center;
+  transform: scale(1);
+  transition: all 0.3s ease-out 0s;
+  border-radius: 2px;
+}
+
+.works-item__icons {
+  right: 12px;
+  bottom: 12px;
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+}
+
+.works-item__icon {
+  background-color: $dark;
+  width: 42px;
+  height: 42px;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+}
+
+.works-item__icon i {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  transition: all 200ms ease;
+}
+
+.works-item__icon:hover {
+  cursor: pointer;
+}
+
+.works-item__icon:hover i {
+  width: 25px;
+  height: 25px;
+  background-color: $accent;
+}
+
+.works-item__icon--right i {
+  transform: translateX(2px);
+  mask-image: url("assets/svg/icons/right.svg");
+}

@@ -1,503 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aleksei Aliapkin - FrontEnd developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<head>
-  <meta charset="utf-8" />
-  <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aleksei Aliapkin - FrontEnd developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+text&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
-</head>
+  <body class="dynamic-mode">
+    <noscript>You need to enable JavaScript to view this site.</noscript>
 
-<body>
-  <noscript>You need to enable JavaScript to view this site.</noscript>
+    <div id="shader-canvas-container"></div>
 
-  <div class="loading-screen">
-    <div class="loading-screen__spinner">
-      <div class=cube-row>
-        <div class="cube cube1"></div>
-        <div class="cube cube2"></div>
-        <div class="cube cube3"></div>
-        <div class="cube cube4"></div>
+    <ul class="nav">
+      <li class="nav_item" id="menu_home">home</li>
+      <li class="nav_spacer"></li>
+      <li class="nav_item" id="menu_about">about</li>
+      <li class="nav_spacer"></li>
+      <li class="nav_item" id="menu_works">works</li>
+      <li class="nav_spacer"></li>
+      <li class="nav_item" id="menu_contacts">contacts</li>
+    </ul>
+
+    <div class="mouse__container">
+      <div class="mouse__mouse">
+        <div class="mouse__wheel"></div>
       </div>
+      <div class="mouse__label">scroll</div>
     </div>
-  </div>
 
-  <div id="main-bg-canvas-container"></div>
-
-  <div class="mouse__container">
-    <div class="mouse__mouse">
-      <div class="mouse__wheel anim-background-color"></div>
-    </div>
-    <div class="mouse__arrow-container">
-      <div class="mouse__arrow-top"></div>
-      <div class="mouse__arrow-bottom"></div>
-    </div>
-  </div>
-
-  <div class="scroller__container" style="opacity: 0">
-    <div class="scroller__line">
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-    </div>
-    <div class="scroller__labels">
-      <div>Home</div>
-      <div>Experience</div>
-      <div>Works</div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div>Contacts</div>
-    </div>
-  </div>
-
-  <section class="page1" id="page1">
-    <div class="page1__left">
-      <div class="logo-group">
-        <div class="column__logo-container" id="logo-container"></div>
-        <img src="/assets/svg/title.svg" alt="" class="column__title-image" width="400px" height="125px" />
-        <h2 class="column__subtitle anim-color">frontend<br />developer</h2>
-      </div>
-      <div class="column__button-container">
-        <button class="btn btn_primary anim-border-color anim-background-color" id="contacts-button">
-          Contact me
-        </button>
-        <a target="_blank" href="/assets/cv/cv.pdf">
-          <button class="btn btn_secondary anim-border-color anim-color">
-            Download CV
-          </button></a>
-      </div>
-    </div>
-    <div class="page1__photo-container">
-      <img src="/assets/img/avatar.png" alt="" class="page1__photo" />
-    </div>
-  </section>
-
-  <div class="page2-left" data-transition data-transition-page="1" data-transition-in="second-page-left"
-    data-transition-in-args="" data-transition-out="second-page-left" data-transition-out-args="">
-    <div class="about__container container">
-
-      <div class="about__main" data-transition data-transition-page="1" data-transition-in="slide-from"
-        data-transition-out="slide-from">
-        <h3 class="about__title anim-color anim-border-color">
-          HI, MY NAME IS ALIAPKIN ALEKSEI
-        </h3>
-
-        <article class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
-          data-transition-in-args="|50|" data-transition-out="slide-from" data-transition-out-args="|50|">
-          <p>
-            Hi, my name is Aliapkin Aleksei and i am a front-end developer
-            located in Moscow, Russia.
-          </p>
-
-          <p>
-            Senior front-end developer specializing in Javascript, Vue and
-            jQuery technologies. I performed well, and received rapid career
-            growth to became a team leader. I have a strong mathematical
-            background and significant artistic skills, in particular 3D
-            modeling.
-          </p>
-
-        </article>
-
-        <h3 class="about__title anim-color anim-border-color">
-          TECHNOLOGIES
-        </h3>
-
-        <div class="tech__container">
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|1">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--vue anim-background-color"></div>
+    <div class="scroller">
+      <div class="hero-page">
+        <div class="hero-page__left">
+          <div class="hero-page__background"></div>
+          <div class="hero-section">
+            <div class="logo-group__logo-container">
+              <div class="logo-group__logo-aspect" id="logo-container"></div>
             </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.95">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--js anim-background-color"></div>
+
+            <h1 class="hero-section__title">
+              The standard chunk of Lorem Ipsum used
+            </h1>
+
+            <div class="avatar-group">
+              <div class="avatar-group___titles">
+                <h2 class="avatar-group___name">Aleksei Aliapkin</h2>
+                <!-- prettier-ignore -->
+                <h2 class="avatar-group___job">frontend<br>developer</h2>
+              </div>
+              <div class="avatar-group__image__container">
+                <div class="avatar-grop__image"></div>
+              </div>
             </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.9">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--react anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.85">
-            <div class=" tech__item-inner">
-              <div class="tech__image icon icon--redux anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.8">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--sass anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.75">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--jquery anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.7">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--git anim-background-color"></div>
+
+            <div class="hero-section__button-container">
+              <button class="btn btn_primary" id="contacts-button">
+                Contact me
+              </button>
+              <a target="_blank" href="/assets/cv/cv.pdf">
+                <button class="btn btn_secondary">Download CV</button></a
+              >
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="page2-right" data-transition-page="1" data-transition="second-page-right">
-    <div class="exp__container container">
-      <h3 class="exp__title anim-color">
-        <span>WORK EXPERIENCE</span>
-        <div>
-          <div class="anim-background-color"></div>
-        </div>
-      </h3>
-
-      <ul>
-        <li class="exp__item">
-          <span class="exp__year">2021 - NOW</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Senior developer/Team lead, Online Reservation Systems
-            </h4>
-            <em class="exp__place">Online Reservation Systems</em>
-            <p class="exp__descr">
-              Shortly after joining became team lead.
-              Started to manage team's tasks, perform code reviews
-              I take only most complex tasks.
-              I perform different related activities, such as
-              DevOps tasks, deployment, developement of in-house e2e testing helper
-              framework.
+      <div class="about-page">
+        <div class="about-section">
+          <div class="about-section__text-wrapper">
+            <h2 class="about-section__header">
+              Hi, my name is Aliapkin Aleksei
+            </h2>
+            <p class="about-section__text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+              nemo, dolore iusto placeat maxime voluptates quidem accusamus
+              perferendis asperiores. Obcaecati nam deleniti fugit consequuntur
+              minus libero placeat dolorum molestiae necessitatibus minima
             </p>
           </div>
-        </li>
-
-        <li class="exp__item">
-          <span class="exp__year">2020 - 2021</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Frontend Developer
-            </h4>
-            <em class="exp__place">GRIDNINE SYSTEMS</em>
-            <p class="exp__descr">
-              Finished my tasks timely with good quality. Received positive
-              feedback from client for my work.
-            </p>
+          <div class="about-section__skills-wrapper">
+            <h2 class="about-seciton__skills-header">Key skills</h2>
+            <div class="skills__wrapper">
+              <div class="skills__item">Vue</div>
+              <div class="skills__item">Vuex</div>
+              <div class="skills__item">React</div>
+              <div class="skills__item">Typescript</div>
+              <div class="skills__item">HTML</div>
+              <div class="skills__item">CSS</div>
+            </div>
           </div>
-        </li>
-
-        <li class="exp__item">
-          <span class="exp__year">2008 - 2019</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Financial analyst
-            </h4>
-            <p class="exp__descr">
-              Previously I was working in largest Russian banks as financial analyst, such as Rosbank, Societe
-              Generale Group, Open Bank, Russian Standard Bank. I started my career in Russian branch of KPMG as audit
-              associate.
-            </p>
-          </div>
-        </li>
-      </ul>
-
-      <h3 class="exp__title anim-color">
-        <span>EDUCATION</span>
-        <div>
-          <div class="anim-background-color"></div>
         </div>
-      </h3>
-
-      <ul>
-        <li class="exp__item">
-          <span class="exp__year">2002 - 2007</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Lomonosov Moscow State University
-            </h4>
-            <em class="exp__place">department of mechanics and mathematics</em>
-            <p class="exp__descr">
-              Graduated from department of mechanics and
-              mathematics. Received specialist degree with honors.
-              Specialized in optimization of control of dynamic
-              systems
-            </p>
+        <div class="experience-section">
+          <h2 class="experience-header">Work experience</h2>
+          <div class="experience-item">
+            <div class="experience-item__header">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </div>
+            <div class="experience-item__subheader">
+              Lorem ipsum dolor sit amet consectetur.
+            </div>
+            <div class="experience-item__descr">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+              nemo, dolore iusto placeat maxime voluptates quidem accusamus
+              perferendis asperiores.
+            </div>
           </div>
-        </li>
-      </ul>
+          <div class="experience-item">
+            <div class="experience-item__header">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </div>
+            <div class="experience-item__subheader">
+              Lorem ipsum dolor sit amet consectetur.
+            </div>
+            <div class="experience-item__descr">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+              nemo, dolore iusto placeat maxime voluptates quidem accusamus
+              perferendis asperiores.
+            </div>
+          </div>
+          <div class="experience-item">
+            <div class="experience-item__header">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </div>
+            <div class="experience-item__subheader">
+              Lorem ipsum dolor sit amet consectetur.
+            </div>
+            <div class="experience-item__descr">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+              nemo, dolore iusto placeat maxime voluptates quidem accusamus
+              perferendis asperiores.
+            </div>
+          </div>
+        </div>
+        <div class="education">
+          <h2 class="experience-header">Education</h2>
+          <div class="experience-item__header">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </div>
+          <div class="experience-item__subheader">
+            Lorem ipsum dolor sit amet consectetur.
+          </div>
+          <div class="experience-item__descr">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla nemo,
+            dolore iusto placeat maxime voluptates quidem accusamus perferendis
+            asperiores.
+          </div>
+        </div>
+      </div>
+
+      <div class="works-page">
+        <div class="works-item">
+          <div class="work-item__descr-container">
+            <div class="works-item__title">Project name</div>
+            <div class="works-item__tags">
+              <div class="works-item__tag">React</div>
+              <div class="works-item__tag">Redux</div>
+              <div class="works-item__tag">WebGL</div>
+              <div class="works-item__tag">React</div>
+            </div>
+            <div class="works-item__descr-text">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-les
+            </div>
+          </div>
+          <div class="works-item__image">
+            <a target="_blank" href="https://mfecane.github.io/weather-app/">
+              <video
+                src="/assets/video/weather-app.webm"
+                autoplay
+                muted
+                loop
+              ></video>
+            </a>
+            <div class="works-item__icons">
+              <div class="works-item__icon">
+                <i class="icon icon--github"></i>
+              </div>
+              <div class="works-item__icon works-item__icon--right">
+                <i class="icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="works-item">
+          <div class="work-item__descr-container">
+            <div class="works-item__title">Project name</div>
+            <div class="works-item__tags">
+              <div class="works-item__tag">React</div>
+              <div class="works-item__tag">Redux</div>
+              <div class="works-item__tag">WebGL</div>
+              <div class="works-item__tag">React</div>
+            </div>
+            <div class="works-item__descr-text">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-les
+            </div>
+          </div>
+          <div class="works-item__image">
+            <a target="_blank" href="https://mfecane.github.io/weather-app/">
+              <video
+                src="/assets/video/weather-app.webm"
+                autoplay
+                muted
+                loop
+              ></video>
+            </a>
+            <div class="works-item__icons">
+              <div class="works-item__icon">
+                <i class="icon icon--github"></i>
+              </div>
+              <div class="works-item__icon works-item__icon--right">
+                <i class="icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="works-item">
+          <div class="work-item__descr-container">
+            <div class="works-item__title">Project name</div>
+            <div class="works-item__tags">
+              <div class="works-item__tag">React</div>
+              <div class="works-item__tag">Redux</div>
+              <div class="works-item__tag">WebGL</div>
+              <div class="works-item__tag">React</div>
+            </div>
+            <div class="works-item__descr-text">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-les
+            </div>
+          </div>
+          <div class="works-item__image">
+            <a target="_blank" href="https://mfecane.github.io/weather-app/">
+              <video
+                src="/assets/video/weather-app.webm"
+                autoplay
+                muted
+                loop
+              ></video>
+            </a>
+            <div class="works-item__icons">
+              <div class="works-item__icon">
+                <i class="icon icon--github"></i>
+              </div>
+              <div class="works-item__icon works-item__icon--right">
+                <i class="icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="works-item">
+          <div class="work-item__descr-container">
+            <div class="works-item__title">Project name</div>
+            <div class="works-item__tags">
+              <div class="works-item__tag">React</div>
+              <div class="works-item__tag">Redux</div>
+              <div class="works-item__tag">WebGL</div>
+              <div class="works-item__tag">React</div>
+            </div>
+            <div class="works-item__descr-text">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-les
+            </div>
+          </div>
+          <div class="works-item__image">
+            <a target="_blank" href="https://mfecane.github.io/weather-app/">
+              <video
+                src="/assets/video/weather-app.webm"
+                autoplay
+                muted
+                loop
+              ></video>
+            </a>
+            <div class="works-item__icons">
+              <div class="works-item__icon">
+                <i class="icon icon--github"></i>
+              </div>
+              <div class="works-item__icon works-item__icon--right">
+                <i class="icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="works-item">
+          <div class="work-item__descr-container">
+            <div class="works-item__title">Project name</div>
+            <div class="works-item__tags">
+              <div class="works-item__tag">React</div>
+              <div class="works-item__tag">Redux</div>
+              <div class="works-item__tag">WebGL</div>
+              <div class="works-item__tag">React</div>
+            </div>
+            <div class="works-item__descr-text">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-les
+            </div>
+          </div>
+          <div class="works-item__image">
+            <a target="_blank" href="https://mfecane.github.io/weather-app/">
+              <video
+                src="/assets/video/weather-app.webm"
+                autoplay
+                muted
+                loop
+              ></video>
+            </a>
+            <div class="works-item__icons">
+              <div class="works-item__icon">
+                <i class="icon icon--github"></i>
+              </div>
+              <div class="works-item__icon works-item__icon--right">
+                <i class="icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contacts-page">
+        <div class="contacts__container">
+          <h3 class="contacts__title">
+            <span>Contacts</span>
+          </h3>
+
+          <ul class="contact__list">
+            <li class="contact__item">
+              <a href="mailto: aaliapkin@gmail.com" target="_blank">
+                <span class="contact__icon icon icon--mail"></span>
+                aaliapkin@gmail.com
+              </a>
+            </li>
+            <li class="contact__item">
+              <a href="tel:+7 (916) 426-5709" target="_blank">
+                <span class="contact__icon icon icon--phone"></span>
+                +7 (916) 426-5709
+              </a>
+            </li>
+            <li class="contact__item">
+              <a href="https://github.com/mfecane" target="_blank">
+                <span class="contact__icon icon icon--github"></span>
+                Mfecane
+              </a>
+            </li>
+            <li class="contact__item">
+              <a href="https://t.me/aaliapkin" target="_blank">
+                <span class="contact__icon icon icon--telegram"></span>
+                aaliapkin
+              </a>
+            </li>
+            <li class="contact__item">
+              <a href="https://www.instagram.com/hatis_ustes" target="_blank">
+                <span class="contact__icon icon icon--inst"></span>
+                hatis_ustes
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="works-container container">
-
-    <div class="works-title">
-      <h3 class="works-title__heading anim-color">MY WORKS</h3>
-    </div>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="2" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://mfecane.github.io/boot/">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Boot store app
-          </h4>
-        </a>
-        <p class="works-item__text">
-          An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and
-          material colors for different parts.
-          All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced.
-          Rendering
-          was
-          done using
-          THREE.JS.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--react">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--webgl">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/boot">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/boot/">
-          <video src="/assets/video/bootDemo.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://mfecane.github.io/weather-app/">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Weather app
-          </h4>
-        </a>
-        <p class="works-item__text">
-          Application, which displays current weather, 5 day forecast, and
-          hourly weather for the next 24 hours. Using both OpenWeatherMap
-          API and WeatherAPI.com.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--react">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--redux">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/weather-app">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/weather-app/">
-          <video src="/assets/video/weather-app.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="4" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <h4 class="works-item__title anim-color anim-border-color">
-          <a target="_blank" href="https://mfecane.github.io/to-do_app/">Todo app</a>
-        </h4>
-        <p class="works-item__text">
-          Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--react">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--bootstrap">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/to-do_app">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/to-do_app/">
-          <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Mandelbruh
-          </h4>
-        </a>
-        <p class="works-item__text">
-          Several implementations of mandelbrot fractal zooming applications. There are CPU,
-          GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of
-          floating point numbers in WebGL, zooming in web version is limited.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--cpp">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--opengl">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--webgl">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/web-mandelbrot">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub (web)</span>
-            </button>
-          </a>
-          <a target="_blank" href="https://github.com/mfecane/mandelbruh">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub (OpenGl)</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
-          <video src="/assets/video/mandelbruh.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="6" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://github.com/mfecane/rec_app/releases">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Screen recording app
-          </h4>
-        </a>
-        <p class="works-item__text">
-          Windows application for easy creating time lapse recordings of user screen. This app was developed for myself
-          for recording of my drawing and sculpting sessions.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--ffmpeg">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--cpp">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--qt">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/rec_app">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank">
-          <video src="/assets/video/rec-app.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-  </div>
-
-  <section class="page page4" data-transition data-transition-page="7" data-transition-in="contacts-page"
-    data-transition-out="contacts-page">
-    <div class="contacts__container container">
-      <h3 class="contacts__title anim-color">
-        <span>Contacts</span>
-      </h3>
-
-      <ul class="contact__list">
-        <li class="contact__item">
-          <a href="mailto: aaliapkin@gmail.com" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--mail anim-background-color"></span>
-            aaliapkin@gmail.com
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="tel:+7 (916) 426-5709" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--phone anim-background-color"></span>
-            +7 (916) 426-5709
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="https://github.com/mfecane" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--github anim-background-color"></span>
-            Mfecane
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="https://t.me/aaliapkin" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--telegram anim-background-color"></span>
-            aaliapkin
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="https://www.instagram.com/hatis_ustes" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--inst anim-background-color"></span>
-            hatis_ustes
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-</body>
-
+  </body>
 </html>

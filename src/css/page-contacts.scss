@@ -1,40 +1,18 @@
-@import 'css/config.scss';
+@import "css/config.scss";
 
-.page4 {
-  display: flex;
-  z-index: 15;
-}
-
-.dynamic-mode .page4 {
-  position: absolute;
-  overflow: hidden;
-  left: 50%;
-  top: 50%;
-  width: 40vw;
-  min-width: 500px;
-  height: 70vh;
-  transform: translate(-50%, -50%)
-}
-
-.static-mode .page4 {
-  background: radial-gradient(farthest-corner circle at 80% 30%, $darkbg1 0%, $darkbg2 100%);
-  padding: 80px 120px;
-}
-
-// TODO refactor into title
-
-.dynamic-mode .contacts__container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  overflow: visible;
+.contacts-page {
+  width: 450px;
+  pointer-events: all;
+  background-color: black;
+  padding: 60px 60px 60px 30px;
+  display: grid;
+  place-items: center;
 }
 
 .contacts__title {
   font-family: $headerFont, serif;
   text-transform: uppercase;
-  color: $accent;
+  color: $light;
   font-size: 48px;
   font-weight: normal;
 }
@@ -68,7 +46,6 @@
 
 .contact__item:hover a {
   color: $light !important;
-  transform: scale(1.05);
   transition: all 0.2s ease-out 0s;
 }
 

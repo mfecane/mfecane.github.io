@@ -1,0 +1,83 @@
+@import "css/config.scss";
+
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  font-family: $mainFont;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.scroller {
+  position: absolute;
+  min-width: 100vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  display: inline-flex;
+  align-items: stretch;
+  pointer-events: none;
+}
+
+#shader-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #05080b center/cover url(assets/img/bg.jpg) fixed;
+}
+
+.nav {
+  position: fixed;
+  top: 30px;
+  right: 70px;
+  display: flex;
+  gap: 25px;
+  z-index: 5;
+}
+
+.nav_spacer {
+  background-color: $accent;
+  width: 4px;
+  height: 12px;
+  transform: translateY(-1px);
+}
+
+.nav_item {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: $accent;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav_item.active {
+  color: $light;
+}
+
+.nav_item:hover {
+  color: white;
+}
+
+.nav_item:before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  transform: translateX(-50%);
+  transition: all 200ms ease-in-out;
+  background-color: $accent;
+}
+
+.nav_item:hover:before {
+  width: 100%;
+  background-color: white;
+}

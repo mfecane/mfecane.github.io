@@ -15,25 +15,26 @@ body {
 }
 
 .btn {
-  width: 12rem;
-  padding: 4px 12px;
+  width: 160px;
+  padding: 3px 9px;
   background: transparent;
   font-family: $mainFont, serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   transition: all 0.15s ease-out;
   white-space: nowrap;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .btn_primary {
   background: $accent;
   color: $dark;
   border: 1px solid $accent;
+  box-shadow: inset 0px 0px 1px 1px $dark;
 }
 
 .btn_primary:hover {
-  box-shadow: inset 0px 0px 2px 1px $light;
+  box-shadow: inset 0px 0px 4px 0px $light;
 
   border-color: $light !important;
   color: $light;
@@ -42,11 +43,11 @@ body {
 .btn_secondary {
   background: transparent;
   color: $accent;
-  border: 2px solid $accent;
+  border: 1px solid $accent;
 }
 
 .btn_secondary:hover {
-  box-shadow: inset 0px 0px 2px 1px $light;
+  box-shadow: inset 0px 0px 4px 0px $light;
   border-color: $light !important;
   color: $light !important;
 }
@@ -165,3 +166,6 @@ a:hover {
   }
 }
 
+.hidden {
+  visibility: hidden;
+}

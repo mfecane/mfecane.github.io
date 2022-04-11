@@ -26,7 +26,7 @@ export class Shape {
   points: Array<IPoint> = []
   width = 5
   drawn = 0
-  color = `#eaecee`
+  color = `#c6ab52`
   index = 0
   ctx: CanvasRenderingContext2D
   size = { w: 0, h: 0, cx: 0, cy: 0 }
@@ -140,7 +140,7 @@ export default class SvgPathAnimation {
     this.shapes = this._createShapes(paths)
   }
 
-  _handleShapes():void {
+  _handleShapes(): void {
     this.shapes.forEach((el: Shape) => {
       let t = this.time.current / this.time.duration
       t = t > 1 ? 1 : t
@@ -156,15 +156,16 @@ export default class SvgPathAnimation {
     })
   }
 
-  _handleResize():void {
+  _handleResize(): void {
     this.size.w = this.canvas.width = this.parentElement.clientWidth
-    this.size.h = this.canvas.height = this.parentElement.clientWidth * this.aspect
+    this.size.h = this.canvas.height =
+      this.parentElement.clientWidth * this.aspect
 
     this.size.cx = this.size.w / 2
     this.size.cy = this.size.h / 2
   }
 
-  _createShapes(paths):Array<Shape> {
+  _createShapes(paths): Array<Shape> {
     const bounds = this._getBounds(
       paths.reduce((acc: IPath, cur: IPath) => [...acc, ...cur], [])
     )
@@ -182,7 +183,7 @@ export default class SvgPathAnimation {
       return shape
     })
 
-    return s;
+    return s
   }
 
   _getBounds(points: IPath): IBounds {
@@ -219,7 +220,7 @@ export default class SvgPathAnimation {
       Math.max(
         bounds.width / this.canvas.width,
         bounds.height / this.canvas.height
-      ) * .9
+      ) * 0.9
   }
 
   _transformPoint(p: IPoint): IPoint {
@@ -259,7 +260,7 @@ export default class SvgPathAnimation {
     }
   }
 
-  start():Promise<null> {
+  start(): Promise<null> {
     return new Promise((resolve) => {
       this._resetTime()
       this.animate()

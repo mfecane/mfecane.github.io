@@ -16,6 +16,15 @@
 - put exp and works and all the content into single container sroll there, and move that container
 - layout contacts
 - remove unused fonts
+- rotate and rotate back on mouse move
+
+background glass is separate
+rotates on animation
+
+## TRANSITION
+
+- map callback values to timeline segment
+- hide outside range
 
 ## ideas
 
