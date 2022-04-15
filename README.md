@@ -17,6 +17,11 @@
 - layout contacts
 - remove unused fonts
 - rotate and rotate back on mouse move
+- add parallaxed projects
+- add parallaxed stuff
+- opening animation - slide border from left revealing logo and grouop
+- add transition from in to out
+- fix light position
 
 background glass is separate
 rotates on animation

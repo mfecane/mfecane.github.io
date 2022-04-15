@@ -5,12 +5,20 @@ import scroller2 from 'ts/animation/scroller'
 
 import RendererTexture from 'ts/renderers/renderer-tex'
 
-import posX01 from 'assets/Yokohama3/posx.jpg'
-import negX01 from 'assets/Yokohama3/negx.jpg'
-import posY01 from 'assets/Yokohama3/posy.jpg'
-import negY01 from 'assets/Yokohama3/negy.jpg'
-import posZ01 from 'assets/Yokohama3/posz.jpg'
-import negZ01 from 'assets/Yokohama3/negz.jpg'
+// import posX01 from 'assets/Yokohama3/posx.jpg'
+// import negX01 from 'assets/Yokohama3/negx.jpg'
+// import posY01 from 'assets/Yokohama3/posy.jpg'
+// import negY01 from 'assets/Yokohama3/negy.jpg'
+// import posZ01 from 'assets/Yokohama3/posz.jpg'
+// import negZ01 from 'assets/Yokohama3/negz.jpg'
+
+import posX01 from 'assets/img/yoko-blurred/pos-x.png'
+import negX01 from 'assets/img/yoko-blurred/neg-x.png'
+import posY01 from 'assets/img/yoko-blurred/pos-y.png'
+import negY01 from 'assets/img/yoko-blurred/neg-y.png'
+import posZ01 from 'assets/img/yoko-blurred/pos-z.png'
+import negZ01 from 'assets/img/yoko-blurred/neg-z.png'
+
 import { mapclamp } from 'ts/lib/lib'
 
 let renderer

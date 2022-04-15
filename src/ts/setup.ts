@@ -1,6 +1,10 @@
 import transition from 'ts/animation/transition'
 import scroller2 from 'ts/animation/scroller'
-import { easeOutCubic } from './lib/easing-functions'
+import {
+  easeInCubic,
+  easeInOutCubic,
+  easeOutCubic,
+} from './lib/easing-functions'
 import SvgPathAnimation from 'ts/components/svg-path-animation'
 
 import floralPage2Svg from 'assets/svg/second-page-floral2.inline.svg'
@@ -23,6 +27,8 @@ let logoAnimationFinished = false
 
 let currentMenuItem = -1
 let scrollPoints = []
+
+const NOOP = () => {}
 
 const initScroller = () => {
   const pageElements: Element[] = [
@@ -66,40 +72,61 @@ const initScroller = () => {
 const initAnimations = () => {
   transition.createScreenTransition({
     selector: '.about-section',
-    transitionIn: transition.fadeScaleIn,
-    transitionOut: () => {},
+    transitionIn: transition.fadeIn,
+    transitionOut: NOOP,
     offset: 300,
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.about-section',
+    easing: easeOutCubic,
+    transition: (el, value) => {
+      el.style.transform = `translateX(${200 - value * 200}px)`
+    },
   })
 
   transition.createScreenTransition({
     selector: '.experience-item',
     transitionIn: transition.fadeScaleIn,
-    transitionOut: () => {},
+    transitionOut: NOOP,
     offset: 300,
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.education',
+    transition: (el, value) => {
+      el.style.transform = `translateX(${50 - value * 100}px)`
+    },
   })
 
   transition.createScreenTransition({
     selector: '.education',
-    transitionIn: transition.fadeScaleIn,
-    transitionOut: () => {},
+    transitionIn: transition.fadeIn,
+    transitionOut: NOOP,
     offset: 300,
   })
 
   transition.createScreenTransition({
     selector: '.works-item__image',
     transitionIn: transition.fadeScaleIn,
-    transitionOut: () => {},
+    transitionOut: NOOP,
     offset: 100,
   })
 
   transition.createAnimation({
-    selector: '.works-title',
-    start: 2000,
-    end: 3500,
+    selector: '.contacts__title',
+    start: scrollPoints[3] - 500,
+    end: scrollPoints[3],
     init: true,
     hide: false,
     fn: (el, value) => {
-      console.log(el)
+      el.style.transform = `translateX(${50 - value * 150}px)`
+    },
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.works-title',
+    transition: (el, value) => {
       el.style.transform = `translateX(${300 - value * 400}px)`
     },
   })
@@ -180,8 +207,6 @@ const updateMouse = (value) => {
 
 const update = () => {
   scroller2.update()
-  transition.update()
-
   requestAnimationFrame(update)
 }
 

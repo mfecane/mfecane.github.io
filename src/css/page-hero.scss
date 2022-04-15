@@ -11,7 +11,7 @@
   left: 0;
   height: 100%;
   width: 600px;
-  padding: 50px 30px 50px 50px;
+  padding: 50px 0 50px 50px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -32,14 +32,13 @@
 
 .hero-page__background {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150%;
-  height: 160%;
-  transform: translate(calc(-50% - 132px), -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: right center repeat-y url(assets/svg/bg.svg),
     radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.5) 0%, rgba(14, 14, 15, 0.5) 100%);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
   z-index: 1;
 }
 
@@ -56,7 +55,6 @@
 
 .logo-group__logo-container {
   width: 500px;
-  transform: translateX(46px);
 }
 
 .logo-group__logo-aspect {
@@ -83,6 +81,14 @@
   text-align: right;
   align-items: flex-end;
   margin-bottom: 10px;
+}
+
+.hero-section__content {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
 }
 
 .avatar-group {

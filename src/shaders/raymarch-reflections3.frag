@@ -66,10 +66,10 @@ float dSphere(vec3 point, float radius) {
 }
 
 float sceneDistance(vec3 point) {
-  vec3 p1 = point + vec3(0.0, 0.7 * (0.5 + 0.5 * sin(u_time / 10.0)), 0.0);
+  vec3 p1 = point + vec3(0.0, 0.25 + 0.2 * sin(u_time / 10.0), 0.0);
   float thick = 0.2 + 0.8 * u_thick;
   float phase = u_time * 0.03;
-  float g1 = sdGyroid2(p1 * 8.0, 0.7456 + 0.7674 * u_gyrdens1, thick, phase);
+  float g1 = sdGyroid2(p1 * 8.0, 0.7456 + 0.7674 * u_gyrdens1, thick, phase * 1.7324);
   float g2 = sdGyroid2(p1 * 8.0, 0.6324, thick, phase);
   float sph = dSphere(p1, 1.2);
   // float pl = dPlane(point);
@@ -79,14 +79,14 @@ float sceneDistance(vec3 point) {
   d = smin(d, sph, -0.1);
   d = smin(d, sph2, 0.08);
 
-  return d;
+  return d / 1.2;
 }
 
 float sceneMaterial(vec3 point) {
-  vec3 p1 = point + vec3(0.0, 0.7 * (0.5 + 0.5 * sin(u_time / 10.0)), 0.0);
+  vec3 p1 = point + vec3(0.0, 0.3 + 0.2 * sin(u_time / 10.0), 0.0);
   float thick = 0.2 + 0.8 * u_thick;
   float phase = u_time * 0.03;
-  float g1 = sdGyroid2(p1 * 8.0, 0.7456 + 0.7674 * u_gyrdens1, thick, phase);
+  float g1 = sdGyroid2(p1 * 8.0, 0.7456 + 0.7674 * u_gyrdens1, thick, phase * 1.3425);
   float g2 = sdGyroid2(p1 * 8.0, 0.6324, thick, phase);
   float sph = dSphere(p1, 1.2);
   // float pl = dPlane(point);
@@ -140,7 +140,7 @@ void main() {
 
   vec2 rot = vec2(
     xRot * PI * 2.0 + u_mouseY,
-    yRot * PI * 2.0 + u_mouseX
+    -PI / 2.0 + yRot * PI * 2.0 + u_mouseX + u_time / 30.0
   );
 
   R(rayDirection.yz, -rot.x);
@@ -169,7 +169,7 @@ void main() {
         sin(u_time / 20.0 + 2.5342)
       ));
     vec3 r = reflect(rayDirection, n) + vec3(pbm_simplex_noise3(shiftpoint * 5.0)) * 0.2 * (1.0 - mat);
-    dif = dot(n, normalize(vec3(-1.0, 2.0, -2.0))) * 0.6 + 0.6;
+    dif = dot(n, normalize(vec3(2.0, 2.0, -1.0))) * 0.6 + 0.6;
 
     vec4 samp = texture(u_Sampler2, r);
     col = samp.rgb * dif + 0.05 * dif * dot(n, vec3(0.0, 1.0, 0.0));

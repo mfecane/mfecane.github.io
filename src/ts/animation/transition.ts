@@ -1,5 +1,6 @@
 import scroller2 from 'ts/animation/scroller'
 import { easeOutCubic } from 'ts/lib/easing-functions'
+import { mapplain } from 'ts/lib/lib'
 
 const animations: AnimationBase[] = []
 
@@ -29,6 +30,10 @@ interface ControllerOptions {
   transitionIn?: TransitionCallback
   transitionOut?: TransitionCallback
 }
+
+/*
+  Base class
+*/
 
 class AnimationBase {
   el: HTMLElement
@@ -62,6 +67,12 @@ class AnimationBase {
     }
   }
 }
+
+/*
+  Animate based on 4 frames from start in to end in and start out to end out
+  transitionIn
+  transitionOut
+*/
 
 class Controller extends AnimationBase {
   transitionIn: TransitionCallback = () => {}
@@ -125,6 +136,10 @@ class Controller extends AnimationBase {
   }
 }
 
+/*
+  Animate based on frames from start to end
+*/
+
 class Transition extends AnimationBase {
   start: number
   end: number
@@ -187,10 +202,15 @@ interface ScreenTransitionOptions {
   offset?: number
   index?: number
   margin?: number
+  easing?: (value: number) => number
   transition?: TransitionCallback
   transitionIn?: TransitionCallback
   transitionOut?: TransitionCallback
 }
+
+/*
+  Transition based on element becoming visible on screen
+*/
 
 class ScreenTransition extends AnimationBase {
   el: HTMLElement
@@ -253,10 +273,61 @@ class ScreenTransition extends AnimationBase {
   }
 }
 
-const update = function (): void {
+/*
+  Transition based on element moving through screen fromleft to right
+*/
+
+class FullScreenTransition extends AnimationBase {
+  el: HTMLElement
+  offset = 50
+  index = 0
+  start = -1
+  end = -1
+  transition: TransitionCallback
+
+  constructor(options) {
+    super()
+    this.el = options.el
+    this.offset = options.offset || this.offset
+    this.index = options.index || this.index
+
+    this.el = options.el
+
+    if (options.transition) {
+      this.transition = options.transition
+    }
+
+    if (options.easing) {
+      this.transition = this._addEasing(this.transition, options.easing)
+    }
+  }
+
+  update() {
+    const rect = this.el.getBoundingClientRect()
+    const scrollValue = scroller2.getScrollValue()
+
+    if (this.start === -1 && rect.left < window.innerWidth) {
+      this.start = scrollValue
+      this.end = this.start + window.innerWidth
+    }
+
+    const value = mapplain(scrollValue, this.start, this.end, 0, 1)
+
+    // TODO ::: add offset if needed
+    if (rect.left < window.innerWidth && rect.left + rect.width > 0) {
+      this.transition(this.el, value)
+    }
+  }
+}
+
+const update = (): void => {
   animations.forEach((trans: Transition) => {
     trans.update()
   })
+}
+
+const init = (): void => {
+  scroller2.addListener(update)
 }
 
 const createAnimation = function (options: Options): void {
@@ -288,9 +359,23 @@ const createScreenTransition = (options: ScreenTransitionOptions): void => {
   })
 }
 
+const createFullScreenTransition = (options: ScreenTransitionOptions): void => {
+  const nodeList = document.querySelectorAll(options.selector)
+  Array.from(nodeList).forEach(function (node, index) {
+    options = { ...options, el: node, index: index }
+    const transition = new FullScreenTransition(options)
+    transition.transition(transition.el, 0)
+    animations.push(transition)
+  })
+}
+
 const fadeScaleIn = (el: HTMLElement, value: number) => {
   const val = (0.9 + value * 0.1) * 100
   el.style.transform = `scaleY(${val}%)`
+  const val1 = easeOutCubic(value)
+  el.style.opacity = `${val1}`
+}
+const fadeIn = (el: HTMLElement, value: number) => {
   const val1 = easeOutCubic(value)
   el.style.opacity = `${val1}`
 }
@@ -299,6 +384,9 @@ export default {
   createAnimation: createAnimation,
   createController: createController,
   createScreenTransition: createScreenTransition,
+  createFullScreenTransition: createFullScreenTransition,
   update: update,
+  init: init,
   fadeScaleIn: fadeScaleIn,
+  fadeIn: fadeIn,
 }
