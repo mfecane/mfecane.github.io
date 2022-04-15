@@ -1,13 +1,13 @@
-import scroller2 from 'ts/animation/scroller2'
+import scroller2 from 'ts/animation/scroller'
+import { easeOutCubic } from 'ts/lib/easing-functions'
 
-const transitions: Transition[] = []
-const controllers: Controller[] = []
+const animations: AnimationBase[] = []
 
-export type TransitionCallback = (el: Element, value: number) => void
+export type TransitionCallback = (el: HTMLElement, value: number) => void
 
 interface Options {
   selector?: string
-  el?: Element
+  el?: HTMLElement
   start?: number
   end?: number
   back?: boolean
@@ -20,7 +20,7 @@ interface Options {
 
 interface ControllerOptions {
   selector?: string
-  el?: Element
+  el?: HTMLElement
   index?: number
   offset?: number
   frames: [number, number, number, number]
@@ -168,14 +168,92 @@ class Transition extends AnimationBase {
     this.lastFrame = frame
 
     if (frame < this.start || frame > this.end) {
-      this.el.classList.toggle('hidden', true)
+      if (this.hide) this.el.classList.toggle('hidden', true)
       return
     }
-    this.el.classList.toggle('hidden', false)
+    if (this.hide) this.el.classList.toggle('hidden', false)
 
     const value = this._remap(frame, this.start, this.end)
     this.fn(this.el, value)
   }
+}
+
+interface ScreenTransitionOptions {
+  el?: HTMLElement
+  selector?: string
+  offset?: number
+  index?: number
+  margin?: number
+  transition?: TransitionCallback
+  transitionIn?: TransitionCallback
+  transitionOut?: TransitionCallback
+}
+
+class ScreenTransition extends AnimationBase {
+  el: HTMLElement
+  offset = 50
+  margin = 200
+  index = 0
+  transitionIn: TransitionCallback
+  transitionOut: TransitionCallback
+
+  constructor(options) {
+    super()
+    this.el = options.el
+    this.offset = options.offset || this.offset
+    this.margin = options.margin || this.margin
+    this.index = options.index || this.index
+
+    this.el = options.el
+
+    if (options.transition) {
+      this.transitionIn = options.transition
+      this.transitionOut = options.transition
+    }
+
+    if (options.transitionIn && options.transitionOut) {
+      this.transitionIn = options.transitionIn
+      this.transitionOut = options.transitionOut
+    }
+
+    if (options.easing) {
+      this.transitionIn = this._addEasing(this.transitionIn, options.easing)
+    }
+
+    if (options.easing) {
+      this.transitionOut = this._addEasing(this.transitionOut, options.easing)
+    }
+  }
+
+  update() {
+    const rect = this.el.getBoundingClientRect()
+
+    let offsetReft = window.screen.width - (rect.left + rect.width / 2)
+    let offsetLeft = rect.left + rect.width / 2
+
+    if (this.offset && this.index) {
+      offsetReft -= 50 * this.index
+      offsetLeft -= 50 * this.index
+    }
+
+    if (offsetLeft < -rect.width / 2 || offsetReft < -rect.width / 2) {
+      return
+    }
+
+    if (offsetReft < this.margin) {
+      this.transitionIn(this.el, offsetReft / this.margin)
+    }
+
+    if (offsetLeft < this.margin) {
+      this.transitionOut(this.el, offsetLeft / this.margin)
+    }
+  }
+}
+
+const update = function (): void {
+  animations.forEach((trans: Transition) => {
+    trans.update()
+  })
 }
 
 const createAnimation = function (options: Options): void {
@@ -184,7 +262,7 @@ const createAnimation = function (options: Options): void {
     options = { ...options, el: node }
     const transition = new Transition(options)
     transition.init()
-    transitions.push(transition)
+    animations.push(transition)
   })
 }
 
@@ -193,22 +271,31 @@ const createController = function (options: ControllerOptions): void {
   Array.from(nodeList).forEach(function (node, index) {
     options = { ...options, el: node, index: index }
     const controller = new Controller(options)
-    controllers.push(controller)
+    animations.push(controller)
   })
 }
 
-const update = function (): void {
-  transitions.forEach((trans: Transition) => {
-    trans.update()
+const createScreenTransition = (options: ScreenTransitionOptions): void => {
+  const nodeList = document.querySelectorAll(options.selector)
+  Array.from(nodeList).forEach(function (node, index) {
+    options = { ...options, el: node, index: index }
+    const transition = new ScreenTransition(options)
+    transition.transitionIn(transition.el, 0)
+    animations.push(transition)
   })
+}
 
-  controllers.forEach((contr: Controller) => {
-    contr.update()
-  })
+const fadeScaleIn = (el: HTMLElement, value: number) => {
+  const val = (0.9 + value * 0.1) * 100
+  el.style.transform = `scaleY(${val}%)`
+  const val1 = easeOutCubic(value)
+  el.style.opacity = `${val1}`
 }
 
 export default {
   createAnimation: createAnimation,
   createController: createController,
+  createScreenTransition: createScreenTransition,
   update: update,
+  fadeScaleIn: fadeScaleIn,
 }

@@ -1,7 +1,7 @@
 import squareVert from 'shaders/square.vert'
 import gyroidFrag from 'shaders/raymarch-reflections3.frag'
 
-import scroller2 from 'ts/animation/scroller2'
+import scroller2 from 'ts/animation/scroller'
 
 import RendererTexture from 'ts/renderers/renderer-tex'
 

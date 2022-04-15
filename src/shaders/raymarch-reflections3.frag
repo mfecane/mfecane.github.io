@@ -204,14 +204,14 @@ void main() {
     u_vignette;
 
   // dim
-  float norm = clamp(length(col), 0.0, 1.0);
+  //float norm = clamp(length(col), 0.0, 1.0);
   col = vec3(
     blendColor(
       col * (1.0 - u_dim * 0.2),
       vec3(50.0 / 255.0, 59.0 / 255.0, 74.0 / 255.0),
       u_dim * u_dim
     )
-  ) * (1.0 - norm * norm * u_dim * 0.4);
+  ) * (1.0 -  u_dim * 0.4); // norm * norm *
 
   FragColor = vec4(col, 1.0);
 }

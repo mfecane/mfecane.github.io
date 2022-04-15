@@ -53,9 +53,19 @@
   gap: 16px;
 }
 
+.skills-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-color: $accent;
+}
+
 .skills__item {
   color: $accent;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .experience-section {

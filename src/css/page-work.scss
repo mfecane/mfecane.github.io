@@ -3,7 +3,7 @@
 .works-page {
   min-width: 100vw;
   display: inline-flex;
-  gap: 80px;
+  gap: 100px;
   align-items: center;
   z-index: 2;
   position: relative;
@@ -11,15 +11,23 @@
   padding: 0 150px 0 50px;
 }
 
+.works-title {
+  font-family: $headerFont;
+  font-size: 64px;
+  position: absolute;
+  top: 10%;
+  left: 20px;
+}
+
 .works-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 32px;
   width: 360px;
   transform: translateY(50px);
 }
 
-.works-item:nth-child(even) {
+.works-item:nth-child(odd) {
   flex-direction: column-reverse;
   transform: translateY(-50px);
 }

@@ -1,5 +1,5 @@
 import transition from 'ts/animation/transition'
-import scroller2 from 'ts/animation/scroller2'
+import scroller2 from 'ts/animation/scroller'
 import { easeOutCubic } from './lib/easing-functions'
 import SvgPathAnimation from 'ts/components/svg-path-animation'
 
@@ -7,7 +7,6 @@ import floralPage2Svg from 'assets/svg/second-page-floral2.inline.svg'
 import shapesconfig2 from 'ts/svg/shapes-config2'
 
 import mainBackground from 'ts/components/main-background'
-import transition2 from 'ts/animation/transition2'
 
 let logoContainer: HTMLDivElement
 let shaderCanvasContainer: HTMLDivElement
@@ -65,60 +64,41 @@ const initScroller = () => {
 }
 
 const initAnimations = () => {
-  const handleAboutSection = (el: HTMLElement, value: number) => {
-    const val = (0.9 + value * 0.1) * 100
-    el.style.transform = `scaleY(${val}%)`
-    const val1 = easeOutCubic(value)
-    el.style.opacity = `${val1}`
-  }
-
-  transition2.addTransiton({
+  transition.createScreenTransition({
     selector: '.about-section',
-    transition: handleAboutSection,
+    transition: transition.fadeScaleIn,
     offset: 300,
   })
 
-  transition2.addTransiton({
+  transition.createScreenTransition({
     selector: '.experience-item',
-    transition: handleAboutSection,
+    transition: transition.fadeScaleIn,
     offset: 300,
   })
 
-  transition2.addTransiton({
+  transition.createScreenTransition({
     selector: '.education',
-    transition: handleAboutSection,
+    transition: transition.fadeScaleIn,
     offset: 300,
   })
 
-  const handleWorksItem = (dir: number) => (el: HTMLElement, value: number) => {
-    const val = (0.4 + easeOutCubic(value) * 0.6) * 60 * dir
-    el.style.transform = `translateY(${val}px)`
-    const val1 = 0.5 + easeOutCubic(value) * 0.5
-    el.style.opacity = `${val1}`
-  }
-
-  transition2.addTransiton({
-    selector: '.works-item:nth-child(odd)',
-    transition: handleWorksItem(1),
-    offset: 300,
-  })
-
-  transition2.addTransiton({
-    selector: '.works-item:nth-child(even)',
-    transition: handleWorksItem(-1),
-    offset: 100,
-  })
-
-  transition2.addTransiton({
+  transition.createScreenTransition({
     selector: '.works-item__image',
-    transition: handleAboutSection,
+    transitionIn: transition.fadeScaleIn,
+    transitionOut: () => {},
     offset: 100,
   })
 
-  transition2.addTransiton({
-    selector: '.works-item__image',
-    transition: handleAboutSection,
-    offset: 100,
+  transition.createAnimation({
+    selector: '.works-title',
+    start: 2000,
+    end: 3500,
+    init: true,
+    hide: false,
+    fn: (el, value) => {
+      console.log(el)
+      el.style.transform = `translateX(${300 - value * 400}px)`
+    },
   })
 }
 
@@ -198,7 +178,6 @@ const updateMouse = (value) => {
 const update = () => {
   scroller2.update()
   transition.update()
-  transition2.update()
 
   requestAnimationFrame(update)
 }
@@ -236,6 +215,7 @@ const init = () => {
   scroller2.addListener(updateScroller)
   scroller2.addListener(updateMenu)
   scroller2.addListener(updateMouse)
+  scroller2.addListener(transition.update)
 
   update()
 }
