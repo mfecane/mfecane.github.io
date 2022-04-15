@@ -21,6 +21,7 @@ let menuContacts: HTMLDivElement
 let scrollerEl: HTMLDivElement
 let mouseEl: HTMLDivElement
 let contactButton: HTMLDivElement
+let experienceEl: HTMLDivElement
 
 let logo
 let logoAnimationFinished = false
@@ -70,18 +71,41 @@ const initScroller = () => {
 }
 
 const initAnimations = () => {
+  // TODO ::: do thiese transitions by adding class
   transition.createScreenTransition({
-    selector: '.about-section',
+    selector: '.about-section__text-wrapper',
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
-    offset: 300,
+    offset: 200,
+  })
+
+  transition.createScreenTransition({
+    selector: '.about-seciton__skills-header',
+    transitionIn: transition.fadeIn,
+    transitionOut: NOOP,
+    offset: 200,
   })
 
   transition.createFullScreenTransition({
     selector: '.about-section',
     easing: easeOutCubic,
     transition: (el, value) => {
-      el.style.transform = `translateX(${200 - value * 200}px)`
+      el.style.transform = `translateX(${-100 + value * 120}px)`
+    },
+  })
+
+  transition.createScreenTransition({
+    selector: '.skills__item',
+    transitionIn: transition.fadeSlideIn,
+    transitionOut: NOOP,
+    margin: 500,
+    offset: 50,
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.experience-section',
+    transition: (el, value) => {
+      el.style.transform = `translateX(${-20 + value * 50}px)`
     },
   })
 
@@ -95,7 +119,7 @@ const initAnimations = () => {
   transition.createFullScreenTransition({
     selector: '.education',
     transition: (el, value) => {
-      el.style.transform = `translateX(${50 - value * 100}px)`
+      el.style.transform = `translateX(${-50 + value * 80}px)`
     },
   })
 
@@ -106,11 +130,18 @@ const initAnimations = () => {
     offset: 300,
   })
 
-  transition.createScreenTransition({
+  transition.createFullScreenTransition({
+    selector: '.works-title',
+    transition: (el, value) => {
+      el.style.transform = `translateX(${-300 + value * 300}px)`
+    },
+  })
+
+  transition.createFullScreenTransition({
     selector: '.works-item__image',
-    transitionIn: transition.fadeScaleIn,
-    transitionOut: NOOP,
-    offset: 100,
+    transition: (el, value) => {
+      el.style.transform = `translateX(${-40 + value * 50}px)`
+    },
   })
 
   transition.createAnimation({
@@ -120,15 +151,16 @@ const initAnimations = () => {
     init: true,
     hide: false,
     fn: (el, value) => {
-      el.style.transform = `translateX(${50 - value * 150}px)`
+      el.style.transform = `translateX(${-200 + value * 200}px)`
     },
   })
 
-  transition.createFullScreenTransition({
-    selector: '.works-title',
-    transition: (el, value) => {
-      el.style.transform = `translateX(${300 - value * 400}px)`
-    },
+  transition.createScreenTransition({
+    selector: '.works-item__descr-text',
+    transitionIn: transition.fadeScaleIn,
+    transitionOut: NOOP,
+    margin: 50,
+    offset: 300,
   })
 }
 
@@ -215,15 +247,16 @@ const init = () => {
   scrollerEl = document.querySelector('.scroller')
   mouseEl = document.querySelector('.mouse__container')
   contactButton = document.querySelector('#contacts-button')
+  experienceEl = document.querySelector('.experience-section-outer')
 
-  logo = new SvgPathAnimation(logoContainer, floralPage2Svg, {
-    shapesconfig: shapesconfig2,
-    scale: 0.5,
-  })
+  // logo = new SvgPathAnimation(logoContainer, floralPage2Svg, {
+  //   shapesconfig: shapesconfig2,
+  //   scale: 0.5,
+  // })
 
-  logo.start().then(() => {
-    logoAnimationFinished = true
-  })
+  // logo.start().then(() => {
+  //   logoAnimationFinished = true
+  // })
 
   mouseEl.addEventListener('click', () => {
     scroller2.setScrollValue(scrollPoints[1])
@@ -232,6 +265,8 @@ const init = () => {
   contactButton.addEventListener('click', () => {
     scroller2.setScrollValue(scrollPoints[3])
   })
+
+  experienceEl.addEventListener('wheel', (e) => e.stopPropagation())
 
   shaderCanvasContainer = document.querySelector('#shader-canvas-container')
   mainBackground.init(shaderCanvasContainer)

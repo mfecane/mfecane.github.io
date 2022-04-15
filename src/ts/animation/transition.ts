@@ -308,9 +308,9 @@ class FullScreenTransition extends AnimationBase {
 
     if (this.start === -1 && rect.left < window.innerWidth) {
       this.start = scrollValue
-      this.end = this.start + window.innerWidth
+      this.end = this.start + window.innerWidth + rect.width
     }
-
+    // TODO ::: it overshoots, fix
     const value = mapplain(scrollValue, this.start, this.end, 0, 1)
 
     // TODO ::: add offset if needed
@@ -375,8 +375,16 @@ const fadeScaleIn = (el: HTMLElement, value: number) => {
   const val1 = easeOutCubic(value)
   el.style.opacity = `${val1}`
 }
+
 const fadeIn = (el: HTMLElement, value: number) => {
   const val1 = easeOutCubic(value)
+  el.style.opacity = `${val1}`
+}
+
+const fadeSlideIn = (el: HTMLElement, value: number) => {
+  const val1 = easeOutCubic(value)
+  const val = (1 - val1) * 20
+  el.style.transform = `translateX(${val}%)`
   el.style.opacity = `${val1}`
 }
 
@@ -389,4 +397,5 @@ export default {
   init: init,
   fadeScaleIn: fadeScaleIn,
   fadeIn: fadeIn,
+  fadeSlideIn: fadeSlideIn,
 }

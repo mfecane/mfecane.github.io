@@ -17,9 +17,31 @@ body {
   top: 0;
   left: 0;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.scroller-inner {
   display: inline-flex;
   align-items: stretch;
-  pointer-events: none;
+  overflow: hidden;
+}
+
+.scroller-border {
+  flex: 0 0 48px;
+  width: 100%;
+  position: relative;
+}
+
+.scroller-border:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 600px;
+  width: 100%;
+  height: 1px;
+  background: rgb(57, 62, 69);
 }
 
 #shader-canvas-container {
@@ -33,7 +55,7 @@ body {
 
 .nav {
   position: fixed;
-  top: 30px;
+  top: 20px;
   right: 70px;
   display: flex;
   gap: 25px;

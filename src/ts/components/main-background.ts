@@ -71,7 +71,7 @@ const update = function () {
   renderer.setUniform('u_mouseX', shiftX * 0.001)
   renderer.setUniform('u_mouseY', shiftY * 0.0004)
 
-  renderer.parameters['dim'] = mapclamp(scrollValue, 0, 1600, 0, 1)
+  renderer.parameters['dim'] = mapclamp(scrollValue, 0, 1600, 0, 0.8)
   renderer.update()
 
   requestAnimationFrame(update)

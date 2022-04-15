@@ -2,7 +2,7 @@
 
 .about-page {
   display: inline-flex;
-  gap: 20px;
+  gap: 80px;
   min-width: 100vw;
   align-items: center;
   z-index: 2;
@@ -18,7 +18,7 @@
   padding: 40px 0;
   pointer-events: all;
   align-self: flex-start;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 
 .about-section__text-wrapper {
@@ -28,14 +28,14 @@
 
 .about-section__header {
   font-family: $headerFont;
-  font-size: 38px;
+  font-size: 32px;
   margin-bottom: 24px;
 }
 
 .about-section__text {
   font-size: 18px;
   color: $light2;
-  line-height: 22px;
+  line-height: 24px;
 }
 
 .about-section__skills-wrapper {
@@ -68,23 +68,31 @@
   gap: 6px;
 }
 
-.experience-section {
+.experience-section-outer {
   width: 500px;
+  background-color: black;
+  align-self: stretch;
+  pointer-events: all;
+  overflow: hiden;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.experience-section {
   display: flex;
   flex-direction: column;
   gap: 40px;
   position: relative;
-  pointer-events: all;
-  background-color: black;
-  align-self: stretch;
-  padding: 50px;
+  padding: 10px 20px 20px 20px;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .experience-header {
   font-family: $headerFont;
-  color: $light;
+  color: $light2;
   font-size: 42px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
 .experience-item {
