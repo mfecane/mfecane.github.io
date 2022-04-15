@@ -66,19 +66,22 @@ const initScroller = () => {
 const initAnimations = () => {
   transition.createScreenTransition({
     selector: '.about-section',
-    transition: transition.fadeScaleIn,
+    transitionIn: transition.fadeScaleIn,
+    transitionOut: () => {},
     offset: 300,
   })
 
   transition.createScreenTransition({
     selector: '.experience-item',
-    transition: transition.fadeScaleIn,
+    transitionIn: transition.fadeScaleIn,
+    transitionOut: () => {},
     offset: 300,
   })
 
   transition.createScreenTransition({
     selector: '.education',
-    transition: transition.fadeScaleIn,
+    transitionIn: transition.fadeScaleIn,
+    transitionOut: () => {},
     offset: 300,
   })
 

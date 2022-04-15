@@ -64,8 +64,8 @@ class AnimationBase {
 }
 
 class Controller extends AnimationBase {
-  transitionIn: TransitionCallback
-  transitionOut: TransitionCallback
+  transitionIn: TransitionCallback = () => {}
+  transitionOut: TransitionCallback = () => {}
   frames: [number, number, number, number]
 
   constructor(options: ControllerOptions) {
@@ -82,16 +82,19 @@ class Controller extends AnimationBase {
       this.transitionOut = this._back(options.transition)
     }
 
-    if (options.transitionIn && options.transitionOut) {
+    if (options.transitionIn) {
       this.transitionIn = options.transitionIn
+    }
+
+    if (options.transitionOut) {
       this.transitionOut = this._back(options.transitionOut)
     }
 
-    if (options.easing) {
+    if (options.transitionIn && options.easing) {
       this.transitionIn = this._addEasing(this.transitionIn, options.easing)
     }
 
-    if (options.easing) {
+    if (options.transitionOut && options.easing) {
       this.transitionOut = this._addEasing(this.transitionOut, options.easing)
     }
   }
