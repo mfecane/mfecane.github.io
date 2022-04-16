@@ -1,0 +1,159 @@
+@import "css/config.scss";
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: $mainFont;
+  background: black;
+
+  &.dynamic-mode {
+    overflow: hidden;
+  }
+
+  &.static-mode {
+    overflow: visible;
+    min-height: 100vh;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+
+  .static-mode & {
+    padding: 0 20px;
+  }
+}
+
+.scroller {
+  display: flex;
+  flex-direction: column;
+
+  .dynamic-mode & {
+    position: absolute;
+    min-width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  .static-mode & {
+  }
+}
+
+.scroller-inner {
+  display: inline-flex;
+  align-items: stretch;
+
+  .dynamic-mode & {
+    overflow: hidden;
+  }
+
+  .static-mode & {
+    overflow: auto;
+    flex-direction: column;
+  }
+}
+
+.scroller-border {
+  flex: 0 0 48px;
+  width: 100%;
+  position: relative;
+
+  .dynamic-mode & {
+    display: block;
+  }
+
+  .static-mode & {
+    display: none;
+  }
+}
+
+.scroller-border:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 600px;
+  width: 100%;
+  height: 1px;
+  background: rgb(57, 62, 69);
+}
+
+#shader-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #05080b center/cover url(assets/img/bg.jpg) fixed;
+  cursor: grab;
+}
+
+.nav {
+  position: fixed;
+  right: 50px;
+  display: flex;
+  gap: 25px;
+  z-index: 5;
+  padding: 20px;
+
+  @media (max-width: $bp2) {
+    justify-content: center;
+    background-color: black;
+  }
+
+  .static-mode & {
+    justify-content: flex-end;
+    right: unset;
+    width: 100%;
+    transition: background-color 400ms ease-out;
+  }
+
+  .static-mode &.black {
+    background-color: black;
+  }
+}
+
+.nav_spacer {
+  background-color: $accent;
+  width: 4px;
+  height: 12px;
+  transform: translateY(-1px);
+}
+
+.nav_item {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: $accent;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav_item.active {
+  color: $light;
+}
+
+.nav_item:hover {
+  color: white;
+}
+
+.nav_item:before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  transform: translateX(-50%);
+  transition: all 200ms ease-in-out;
+  background-color: $accent;
+}
+
+.nav_item:hover:before {
+  width: 100%;
+  background-color: white;
+}

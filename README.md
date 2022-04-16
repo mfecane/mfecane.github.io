@@ -16,6 +16,22 @@
 - put exp and works and all the content into single container sroll there, and move that container
 - layout contacts
 - remove unused fonts
+- rotate and rotate back on mouse move
+- add parallaxed projects
+- add parallaxed stuff
+- opening animation - slide border from left revealing logo and grouop
+- add transition from in to out
+- fix light position
+- rotate gyroid with mouse
+- improve loading
+
+background glass is separate
+rotates on animation
+
+## TRANSITION
+
+- map callback values to timeline segment
+- hide outside range
 
 ## ideas
 

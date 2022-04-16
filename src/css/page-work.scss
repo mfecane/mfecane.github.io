@@ -1,0 +1,262 @@
+@import "css/config.scss";
+
+.works-page {
+  display: inline-flex;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  pointer-events: all;
+
+  .dynamic-mode & {
+    display: inline-flex;
+    padding: 0 150px 0 50px;
+    gap: 120px;
+    min-width: 100vw;
+  }
+
+  .static-mode & {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 0;
+    gap: 60px;
+  }
+}
+
+.works-title {
+  font-family: $headerFont;
+  font-size: 72px;
+
+  .dynamic-mode & {
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    margin-bottom: 20px;
+    color: $light2;
+  }
+
+  .static-mode & {
+    align-self: flex-start;
+    margin-top: 100px;
+    color: $light;
+  }
+}
+
+.works-item {
+  .dynamic-mode & {
+    margin-bottom: -102px;
+    align-self: flex-end;
+  }
+
+  .dynamic-mode &:nth-child(odd) {
+    margin-top: -102px;
+    align-self: flex-start;
+  }
+
+  .static-mode &,
+  .static-mode &:nth-child(odd) {
+    align-self: stretch;
+    background-color: black;
+  }
+}
+
+.works-item-wrapper {
+  display: flex;
+  width: 100%;
+
+  .dynamic-mode & {
+    flex-direction: column;
+    width: 360px;
+  }
+
+  .static-mode & {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 20px;
+
+    @media (max-width: $bp2) {
+      flex-direction: column !important;
+    }
+  }
+
+  .dynamic-mode .works-item:nth-child(odd) & {
+    flex-direction: column-reverse;
+  }
+
+  .static-mode .works-item:nth-child(odd) & {
+    flex-direction: row-reverse;
+  }
+}
+
+.work-item__descr-container {
+  background: black;
+  position: relative;
+  padding: 20px 0;
+
+  .static-mode & {
+    padding: 20px 30px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.work-item__descr-subcontainer {
+  border-left: 3px solid $accent;
+  padding: 0 16px;
+
+  .dynamic-mode & {
+    margin-bottom: 96px;
+  }
+}
+
+.works-item__title {
+  color: $accent;
+  font-family: $headerFont;
+  font-size: 28px;
+  margin-bottom: 22px;
+  font-weight: bolder;
+  transition: all 200ms ease-in;
+  letter-spacing: 1px;
+}
+
+.works-item__title:hover {
+  color: white;
+}
+
+.works-item__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.works-item__tag {
+  border-radius: 4px;
+  background-color: #242c36;
+  color: #778290;
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.works-item__descr-text {
+  color: $light2;
+  font-size: 16px;
+  line-height: 22px;
+
+  .dynamic-mode & {
+    transition: all 500ms ease-in;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .static-mode & {
+  }
+}
+
+.works-item__descr-text.active {
+  color: $light2;
+  font-size: 16px;
+  line-height: 22px;
+
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.works-item__image-outer {
+  .dynamic-mode & {
+    transform: translate(-50px, -102px);
+  }
+
+  .dynamic-mode .works-item:nth-child(odd) & {
+    transform: translate(-50px, 102px);
+  }
+
+  .static-mode & {
+    background-color: black;
+  }
+}
+
+.works-item__image {
+  width: 360px;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+  position: relative;
+
+  .static-mode & {
+    margin: auto;
+  }
+}
+
+.works-item__image video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center center;
+  transform: scale(1);
+  transition: all 0.3s ease-out 0s;
+  border-radius: 2px;
+}
+
+.works-item__icons {
+  display: flex;
+  gap: 10px;
+
+  .dynamic-mode & {
+    right: 12px;
+    bottom: 12px;
+    position: absolute;
+    z-index: 5;
+    flex-direction: column;
+  }
+
+  .static-mode & {
+    margin: 16px;
+  }
+}
+
+.works-item__icon {
+  background-color: $accent;
+  width: 36px;
+  height: 36px;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+  transition: all 200ms ease-in;
+  box-shadow: inset 0px 0px 1px 1px $dark;
+  border: 1px solid $accent;
+}
+
+.works-item__icon i {
+  width: 22px;
+  height: 22px;
+  background-color: black;
+  transition: all 200ms ease;
+}
+
+.works-item__icon:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.works-item__icon--right i {
+  transform: translateX(2px);
+  mask-image: url("assets/svg/icons/right.svg");
+}
+
+.works-item:nth-child(odd) {
+  .work-item__descr-subcontainer {
+    margin-bottom: 0;
+
+    .dynamic-mode & {
+      margin-top: 96px;
+    }
+  }
+
+  .works-item__icons {
+    top: 12px;
+    right: 12px;
+    bottom: unset;
+  }
+}

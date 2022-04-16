@@ -1,0 +1,152 @@
+@import "css/config.scss";
+
+.hero-page {
+  .dynamic-mode & {
+    min-width: 100vw;
+  }
+}
+
+.hero-page__left {
+  padding: 50px 0 50px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  pointer-events: all;
+  background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.5) 0%, rgba(14, 14, 15, 0.5) 100%);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+
+  .dynamic-mode & {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 600px;
+  }
+
+  .static-mode & {
+    position: static;
+    width: 50%;
+    min-width: 500px;
+
+    @media (max-width: $bp1) {
+      width: auto;
+      padding: 50px;
+      align-items: center;
+    }
+  }
+}
+
+.hero-image {
+  width: 67vh;
+  height: 56vh;
+  transform: translateX(6vh);
+
+  .a {
+    fill: none;
+    stroke: $accent;
+    stroke-miterlimit: 10;
+  }
+}
+
+.hero-page__left:after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  content: "";
+  background-color: white;
+  background-image: radial-gradient(circle 900px at 50% 20%, rgb(89, 94, 101) 0%, rgb(0, 0, 0) 100%);
+}
+
+.hero-section__content {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.avatar-group {
+  display: flex;
+  align-items: flex-end;
+}
+
+.avatar-group___titles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.avatar-group___name {
+  font-family: $mainFont, serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: $light;
+  text-transform: uppercase;
+  text-align: right;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.avatar-group___job {
+  font-family: $mainFont, serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: $accent;
+  text-transform: uppercase;
+  text-align: right;
+  white-space: pre-wrap;
+  transform: translateY(3px);
+}
+
+.avatar-group__image__container {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 126px;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-grop__image {
+  position: relative;
+  position: absolute;
+  top: 0;
+  left: -7%;
+  width: 110%;
+  height: 100%;
+  background: url(/assets/img/avatar.png) no-repeat top center/cover;
+  z-index: 3;
+  transition: all 200ms ease-in-out;
+}
+
+.avatar-grop__image:hover {
+  left: -5%;
+  width: 115%;
+}
+
+.avatar-group__image__container:after {
+  content: "";
+  border-radius: 8px;
+  position: absolute;
+  bottom: -40%;
+  left: 50%;
+  width: 80%;
+  height: 120%;
+  background-color: $accent;
+  transition: all 200ms ease-in-out;
+  transform: translateX(-50%) rotate(15deg);
+  z-index: 2;
+}
+
+.avatar-group__image__container:hover:after {
+  background-color: white;
+  transform: translate(-47%, 10%) rotate(-15deg);
+}
+
+.hero-section__button-container {
+  display: flex;
+  gap: 12px;
+}

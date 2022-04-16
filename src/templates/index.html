@@ -1,503 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aleksei Aliapkin - FrontEnd developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<head>
-  <meta charset="utf-8" />
-  <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aleksei Aliapkin - FrontEnd developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+text&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
-</head>
+  <body>
+    <noscript>You need to enable JavaScript to view this site.</noscript>
 
-<body>
-  <noscript>You need to enable JavaScript to view this site.</noscript>
-
-  <div class="loading-screen">
-    <div class="loading-screen__spinner">
-      <div class=cube-row>
-        <div class="cube cube1"></div>
-        <div class="cube cube2"></div>
-        <div class="cube cube3"></div>
-        <div class="cube cube4"></div>
+    <div class="loading-screen">
+      <div class="loading-screen__spinner">
+        <div class="cube-row">
+          <div class="cube cube1"></div>
+          <div class="cube cube2"></div>
+          <div class="cube cube3"></div>
+          <div class="cube cube4"></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="main-bg-canvas-container"></div>
+    <div id="shader-canvas-container"></div>
 
-  <div class="mouse__container">
-    <div class="mouse__mouse">
-      <div class="mouse__wheel anim-background-color"></div>
-    </div>
-    <div class="mouse__arrow-container">
-      <div class="mouse__arrow-top"></div>
-      <div class="mouse__arrow-bottom"></div>
-    </div>
-  </div>
+    <ul class="nav">
+      <li class="nav_item" id="menu_home"><a href="#">home</a></li>
+      <li class="nav_spacer"></li>
+      <li class="nav_item" id="menu_about">
+        <a href="#about-section">about</a>
+      </li>
+      <li class="nav_spacer"></li>
+      <li class="nav_item" id="menu_works">
+        <a href="#about-section">projects</a>
+      </li>
+      <li class="nav_spacer"></li>
+      <li class="nav_item" id="menu_contacts">
+        <a href="#about-section">contacts</a>
+      </li>
+    </ul>
 
-  <div class="scroller__container" style="opacity: 0">
-    <div class="scroller__line">
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-      <div class="scroller__tick"></div>
-    </div>
-    <div class="scroller__labels">
-      <div>Home</div>
-      <div>Experience</div>
-      <div>Works</div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div>Contacts</div>
-    </div>
-  </div>
-
-  <section class="page1" id="page1">
-    <div class="page1__left">
-      <div class="logo-group">
-        <div class="column__logo-container" id="logo-container"></div>
-        <img src="/assets/svg/title.svg" alt="" class="column__title-image" width="400px" height="125px" />
-        <h2 class="column__subtitle anim-color">frontend<br />developer</h2>
+    <div class="mouse__container">
+      <div class="mouse__mouse">
+        <div class="mouse__wheel"></div>
       </div>
-      <div class="column__button-container">
-        <button class="btn btn_primary anim-border-color anim-background-color" id="contacts-button">
-          Contact me
-        </button>
-        <a target="_blank" href="/assets/cv/cv.pdf">
-          <button class="btn btn_secondary anim-border-color anim-color">
-            Download CV
-          </button></a>
-      </div>
+      <div class="mouse__label">scroll</div>
     </div>
-    <div class="page1__photo-container">
-      <img src="/assets/img/avatar.png" alt="" class="page1__photo" />
-    </div>
-  </section>
 
-  <div class="page2-left" data-transition data-transition-page="1" data-transition-in="second-page-left"
-    data-transition-in-args="" data-transition-out="second-page-left" data-transition-out-args="">
-    <div class="about__container container">
-
-      <div class="about__main" data-transition data-transition-page="1" data-transition-in="slide-from"
-        data-transition-out="slide-from">
-        <h3 class="about__title anim-color anim-border-color">
-          HI, MY NAME IS ALIAPKIN ALEKSEI
-        </h3>
-
-        <article class="about__text" data-transition data-transition-page="1" data-transition-in="slide-from"
-          data-transition-in-args="|50|" data-transition-out="slide-from" data-transition-out-args="|50|">
-          <p>
-            Hi, my name is Aliapkin Aleksei and i am a front-end developer
-            located in Moscow, Russia.
-          </p>
-
-          <p>
-            Senior front-end developer specializing in Javascript, Vue and
-            jQuery technologies. I performed well, and received rapid career
-            growth to became a team leader. I have a strong mathematical
-            background and significant artistic skills, in particular 3D
-            modeling.
-          </p>
-
-        </article>
-
-        <h3 class="about__title anim-color anim-border-color">
-          TECHNOLOGIES
-        </h3>
-
-        <div class="tech__container">
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|1">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--vue anim-background-color"></div>
+    <div class="scroller">
+      <div class="scroller-border"></div>
+      <div class="scroller-inner">
+        <div class="hero-page">
+          <div class="hero-page__left">
+            <div class="hero-image">
+              <!-- prettier-ignore-->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 311.2 251.28">
+                <line class="a" y1="106.17" x2="271.62" y2="106.17"/>
+                <line class="a" x1="84.61" y1="154.66" x2="283.2" y2="154.66"/>
+                <path class="a" d="M121.34,118.3a15,15,0,0,0,0-24.25"/>
+                <path class="a" d="M131.53,58.35a26.72,26.72,0,0,0,30.54-30.54"/>
+                <path class="a" d="M5.6,111.83a7,7,0,0,0,0-11.31"/>
+                <path class="a" d="M78.56,113.38a8.92,8.92,0,0,1,0-14.42"/>
+                <line class="a" x1="114.9" y1="71.15" x2="114.9" y2="141.2"/>
+                <line class="a" x1="108.29" y1="85.23" x2="108.29" y2="127.11"/>
+                <line class="a" x1="232.54" y1="73.15" x2="232.54" y2="213.28"/>
+                <line class="a" x1="249.98" x2="249.98" y2="238.85"/>
+                <line class="a" x1="181.48" y1="95.45" x2="181.48" y2="251.28"/>
+                <line class="a" x1="110.19" y1="6.47" x2="243.82" y2="140.1"/>
+                <line class="a" x1="222.07" y1="195.93" x2="242.84" y2="195.93"/>
+                <line class="a" x1="222.16" y1="202.49" x2="242.93" y2="202.49"/>
+                <line class="a" x1="157.87" y1="219.54" x2="193.63" y2="219.54"/>
+                <line class="a" x1="96.19" y1="143.21" x2="96.19" y2="166.11"/>
+                <line class="a" x1="39.09" y1="92.48" x2="39.09" y2="119.87"/>
+                <line class="a" x1="135.9" y1="95.74" x2="135.9" y2="116.61"/>
+                <line class="a" x1="140.49" y1="95.74" x2="140.49" y2="116.61"/>
+                <line class="a" x1="145.04" y1="95.74" x2="145.04" y2="116.61"/>
+                <line class="a" x1="45.55" y1="90.26" x2="45.55" y2="122.09"/>
+                <line class="a" x1="51.85" y1="88.29" x2="51.85" y2="124.06"/>
+                <path class="a" d="M177,196.49a28.44,28.44,0,1,1,0,46.11"/>
+                <path class="a" d="M90,70.65a43.81,43.81,0,1,0,0,71"/>
+                <path class="a" d="M7.56,116.68a13,13,0,0,0,5.35-10.51A13,13,0,0,0,7.56,95.66"/>
+                <path class="a" d="M101.33,106.09A36.08,36.08,0,1,1,65.25,70,36.08,36.08,0,0,1,101.33,106.09Z"/>
+                <path class="a" d="M96.91,106.09a13.4,13.4,0,1,1-13.4-13.4A13.4,13.4,0,0,1,96.91,106.09Z"/>
+                <path class="a" d="M146.55,29.71a13.17,13.17,0,1,1-13.17-13.18A13.17,13.17,0,0,1,146.55,29.71Z"/>
+                <path class="a" d="M295.42,106.43a62.59,62.59,0,1,1-62.59-62.59A62.59,62.59,0,0,1,295.42,106.43Z"/>
+                <path class="a" d="M166.07,169.47a26.33,26.33,0,1,1-26.33-26.32A26.33,26.33,0,0,1,166.07,169.47Z"/>
+                <path class="a" d="M215.3,219.57a21.75,21.75,0,1,1-21.75-21.74A21.75,21.75,0,0,1,215.3,219.57Z"/>
+                <path class="a" d="M150.7,29.71a17.32,17.32,0,1,1-17.32-17.32A17.32,17.32,0,0,1,150.7,29.71Z"/>
+                <path class="a" d="M310.7,106.43a77.87,77.87,0,1,1-77.87-77.87A77.88,77.88,0,0,1,310.7,106.43Z"/>
+                <path class="a" d="M204.34,88.3H123.66V64.64h80.68Z"/>
+                <path class="a" d="M274.72,81.19H191.19v-66h83.53Z"/>
+                <path class="a" d="M211,186.26h-74.3V126.55H211Z"/>
+              </svg>
             </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.95">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--js anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.9">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--react anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.85">
-            <div class=" tech__item-inner">
-              <div class="tech__image icon icon--redux anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.8">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--sass anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.75">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--jquery anim-background-color"></div>
-            </div>
-          </div>
-          <div class="tech__item anim-border-color" data-transition-page="1" data-transition="slide-from"
-            data-transition-args="|100|.7">
-            <div class="tech__item-inner">
-              <div class="tech__image icon icon--git anim-background-color"></div>
+
+            <div class="hero-section__content">
+              <div class="avatar-group">
+                <div class="avatar-group___titles">
+                  <h2 class="avatar-group___name">Aleksei Aliapkin</h2>
+                  <!-- prettier-ignore -->
+                  <h2 class="avatar-group___job">frontend<br>developer</h2>
+                </div>
+                <div class="avatar-group__image__container">
+                  <div class="avatar-grop__image"></div>
+                </div>
+              </div>
+
+              <div class="hero-section__button-container">
+                <button class="btn btn_primary" id="contacts-button">
+                  Contact me
+                </button>
+                <a target="_blank" href="/assets/cv/cv.pdf">
+                  <button class="btn btn_secondary">Download CV</button></a
+                >
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="about-page">
+          <div class="about-section" id="about-section">
+            <div class="container">
+              <div class="about-section__text-wrapper">
+                <h2 class="about-section__header">
+                  Hi, my name is Aliapkin Aleksei
+                </h2>
+                <p class="about-section__text">
+                  Hi, my name is Aliapkin Aleksei and i am a front-end developer
+                  located in Moscow, Russia. Senior front-end developer
+                  specializing in Javascript, Vue and jQuery technologies. I
+                  performed well, and received rapid career growth to became a
+                  team leader. I have a strong mathematical background and
+                  significant artistic skills, in particular 3D modeling.
+                </p>
+              </div>
+              <div class="about-section__skills-wrapper">
+                <h2 class="about-seciton__skills-header">Key skills</h2>
+                <div class="skills__wrapper">
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--vue"></i>Vue
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--git"></i>Git
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--react"></i>React
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--js"></i>Typescript
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--html"></i>HTML
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--sass"></i>SASS
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--webgl"></i>WebGL
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="experience-section-outer">
+            <div class="container">
+              <div class="experience-section">
+                <h2 class="experience-header">Work experience</h2>
+                <div class="experience-item">
+                  <div class="experience-item__years">2021 - NOW</div>
+                  <div class="experience-item__header">
+                    Senior developer/Team lead, Online Reservation Systems
+                  </div>
+                  <div class="experience-item__subheader">
+                    ONLINE RESERVATION SYSTEMS
+                  </div>
+                  <div class="experience-item__descr">
+                    Shortly after joining became team lead. Started to manage
+                    team's tasks, perform code reviews I take only most complex
+                    tasks. I perform different related activities, such as
+                    DevOps tasks, deployment, developement of in-house e2e
+                    testing helper framework.
+                  </div>
+                </div>
+                <div class="experience-item">
+                  <div class="experience-item__years">2020 - 2021</div>
+                  <div class="experience-item__header">Frontend Developer</div>
+                  <div class="experience-item__subheader">GRIDNINE SYSTEMS</div>
+                  <div class="experience-item__descr">
+                    Finished my tasks timely with good quality. Received
+                    positive feedback from client for my work.
+                  </div>
+                </div>
+                <hr />
+                <div class="experience-item">
+                  <div class="experience-item__years">2008 - 2019</div>
+                  <div class="experience-item__header">Financial analyst</div>
+                  <div class="experience-item__descr">
+                    Previously I was working in largest Russian banks as
+                    financial analyst, such as Rosbank, Societe Generale Group,
+                    Open Bank, Russian Standard Bank. I started my career in
+                    Russian branch of KPMG as audit associate.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="education">
+            <div class="container">
+              <h2 class="experience-header">Education</h2>
+              <div class="experience-item__years">2002 - 2007</div>
+              <div class="experience-item__header">
+                Lomonosov Moscow State University
+              </div>
+              <div class="experience-item__subheader">
+                Department of mechanics and mathematics
+              </div>
+              <div class="experience-item__descr">
+                Graduated from department of mechanics and mathematics. Received
+                specialist degree with honors. Specialized in optimization of
+                control of dynamic systems
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="works-page">
+          <div class="container">
+            <h2 class="works-title">My projects</h2>
+          </div>
+
+          <div class="works-item">
+            <div class="works-item-wrapper">
+              <div class="work-item__descr-container">
+                <div class="work-item__descr-subcontainer">
+                  <div class="works-item__title">
+                    <a target="_blank" href="https://mfecane.github.io/boot/"
+                      >Boot store app
+                    </a>
+                  </div>
+                  <div class="works-item__tags">
+                    <div class="works-item__tag">React</div>
+                    <div class="works-item__tag">WebGL</div>
+                  </div>
+                  <div class="works-item__descr-text">
+                    An app for configuring of custom boot for imaginary cobbler
+                    shop. Allows selecting different materials and material
+                    colors for different parts. All design work, 3d modelling,
+                    sculpting and texturing were made by myself, no assets were
+                    outsorced. Rendering was done using THREE.JS.
+                  </div>
+                </div>
+                <div class="works-item__icons">
+                  <div class="works-item__icon">
+                    <a target="_blank" href="https://github.com/mfecane/boot">
+                      <i class="icon icon--github"></i
+                    ></a>
+                  </div>
+                  <div class="works-item__icon works-item__icon--right">
+                    <a target="_blank" href="https://mfecane.github.io/boot/"
+                      ><i class="icon"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="works-item__image-outer">
+                <div class="works-item__image">
+                  <a target="_blank" href="https://mfecane.github.io/boot/">
+                    <video
+                      src="/assets/video/bootDemo.webm"
+                      autoplay
+                      muted
+                      loop
+                    ></video>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="works-item">
+            <div class="works-item-wrapper">
+              <div class="work-item__descr-container">
+                <div class="work-item__descr-subcontainer">
+                  <div class="works-item__title">
+                    <a
+                      target="_blank"
+                      href="https://mfecane.github.io/weather-app/"
+                      >Weather app
+                    </a>
+                  </div>
+                  <div class="works-item__tags">
+                    <div class="works-item__tag">React</div>
+                    <div class="works-item__tag">WebGL</div>
+                  </div>
+                  <div class="works-item__descr-text">
+                    Application, which displays current weather, 5 day forecast,
+                    and hourly weather for the next 24 hours. Using both
+                    OpenWeatherMap API and WeatherAPI.com.
+                  </div>
+                </div>
+                <div class="works-item__icons">
+                  <div class="works-item__icon">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/weather-app"
+                    >
+                      <i class="icon icon--github"></i
+                    ></a>
+                  </div>
+                  <div class="works-item__icon works-item__icon--right">
+                    <a
+                      target="_blank"
+                      href="https://mfecane.github.io/weather-app/"
+                      ><i class="icon"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="works-item__image-outer">
+                <div class="works-item__image">
+                  <a
+                    target="_blank"
+                    href="https://mfecane.github.io/weather-app/"
+                  >
+                    <video
+                      src="/assets/video/weather-app.webm"
+                      autoplay
+                      muted
+                      loop
+                    ></video>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="works-item">
+            <div class="works-item-wrapper">
+              <div class="work-item__descr-container">
+                <div class="work-item__descr-subcontainer">
+                  <div class="works-item__title">
+                    <a
+                      target="_blank"
+                      href="https://mfecane.github.io/to-do_app/"
+                      >Todo app
+                    </a>
+                  </div>
+                  <div class="works-item__tags">
+                    <div class="works-item__tag">React</div>
+                    <div class="works-item__tag">Bootstrap</div>
+                  </div>
+                  <div class="works-item__descr-text">
+                    Application frontend for managing tasks. All items can be
+                    sorted by dragging, filtered, edited inline.
+                  </div>
+                </div>
+                <div class="works-item__icons">
+                  <div class="works-item__icon">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/to-do_app"
+                    >
+                      <i class="icon icon--github"></i
+                    ></a>
+                  </div>
+                  <div class="works-item__icon works-item__icon--right">
+                    <a
+                      target="_blank"
+                      href="https://mfecane.github.io/to-do_app/"
+                      ><i class="icon"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="works-item__image-outer">
+                <div class="works-item__image">
+                  <a
+                    target="_blank"
+                    href="https://mfecane.github.io/to-do_app/"
+                  >
+                    <video
+                      src="/assets/video/to-do_list.webm"
+                      autoplay
+                      muted
+                      loop
+                    ></video>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="works-item">
+            <div class="works-item-wrapper">
+              <div class="work-item__descr-container">
+                <div class="work-item__descr-subcontainer">
+                  <div class="works-item__title">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/web-mandelbrot"
+                      >Mandelbruh fractal
+                    </a>
+                  </div>
+                  <div class="works-item__tags">
+                    <div class="works-item__tag">C++</div>
+                    <div class="works-item__tag">OpenGL</div>
+                    <div class="works-item__tag">WebGL</div>
+                  </div>
+                  <div class="works-item__descr-text">
+                    Several implementations of mandelbrot fractal zooming
+                    applications. There are CPU, GPU (OpenGL), and GPU (Web-GL)
+                    versions. Due to the limit of precision of floating point
+                    numbers in WebGL, zooming in web version is limited.
+                  </div>
+                </div>
+                <div class="works-item__icons">
+                  <div class="works-item__icon">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/mandelbruh"
+                    >
+                      <i class="icon icon--github"></i
+                    ></a>
+                  </div>
+                  <div class="works-item__icon">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/web-mandelbrot"
+                      ><i class="icon icon--github"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="works-item__image-outer">
+                <div class="works-item__image">
+                  <a
+                    target="_blank"
+                    href="https://github.com/mfecane/web-mandelbrot"
+                  >
+                    <video
+                      src="/assets/video/mandelbruh.webm"
+                      autoplay
+                      muted
+                      loop
+                    ></video>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="works-item">
+            <div class="works-item-wrapper">
+              <div class="work-item__descr-container">
+                <div class="work-item__descr-subcontainer">
+                  <div class="works-item__title">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/rec_app/releases"
+                      >Screen recording app
+                    </a>
+                  </div>
+                  <div class="works-item__tags">
+                    <div class="works-item__tag">C++</div>
+                    <div class="works-item__tag">Qt</div>
+                    <div class="works-item__tag">FFMPEG</div>
+                  </div>
+                  <div class="works-item__descr-text">
+                    Windows application for easy creating time lapse recordings
+                    of user screen. This app was developed for myself for
+                    recording of my drawing and sculpting sessions.
+                  </div>
+                </div>
+                <div class="works-item__icons">
+                  <div class="works-item__icon">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/rec_app"
+                    >
+                      <i class="icon icon--github"></i
+                    ></a>
+                  </div>
+                  <div class="works-item__icon works-item__icon--right">
+                    <a
+                      target="_blank"
+                      href="https://github.com/mfecane/rec_app/releases"
+                      ><i class="icon"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="works-item__image-outer">
+                <div class="works-item__image">
+                  <video
+                    src="/assets/video/rec-app.webm"
+                    autoplay
+                    muted
+                    loop
+                  ></video>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- --- -->
+        </div>
+
+        <div class="contacts-page">
+          <div class="container">
+            <div class="contacts__container">
+              <h3 class="contacts__title">
+                <span>Contacts</span>
+              </h3>
+
+              <ul class="contact__list">
+                <li class="contact__item">
+                  <a href="mailto: aaliapkin@gmail.com" target="_blank">
+                    <span class="contact__icon icon icon--mail"></span>
+                    aaliapkin@gmail.com
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a href="tel:+7 (916) 426-5709" target="_blank">
+                    <span class="contact__icon icon icon--phone"></span>
+                    +7 (916) 426-5709
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a href="https://github.com/mfecane" target="_blank">
+                    <span class="contact__icon icon icon--github"></span>
+                    Mfecane
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a href="https://t.me/aaliapkin" target="_blank">
+                    <span class="contact__icon icon icon--telegram"></span>
+                    aaliapkin
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a
+                    href="https://www.instagram.com/hatis_ustes"
+                    target="_blank"
+                  >
+                    <span class="contact__icon icon icon--inst"></span>
+                    hatis_ustes
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="page2-right" data-transition-page="1" data-transition="second-page-right">
-    <div class="exp__container container">
-      <h3 class="exp__title anim-color">
-        <span>WORK EXPERIENCE</span>
-        <div>
-          <div class="anim-background-color"></div>
-        </div>
-      </h3>
-
-      <ul>
-        <li class="exp__item">
-          <span class="exp__year">2021 - NOW</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Senior developer/Team lead, Online Reservation Systems
-            </h4>
-            <em class="exp__place">Online Reservation Systems</em>
-            <p class="exp__descr">
-              Shortly after joining became team lead.
-              Started to manage team's tasks, perform code reviews
-              I take only most complex tasks.
-              I perform different related activities, such as
-              DevOps tasks, deployment, developement of in-house e2e testing helper
-              framework.
-            </p>
-          </div>
-        </li>
-
-        <li class="exp__item">
-          <span class="exp__year">2020 - 2021</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Frontend Developer
-            </h4>
-            <em class="exp__place">GRIDNINE SYSTEMS</em>
-            <p class="exp__descr">
-              Finished my tasks timely with good quality. Received positive
-              feedback from client for my work.
-            </p>
-          </div>
-        </li>
-
-        <li class="exp__item">
-          <span class="exp__year">2008 - 2019</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Financial analyst
-            </h4>
-            <p class="exp__descr">
-              Previously I was working in largest Russian banks as financial analyst, such as Rosbank, Societe
-              Generale Group, Open Bank, Russian Standard Bank. I started my career in Russian branch of KPMG as audit
-              associate.
-            </p>
-          </div>
-        </li>
-      </ul>
-
-      <h3 class="exp__title anim-color">
-        <span>EDUCATION</span>
-        <div>
-          <div class="anim-background-color"></div>
-        </div>
-      </h3>
-
-      <ul>
-        <li class="exp__item">
-          <span class="exp__year">2002 - 2007</span>
-          <div class="exp__details">
-            <h4 class="exp__name anim-color">
-              Lomonosov Moscow State University
-            </h4>
-            <em class="exp__place">department of mechanics and mathematics</em>
-            <p class="exp__descr">
-              Graduated from department of mechanics and
-              mathematics. Received specialist degree with honors.
-              Specialized in optimization of control of dynamic
-              systems
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="works-container container">
-
-    <div class="works-title">
-      <h3 class="works-title__heading anim-color">MY WORKS</h3>
-    </div>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="2" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://mfecane.github.io/boot/">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Boot store app
-          </h4>
-        </a>
-        <p class="works-item__text">
-          An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and
-          material colors for different parts.
-          All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced.
-          Rendering
-          was
-          done using
-          THREE.JS.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--react">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--webgl">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/boot">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/boot/">
-          <video src="/assets/video/bootDemo.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="3" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://mfecane.github.io/weather-app/">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Weather app
-          </h4>
-        </a>
-        <p class="works-item__text">
-          Application, which displays current weather, 5 day forecast, and
-          hourly weather for the next 24 hours. Using both OpenWeatherMap
-          API and WeatherAPI.com.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--react">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--redux">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/weather-app">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/weather-app/">
-          <video src="/assets/video/weather-app.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="4" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <h4 class="works-item__title anim-color anim-border-color">
-          <a target="_blank" href="https://mfecane.github.io/to-do_app/">Todo app</a>
-        </h4>
-        <p class="works-item__text">
-          Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--react">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--bootstrap">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/to-do_app">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/to-do_app/">
-          <video src="/assets/video/to-do_list.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="5" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Mandelbruh
-          </h4>
-        </a>
-        <p class="works-item__text">
-          Several implementations of mandelbrot fractal zooming applications. There are CPU,
-          GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of
-          floating point numbers in WebGL, zooming in web version is limited.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--cpp">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--opengl">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--webgl">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/web-mandelbrot">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub (web)</span>
-            </button>
-          </a>
-          <a target="_blank" href="https://github.com/mfecane/mandelbruh">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub (OpenGl)</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank" href="https://mfecane.github.io/web-mandelbrot/">
-          <video src="/assets/video/mandelbruh.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-
-    <section class="works-item__container shadow" data-transition data-transition-page="6" data-transition-in="works-in"
-      data-transition-out="works-out">
-      <div class="works-item__layout">
-        <a target="_blank" href="https://github.com/mfecane/rec_app/releases">
-          <h4 class="works-item__title anim-color anim-border-color">
-            Screen recording app
-          </h4>
-        </a>
-        <p class="works-item__text">
-          Windows application for easy creating time lapse recordings of user screen. This app was developed for myself
-          for recording of my drawing and sculpting sessions.
-        </p>
-        <div class="works-item__technologies">
-          <div class="works-item__icon">
-            <i class="icon icon--ffmpeg">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--cpp">
-            </i>
-          </div>
-          <div class="works-item__icon">
-            <i class="icon icon--qt">
-            </i>
-          </div>
-        </div>
-        <div class="works-item__buttons-container">
-          <a target="_blank" href="https://github.com/mfecane/rec_app">
-            <button class="btn btn_primary works-item__button anim-background-color anim-border-color"">
-            <i class=" icon icon--github"></i><span>GitHub</span>
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class=" works-item__image">
-        <a target="_blank">
-          <video src="/assets/video/rec-app.webm" autoplay muted loop></video>
-        </a>
-      </div>
-    </section>
-  </div>
-
-  <section class="page page4" data-transition data-transition-page="7" data-transition-in="contacts-page"
-    data-transition-out="contacts-page">
-    <div class="contacts__container container">
-      <h3 class="contacts__title anim-color">
-        <span>Contacts</span>
-      </h3>
-
-      <ul class="contact__list">
-        <li class="contact__item">
-          <a href="mailto: aaliapkin@gmail.com" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--mail anim-background-color"></span>
-            aaliapkin@gmail.com
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="tel:+7 (916) 426-5709" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--phone anim-background-color"></span>
-            +7 (916) 426-5709
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="https://github.com/mfecane" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--github anim-background-color"></span>
-            Mfecane
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="https://t.me/aaliapkin" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--telegram anim-background-color"></span>
-            aaliapkin
-          </a>
-        </li>
-        <li class="contact__item">
-          <a href="https://www.instagram.com/hatis_ustes" target="_blank" class="anim-color">
-            <span class="contact__icon icon icon--inst anim-background-color"></span>
-            hatis_ustes
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-</body>
-
+  </body>
 </html>

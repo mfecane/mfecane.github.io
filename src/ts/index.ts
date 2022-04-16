@@ -1,13 +1,13 @@
 import 'css/null.scss'
-import 'css/page1.scss'
-import 'css/page2.scss'
-import 'css/page3.scss'
-import 'css/page4.scss'
-import 'css/mouse.scss'
-import 'css/scroller.scss'
-import 'css/pager.scss'
 import 'css/global.scss'
-import 'css/loading.scss'
+import 'css/styles.scss'
 
+import 'css/page-hero.scss'
+import 'css/page-about.scss'
+import 'css/page-work.scss'
+import 'css/page-contacts.scss'
+
+import 'css/mouse.scss'
+import 'css/loading.scss'
 
 import 'ts/setup'
