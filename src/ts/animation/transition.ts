@@ -344,15 +344,18 @@ class ClassTransition extends AnimationBase {
   }
 
   update() {
-    if (this._active) {
-      return
-    }
-
     const rect = this.el.getBoundingClientRect()
+    let active = this._active
 
     if (rect.left + this.offset * this.index < window.innerWidth) {
-      this._active = true
-      this.el.classList.toggle(this.className, true)
+      active = true
+    } else {
+      active = false
+    }
+
+    if (this._active !== active) {
+      this._active = active
+      this.el.classList.toggle(this.className, this._active)
     }
   }
 }

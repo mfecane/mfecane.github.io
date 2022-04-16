@@ -29,7 +29,7 @@ const init = (): void => {
 }
 
 const _update = (value: number): void => {
-  paths.forEach((path, index) => {
+  paths.forEach((path) => {
     path.element.style.strokeDashoffset = (path.length * (1 - value)).toString()
   })
 }
