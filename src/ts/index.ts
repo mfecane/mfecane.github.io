@@ -8,5 +8,6 @@ import 'css/page-work.scss'
 import 'css/page-contacts.scss'
 
 import 'css/mouse.scss'
+import 'css/loading.scss'
 
 import 'ts/setup'

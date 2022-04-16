@@ -31,13 +31,15 @@ let shiftY = 0
 
 let mouseDown = false
 
-const handleMouseDown = (e) => {
+const handleMouseDown = (e: MouseEvent): void => {
+  e.preventDefault()
   mouseStartX = e.x
   mouseStartY = e.y
   mouseDown = true
 }
 
-const handleMouseMove = (e) => {
+const handleMouseMove = (e: MouseEvent): void => {
+  e.preventDefault()
   if (!mouseStartX && !mouseStartY) {
     return
   }
@@ -49,7 +51,8 @@ const handleMouseMove = (e) => {
   shiftY = deltaY
 }
 
-const handleMouseUp = (e) => {
+const handleMouseUp = (e: MouseEvent): void => {
+  e.preventDefault()
   mouseStartX = 0
   mouseStartY = 0
   mouseDown = false
@@ -77,7 +80,7 @@ const update = function () {
   requestAnimationFrame(update)
 }
 
-const init = function (canvasContainer) {
+const init = function (canvasContainer: HTMLDivElement): void {
   const shaderOptions = {
     name: 'Shiny gyroid',
     description: 'Cubemap sampling techniques',

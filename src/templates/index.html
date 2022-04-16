@@ -21,16 +21,33 @@
   <body>
     <noscript>You need to enable JavaScript to view this site.</noscript>
 
+    <div class="loading-screen">
+      <div class="loading-screen__spinner">
+        <div class="cube-row">
+          <div class="cube cube1"></div>
+          <div class="cube cube2"></div>
+          <div class="cube cube3"></div>
+          <div class="cube cube4"></div>
+        </div>
+      </div>
+    </div>
+
     <div id="shader-canvas-container"></div>
 
     <ul class="nav">
-      <li class="nav_item" id="menu_home">home</li>
+      <li class="nav_item" id="menu_home"><a href="#">home</a></li>
       <li class="nav_spacer"></li>
-      <li class="nav_item" id="menu_about">about</li>
+      <li class="nav_item" id="menu_about">
+        <a href="#about-section">about</a>
+      </li>
       <li class="nav_spacer"></li>
-      <li class="nav_item" id="menu_works">projects</li>
+      <li class="nav_item" id="menu_works">
+        <a href="#about-section">projects</a>
+      </li>
       <li class="nav_spacer"></li>
-      <li class="nav_item" id="menu_contacts">contacts</li>
+      <li class="nav_item" id="menu_contacts">
+        <a href="#about-section">contacts</a>
+      </li>
     </ul>
 
     <div class="mouse__container">
@@ -112,103 +129,115 @@
         </div>
 
         <div class="about-page">
-          <div class="about-section">
-            <div class="about-section__text-wrapper">
-              <h2 class="about-section__header">
-                Hi, my name is Aliapkin Aleksei
-              </h2>
-              <p class="about-section__text">
-                Hi, my name is Aliapkin Aleksei and i am a front-end developer
-                located in Moscow, Russia. Senior front-end developer
-                specializing in Javascript, Vue and jQuery technologies. I
-                performed well, and received rapid career growth to became a
-                team leader. I have a strong mathematical background and
-                significant artistic skills, in particular 3D modeling.
-              </p>
-            </div>
-            <div class="about-section__skills-wrapper">
-              <h2 class="about-seciton__skills-header">Key skills</h2>
-              <div class="skills__wrapper">
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--vue"></i>Vue
-                </div>
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--git"></i>Git
-                </div>
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--react"></i>React
-                </div>
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--js"></i>Typescript
-                </div>
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--html"></i>HTML
-                </div>
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--sass"></i>SASS
-                </div>
-                <div class="skills__item">
-                  <i class="skills-icon icon icon--webgl"></i>WebGL
+          <div class="about-section" id="about-section">
+            <div class="container">
+              <div class="about-section__text-wrapper">
+                <h2 class="about-section__header">
+                  Hi, my name is Aliapkin Aleksei
+                </h2>
+                <p class="about-section__text">
+                  Hi, my name is Aliapkin Aleksei and i am a front-end developer
+                  located in Moscow, Russia. Senior front-end developer
+                  specializing in Javascript, Vue and jQuery technologies. I
+                  performed well, and received rapid career growth to became a
+                  team leader. I have a strong mathematical background and
+                  significant artistic skills, in particular 3D modeling.
+                </p>
+              </div>
+              <div class="about-section__skills-wrapper">
+                <h2 class="about-seciton__skills-header">Key skills</h2>
+                <div class="skills__wrapper">
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--vue"></i>Vue
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--git"></i>Git
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--react"></i>React
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--js"></i>Typescript
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--html"></i>HTML
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--sass"></i>SASS
+                  </div>
+                  <div class="skills__item">
+                    <i class="skills-icon icon icon--webgl"></i>WebGL
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="experience-section-outer">
-            <div class="experience-section">
-              <h2 class="experience-header">Work experience</h2>
-              <div class="experience-item">
-                <div class="experience-item__header">
-                  Senior developer/Team lead, Online Reservation Systems
+            <div class="container">
+              <div class="experience-section">
+                <h2 class="experience-header">Work experience</h2>
+                <div class="experience-item">
+                  <div class="experience-item__years">2021 - NOW</div>
+                  <div class="experience-item__header">
+                    Senior developer/Team lead, Online Reservation Systems
+                  </div>
+                  <div class="experience-item__subheader">
+                    ONLINE RESERVATION SYSTEMS
+                  </div>
+                  <div class="experience-item__descr">
+                    Shortly after joining became team lead. Started to manage
+                    team's tasks, perform code reviews I take only most complex
+                    tasks. I perform different related activities, such as
+                    DevOps tasks, deployment, developement of in-house e2e
+                    testing helper framework.
+                  </div>
                 </div>
-                <div class="experience-item__subheader">
-                  ONLINE RESERVATION SYSTEMS
+                <div class="experience-item">
+                  <div class="experience-item__years">2020 - 2021</div>
+                  <div class="experience-item__header">Frontend Developer</div>
+                  <div class="experience-item__subheader">GRIDNINE SYSTEMS</div>
+                  <div class="experience-item__descr">
+                    Finished my tasks timely with good quality. Received
+                    positive feedback from client for my work.
+                  </div>
                 </div>
-                <div class="experience-item__descr">
-                  Shortly after joining became team lead. Started to manage
-                  team's tasks, perform code reviews I take only most complex
-                  tasks. I perform different related activities, such as DevOps
-                  tasks, deployment, developement of in-house e2e testing helper
-                  framework.
-                </div>
-              </div>
-              <div class="experience-item">
-                <div class="experience-item__header">Frontend Developer</div>
-                <div class="experience-item__subheader">GRIDNINE SYSTEMS</div>
-                <div class="experience-item__descr">
-                  Finished my tasks timely with good quality. Received positive
-                  feedback from client for my work.
-                </div>
-              </div>
-              <hr />
-              <div class="experience-item">
-                <div class="experience-item__header">Financial analyst</div>
-                <div class="experience-item__descr">
-                  Previously I was working in largest Russian banks as financial
-                  analyst, such as Rosbank, Societe Generale Group, Open Bank,
-                  Russian Standard Bank. I started my career in Russian branch
-                  of KPMG as audit associate.
+                <hr />
+                <div class="experience-item">
+                  <div class="experience-item__years">2008 - 2019</div>
+                  <div class="experience-item__header">Financial analyst</div>
+                  <div class="experience-item__descr">
+                    Previously I was working in largest Russian banks as
+                    financial analyst, such as Rosbank, Societe Generale Group,
+                    Open Bank, Russian Standard Bank. I started my career in
+                    Russian branch of KPMG as audit associate.
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="education">
-            <h2 class="experience-header">Education</h2>
-            <div class="experience-item__header">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </div>
-            <div class="experience-item__subheader">
-              Lorem ipsum dolor sit amet consectetur.
-            </div>
-            <div class="experience-item__descr">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-              nemo, dolore iusto placeat maxime voluptates quidem accusamus
-              perferendis asperiores.
+            <div class="container">
+              <h2 class="experience-header">Education</h2>
+              <div class="experience-item__years">2002 - 2007</div>
+              <div class="experience-item__header">
+                Lomonosov Moscow State University
+              </div>
+              <div class="experience-item__subheader">
+                Department of mechanics and mathematics
+              </div>
+              <div class="experience-item__descr">
+                Graduated from department of mechanics and mathematics. Received
+                specialist degree with honors. Specialized in optimization of
+                control of dynamic systems
+              </div>
             </div>
           </div>
         </div>
 
         <div class="works-page">
-          <h2 class="works-title">My projects</h2>
+          <div class="container">
+            <h2 class="works-title">My projects</h2>
+          </div>
 
           <div class="works-item">
             <div class="works-item-wrapper">
@@ -487,43 +516,48 @@
         </div>
 
         <div class="contacts-page">
-          <div class="contacts__container">
-            <h3 class="contacts__title">
-              <span>Contacts</span>
-            </h3>
+          <div class="container">
+            <div class="contacts__container">
+              <h3 class="contacts__title">
+                <span>Contacts</span>
+              </h3>
 
-            <ul class="contact__list">
-              <li class="contact__item">
-                <a href="mailto: aaliapkin@gmail.com" target="_blank">
-                  <span class="contact__icon icon icon--mail"></span>
-                  aaliapkin@gmail.com
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="tel:+7 (916) 426-5709" target="_blank">
-                  <span class="contact__icon icon icon--phone"></span>
-                  +7 (916) 426-5709
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="https://github.com/mfecane" target="_blank">
-                  <span class="contact__icon icon icon--github"></span>
-                  Mfecane
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="https://t.me/aaliapkin" target="_blank">
-                  <span class="contact__icon icon icon--telegram"></span>
-                  aaliapkin
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="https://www.instagram.com/hatis_ustes" target="_blank">
-                  <span class="contact__icon icon icon--inst"></span>
-                  hatis_ustes
-                </a>
-              </li>
-            </ul>
+              <ul class="contact__list">
+                <li class="contact__item">
+                  <a href="mailto: aaliapkin@gmail.com" target="_blank">
+                    <span class="contact__icon icon icon--mail"></span>
+                    aaliapkin@gmail.com
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a href="tel:+7 (916) 426-5709" target="_blank">
+                    <span class="contact__icon icon icon--phone"></span>
+                    +7 (916) 426-5709
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a href="https://github.com/mfecane" target="_blank">
+                    <span class="contact__icon icon icon--github"></span>
+                    Mfecane
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a href="https://t.me/aaliapkin" target="_blank">
+                    <span class="contact__icon icon icon--telegram"></span>
+                    aaliapkin
+                  </a>
+                </li>
+                <li class="contact__item">
+                  <a
+                    href="https://www.instagram.com/hatis_ustes"
+                    target="_blank"
+                  >
+                    <span class="contact__icon icon icon--inst"></span>
+                    hatis_ustes
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

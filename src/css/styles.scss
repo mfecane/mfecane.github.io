@@ -16,8 +16,14 @@ body {
   }
 }
 
-.hidden {
-  visibility: hidden;
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+
+  .static-mode & {
+    padding: 0 20px;
+  }
 }
 
 .scroller {
@@ -82,15 +88,32 @@ body {
   width: 100vw;
   height: 100vh;
   background: #05080b center/cover url(assets/img/bg.jpg) fixed;
+  cursor: grab;
 }
 
 .nav {
   position: fixed;
-  top: 20px;
-  right: 70px;
+  right: 50px;
   display: flex;
   gap: 25px;
   z-index: 5;
+  padding: 20px;
+
+  @media (max-width: $bp2) {
+    justify-content: center;
+    background-color: black;
+  }
+
+  .static-mode & {
+    justify-content: flex-end;
+    right: unset;
+    width: 100%;
+    transition: background-color 400ms ease-out;
+  }
+
+  .static-mode &.black {
+    background-color: black;
+  }
 }
 
 .nav_spacer {

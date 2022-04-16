@@ -22,6 +22,8 @@
 - opening animation - slide border from left revealing logo and grouop
 - add transition from in to out
 - fix light position
+- rotate gyroid with mouse
+- improve loading
 
 background glass is separate
 rotates on animation

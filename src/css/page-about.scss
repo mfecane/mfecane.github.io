@@ -1,38 +1,40 @@
 @import "css/config.scss";
 
 .about-page {
-  display: inline-flex;
-  align-items: center;
   z-index: 2;
   font-size: 24px;
   border-right: black 1px solid;
   border-left: black 1px solid;
 
   .dynamic-mode & {
+    display: inline-flex;
     padding: 0 50px;
     min-width: 100vw;
     gap: 80px;
+    align-items: center;
   }
 
   .static-mode & {
+    display: flex;
     flex-direction: column;
+    justify-content: stretch;
   }
 }
 
 .about-section {
   pointer-events: all;
-  align-self: flex-start;
 
   .dynamic-mode & {
     width: 400px;
     min-width: 20vw;
     margin-top: 30px;
     padding: 40px 0;
+    align-self: flex-start;
   }
 
   .static-mode & {
     background: black;
-    padding: 30px 60px;
+    padding: 30px 0px;
   }
 }
 
@@ -93,7 +95,6 @@
 
 .experience-section-outer {
   align-self: stretch;
-  padding: 0 20px;
 
   .dynamic-mode & {
     width: 500px;
@@ -101,6 +102,11 @@
     overflow: hidden;
     height: 100%;
     background-color: black;
+    padding: 0 20px;
+
+    .container {
+      height: 100%;
+    }
   }
 
   .static-mode & {
@@ -115,14 +121,15 @@
   flex-direction: column;
   gap: 40px;
   position: relative;
-  padding: 10px 20px 20px 20px;
   height: 100%;
 
   .dynamic-mode & {
     overflow-y: scroll;
+    padding: 10px 20px 20px 20px;
   }
 
   .static-mode & {
+    padding: 40px 0;
   }
 }
 
@@ -148,10 +155,16 @@
   transform: translateX(0px);
 }
 
+.experience-item__years {
+  color: rgba(172, 172, 187, 0.7);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
 .experience-item__header {
   font-family: $headerFont;
   color: $light;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .experience-item__subheader {
@@ -193,7 +206,7 @@
   }
 
   .static-mode & {
-    padding: 60px;
+    padding: 60px 0;
     background-color: black;
   }
 }

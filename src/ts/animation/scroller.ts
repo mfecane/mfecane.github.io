@@ -42,6 +42,11 @@ const init = function (options: Options): void {
   document.addEventListener('wheel', handleScroll)
 }
 
+const destroy = () => {
+  setScrollValue(0)
+  document.removeEventListener('wheel', handleScroll)
+}
+
 const handleScroll = function (e) {
   const value = e.deltaY
   if (value > 0 && targetScrollValue < maxScrollValue) {
@@ -110,4 +115,5 @@ export default {
   getScrollValue,
   setScrollValue,
   addListener,
+  destroy,
 }

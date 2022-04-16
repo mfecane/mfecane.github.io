@@ -36,28 +36,26 @@
 
   .static-mode & {
     align-self: flex-start;
-    margin: 100px 60px 0px 60px;
+    margin-top: 100px;
     color: $light;
   }
 }
 
 .works-item {
   .dynamic-mode & {
-    margin-top: -102px;
+    margin-bottom: -102px;
     align-self: flex-end;
   }
 
   .dynamic-mode &:nth-child(odd) {
-    margin-bottom: -102px;
+    margin-top: -102px;
     align-self: flex-start;
   }
 
-  .static-mode & {
-    align-self: stretch;
-  }
-
+  .static-mode &,
   .static-mode &:nth-child(odd) {
     align-self: stretch;
+    background-color: black;
   }
 }
 
@@ -71,6 +69,10 @@
   }
 
   .static-mode & {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 20px;
+
     @media (max-width: $bp2) {
       flex-direction: column !important;
     }
@@ -91,7 +93,10 @@
   padding: 20px 0;
 
   .static-mode & {
-    padding: 20px 30px 20px 30px;
+    padding: 20px 30px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
@@ -213,12 +218,14 @@
 
 .works-item__icon {
   background-color: $accent;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 30px;
   display: grid;
   place-items: center;
   transition: all 200ms ease-in;
+  box-shadow: inset 0px 0px 1px 1px $dark;
+  border: 1px solid $accent;
 }
 
 .works-item__icon i {

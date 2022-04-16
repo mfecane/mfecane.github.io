@@ -15,7 +15,7 @@
 
   .static-mode & {
     margin-top: 60px;
-    padding: 60px;
+    padding: 60px 0;
     background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.7) 0%, rgba(14, 14, 15, 0.7) 100%);
     backdrop-filter: blur(10px);
   }
@@ -44,6 +44,16 @@
   padding: 0 0 0 32px;
   gap: 32px;
   border-left: 4px solid $accent;
+}
+
+.contact__item {
+  transition: all 200ms ease-in;
+  transform: translateX(20px);
+  opacity: 0;
+  &.active {
+    transform: translateX(0px);
+    opacity: 1;
+  }
 }
 
 .contact__item a {

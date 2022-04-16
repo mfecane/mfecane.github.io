@@ -155,17 +155,6 @@ a:hover {
   color: $light;
 }
 
-.static-mode .container {
-  width: 1000px;
-  margin-right: auto;
-  margin-left: auto;
-
-  @media (max-width: 1100px) {
-    margin: 0 80px;
-    width: 100%;
-  }
-}
-
 .hidden {
   visibility: hidden;
 }
