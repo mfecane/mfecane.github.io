@@ -151,7 +151,7 @@ const initAnimations = () => {
     init: true,
     hide: false,
     fn: (el, value) => {
-      el.style.transform = `translateX(${-200 + value * 200}px)`
+      el.style.transform = `translateX(${-200 + value * 220}px)`
     },
   })
 
@@ -159,8 +159,8 @@ const initAnimations = () => {
     selector: '.works-item__descr-text',
     transitionIn: transition.fadeScaleIn,
     transitionOut: NOOP,
-    margin: 50,
-    offset: 300,
+    margin: 300,
+    easing: easeInCubic,
   })
 }
 

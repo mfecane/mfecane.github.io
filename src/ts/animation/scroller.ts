@@ -4,6 +4,9 @@ let targetScrollValue = 0.0
 let scrollStep = 0.5
 let scrollSpeed = 0
 
+const ACCELERATION = 0.08
+const DRAG = 0.8
+
 const points: Point[] = []
 
 type Point = {
@@ -78,11 +81,8 @@ const update = function (): void {
     updateScrollValue(targetScrollValue)
     return
   }
-  const frictionCoefficient = 0.02
-  const dragCoefficient = 0.8
   const accel =
-    (targetScrollValue - scrollValue) * frictionCoefficient -
-    scrollSpeed * dragCoefficient
+    (targetScrollValue - scrollValue) * ACCELERATION - scrollSpeed * DRAG + 2
   scrollSpeed += accel
   updateScrollValue(scrollValue + scrollSpeed)
 }
