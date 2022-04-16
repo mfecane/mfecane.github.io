@@ -48,11 +48,14 @@
 
 .contact__item {
   transition: all 200ms ease-in;
-  transform: translateX(20px);
-  opacity: 0;
-  &.active {
-    transform: translateX(0px);
-    opacity: 1;
+
+  .dynamic-mode & {
+    transform: translateX(20px);
+    opacity: 0;
+    &.active {
+      transform: translateX(0px);
+      opacity: 1;
+    }
   }
 }
 
