@@ -16,9 +16,21 @@
   align-items: flex-end;
   justify-content: flex-start;
   pointer-events: all;
-  background: url(assets/svg/abstract.svg) no-repeat right -6vh top 20px / auto 55vh,
-    radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.5) 0%, rgba(14, 14, 15, 0.5) 100%);
+  background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.5) 0%, rgba(14, 14, 15, 0.5) 100%);
   backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 67vh;
+  height: 56vh;
+  transform: translateX(6vh);
+
+  .a {
+    fill: none;
+    stroke: $accent;
+    stroke-miterlimit: 10;
+  }
 }
 
 .hero-page__left:after {
@@ -34,7 +46,6 @@
 
 .hero-section__content {
   margin-right: 50px;
-  margin-top: 55vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

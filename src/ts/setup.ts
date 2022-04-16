@@ -1,6 +1,8 @@
 import transition from 'ts/animation/transition'
 import scroller2 from 'ts/animation/scroller'
-import { easeInCubic, easeOutCubic } from './lib/easing-functions'
+import { easeOutCubic } from 'ts/lib/easing-functions'
+import { mapclamp } from 'ts/lib/lib'
+import path from 'ts/components/path-animation'
 
 import mainBackground from 'ts/components/main-background'
 
@@ -213,6 +215,12 @@ const updateScroller = (value: number): void => {
   scrollerEl.style.transform = `translateX(-${value}px)`
 }
 
+const updatePath = (value: number): void => {
+  if (value > 550) return
+  const val = mapclamp(value, 30, 500, 1, 0)
+  path.update(val)
+}
+
 const updateMouse = (value: number): void => {
   if (value < 5) {
     mouseEl.classList.toggle('fade-out', false)
@@ -249,7 +257,11 @@ const init = (): void => {
   initAnimations()
   initMenu()
 
+  path.init()
+  path.run()
+
   scroller2.addListener(updateScroller)
+  scroller2.addListener(updatePath)
   scroller2.addListener(updateMenu)
   scroller2.addListener(updateMouse)
   scroller2.addListener(transition.update)

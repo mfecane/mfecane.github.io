@@ -434,14 +434,14 @@ const fadeSlideIn = (el: HTMLElement, value: number) => {
 }
 
 export default {
-  createAnimation: createAnimation,
-  createController: createController,
-  createScreenTransition: createScreenTransition,
-  createFullScreenTransition: createFullScreenTransition,
-  createClassTransition: createClassTransition,
-  update: update,
-  init: init,
-  fadeScaleIn: fadeScaleIn,
-  fadeIn: fadeIn,
-  fadeSlideIn: fadeSlideIn,
+  createAnimation,
+  createController,
+  createScreenTransition,
+  createFullScreenTransition,
+  createClassTransition,
+  update,
+  init,
+  fadeScaleIn,
+  fadeIn,
+  fadeSlideIn,
 }
