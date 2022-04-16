@@ -1,13 +1,24 @@
 @import "css/config.scss";
 
 .contacts-page {
-  width: 500px;
-  pointer-events: all;
-  background-color: black;
-  padding: 20px 60px 60px 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  z-index: 1;
+
+  .dynamic-mode & {
+    width: 500px;
+    pointer-events: all;
+    padding: 20px 60px 60px 0;
+    background-color: black;
+  }
+
+  .static-mode & {
+    margin-top: 60px;
+    padding: 60px;
+    background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.7) 0%, rgba(14, 14, 15, 0.7) 100%);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .contacts__title {
@@ -40,7 +51,6 @@
   font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  display: block;
   color: $accent;
   display: flex;
   align-items: center;

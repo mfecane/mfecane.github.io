@@ -2,23 +2,38 @@
 
 .about-page {
   display: inline-flex;
-  gap: 80px;
-  min-width: 100vw;
   align-items: center;
   z-index: 2;
   font-size: 24px;
   border-right: black 1px solid;
   border-left: black 1px solid;
-  padding: 0 50px;
+
+  .dynamic-mode & {
+    padding: 0 50px;
+    min-width: 100vw;
+    gap: 80px;
+  }
+
+  .static-mode & {
+    flex-direction: column;
+  }
 }
 
 .about-section {
-  width: 400px;
-  min-width: 20vw;
-  padding: 40px 0;
   pointer-events: all;
   align-self: flex-start;
-  margin-top: 30px;
+
+  .dynamic-mode & {
+    width: 400px;
+    min-width: 20vw;
+    margin-top: 30px;
+    padding: 40px 0;
+  }
+
+  .static-mode & {
+    background: black;
+    padding: 30px 60px;
+  }
 }
 
 .about-section__text-wrapper {
@@ -51,6 +66,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+
+  .dynamic-mode & {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .static-mode & {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .skills-icon {
@@ -69,13 +92,22 @@
 }
 
 .experience-section-outer {
-  width: 500px;
-  background-color: black;
   align-self: stretch;
-  pointer-events: all;
-  overflow: hiden;
-  height: 100%;
   padding: 0 20px;
+
+  .dynamic-mode & {
+    width: 500px;
+    pointer-events: all;
+    overflow: hidden;
+    height: 100%;
+    background-color: black;
+  }
+
+  .static-mode & {
+    display: flex;
+    background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.7) 0%, rgba(14, 14, 15, 0.7) 100%);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .experience-section {
@@ -84,8 +116,14 @@
   gap: 40px;
   position: relative;
   padding: 10px 20px 20px 20px;
-  overflow-y: scroll;
   height: 100%;
+
+  .dynamic-mode & {
+    overflow-y: scroll;
+  }
+
+  .static-mode & {
+  }
 }
 
 .experience-header {
@@ -97,10 +135,14 @@
 
 .experience-item {
   transition: all 500ms ease-in;
-  opacity: 0;
-  transform: translateX(20px);
+
+  .dynamic-mode & {
+    opacity: 0;
+    transform: translateX(20px);
+  }
 }
 
+// TODO ::: add inactive
 .experience-item.active {
   opacity: 1;
   transform: translateX(0px);
@@ -142,9 +184,16 @@
 }
 
 .education {
-  align-self: flex-end;
-  width: 500px;
-  padding: 40px;
-  pointer-events: all;
-  margin-bottom: 100px;
+  .dynamic-mode & {
+    align-self: flex-end;
+    width: 500px;
+    margin-bottom: 100px;
+    pointer-events: all;
+    padding: 40px;
+  }
+
+  .static-mode & {
+    padding: 60px;
+    background-color: black;
+  }
 }

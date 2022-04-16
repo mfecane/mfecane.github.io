@@ -21,6 +21,11 @@ let scrollPoints = []
 
 const NOOP = () => {}
 
+enum DISPLAY_MODE {
+  DYNAMIC,
+  STATIC,
+}
+
 const initScroller = () => {
   const pageElements: Element[] = [
     '.hero-page',
@@ -234,7 +239,10 @@ const update = (): void => {
   requestAnimationFrame(update)
 }
 
-const init = (): void => {
+const setUpDynamic = (): void => {
+  const body = document.getElementsByTagName('body')[0]
+  body.classList.add('dynamic-mode')
+
   scrollerEl = document.querySelector('.scroller')
   mouseEl = document.querySelector('.mouse__container')
   contactButton = document.querySelector('#contacts-button')
@@ -269,4 +277,32 @@ const init = (): void => {
   update()
 }
 
-window.onload = init
+const setUpStatic = (): void => {
+  const body = document.getElementsByTagName('body')[0]
+  body.classList.add('static-mode')
+}
+
+const checkBrowser = (): DISPLAY_MODE => {
+  const width = window.innerWidth
+  const height = window.innerHeight
+
+  // if (900 < width && 600 < height && height < width) {
+  //   return DISPLAY_MODE.DYNAMIC
+  // }
+
+  return DISPLAY_MODE.STATIC
+}
+
+const setUpWebSite = (): void => {
+  const animType = checkBrowser()
+
+  switch (animType) {
+    case DISPLAY_MODE.DYNAMIC:
+      return setUpDynamic()
+    default:
+    case DISPLAY_MODE.STATIC:
+      return setUpStatic()
+  }
+}
+
+window.onload = setUpWebSite

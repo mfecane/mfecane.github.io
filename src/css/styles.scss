@@ -1,10 +1,19 @@
 @import "css/config.scss";
 
 body {
-  overflow: hidden;
   width: 100%;
   height: 100%;
   font-family: $mainFont;
+  background: black;
+
+  &.dynamic-mode {
+    overflow: hidden;
+  }
+
+  &.static-mode {
+    overflow: visible;
+    min-height: 100vh;
+  }
 }
 
 .hidden {
@@ -12,26 +21,48 @@ body {
 }
 
 .scroller {
-  position: absolute;
-  min-width: 100vw;
-  top: 0;
-  left: 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  pointer-events: none;
+
+  .dynamic-mode & {
+    position: absolute;
+    min-width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  .static-mode & {
+  }
 }
 
 .scroller-inner {
   display: inline-flex;
   align-items: stretch;
-  overflow: hidden;
+
+  .dynamic-mode & {
+    overflow: hidden;
+  }
+
+  .static-mode & {
+    overflow: auto;
+    flex-direction: column;
+  }
 }
 
 .scroller-border {
   flex: 0 0 48px;
   width: 100%;
   position: relative;
+
+  .dynamic-mode & {
+    display: block;
+  }
+
+  .static-mode & {
+    display: none;
+  }
 }
 
 .scroller-border:after {
