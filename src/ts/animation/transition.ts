@@ -320,6 +320,52 @@ class FullScreenTransition extends AnimationBase {
   }
 }
 
+interface ClassTransitionOptions {
+  selector: string
+  el?: HTMLElement
+  className?: string
+  offset?: number
+  index?: index
+}
+
+class ClassTransition extends AnimationBase {
+  el: HTMLElement
+  className = 'active'
+  offset = 0
+  index = 0
+  _active: boolean
+
+  constructor(options: ClassTransitionOptions) {
+    super()
+    this.el = options.el
+    this.className = options.className || this.className
+    this.offset = options.offset || this.offset
+    this.index = options.index || this.index
+  }
+
+  update() {
+    if (this._active) {
+      return
+    }
+
+    const rect = this.el.getBoundingClientRect()
+
+    if (rect.left + this.offset * this.index < window.innerWidth) {
+      this._active = true
+      this.el.classList.toggle(this.className, true)
+    }
+  }
+}
+
+const createClassTransition = (options: ClassTransitionOptions): void => {
+  const nodeList = document.querySelectorAll(options.selector)
+  Array.from(nodeList).forEach(function (node, index) {
+    options = { ...options, el: node, index: index }
+    const transition = new ClassTransition(options)
+    animations.push(transition)
+  })
+}
+
 const update = (): void => {
   animations.forEach((trans: Transition) => {
     trans.update()
@@ -368,7 +414,6 @@ const createFullScreenTransition = (options: ScreenTransitionOptions): void => {
     animations.push(transition)
   })
 }
-
 const fadeScaleIn = (el: HTMLElement, value: number) => {
   const val = (0.9 + value * 0.1) * 100
   el.style.transform = `scaleY(${val}%)`
@@ -393,6 +438,7 @@ export default {
   createController: createController,
   createScreenTransition: createScreenTransition,
   createFullScreenTransition: createFullScreenTransition,
+  createClassTransition: createClassTransition,
   update: update,
   init: init,
   fadeScaleIn: fadeScaleIn,

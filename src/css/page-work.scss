@@ -76,6 +76,19 @@
   color: $light2;
   font-size: 16px;
   line-height: 22px;
+
+  transition: all 500ms ease-in;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.works-item__descr-text.active {
+  color: $light2;
+  font-size: 16px;
+  line-height: 22px;
+
+  opacity: 1;
+  transform: translateX(0px);
 }
 
 .works-item__image-outer {

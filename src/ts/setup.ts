@@ -1,18 +1,9 @@
 import transition from 'ts/animation/transition'
 import scroller2 from 'ts/animation/scroller'
-import {
-  easeInCubic,
-  easeInOutCubic,
-  easeOutCubic,
-} from './lib/easing-functions'
-import SvgPathAnimation from 'ts/components/svg-path-animation'
-
-import floralPage2Svg from 'assets/svg/second-page-floral2.inline.svg'
-import shapesconfig2 from 'ts/svg/shapes-config2'
+import { easeInCubic, easeOutCubic } from './lib/easing-functions'
 
 import mainBackground from 'ts/components/main-background'
 
-let logoContainer: HTMLDivElement
 let shaderCanvasContainer: HTMLDivElement
 let menuHome: HTMLDivElement
 let menuAbout: HTMLDivElement
@@ -22,9 +13,6 @@ let scrollerEl: HTMLDivElement
 let mouseEl: HTMLDivElement
 let contactButton: HTMLDivElement
 let experienceEl: HTMLDivElement
-
-let logo
-let logoAnimationFinished = false
 
 let currentMenuItem = -1
 let scrollPoints = []
@@ -72,6 +60,7 @@ const initScroller = () => {
 
 const initAnimations = () => {
   // TODO ::: do thiese transitions by adding class
+
   transition.createScreenTransition({
     selector: '.about-section__text-wrapper',
     transitionIn: transition.fadeIn,
@@ -109,11 +98,9 @@ const initAnimations = () => {
     },
   })
 
-  transition.createScreenTransition({
+  transition.createClassTransition({
     selector: '.experience-item',
-    transitionIn: transition.fadeScaleIn,
-    transitionOut: NOOP,
-    offset: 300,
+    offset: 100,
   })
 
   transition.createFullScreenTransition({
@@ -144,6 +131,11 @@ const initAnimations = () => {
     },
   })
 
+  // TODO ::: extract common transitions into common classes
+  transition.createClassTransition({
+    selector: '.works-item__descr-text',
+  })
+
   transition.createAnimation({
     selector: '.contacts__title',
     start: scrollPoints[3] - 500,
@@ -153,14 +145,6 @@ const initAnimations = () => {
     fn: (el, value) => {
       el.style.transform = `translateX(${-200 + value * 220}px)`
     },
-  })
-
-  transition.createScreenTransition({
-    selector: '.works-item__descr-text',
-    transitionIn: transition.fadeScaleIn,
-    transitionOut: NOOP,
-    margin: 300,
-    easing: easeInCubic,
   })
 }
 
@@ -187,7 +171,7 @@ const initMenu = () => {
   })
 }
 
-const updateMenu = (value) => {
+const updateMenu = (value: number): void => {
   let index = -1
   value = value + (window.innerWidth * 3) / 4
 
@@ -225,11 +209,11 @@ const updateMenu = (value) => {
   }
 }
 
-const updateScroller = (value) => {
+const updateScroller = (value: number): void => {
   scrollerEl.style.transform = `translateX(-${value}px)`
 }
 
-const updateMouse = (value) => {
+const updateMouse = (value: number): void => {
   if (value < 5) {
     mouseEl.classList.toggle('fade-out', false)
     return
@@ -237,26 +221,16 @@ const updateMouse = (value) => {
   mouseEl.classList.toggle('fade-out', true)
 }
 
-const update = () => {
+const update = (): void => {
   scroller2.update()
   requestAnimationFrame(update)
 }
 
-const init = () => {
-  logoContainer = document.querySelector('#logo-container')
+const init = (): void => {
   scrollerEl = document.querySelector('.scroller')
   mouseEl = document.querySelector('.mouse__container')
   contactButton = document.querySelector('#contacts-button')
   experienceEl = document.querySelector('.experience-section-outer')
-
-  // logo = new SvgPathAnimation(logoContainer, floralPage2Svg, {
-  //   shapesconfig: shapesconfig2,
-  //   scale: 0.5,
-  // })
-
-  // logo.start().then(() => {
-  //   logoAnimationFinished = true
-  // })
 
   mouseEl.addEventListener('click', () => {
     scroller2.setScrollValue(scrollPoints[1])

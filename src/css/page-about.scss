@@ -96,6 +96,14 @@
 }
 
 .experience-item {
+  transition: all 500ms ease-in;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.experience-item.active {
+  opacity: 1;
+  transform: translateX(0px);
 }
 
 .experience-item__header {
