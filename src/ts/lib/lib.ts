@@ -1,3 +1,5 @@
+import { functions, xor } from 'lodash'
+
 export function mapclamp(
   x: number,
   in_start: number,
@@ -38,4 +40,11 @@ export function hexToRgb(hex: string): string {
 
 export function dist(a, b) {
   return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
+}
+
+export function clamp(x: number, min: number, max: number): number {
+  x = x === undefined ? min : x
+  x = x > max ? max : x
+  x = x < min ? min : x
+  return x
 }

@@ -15,25 +15,26 @@ body {
 }
 
 .btn {
-  width: 12rem;
-  padding: 4px 12px;
+  width: 160px;
+  padding: 3px 9px;
   background: transparent;
   font-family: $mainFont, serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   transition: all 0.15s ease-out;
   white-space: nowrap;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .btn_primary {
   background: $accent;
   color: $dark;
   border: 1px solid $accent;
+  box-shadow: inset 0px 0px 1px 1px $dark;
 }
 
 .btn_primary:hover {
-  box-shadow: inset 0px 0px 2px 1px $light;
+  box-shadow: inset 0px 0px 4px 0px $light;
 
   border-color: $light !important;
   color: $light;
@@ -42,11 +43,11 @@ body {
 .btn_secondary {
   background: transparent;
   color: $accent;
-  border: 2px solid $accent;
+  border: 1px solid $accent;
 }
 
 .btn_secondary:hover {
-  box-shadow: inset 0px 0px 2px 1px $light;
+  box-shadow: inset 0px 0px 4px 0px $light;
   border-color: $light !important;
   color: $light !important;
 }
@@ -154,15 +155,25 @@ a:hover {
   color: $light;
 }
 
-.static-mode .container {
-  width: 1000px;
-  margin-right: auto;
-  margin-left: auto;
-
-  @media (max-width: 1100px) {
-    margin: 0 80px;
-    width: 100%;
-  }
+.hidden {
+  visibility: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+::-webkit-scrollbar-track {
+  background-color: #00000000;
+  border: 1px solid #494a4f;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #494a4f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 2px;
+  background-color: #4c5062;
+}

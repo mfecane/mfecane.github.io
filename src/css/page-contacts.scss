@@ -1,42 +1,33 @@
-@import 'css/config.scss';
+@import "css/config.scss";
 
-.page4 {
+.contacts-page {
   display: flex;
-  z-index: 15;
-}
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1;
 
-.dynamic-mode .page4 {
-  position: absolute;
-  overflow: hidden;
-  left: 50%;
-  top: 50%;
-  width: 40vw;
-  min-width: 500px;
-  height: 70vh;
-  transform: translate(-50%, -50%)
-}
+  .dynamic-mode & {
+    width: 500px;
+    pointer-events: all;
+    padding: 20px 60px 60px 0;
+    background-color: black;
+  }
 
-.static-mode .page4 {
-  background: radial-gradient(farthest-corner circle at 80% 30%, $darkbg1 0%, $darkbg2 100%);
-  padding: 80px 120px;
-}
-
-// TODO refactor into title
-
-.dynamic-mode .contacts__container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  overflow: visible;
+  .static-mode & {
+    margin-top: 60px;
+    padding: 60px 0;
+    background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.7) 0%, rgba(14, 14, 15, 0.7) 100%);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .contacts__title {
   font-family: $headerFont, serif;
   text-transform: uppercase;
-  color: $accent;
-  font-size: 48px;
+  color: $light;
+  font-size: 72px;
   font-weight: normal;
+  margin-bottom: 72px;
 }
 
 .contacts__title span {
@@ -50,16 +41,29 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 64px 0 0 0;
+  padding: 0 0 0 32px;
   gap: 32px;
+  border-left: 4px solid $accent;
+}
+
+.contact__item {
+  transition: all 200ms ease-in;
+
+  .dynamic-mode & {
+    transform: translateX(20px);
+    opacity: 0;
+    &.active {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
 }
 
 .contact__item a {
   font-family: $mainFont;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  display: block;
   color: $accent;
   display: flex;
   align-items: center;
@@ -68,7 +72,6 @@
 
 .contact__item:hover a {
   color: $light !important;
-  transform: scale(1.05);
   transition: all 0.2s ease-out 0s;
 }
 
