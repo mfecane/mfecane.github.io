@@ -1,5 +1,5 @@
 
-wkhtmltopdf.exe --enable-local-file-access d:\web\aaliapkin.github.io\cv\index.html d:\web\aaliapkin.github.io\cv\cv.pdf
+wkhtmltopdf.exe --enable-local-file-access d:\web\mfecane.github.io\cv\index.html d:\web\mfecane.github.io\cv\cv.pdf
 C:\Program Files\wkhtmltopdf
 
 
