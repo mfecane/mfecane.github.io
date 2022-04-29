@@ -48,3 +48,9 @@ export function clamp(x: number, min: number, max: number): number {
   x = x < min ? min : x
   return x
 }
+
+export const sleep = (msec: number): Promise<void> => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, msec)
+  })
+}

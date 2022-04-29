@@ -38,7 +38,7 @@ export default class TextureCube {
     this.srcType = this.gl.UNSIGNED_BYTE
   }
 
-  fromSources(sources: Sources): WebGLTexture {
+  async fromSources(sources: Sources): Promise<WebGLTexture> {
     const gl = this.gl
 
     this._texture = gl.createTexture()
@@ -71,7 +71,7 @@ export default class TextureCube {
       promises.push(this.loadImage(sources[key], target))
     })
 
-    Promise.all(promises).then((images) => {
+    await Promise.all(promises).then((images) => {
       gl.bindTexture(gl.TEXTURE_CUBE_MAP, this._texture)
 
       images.forEach(({ image, target }) => {
@@ -100,7 +100,10 @@ export default class TextureCube {
     return this._texture
   }
 
-  loadImage(src, target) {
+  loadImage(
+    src: string,
+    target: number
+  ): Promise<{ image: HTMLImageElement; target: number }> {
     return new Promise((resolve) => {
       const image = new Image()
       image.onload = () => {

@@ -6,7 +6,7 @@ export default class RendererTexture extends Renderer {
   texture: Texture = null
   textureCube: TextureCube = null
 
-  init() {
+  async init(): Promise<void> {
     super.init()
 
     if (this.options.texture) {
@@ -16,7 +16,7 @@ export default class RendererTexture extends Renderer {
 
     if (this.options.textureCube) {
       this.textureCube = new TextureCube(this.gl)
-      this.textureCube.fromSources(this.options.textureCube.src)
+      await this.textureCube.fromSources(this.options.textureCube.src)
     }
   }
 

@@ -278,7 +278,7 @@ export const init = (): void => {
   experienceEl.addEventListener('wheel', (e) => e.stopPropagation())
 
   shaderCanvasContainer = document.querySelector('#shader-canvas-container')
-  mainBackground.init(shaderCanvasContainer)
+  mainBackground.init(shaderCanvasContainer).then(() => hideLoadingScreen())
 
   initScroller()
   initAnimations()

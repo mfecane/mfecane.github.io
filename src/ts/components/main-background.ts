@@ -19,7 +19,7 @@ import negY01 from 'assets/img/yoko-blurred/neg-y.png'
 import posZ01 from 'assets/img/yoko-blurred/pos-z.png'
 import negZ01 from 'assets/img/yoko-blurred/neg-z.png'
 
-import { mapclamp } from 'ts/lib/lib'
+import { mapclamp, sleep } from 'ts/lib/lib'
 
 let renderer
 
@@ -80,7 +80,7 @@ const update = function () {
   requestAnimationFrame(update)
 }
 
-const init = function (canvasContainer: HTMLDivElement): void {
+const init = async function (canvasContainer: HTMLDivElement): Promise<void> {
   const shaderOptions = {
     name: 'Shiny gyroid',
     description: 'Cubemap sampling techniques',
@@ -106,7 +106,8 @@ const init = function (canvasContainer: HTMLDivElement): void {
   }
 
   renderer = new RendererTexture(canvasContainer, shaderOptions)
-  renderer.init()
+  await renderer.init()
+  await sleep(10000)
   renderer.addUniform('yRot', '1f')
 
   renderer.canvas.addEventListener('mousedown', handleMouseDown)
