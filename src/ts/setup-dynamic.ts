@@ -281,6 +281,11 @@ export const init = (): void => {
   mainBackground.init(shaderCanvasContainer).then(() => hideLoadingScreen())
 
   initScroller()
+  const shwroller = document.querySelector('.scroller-inner')
+  Array.from(shwroller.children).forEach((el) => {
+    el.classList.toggle('draggable', true)
+  })
+
   initAnimations()
   initMenu()
 

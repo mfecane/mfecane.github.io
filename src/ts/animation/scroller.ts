@@ -3,6 +3,7 @@ let scrollValue = 0.0
 let targetScrollValue = 0.0
 let scrollStep = 0.5
 let scrollSpeed = 0
+let element: HTMLDivElement = null
 
 const ACCELERATION = 0.08
 const DRAG = 0.8
@@ -39,10 +40,49 @@ const init = function (options: Options): void {
 
   maxScrollValue = points[points.length - 1].value
   scrollStep = options.step
+
+  element = document.querySelector('.scroller')
+  element.addEventListener('mousedown', mouseDownHandler)
   document.addEventListener('wheel', handleScroll)
 }
 
-const destroy = () => {
+let startDragScrollValue = 0
+let startDrag = 0
+
+const mouseDownHandler = (e: MouseEvent) => {
+  console.log(e.target)
+  const el = e.target as HTMLDivElement
+  if (!el.classList.contains('draggable')) return
+
+  e.preventDefault()
+  e.stopPropagation()
+
+  startDrag = e.clientX
+  startDragScrollValue = targetScrollValue
+
+  element.style.cursor = 'grabbing'
+  document.addEventListener('mousemove', mouseMoveHandler)
+  document.addEventListener('mouseup', mouseUpHandler)
+}
+
+const mouseMoveHandler = (e: MouseEvent) => {
+  const dx = startDrag - e.clientX
+  targetScrollValue = startDragScrollValue + dx * 2
+
+  if (targetScrollValue > maxScrollValue) targetScrollValue = maxScrollValue
+
+  if (targetScrollValue < 0) targetScrollValue = 0
+}
+
+const mouseUpHandler = () => {
+  element.style.cursor = 'grab'
+  setStickyTimeout()
+  document.removeEventListener('mousemove', mouseMoveHandler)
+  document.removeEventListener('mouseup', mouseUpHandler)
+  document.removeEventListener('mouseout', mouseUpHandler)
+}
+
+const destroy = (): void => {
   setScrollValue(0)
   document.removeEventListener('wheel', handleScroll)
 }

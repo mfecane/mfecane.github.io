@@ -21,6 +21,7 @@ uniform samplerCube u_Sampler2;
 
 #define PI  3.14159265358
 #define TAU 6.28318530718
+#define EXP 2.71828182846
 
 #define MAX_STEPS 128
 #define MAX_DIST 15.0
@@ -203,15 +204,11 @@ void main() {
     smoothstep(-0.2, 1.0, uv.y * uv.y) *
     u_vignette;
 
-  // dim
-  float norm = clamp(length(col), 0.0, 1.0);
-  col = vec3(
-    blendColor(
-      col * (1.0 - u_dim * 0.2),
-      vec3(50.0 / 255.0, 59.0 / 255.0, 74.0 / 255.0),
-      u_dim * u_dim
-    )
-  ) * (1.0 - norm * norm * u_dim * 0.4); // norm * norm *
+  col = mix(
+    col,
+    exp(col.zzz) * 0.2 + vec3(0.0, 0.0 , 0.1),// -col.yzx * 0.5 +
+    u_dim * 0.5
+  );
 
   FragColor = vec4(col, 1.0);
 }

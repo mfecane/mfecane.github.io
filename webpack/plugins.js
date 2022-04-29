@@ -9,12 +9,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = [
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
-    template: path.resolve(root, 'src/templates/index.html')
+    template: path.resolve(root, 'src/templates/index.html'),
   }),
   new FaviconsWebpackPlugin('assets/img/favicon.png'),
   // new CopyPlugin({
@@ -41,7 +41,7 @@ module.exports = [
   //     ],
   //   },
   // }),
-  new CopyPlugin({
-    patterns: ['assets/scenes/*.glb', { from: 'cv/*.pdf', to: 'assets/' }],
-  }),
+  // new CopyPlugin({
+  //   patterns: ['assets/scenes/*.glb', { from: 'cv/*.pdf', to: 'assets/' }],
+  // }),
 ]

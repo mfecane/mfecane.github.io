@@ -114,8 +114,8 @@
   position: relative;
   position: absolute;
   top: 0;
-  left: -7%;
-  width: 110%;
+  left: 10%;
+  width: 72%;
   height: 100%;
   background: url(/assets/img/avatar.png) no-repeat top center/cover;
   z-index: 3;
@@ -123,8 +123,8 @@
 }
 
 .avatar-grop__image:hover {
-  left: -5%;
-  width: 115%;
+  left: 16%;
+  width: 75%;
 }
 
 .avatar-group__image__container:after {

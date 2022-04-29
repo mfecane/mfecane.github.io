@@ -36,10 +36,17 @@ body {
     top: 0;
     left: 0;
     height: 100vh;
-    pointer-events: none;
   }
 
   .static-mode & {
+  }
+
+  .draggable {
+    cursor: grab;
+
+    & * {
+      cursor: auto;
+    }
   }
 }
 

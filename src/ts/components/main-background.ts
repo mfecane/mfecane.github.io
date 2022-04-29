@@ -31,33 +31,6 @@ let shiftY = 0
 
 let mouseDown = false
 
-const handleMouseDown = (e: MouseEvent): void => {
-  e.preventDefault()
-  mouseStartX = e.x
-  mouseStartY = e.y
-  mouseDown = true
-}
-
-const handleMouseMove = (e: MouseEvent): void => {
-  e.preventDefault()
-  if (!mouseStartX && !mouseStartY) {
-    return
-  }
-
-  const deltaX = e.x - mouseStartX
-  const deltaY = e.y - mouseStartY
-
-  shiftX = deltaX
-  shiftY = deltaY
-}
-
-const handleMouseUp = (e: MouseEvent): void => {
-  e.preventDefault()
-  mouseStartX = 0
-  mouseStartY = 0
-  mouseDown = false
-}
-
 const update = function () {
   if (!renderer) {
     return
@@ -79,6 +52,33 @@ const update = function () {
 
   requestAnimationFrame(update)
 }
+
+// const handleMouseDown = (e: MouseEvent): void => {
+//   e.preventDefault()
+//   mouseStartX = e.x
+//   mouseStartY = e.y
+//   mouseDown = true
+// }
+
+// const handleMouseMove = (e: MouseEvent): void => {
+//   e.preventDefault()
+//   if (!mouseStartX && !mouseStartY) {
+//     return
+//   }
+
+//   const deltaX = e.x - mouseStartX
+//   const deltaY = e.y - mouseStartY
+
+//   shiftX = deltaX
+//   shiftY = deltaY
+// }
+
+// const handleMouseUp = (e: MouseEvent): void => {
+//   e.preventDefault()
+//   mouseStartX = 0
+//   mouseStartY = 0
+//   mouseDown = false
+// }
 
 const init = async function (canvasContainer: HTMLDivElement): Promise<void> {
   const shaderOptions = {
@@ -107,13 +107,15 @@ const init = async function (canvasContainer: HTMLDivElement): Promise<void> {
 
   renderer = new RendererTexture(canvasContainer, shaderOptions)
   await renderer.init()
-  await sleep(10000)
+  // await sleep(10000)
   renderer.addUniform('yRot', '1f')
 
-  renderer.canvas.addEventListener('mousedown', handleMouseDown)
-  renderer.canvas.addEventListener('mousemove', handleMouseMove)
-  renderer.canvas.addEventListener('mouseup', handleMouseUp)
-  renderer.canvas.addEventListener('mouseout', handleMouseUp)
+  // TODO restore this shit??
+
+  // renderer.canvas.addEventListener('mousedown', handleMouseDown)
+  // renderer.canvas.addEventListener('mousemove', handleMouseMove)
+  // renderer.canvas.addEventListener('mouseup', handleMouseUp)
+  // renderer.canvas.addEventListener('mouseout', handleMouseUp)
 
   update()
 }
