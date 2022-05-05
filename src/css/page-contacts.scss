@@ -25,7 +25,7 @@
   font-family: $headerFont, serif;
   text-transform: uppercase;
   color: $light;
-  font-size: 72px;
+  font-size: 4em;
   font-weight: normal;
   margin-bottom: 72px;
 }
@@ -61,7 +61,7 @@
 
 .contact__item a {
   font-family: $mainFont;
-  font-size: 16px;
+  font-size: 1.2em;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: $accent;
@@ -73,6 +73,8 @@
 .contact__item:hover a {
   color: $light !important;
   transition: all 0.2s ease-out 0s;
+
+  cursor: pointer;
 }
 
 .contact__icon {

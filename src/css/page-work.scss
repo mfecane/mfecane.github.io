@@ -6,11 +6,18 @@
   z-index: 2;
   position: relative;
   pointer-events: all;
+  align-items: stretch;
+
+  --works-page-width: 460px;
+
+  .dynamic-mode & .container {
+    position: absolute;
+  }
 
   .dynamic-mode & {
     display: inline-flex;
     padding: 0 150px 0 50px;
-    gap: 120px;
+    gap: 160px;
     min-width: 100vw;
   }
 
@@ -24,14 +31,15 @@
 
 .works-title {
   font-family: $headerFont;
-  font-size: 72px;
+  font-size: 3em;
 
   .dynamic-mode & {
     position: absolute;
     top: 6px;
     left: 20px;
     margin-bottom: 20px;
-    color: $light2;
+    color: $light;
+    z-index: 5;
   }
 
   .static-mode & {
@@ -42,20 +50,29 @@
 }
 
 .works-item {
+  background-color: rgba(4, 6, 9, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+
   .dynamic-mode & {
-    margin-bottom: -102px;
-    align-self: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: var(--works-page-width);
   }
 
   .dynamic-mode &:nth-child(odd) {
-    margin-top: -102px;
-    align-self: flex-start;
   }
 
   .static-mode &,
   .static-mode &:nth-child(odd) {
-    align-self: stretch;
-    background-color: black;
+  }
+
+  .dynamic-mode &:nth-child(odd) {
+    flex-direction: column-reverse;
+  }
+
+  .static-mode &:nth-child(odd) {
+    flex-direction: row-reverse;
   }
 }
 
@@ -88,9 +105,7 @@
 }
 
 .work-item__descr-container {
-  background: black;
   position: relative;
-  padding: 20px 0;
 
   .static-mode & {
     padding: 20px 30px 20px 0px;
@@ -105,22 +120,27 @@
   padding: 0 16px;
 
   .dynamic-mode & {
-    margin-bottom: 96px;
   }
 }
 
 .works-item__title {
   color: $accent;
   font-family: $headerFont;
-  font-size: 28px;
+  font-size: 2em;
   margin-bottom: 22px;
-  font-weight: bolder;
+  font-weight: 500;
   transition: all 200ms ease-in;
   letter-spacing: 1px;
+  a {
+    cursor: pointer;
+  }
 }
 
 .works-item__title:hover {
   color: white;
+  a {
+    cursor: pointer;
+  }
 }
 
 .works-item__tags {
@@ -134,14 +154,15 @@
   border-radius: 4px;
   background-color: #242c36;
   color: #778290;
-  font-size: 12px;
+  font-size: 0.6em;
   padding: 4px 10px;
 }
 
 .works-item__descr-text {
   color: $light2;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+  position: relative;
 
   .dynamic-mode & {
     transition: all 500ms ease-in;
@@ -154,21 +175,16 @@
 }
 
 .works-item__descr-text.active {
-  color: $light2;
-  font-size: 16px;
-  line-height: 22px;
-
   opacity: 1;
   transform: translateX(0px);
 }
 
 .works-item__image-outer {
   .dynamic-mode & {
-    transform: translate(-50px, -102px);
+    margin: 24px -40px 24px 40px;
   }
 
   .dynamic-mode .works-item:nth-child(odd) & {
-    transform: translate(-50px, 102px);
   }
 
   .static-mode & {
@@ -177,12 +193,14 @@
 }
 
 .works-item__image {
-  width: 360px;
-  height: 320px;
+  width: var(--works-page-width);
+  height: 310px;
   overflow: hidden;
   position: relative;
   border-radius: 2px;
   position: relative;
+  border: 4px rgb(40, 44, 54) solid;
+  border-radius: 4px;
 
   .static-mode & {
     margin: auto;
@@ -202,18 +220,7 @@
 .works-item__icons {
   display: flex;
   gap: 10px;
-
-  .dynamic-mode & {
-    right: 12px;
-    bottom: 12px;
-    position: absolute;
-    z-index: 5;
-    flex-direction: column;
-  }
-
-  .static-mode & {
-    margin: 16px;
-  }
+  margin: 16px 0 0 16px;
 }
 
 .works-item__icon {
@@ -250,7 +257,6 @@
     margin-bottom: 0;
 
     .dynamic-mode & {
-      margin-top: 96px;
     }
   }
 

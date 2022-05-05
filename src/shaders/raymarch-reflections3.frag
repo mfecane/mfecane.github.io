@@ -157,7 +157,7 @@ void main() {
 
   // vec4 samp = SampleCubeBlur(rayDirection);
   vec4 samp = texture(u_Sampler2, rayDirection);
-  col = samp.rgb * 0.3;
+  col = samp.rgb * smoothstep(-0.15, -0.0, rayDirection.y) * (1.0 - u_dim * 0.8);
 
   if (d < MAX_DIST) {
     vec3 p = rayOrigin + rayDirection * d;
@@ -204,11 +204,13 @@ void main() {
     smoothstep(-0.2, 1.0, uv.y * uv.y) *
     u_vignette;
 
-  col = mix(
-    col,
-    exp(col.zzz) * 0.2 + vec3(0.0, 0.0 , 0.1),// -col.yzx * 0.5 +
-    u_dim * 0.5
+  vec3 col2 = blendColor(
+    clamp(col, vec3(0.0), vec3(0.4)),
+    vec3(50.0 / 255.0, 59.0 / 255.0, 72.0 / 255.0),
+    1.0
   );
+
+  col = mix(col, col2, u_dim);
 
   FragColor = vec4(col, 1.0);
 }

@@ -2,9 +2,7 @@
 
 .about-page {
   z-index: 2;
-  font-size: 24px;
-  border-right: black 1px solid;
-  border-left: black 1px solid;
+  font-size: 1em;
 
   .dynamic-mode & {
     display: inline-flex;
@@ -45,14 +43,15 @@
 
 .about-section__header {
   font-family: $headerFont;
-  font-size: 32px;
+  color: $light;
+  font-size: 2em;
   margin-bottom: 24px;
 }
 
 .about-section__text {
-  font-size: 18px;
+  font-size: 0.9em;
+  line-height: 1.4rem;
   color: $light2;
-  line-height: 24px;
 }
 
 .about-section__skills-wrapper {
@@ -61,13 +60,13 @@
 .about-seciton__skills-header {
   margin: 60px 0 24px 0;
   font-family: $headerFont;
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 .skills__wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 1em;
 
   .dynamic-mode & {
     grid-template-columns: 1fr 1fr;
@@ -87,7 +86,7 @@
 
 .skills__item {
   color: $accent;
-  font-size: 16px;
+  font-size: 1em;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -135,8 +134,8 @@
 
 .experience-header {
   font-family: $headerFont;
-  color: $light2;
-  font-size: 42px;
+  color: $light;
+  font-size: 3em;
   margin-bottom: 32px;
 }
 
@@ -157,27 +156,28 @@
 
 .experience-item__years {
   color: rgba(172, 172, 187, 0.7);
-  font-size: 20px;
+  font-size: 1.2em;
   margin-bottom: 8px;
 }
 
 .experience-item__header {
   font-family: $headerFont;
-  color: $light;
-  margin-bottom: 16px;
+  color: $light2;
+  margin-bottom: 8px;
+  font-size: 1.5em;
 }
 
 .experience-item__subheader {
   color: $accent;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 1.2em;
+  font-weight: 500;
   margin-bottom: 18px;
 }
 
 .experience-item__descr {
   color: $light2;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
 }
 
 .experience-section__item:nth-child(1) {
