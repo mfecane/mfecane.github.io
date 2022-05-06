@@ -157,7 +157,7 @@ void main() {
 
   // vec4 samp = SampleCubeBlur(rayDirection);
   vec4 samp = texture(u_Sampler2, rayDirection);
-  col = samp.rgb * smoothstep(-0.15, -0.0, rayDirection.y) * (1.0 - u_dim * 0.8);
+  col = samp.rgb * smoothstep(-0.15, -0.0, rayDirection.y) * (1.0 - u_dim * 0.85);
 
   if (d < MAX_DIST) {
     vec3 p = rayOrigin + rayDirection * d;
@@ -205,8 +205,8 @@ void main() {
     u_vignette;
 
   vec3 col2 = blendColor(
-    clamp(col, vec3(0.0), vec3(0.4)),
-    vec3(50.0 / 255.0, 59.0 / 255.0, 72.0 / 255.0),
+    clamp(col, vec3(0.1), vec3(0.3)),
+    vec3(80.0 / 255.0, 90.0 / 255.0, 120.0 / 255.0),
     1.0
   );
 

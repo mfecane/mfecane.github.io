@@ -51,7 +51,7 @@
 .about-section__text {
   font-size: 0.9em;
   line-height: 1.4rem;
-  color: $light2;
+  color: $light;
 }
 
 .about-section__skills-wrapper {
@@ -155,14 +155,14 @@
 }
 
 .experience-item__years {
-  color: rgba(172, 172, 187, 0.7);
+  color: rgba(182, 182, 209, 0.7);
   font-size: 1.2em;
   margin-bottom: 8px;
 }
 
 .experience-item__header {
   font-family: $headerFont;
-  color: $light2;
+  color: $light;
   margin-bottom: 8px;
   font-size: 1.5em;
 }
@@ -208,5 +208,13 @@
   .static-mode & {
     padding: 60px 0;
     background-color: black;
+  }
+
+  .experience-item__header {
+    color: $light;
+  }
+
+  .experience-item__descr {
+    color: $light;
   }
 }

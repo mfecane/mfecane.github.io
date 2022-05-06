@@ -141,6 +141,10 @@ body {
   &--inst {
     mask-image: url("assets/svg/icons/inst.svg");
   }
+
+  &--play {
+    mask-image: url("assets/svg/play.svg");
+  }
 }
 
 .shadow {

@@ -146,7 +146,7 @@ const initAnimations = () => {
     init: true,
     hide: false,
     fn: (el, value) => {
-      el.style.transform = `translateX(${-200 + value * 220}px)`
+      el.style.transform = `translateX(${-100 + value * 120}px)`
     },
   })
 
