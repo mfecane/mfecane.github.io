@@ -41,7 +41,7 @@ module.exports = [
   //     ],
   //   },
   // }),
-  // new CopyPlugin({
-  //   patterns: ['assets/scenes/*.glb', { from: 'cv/*.pdf', to: 'assets/' }],
-  // }),
+  new CopyPlugin({
+    patterns: [{ from: 'cv/*.pdf', to: 'assets/' }],
+  }),
 ]

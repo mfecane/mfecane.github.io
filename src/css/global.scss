@@ -145,6 +145,10 @@ body {
   &--play {
     mask-image: url("assets/svg/play.svg");
   }
+
+  &--linkedin {
+    mask-image: url("assets/svg/icons/linkedin.svg");
+  }
 }
 
 .shadow {

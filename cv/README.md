@@ -21,3 +21,6 @@ My name is Aliapkin Aleksei, i was contacted by Leonard Eichhorn. I'm interested
 Я старший FrontEnd разработчик с опытом управления небольшой командой.
 Буду рад новым контактам.
 https://www.linkedin.com/in/aleksei-aliapkin/
+
+Я старший фронтенд разработчик, специализирующийся на технологиях
+Javascript, Vue и jQuery. Руковожу небольшой командой разработчиков на текущем проекте.
