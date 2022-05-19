@@ -22,5 +22,6 @@ My name is Aliapkin Aleksei, i was contacted by Leonard Eichhorn. I'm interested
 Буду рад новым контактам.
 https://www.linkedin.com/in/aleksei-aliapkin/
 
-Я старший фронтенд разработчик, специализирующийся на технологиях
-Javascript, Vue и jQuery. Руковожу небольшой командой разработчиков на текущем проекте.
+Я старший фронтенд разработчик, специализирующийся на технологиях Javascript, Vue и jQuery. Руковожу небольшой командой разработчиков на текущем проекте.
+
+start wkhtmltopdf.exe --enable-local-file-access C:\dev\mfecane.github.io\cv\cv_ru.html C:\dev\mfecane.github.io\cv\cv_ru.pdf

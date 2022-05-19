@@ -24,6 +24,7 @@
 - fix light position
 - rotate gyroid with mouse
 - improve loading
+- add delayed animation
 
 background glass is separate
 rotates on animation

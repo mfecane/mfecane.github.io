@@ -5,6 +5,7 @@ import { mapclamp } from 'ts/lib/lib'
 import path from 'ts/components/path-animation'
 
 import mainBackground from 'ts/components/main-background'
+import { Spinner } from './components/spinner'
 
 let shaderCanvasContainer: HTMLDivElement
 let menuHome: HTMLDivElement
@@ -16,6 +17,7 @@ let mouseEl: HTMLDivElement
 let contactButton: HTMLDivElement
 let experienceEl: HTMLDivElement
 let loadingScreen: HTMLDivElement
+let spinner: Spinner
 
 let currentMenuItem = -1
 let scrollPoints = []
@@ -250,6 +252,7 @@ const hideLoadingScreen = () => {
   loadingScreen.classList.add('fade-out')
   setTimeout(() => {
     loadingScreen.classList.add('hidden')
+    spinner.destroy()
   }, 1500)
 }
 
@@ -257,6 +260,8 @@ export const init = (): void => {
   const body = document.getElementsByTagName('body')[0]
   body.classList.toggle('static-mode', false)
   body.classList.toggle('dynamic-mode', true)
+
+  spinner = new Spinner('.loading-screen__spinner')
 
   // Does this shit even work?
   window.scrollTo(-10000, -10000)
