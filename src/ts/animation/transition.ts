@@ -325,13 +325,16 @@ interface ClassTransitionOptions {
   el?: HTMLElement
   className?: string
   offset?: number
+  offsetIn?: number
+  offsetOut?: number
   index?: index
 }
 
 class ClassTransition extends AnimationBase {
   el: HTMLElement
   className = 'active'
-  offset = 0
+  offsetIn = 0
+  offsetOut = null
   index = 0
   _active: boolean
 
@@ -339,7 +342,17 @@ class ClassTransition extends AnimationBase {
     super()
     this.el = options.el
     this.className = options.className || this.className
-    this.offset = options.offset || this.offset
+
+    if (options.offset) {
+      this.offsetIn = options.offset
+      this.offsetOut = null
+    }
+
+    if (options.offsetIn && options.offsetOut) {
+      this.offsetIn = options.offsetIn
+      this.offsetOut = options.offsetOut
+    }
+
     this.index = options.index || this.index
   }
 
@@ -347,9 +360,16 @@ class ClassTransition extends AnimationBase {
     const rect = this.el.getBoundingClientRect()
     let active = this._active
 
-    if (rect.left + this.offset * this.index < window.innerWidth) {
-      active = true
-    } else {
+    active = true
+
+    if (
+      this.offsetIn &&
+      rect.left + this.offsetIn * this.index > window.innerWidth
+    ) {
+      active = false
+    }
+
+    if (this.offsetOut && rect.right - this.offsetOut < 0) {
       active = false
     }
 

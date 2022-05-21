@@ -1,9 +1,10 @@
+import { throttle } from 'lodash'
+
 let maxScrollValue = 1.0
 let scrollValue = 0.0
 let targetScrollValue = 0.0
 let scrollStep = 0.5
 let scrollSpeed = 0
-let element: HTMLDivElement = null
 
 const ACCELERATION = 0.08
 const DRAG = 0.8
@@ -41,17 +42,22 @@ const init = function (options: Options): void {
   maxScrollValue = points[points.length - 1].value
   scrollStep = options.step
 
-  element = document.querySelector('.scroller')
-  element.addEventListener('mousedown', mouseDownHandler)
+  window.addEventListener('mousedown', mouseDownHandler)
+  document.addEventListener('mousemove', throttle(mouseMoveHandlerDefault, 200))
   document.addEventListener('wheel', handleScroll)
 }
 
 let startDragScrollValue = 0
 let startDrag = 0
 
+let grabbingElement: HTMLElement = null
+
 const mouseDownHandler = (e: MouseEvent) => {
-  console.log(e.target)
   const el = e.target as HTMLDivElement
+
+  console.log(el.tagName)
+  console.log(el.classList)
+
   if (!el.classList.contains('draggable')) return
 
   e.preventDefault()
@@ -59,25 +65,35 @@ const mouseDownHandler = (e: MouseEvent) => {
 
   startDrag = e.clientX
   startDragScrollValue = targetScrollValue
+  grabbingElement = e.target as HTMLElement
 
-  element.style.cursor = 'grabbing'
-  document.addEventListener('mousemove', mouseMoveHandler)
+  grabbingElement.style.cursor = 'grabbing'
+
+  document.addEventListener('mousemove', mouseMoveHandlerGrabbing)
   document.addEventListener('mouseup', mouseUpHandler)
 }
 
-const mouseMoveHandler = (e: MouseEvent) => {
+const mouseMoveHandlerGrabbing = throttle((e: MouseEvent) => {
+  grabbingElement.style.cursor = 'grabbing'
   const dx = startDrag - e.clientX
   targetScrollValue = startDragScrollValue + dx * 2
 
   if (targetScrollValue > maxScrollValue) targetScrollValue = maxScrollValue
 
   if (targetScrollValue < 0) targetScrollValue = 0
-}
+}, 200)
+
+const mouseMoveHandlerDefault = throttle((e: MouseEvent) => {
+  const el = e.target as HTMLDivElement
+  if (!el.classList.contains('draggable')) return
+  el.style.cursor = 'grabbing'
+}, 200)
 
 const mouseUpHandler = () => {
-  element.style.cursor = 'grab'
+  grabbingElement.style.cursor = 'unset'
+  grabbingElement = null
   setStickyTimeout()
-  document.removeEventListener('mousemove', mouseMoveHandler)
+  document.removeEventListener('mousemove', mouseMoveHandlerGrabbing)
   document.removeEventListener('mouseup', mouseUpHandler)
   document.removeEventListener('mouseout', mouseUpHandler)
 }

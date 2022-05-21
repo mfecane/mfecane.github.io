@@ -1,8 +1,10 @@
-"use strict";
+'use strict'
+
+const Handlebars = require('handlebars')
 
 module.exports = {
   test: /\.html$/i,
   use: {
-    loader: "html-loader",
+    loader: 'html-loader',
   },
-};
+}

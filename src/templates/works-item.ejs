@@ -1,0 +1,35 @@
+<div class="works-item draggable">
+  <div class="works-item__image">
+    <a target="_blank" href="<%= data.link %>">
+      <div class="work-item__iamge-overlay">
+        <img src="<%= data.image %>" />
+      </div>
+      <% console.log(data) %>
+      <video preload="none" src="<%= data.video %>" autoplay muted loop></video>
+    </a>
+  </div>
+  <div class="works-item__title">
+    <a target="_blank" href="<%= data.link %>"><%= data.title %></a>
+  </div>
+  <div class="works-item__descr-block">
+    <div class="works-item__tags">
+      <% data.tags.forEach(function(tag){ %>
+      <div class="works-item__tag"><%= tag %></div>
+      <% }); %>
+    </div>
+    <div class="works-item__descr-text"><%= data.descr %></div>
+    <div class="works-item__buttons">
+      <a
+        target="_blank"
+        href="<%= data.github %>https://github.com/mfecane/shadercity"
+      >
+        <button class="btn btn_secondary works-item__button">
+          GitHub<i class="icon icon--github"></i></button
+      ></a>
+      <a target="_blank" href="<%= data.link %>">
+        <button class="btn btn_secondary works-item__button">
+          View<i class="icon icon--right"></i></button
+      ></a>
+    </div>
+  </div>
+</div>

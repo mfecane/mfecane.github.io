@@ -3,6 +3,7 @@ import scroller2 from 'ts/animation/scroller'
 import { easeOutCubic } from 'ts/lib/easing-functions'
 import { mapclamp } from 'ts/lib/lib'
 import path from 'ts/components/path-animation'
+import { WorksItems } from 'ts/components/works-items'
 
 import mainBackground from 'ts/components/main-background'
 import { Spinner } from './components/spinner'
@@ -18,11 +19,14 @@ let contactButton: HTMLDivElement
 let experienceEl: HTMLDivElement
 let loadingScreen: HTMLDivElement
 let spinner: Spinner
+let worksItems: WorksItems
 
 let currentMenuItem = -1
 let scrollPoints = []
 
-const NOOP = () => {}
+const NOOP = () => {
+  /* do nothing */
+}
 
 const initScroller = () => {
   const pageElements: Element[] = [
@@ -81,12 +85,20 @@ const initAnimations = () => {
   })
 
   transition.createFullScreenTransition({
-    selector: '.about-section',
+    selector: '.works-title',
     easing: easeOutCubic,
     transition: (el, value) => {
-      el.style.transform = `translateX(${-100 + value * 120}px)`
+      el.style.transform = `translateX(${-300 + value * 300}px)`
     },
   })
+
+  // transition.createFullScreenTransition({
+  //   selector: '.about-section',
+  //   easing: easeOutCubic,
+  //   transition: (el, value) => {
+  //     el.style.transform = `translateX(${-100 + value * 120}px)`
+  //   },
+  // })
 
   transition.createScreenTransition({
     selector: '.skills__item',
@@ -96,23 +108,22 @@ const initAnimations = () => {
     offset: 50,
   })
 
-  transition.createFullScreenTransition({
-    selector: '.experience-section',
-    transition: (el, value) => {
-      el.style.transform = `translateX(${-20 + value * 50}px)`
-    },
-  })
+  // transition.createFullScreenTransition({
+  //   selector: '.experience-section',
+  //   transition: (el, value) => {
+  //     el.style.transform = `translateX(${-20 + value * 50}px)`
+  //   },
+  // })
+
+  // transition.createClassTransition({
+  //   selector: '.works-item',
+  //   offsetIn: 300,
+  //   offsetOut: 600,
+  // })
 
   transition.createClassTransition({
     selector: '.experience-item',
     offset: 100,
-  })
-
-  transition.createFullScreenTransition({
-    selector: '.education',
-    transition: (el, value) => {
-      el.style.transform = `translateX(${-50 + value * 80}px)`
-    },
   })
 
   transition.createScreenTransition({
@@ -120,20 +131,6 @@ const initAnimations = () => {
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
     offset: 300,
-  })
-
-  transition.createFullScreenTransition({
-    selector: '.works-title',
-    transition: (el, value) => {
-      el.style.transform = `translateX(${-300 + value * 300}px)`
-    },
-  })
-
-  transition.createFullScreenTransition({
-    selector: '.works-item__image',
-    transition: (el, value) => {
-      el.style.transform = `translateX(${-40 + value * 50}px)`
-    },
   })
 
   // TODO ::: extract common transitions into common classes
@@ -229,11 +226,11 @@ const updateScroller = (value: number): void => {
   scrollerEl.style.transform = `translateX(-${value}px)`
 }
 
-const updatePath = (value: number): void => {
-  if (value > 550) return
-  const val = mapclamp(value, 30, 500, 1, 0)
-  path.update(val)
-}
+// const updatePath = (value: number): void => {
+//   if (value > 550) return
+//   const val = mapclamp(value, 30, 500, 1, 0)
+//   path.update(val)
+// }
 
 const updateMouse = (value: number): void => {
   if (value < 5) {
@@ -245,6 +242,7 @@ const updateMouse = (value: number): void => {
 
 const update = (): void => {
   scroller2.update()
+  worksItems.update()
   requestAnimationFrame(update)
 }
 
@@ -285,8 +283,10 @@ export const init = (): void => {
   shaderCanvasContainer = document.querySelector('#shader-canvas-container')
   mainBackground.init(shaderCanvasContainer).then(() => hideLoadingScreen())
 
+  worksItems = new WorksItems('.works-page')
+
   initScroller()
-  const shwroller = document.querySelector('.scroller-inner')
+  const shwroller = document.querySelector('.scroller')
   Array.from(shwroller.children).forEach((el) => {
     el.classList.toggle('draggable', true)
   })
@@ -294,11 +294,11 @@ export const init = (): void => {
   initAnimations()
   initMenu()
 
-  path.init()
-  path.run()
+  // path.init()
+  // path.run()
 
   scroller2.addListener(updateScroller)
-  scroller2.addListener(updatePath)
+  // scroller2.addListener(updatePath)
   scroller2.addListener(updateMenu)
   scroller2.addListener(updateMouse)
   scroller2.addListener(transition.update)

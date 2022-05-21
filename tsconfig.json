@@ -6,5 +6,6 @@
       "ts/*": ["./src/ts/*"],
       "shaders/*": ["./src/shaders/*"]
     }
-  }
+  },
+  "include": ["src/ts/components", "src/ts/custom.d.ts"]
 }
