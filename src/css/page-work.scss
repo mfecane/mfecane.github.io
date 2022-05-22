@@ -39,7 +39,7 @@
   z-index: 2;
 
   .dynamic-mode & {
-    color: var(--color-light);
+    color: $light;
     z-index: 5;
     transform-origin: 0 0;
     transform: rotate(-90deg) translate(-550px, 120px);
@@ -49,12 +49,12 @@
   .static-mode & {
     align-self: flex-start;
     margin: 80px 0 40px 0;
-    color: var(--color-light);
+    color: $light;
   }
 }
 
 .works-title {
-  font-family: var(--header-font);
+  font-family: $headerFont;
   font-size: 6.3rem;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .works-item__title {
-  color: var(--color-accent);
+  color: $accent;
   font-size: 2em;
   font-weight: 500;
   transition: all 400ms ease-out;
@@ -287,13 +287,13 @@
   }
 
   .icon {
-    background-color: var(--color-accent);
+    background-color: $accent;
     width: 20px;
     height: 20px;
   }
 }
 
 .works-item__button:hover .icon {
-  background-color: var(--color-light);
+  background-color: $light;
   cursor: pointer;
 }
