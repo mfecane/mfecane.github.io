@@ -106,7 +106,7 @@ vec4 sceneMat(vec3 point) {
   vec3 roundP = round(point / rep);
 
   float id1 = Noise31(roundP);
-  if (id1 > 0.5) {
+  if (id1 > 0.6) {
     return vec4(0.01, 0.05, 0.1, 1.0);
   }
 

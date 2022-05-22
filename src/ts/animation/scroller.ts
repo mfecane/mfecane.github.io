@@ -55,9 +55,6 @@ let grabbingElement: HTMLElement = null
 const mouseDownHandler = (e: MouseEvent) => {
   const el = e.target as HTMLDivElement
 
-  console.log(el.tagName)
-  console.log(el.classList)
-
   if (!el.classList.contains('draggable')) return
 
   e.preventDefault()
@@ -74,6 +71,7 @@ const mouseDownHandler = (e: MouseEvent) => {
 }
 
 const mouseMoveHandlerGrabbing = throttle((e: MouseEvent) => {
+  if (!grabbingElement) return
   grabbingElement.style.cursor = 'grabbing'
   const dx = startDrag - e.clientX
   targetScrollValue = startDragScrollValue + dx * 2

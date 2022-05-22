@@ -20,6 +20,7 @@ export class WorksItems {
     }, 0)
     width += 650 - 400
     this.root.style.width = `${width}px`
+    this.root.style.width = `${width}px`
   }
 
   update(): void {
