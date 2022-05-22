@@ -1,0 +1,29 @@
+<div class='works-item draggable'>
+  <div class='works-item__image'>
+    <a target='_blank' href='{{link}}'>
+      <img class='work-item__image-overlay' src='{{image}}' />
+      <video preload='none' src='{{video}}' autoplay muted loop></video>
+    </a>
+  </div>
+  <div class='works-item__descr-block'>
+    <div class='works-item__title'>
+      <a target='_blank' href='{{link}}'>{{title}}</a>
+    </div>
+    <div class='works-item__descr-toggle'>
+      <div class='works-item__tags'>
+        {{#each tags}}
+          <div class='works-item__tag'>{{this}}</div>
+        {{/each}}
+      </div>
+      <div class='works-item__descr-text'>{{descr}}</div>
+      <div class='works-item__buttons'>
+        <a target='_blank' href='{{github}}'>
+          <button class='btn btn_secondary works-item__button'>
+            GitHub<i class='icon icon--github'></i></button></a>
+        <a target='_blank' href='{{link}}'>
+          <button class='btn btn_secondary works-item__button'>
+            View<i class='icon icon--right'></i></button></a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -25,3 +25,20 @@ https://www.linkedin.com/in/aleksei-aliapkin/
 Я старший фронтенд разработчик, специализирующийся на технологиях Javascript, Vue и jQuery. Руковожу небольшой командой разработчиков на текущем проекте.
 
 start wkhtmltopdf.exe --enable-local-file-access C:\dev\mfecane.github.io\cv\cv_ru.html C:\dev\mfecane.github.io\cv\cv_ru.pdf
+
+tips for interview
+
+1 hour
+
+boot conigurator
+write some things down
+write paragraphs in english about last experience
+
+soft skills
+motivated
+passion for 3d modelling
+beer with team leads in a bar
+smile go for sentences
+
+write down questions
+about projects, athmosphere

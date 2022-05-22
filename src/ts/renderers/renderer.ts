@@ -1,7 +1,7 @@
 import Shader, { Arguments } from 'ts/webgl/shader'
 
-import vertSource from 'shaders/square.vert'
-import fragSource from 'shaders/cubes.frag'
+import vertSource from 'shaders/square.vert?raw'
+import fragSource from 'shaders/cubes.frag?raw'
 
 import TextureCube from 'ts/webgl/texture-cube'
 import Texture from 'ts/webgl/texture'
