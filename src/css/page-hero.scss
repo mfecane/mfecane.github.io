@@ -1,6 +1,8 @@
 @import "css/config.scss";
 
 .hero-page {
+  z-index: 2;
+
   .dynamic-mode & {
     min-width: 100vw;
   }

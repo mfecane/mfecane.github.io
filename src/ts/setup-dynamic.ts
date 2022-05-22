@@ -1,12 +1,11 @@
 import transition from 'ts/animation/transition'
 import scroller2 from 'ts/animation/scroller'
 import { easeOutCubic } from 'ts/lib/easing-functions'
-import { mapclamp } from 'ts/lib/lib'
-import path from 'ts/components/path-animation'
 import { WorksItems } from 'ts/components/works-items'
 
 import mainBackground from 'ts/components/main-background'
-import { Spinner } from './components/spinner'
+import { Spinner } from 'ts/components/spinner'
+import { ScrollerGroup } from 'ts/components/scroller-group'
 
 let shaderCanvasContainer: HTMLDivElement
 let menuHome: HTMLDivElement
@@ -22,49 +21,38 @@ let spinner: Spinner
 let worksItems: WorksItems
 
 let currentMenuItem = -1
-let scrollPoints = []
+let scrollerGroup: ScrollerGroup
+let homePos = 0
+let aboutPos = 0
+let worksPos = 0
+let contactsPos = 0
 
 const NOOP = () => {
   /* do nothing */
 }
 
 const initScroller = () => {
-  const pageElements: Element[] = [
-    '.hero-page',
-    '.about-page',
-    '.works-page',
-    '.contacts-page',
-  ].map((sel) => document.querySelector(sel))
+  scrollerGroup = new ScrollerGroup('.scroller')
+  const points = scrollerGroup.getPoints().map((p: number) => ({
+    value: p,
+  }))
 
-  let widths = pageElements.map((el) => el.clientWidth)
-  widths = widths.reverse().reduce((acc, cur) => {
-    acc = acc.map((el) => el + cur)
-    acc.push(0)
-    return acc
-  }, [])
-
-  scrollPoints = [
-    widths[3],
-    widths[2],
-    widths[1],
-    Math.min(widths[0], +scrollerEl.clientWidth - window.innerWidth),
-  ]
+  points[0] = { value: points[0], from: 0, to: points[1] * 0.4 }
+  points[1] = {
+    value: points[1],
+    from: points[1] * 0.4,
+    to: points[1] * 1.2,
+  }
 
   scroller2.init({
     step: 120,
-    points: [
-      { value: scrollPoints[0], from: 0, to: scrollPoints[1] * 0.4 },
-      {
-        value: scrollPoints[1],
-        from: scrollPoints[1] * 0.4,
-        to: scrollPoints[1] * 1.2,
-      },
-      { value: scrollPoints[2] },
-      {
-        value: scrollPoints[3],
-      },
-    ],
+    points,
   })
+
+  homePos = scrollerGroup.getElementPos('hero-page')
+  aboutPos = scrollerGroup.getElementPos('about-page')
+  worksPos = scrollerGroup.getElementPos('works__title-container')
+  contactsPos = scrollerGroup.getElementPos('contacts-page')
 }
 
 const initAnimations = () => {
@@ -140,8 +128,8 @@ const initAnimations = () => {
 
   transition.createAnimation({
     selector: '.contacts__title',
-    start: scrollPoints[3] - 500,
-    end: scrollPoints[3],
+    start: contactsPos - 500,
+    end: contactsPos,
     init: true,
     hide: false,
     fn: (el, value) => {
@@ -168,19 +156,19 @@ const initMenu = () => {
   })
 
   menuHome.addEventListener('click', () => {
-    scroller2.setScrollValue(0)
+    scroller2.setScrollValue(homePos)
   })
 
   menuAbout.addEventListener('click', () => {
-    scroller2.setScrollValue(scrollPoints[1])
+    scroller2.setScrollValue(aboutPos)
   })
 
   menuWorks.addEventListener('click', () => {
-    scroller2.setScrollValue(scrollPoints[2])
+    scroller2.setScrollValue(worksPos)
   })
 
   menuContacts.addEventListener('click', () => {
-    scroller2.setScrollValue(scrollPoints[3])
+    scroller2.setScrollValue(contactsPos)
   })
 }
 
@@ -188,13 +176,13 @@ const updateMenu = (value: number): void => {
   let index = -1
   value = value + (window.innerWidth * 3) / 4
 
-  if (value < scrollPoints[1]) {
+  if (value < aboutPos) {
     index = 0
-  } else if (scrollPoints[1] <= value && value < scrollPoints[2]) {
+  } else if (aboutPos <= value && value < worksPos) {
     index = 1
-  } else if (scrollPoints[2] <= value && value < scrollPoints[3]) {
+  } else if (worksPos <= value && value < contactsPos) {
     index = 2
-  } else if (scrollPoints[3] <= value) {
+  } else if (contactsPos <= value) {
     index = 3
   }
 
@@ -271,11 +259,11 @@ export const init = (): void => {
   loadingScreen = document.querySelector('.loading-screen')
 
   mouseEl.addEventListener('click', () => {
-    scroller2.setScrollValue(scrollPoints[1])
+    scroller2.setScrollValue(aboutPos)
   })
 
   contactButton.addEventListener('click', () => {
-    scroller2.setScrollValue(scrollPoints[3])
+    scroller2.setScrollValue(contactsPos)
   })
 
   experienceEl.addEventListener('wheel', (e) => e.stopPropagation())

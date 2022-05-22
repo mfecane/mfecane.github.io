@@ -45,14 +45,7 @@ body {
   }
 
   .static-mode & {
-  }
-
-  .draggable {
-    cursor: grab;
-
-    & * {
-      cursor: auto;
-    }
+    flex-direction: column;
   }
 }
 
@@ -87,8 +80,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #05080b 5vw center / cover url(assets/img/img.png) fixed no-repeat;
-  cursor: grab;
+  background: #05080b 5vw center / cover url(assets/img/bg.jpg) fixed no-repeat;
 }
 
 .nav {
