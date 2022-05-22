@@ -37,11 +37,11 @@ const initScroller = () => {
     value: p,
   }))
 
-  points[0] = { value: points[0], from: 0, to: points[1] * 0.4 }
+  points[0] = { value: points[0].value, from: 0, to: points[1].value * 0.4 }
   points[1] = {
-    value: points[1],
-    from: points[1] * 0.4,
-    to: points[1] * 1.2,
+    value: points[1].value,
+    from: points[1].value * 0.4,
+    to: points[1].value * 1.2,
   }
 
   scroller2.init({
