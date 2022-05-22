@@ -14,7 +14,10 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 module.exports = [
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
-    template: path.resolve(root, 'src/templates/index.html'),
+    template: `!!ejs-webpack-loader!${path.resolve(
+      root,
+      'src/templates/index.ejs'
+    )}`,
   }),
   new FaviconsWebpackPlugin('assets/img/favicon.png'),
   // new CopyPlugin({

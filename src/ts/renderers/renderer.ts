@@ -1,14 +1,19 @@
-import Shader from 'ts/webgl/shader'
+import Shader, { Arguments } from 'ts/webgl/shader'
 
-interface rendrerOptions {
-  id: number
-  vertShaderSrc: string
-  fragShaderSrc: string
-  parameters: []
-  texture: {
-    src: string
-  } | null
-}
+import vertSource from 'shaders/square.vert'
+import fragSource from 'shaders/cubes.frag'
+
+import TextureCube from 'ts/webgl/texture-cube'
+import Texture from 'ts/webgl/texture'
+
+import posX01 from 'assets/peppermint_powerplant/posx.png'
+import negX01 from 'assets/peppermint_powerplant/negx.png'
+import posY01 from 'assets/peppermint_powerplant/posy.png'
+import negY01 from 'assets/peppermint_powerplant/negy.png'
+import posZ01 from 'assets/peppermint_powerplant/posz.png'
+import negZ01 from 'assets/peppermint_powerplant/negz.png'
+
+import texSrc from 'assets/img/colors.png'
 
 export default class Renderer {
   width = 0
@@ -19,8 +24,10 @@ export default class Renderer {
   gl: WebGL2RenderingContext = null
   canvas: HTMLCanvasElement = null
   proj: number[] = null
-  options: rendrerOptions = null
   animId: number = null
+
+  texture: Texture = null
+  textureCube: TextureCube = null
 
   startTime = Date.now()
   time = this.startTime
@@ -33,8 +40,7 @@ export default class Renderer {
 
   parameters = {}
 
-  constructor(root: HTMLDivElement, options: rendrerOptions) {
-    this.options = options
+  constructor(root: HTMLDivElement) {
     this.root = root
     this.canvas = document.createElement(`canvas`)
     this.root.appendChild(this.canvas)
@@ -45,14 +51,11 @@ export default class Renderer {
     this.setCanvasSize()
 
     window.addEventListener('resize', this.setCanvasSize.bind(this))
-
-    // orbitControlInit()
-    // orbitControlAnimate()
   }
 
-  init(): void {
-    this.vertexSource = this.options.vertexSource
-    this.fragmentSource = this.options.fragmentSource
+  async init(): Promise<void> {
+    this.vertexSource = vertSource
+    this.fragmentSource = fragSource
 
     this.mainShader = new Shader(this.gl)
     this.mainShader.createProgram(this.vertexSource, this.fragmentSource)
@@ -63,27 +66,28 @@ export default class Renderer {
     this.mainShader.setPositions('aPos')
 
     this.addUniforms()
+
+    this.texture = new Texture(this.gl)
+    await this.texture.fromUrl(texSrc)
+
+    this.textureCube = new TextureCube(this.gl)
+    await this.textureCube.fromSources({
+      posX: posX01,
+      negX: negX01,
+      posY: posY01,
+      negY: negY01,
+      posZ: posZ01,
+      negZ: negZ01,
+    })
   }
 
   addUniforms(): void {
     this.mainShader.addUniform('u_MVP', '4fv')
     this.mainShader.addUniform('u_time', '1f')
-    this.mainShader.addUniform('u_yRot', '1f')
-    this.mainShader.addUniform('u_mouseX', '1f')
-    this.mainShader.addUniform('u_mouseY', '1f')
-
-    this.addUniformParameters()
-  }
-
-  addUniform(uniform: string, type: string): void {
-    this.mainShader.addUniform(uniform, type)
-  }
-
-  addUniformParameters(): void {
-    this.options.parameters.forEach((item: { id: string; default: number }) => {
-      this.mainShader.addUniform(`u_${item.id}`, '1f')
-      this.parameters[item.id] = item.default
-    })
+    this.mainShader.addUniform('u_mouse', '2f')
+    this.mainShader.addUniform('u_Sampler', '1i')
+    this.mainShader.addUniform('u_Sampler2', '1i')
+    this.mainShader.addUniform('u_anim', '1f')
   }
 
   createSquarePositions(): void {
@@ -129,6 +133,15 @@ export default class Renderer {
     this.proj = this.calculateMVP(this.width, this.height)
 
     this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, null)
+
+    this.gl.activeTexture(this.gl.TEXTURE0)
+    this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture.texture)
+    this.mainShader.setUniform('u_Sampler', 0)
+
+    this.gl.activeTexture(this.gl.TEXTURE1)
+    this.gl.bindTexture(this.gl.TEXTURE_CUBE_MAP, this.textureCube.texture)
+    this.mainShader.setUniform('u_Sampler2', 1)
+
     this.setUniforms()
 
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0)
@@ -137,24 +150,14 @@ export default class Renderer {
   }
 
   setUniforms(): void {
-    // const [mouseX, mouseY, scrollValue] = getMouseControl()
     this.time = (Date.now() - this.startTime) / 1000
 
     this.mainShader.setUniform('u_MVP', this.proj)
     this.mainShader.setUniform('u_time', this.time)
-
-    this.setUniformParameters()
   }
 
-  setUniform(uniform: string, value: number): void {
-    this.mainShader.setUniform(uniform, value)
-  }
-
-  setUniformParameters(): void {
-    this.options.parameters.forEach(({ id }: { id: string }) => {
-      const value = this.parameters[id]
-      this.mainShader.setUniform(`u_${id}`, value)
-    })
+  setUniform(...args: Arguments): void {
+    this.mainShader.setUniform(...args)
   }
 
   update(): void {
@@ -173,7 +176,7 @@ export default class Renderer {
     this.gl.viewport(0, 0, this.width, this.height)
   }
 
-  calculateMVP(width, height): number[] {
+  calculateMVP(width: number, height: number): number[] {
     const left = -width / height
     const right = width / height
 

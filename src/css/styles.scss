@@ -1,5 +1,11 @@
 @import "css/config.scss";
 
+:root {
+  --header-font: "PT Serif";
+  --color-light: white;
+  --color-accent: #ccff00;
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -27,8 +33,8 @@ body {
 }
 
 .scroller {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  align-items: stretch;
 
   .dynamic-mode & {
     position: absolute;
@@ -39,28 +45,6 @@ body {
   }
 
   .static-mode & {
-  }
-
-  .draggable {
-    cursor: grab;
-
-    & * {
-      cursor: auto;
-    }
-  }
-}
-
-.scroller-inner {
-  display: inline-flex;
-  align-items: stretch;
-
-  .dynamic-mode & {
-    overflow: hidden;
-    height: calc(100vh - 48px);
-  }
-
-  .static-mode & {
-    overflow: auto;
     flex-direction: column;
   }
 }
@@ -96,8 +80,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #05080b center/cover url(assets/img/bg.jpg) fixed;
-  cursor: grab;
+  background: #05080b 5vw center / cover url(assets/img/bg.jpg) fixed no-repeat;
 }
 
 .nav {

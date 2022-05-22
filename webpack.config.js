@@ -11,6 +11,14 @@ var rules = [
   require('./webpack/loaders/file'),
   require('./webpack/loaders/html'),
   require('./webpack/loaders/babel'),
+  {
+    test: /\.ejs$/,
+    use: [
+      {
+        loader: 'ejs-webpack-loader',
+      },
+    ],
+  },
   // require("./webpack/loaders/html"),
 ]
 

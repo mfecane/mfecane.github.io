@@ -15,7 +15,7 @@ export default class Texture {
   targetTextureWidth = 0
   targetTextureHeight = 0
 
-  get texture():WebGLTexture {
+  get texture(): WebGLTexture {
     return this._texture
   }
 
@@ -29,49 +29,51 @@ export default class Texture {
     this.srcType = this.gl.UNSIGNED_BYTE
   }
 
-  fromUrl(url: string): WebGLTexture {
-    const gl = this.gl
+  fromUrl(url: string): Promise<WebGLTexture> {
+    return new Promise((resolve) => {
+      const gl = this.gl
 
-    this._texture = gl.createTexture()
-    gl.bindTexture(gl.TEXTURE_2D, this._texture)
-    gl.texImage2D(
-      gl.TEXTURE_2D,
-      this.level,
-      this.internalFormat,
-      this.width,
-      this.height,
-      this.border,
-      this.srcFormat,
-      this.srcType,
-      this.pixel
-    )
-
-    const image = new Image()
-    image.onload = () => {
+      this._texture = gl.createTexture()
       gl.bindTexture(gl.TEXTURE_2D, this._texture)
       gl.texImage2D(
         gl.TEXTURE_2D,
         this.level,
         this.internalFormat,
+        this.width,
+        this.height,
+        this.border,
         this.srcFormat,
         this.srcType,
-        image
+        this.pixel
       )
 
-      this.width = image.width
-      this.height = image.height
+      const image = new Image()
+      image.onload = () => {
+        gl.bindTexture(gl.TEXTURE_2D, this._texture)
+        gl.texImage2D(
+          gl.TEXTURE_2D,
+          this.level,
+          this.internalFormat,
+          this.srcFormat,
+          this.srcType,
+          image
+        )
 
-      gl.generateMipmap(gl.TEXTURE_2D)
+        this.width = image.width
+        this.height = image.height
 
-      gl.texParameteri(
-        gl.TEXTURE_2D,
-        gl.TEXTURE_MIN_FILTER,
-        gl.LINEAR_MIPMAP_LINEAR
-      )
-    }
-    image.src = url
+        gl.generateMipmap(gl.TEXTURE_2D)
 
-    return this._texture
+        gl.texParameteri(
+          gl.TEXTURE_2D,
+          gl.TEXTURE_MIN_FILTER,
+          gl.LINEAR_MIPMAP_LINEAR
+        )
+
+        return resolve(this._texture)
+      }
+      image.src = url
+    })
   }
 
   empty(targetTextureWidth: number, targetTextureHeight: number): WebGLTexture {
@@ -103,5 +105,10 @@ export default class Texture {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
 
     return this._texture
+  }
+
+  destroy(): void {
+    this.gl.deleteTexture(this._texture)
+    delete this._texture
   }
 }

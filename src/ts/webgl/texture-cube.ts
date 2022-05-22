@@ -178,4 +178,9 @@ export default class TextureCube {
       },
     ]
   }
+
+  destroy(): void {
+    this.gl.deleteTexture(this._texture)
+    delete this._texture
+  }
 }

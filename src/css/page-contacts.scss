@@ -53,6 +53,7 @@
   .dynamic-mode & {
     transform: translateX(20px);
     opacity: 0;
+
     &.active {
       transform: translateX(0px);
       opacity: 1;
@@ -62,7 +63,7 @@
 
 .contact__item a {
   font-family: $mainFont;
-  font-size: 1.2em;
+  font-size: 1em;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: $accent;
