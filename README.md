@@ -38,3 +38,5 @@ rotates on animation
 
 - interlacion
 - Save this color #0d1014
+- slightly shift on mouse move
+- check blueyard.com
