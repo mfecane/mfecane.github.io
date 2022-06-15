@@ -1,11 +1,11 @@
 import transition from 'ts/animation/transition'
 import scroller2 from 'ts/animation/scroller'
 import { easeOutCubic } from 'ts/lib/easing-functions'
-import { WorksItems } from 'ts/components/works-items'
 
 import mainBackground from 'ts/components/main-background'
 import { Spinner } from 'ts/components/spinner'
 import { ScrollerGroup } from 'ts/components/scroller-group'
+import { mapclamp } from './lib/lib'
 
 let shaderCanvasContainer: HTMLDivElement
 let menuHome: HTMLDivElement
@@ -18,7 +18,6 @@ let contactButton: HTMLDivElement
 let experienceEl: HTMLDivElement
 let loadingScreen: HTMLDivElement
 let spinner: Spinner
-let worksItems: WorksItems
 
 let currentMenuItem = -1
 let scrollerGroup: ScrollerGroup
@@ -29,6 +28,13 @@ let contactsPos = 0
 
 const NOOP = () => {
   /* do nothing */
+}
+
+const panic = (type: 'element') => {
+  switch (type) {
+    case 'element':
+      throw new Error('Element not found')
+  }
 }
 
 const initScroller = () => {
@@ -75,7 +81,7 @@ const initAnimations = () => {
   transition.createFullScreenTransition({
     selector: '.works-title',
     easing: easeOutCubic,
-    transition: (el, value) => {
+    transition: (el, value: number) => {
       el.style.transform = `translateX(${-300 + value * 300}px)`
     },
   })
@@ -103,11 +109,15 @@ const initAnimations = () => {
   //   },
   // })
 
-  // transition.createClassTransition({
-  //   selector: '.works-item',
-  //   offsetIn: 300,
-  //   offsetOut: 600,
-  // })
+  transition.createFullScreenTransition({
+    selector: '.works-item__title',
+    transition: (el, value) => {
+      const v = mapclamp(value, 0, 0.4, 0, 1)
+      el.style.transform = `translateX(${150 - v * 150}px)`
+      const v2 = mapclamp(value, 0, 0.5, 0, 1)
+      el.style.opacity = v2.toString()
+    },
+  })
 
   transition.createClassTransition({
     selector: '.experience-item',
@@ -122,8 +132,10 @@ const initAnimations = () => {
   })
 
   // TODO ::: extract common transitions into common classes
+  // TODO ::: check this, its kinda not working with default offset
   transition.createClassTransition({
     selector: '.works-item__descr-text',
+    offset: 10,
   })
 
   transition.createAnimation({
@@ -132,7 +144,7 @@ const initAnimations = () => {
     end: contactsPos,
     init: true,
     hide: false,
-    fn: (el, value) => {
+    fn: (el, value: number) => {
       el.style.transform = `translateX(${-100 + value * 120}px)`
     },
   })
@@ -144,10 +156,10 @@ const initAnimations = () => {
 }
 
 const initMenu = () => {
-  menuHome = document.querySelector('#menu_home')
-  menuAbout = document.querySelector('#menu_about')
-  menuWorks = document.querySelector('#menu_works')
-  menuContacts = document.querySelector('#menu_contacts')
+  menuHome = document.querySelector('#menu_home') || panic('element')
+  menuAbout = document.querySelector('#menu_about') || panic('element')
+  menuWorks = document.querySelector('#menu_works') || panic('element')
+  menuContacts = document.querySelector('#menu_contacts') || panic('element')
 
   Array.from(document.querySelectorAll('.nav a')).forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -230,7 +242,6 @@ const updateMouse = (value: number): void => {
 
 const update = (): void => {
   scroller2.update()
-  worksItems.update()
   requestAnimationFrame(update)
 }
 
@@ -252,11 +263,12 @@ export const init = (): void => {
   // Does this shit even work?
   window.scrollTo(-10000, -10000)
 
-  scrollerEl = document.querySelector('.scroller')
-  mouseEl = document.querySelector('.mouse__container')
-  contactButton = document.querySelector('#contacts-button')
-  experienceEl = document.querySelector('.experience-section-outer')
-  loadingScreen = document.querySelector('.loading-screen')
+  scrollerEl = document.querySelector('.scroller') || panic('element')
+  mouseEl = document.querySelector('.mouse__container') || panic('element')
+  contactButton = document.querySelector('#contacts-button') || panic('element')
+  experienceEl =
+    document.querySelector('.experience-section-outer') || panic('element')
+  loadingScreen = document.querySelector('.loading-screen') || panic('element')
 
   mouseEl.addEventListener('click', () => {
     scroller2.setScrollValue(aboutPos)
@@ -268,13 +280,12 @@ export const init = (): void => {
 
   experienceEl.addEventListener('wheel', (e) => e.stopPropagation())
 
-  shaderCanvasContainer = document.querySelector('#shader-canvas-container')
+  shaderCanvasContainer =
+    document.querySelector('#shader-canvas-container') || panic('element')
   mainBackground.init(shaderCanvasContainer).then(() => hideLoadingScreen())
 
-  worksItems = new WorksItems('.works-page')
-
   initScroller()
-  const shwroller = document.querySelector('.scroller')
+  const shwroller = document.querySelector('.scroller') || panic('element')
   Array.from(shwroller.children).forEach((el) => {
     el.classList.toggle('draggable', true)
   })

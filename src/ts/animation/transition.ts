@@ -373,6 +373,8 @@ class ClassTransition extends AnimationBase {
       active = false
     }
 
+    console.log('this._active', this._active)
+
     if (this._active !== active) {
       this._active = active
       this.el.classList.toggle(this.className, this._active)

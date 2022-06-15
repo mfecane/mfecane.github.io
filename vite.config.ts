@@ -25,6 +25,16 @@ const works = [
       'An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and material colors for different parts. All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced. Rendering was done using THREE.JS.',
   },
   {
+    title: 'Hair generator',
+    tags: ['React', 'Three.js'],
+    github: 'https://github.com/mfecane/js-hair',
+    link: 'https://mfecane.github.io/js-hair/',
+    image: 'assets/img/js-hair.png',
+    video: 'assets/video/js-hair.webm',
+    descr:
+      'A tool for generation of hair textures for real time rendering. It is able to generate large amount of hair geometry and bake high resolution information to albedo, normal, ambient occlusion, height, id and alpha cutout maps. Textures are applied to "hair card" meshes to render high quality and high performance believable hair in real time rendering engines, i.e. game engines.',
+  },
+  {
     title: 'Shader gallery',
     tags: ['React', 'WebGL'],
     github: 'https://github.com/mfecane/nebula',
