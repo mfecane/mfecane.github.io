@@ -219,7 +219,7 @@ void main() {
   float mouse = 1.0 + 2.0 * smoothstep(0.6, 0.0, length(u_mouse - uv));
   // const float mouseFactor = 0.05;
   float xpos = -2.2 + sin(clamp(u_anim * 1.5, 0.0, 3.0 * PI / 5.0)) * 3.0;
-  float ypos =  0.0 - u_anim * 1.0;
+  float ypos =  0.0 - clamp(u_anim / 3.0, 0.0, 1.5);
   float zoom = -6.5 + clamp(u_anim * 3.0, 0.0, 3.0);
   vec3 rayOrigin = vec3(xpos, ypos, zoom);
   vec3 rayDirection = normalize(vec3(uv.x / fov, uv.y / fov, 1.0));
