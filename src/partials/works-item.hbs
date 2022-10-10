@@ -1,15 +1,9 @@
 <div class='works-item draggable'>
-  <div class='works-item__image'>
-    <a target='_blank' href='{{link}}'>
-      <img class='work-item__image-overlay' src='{{image}}' alt='{{title}}' />
-      <video preload='none' src='{{video}}' autoplay muted loop></video>
-    </a>
-  </div>
-  <div class='works-item__descr-block'>
-    <div class='works-item__title'>
-      <a target='_blank' href='{{link}}'>{{title}}</a>
-    </div>
-    <div class='works-item__descr-toggle'>
+  <h3 class='works-item__title'>
+    <a target='_blank' href='{{link}}'>{{title}}</a>
+  </h3>
+  <div class='works-item__layout'>
+    <div class='works-item__descr-block'>
       <div class='works-item__tags'>
         {{#each tags}}
           <div class='works-item__tag'>{{this}}</div>
@@ -31,5 +25,10 @@
           View<i class='icon icon--right'></i></a>
       </div>
     </div>
-  </div>
+    <div class='works-item__image'>
+      <a target='_blank' href='{{link}}'>
+        <img class='work-item__image-overlay' src='{{image}}' alt='{{title}}' />
+        <video preload='none' src='{{video}}' autoplay muted loop></video>
+      </a>
+    </div></div>
 </div>
