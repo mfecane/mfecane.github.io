@@ -301,8 +301,5 @@ export const init = (): void => {
   scroller2.addListener(updateMenu)
   scroller2.addListener(updateMouse)
   scroller2.addListener(transition.update)
-
-  hideLoadingScreen()
-
   update()
 }
