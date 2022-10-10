@@ -144,10 +144,10 @@ const initAnimations = () => {
 }
 
 const initMenu = () => {
-  menuHome = document.querySelector('#menu_home')
-  menuAbout = document.querySelector('#menu_about')
-  menuWorks = document.querySelector('#menu_works')
-  menuContacts = document.querySelector('#menu_contacts')
+  menuHome = document.querySelector('#menu_home')!
+  menuAbout = document.querySelector('#menu_about')!
+  menuWorks = document.querySelector('#menu_works')!
+  menuContacts = document.querySelector('#menu_contacts')!
 
   Array.from(document.querySelectorAll('.nav a')).forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -252,11 +252,11 @@ export const init = (): void => {
   // Does this shit even work?
   window.scrollTo(-10000, -10000)
 
-  scrollerEl = document.querySelector('.scroller')
-  mouseEl = document.querySelector('.mouse__container')
-  contactButton = document.querySelector('#contacts-button')
-  experienceEl = document.querySelector('.experience-section-outer')
-  loadingScreen = document.querySelector('.loading-screen')
+  scrollerEl = document.querySelector<HTMLDivElement>('.scroller')!
+  mouseEl = document.querySelector('.mouse__container')!
+  contactButton = document.querySelector('#contacts-button')!
+  experienceEl = document.querySelector('.experience-section-outer')!
+  loadingScreen = document.querySelector('.loading-screen')!
 
   mouseEl.addEventListener('click', () => {
     scroller2.setScrollValue(aboutPos)
@@ -268,13 +268,13 @@ export const init = (): void => {
 
   experienceEl.addEventListener('wheel', (e) => e.stopPropagation())
 
-  shaderCanvasContainer = document.querySelector('#shader-canvas-container')
+  shaderCanvasContainer = document.querySelector('#shader-canvas-container')!
   mainBackground.init(shaderCanvasContainer).then(() => hideLoadingScreen())
 
   worksItems = new WorksItems('.works-page')
 
   initScroller()
-  const shwroller = document.querySelector('.scroller')
+  const shwroller = document.querySelector('.scroller')!
   Array.from(shwroller.children).forEach((el) => {
     el.classList.toggle('draggable', true)
   })
@@ -290,8 +290,5 @@ export const init = (): void => {
   scroller2.addListener(updateMenu)
   scroller2.addListener(updateMouse)
   scroller2.addListener(transition.update)
-
-  hideLoadingScreen()
-
   update()
 }

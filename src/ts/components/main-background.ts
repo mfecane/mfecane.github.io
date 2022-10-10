@@ -28,12 +28,15 @@ const handleMouseMove = (e: MouseEvent) => {
 }
 
 const init = async function (canvasContainer: HTMLDivElement): Promise<void> {
-  renderer = new Renderer(canvasContainer)
-  await renderer.init()
-
-  window.addEventListener('mousemove', handleMouseMove)
-
-  update()
+  return new Promise((resolve) => {
+    renderer = new Renderer(canvasContainer, resolve)
+    renderer
+      .init()
+      .then(update)
+      .then(() => {
+        window.addEventListener('mousemove', handleMouseMove)
+      })
+  })
 }
 
 export default {

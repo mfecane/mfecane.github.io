@@ -1,7 +1,7 @@
 import 'css/components/spinner.scss'
 
 export class Spinner {
-  root: HTMLDivElement = null
+  root: HTMLDivElement | null = null
 
   constructor(selector: string) {
     this.root = document.querySelector(selector)
@@ -29,6 +29,6 @@ export class Spinner {
   }
 
   destroy(): void {
-    this.root.innerHTML = ''
+    if (this.root) this.root.innerHTML = ''
   }
 }

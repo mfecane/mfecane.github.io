@@ -20,11 +20,13 @@ export default class Renderer {
   height = 0
   vertexSource = ''
   fragmentSource = ''
-  root: HTMLDivElement = null
-  gl: WebGL2RenderingContext = null
-  canvas: HTMLCanvasElement = null
-  proj: number[] = null
-  animId: number = null
+  readonly root: HTMLDivElement
+  readonly gl: WebGL2RenderingContext
+  readonly canvas: HTMLCanvasElement
+  proj: number[] = []
+  animId = 0
+  ready = false
+  onLoad = () => {}
 
   texture: Texture = null
   textureCube: TextureCube = null
@@ -40,17 +42,18 @@ export default class Renderer {
 
   parameters = {}
 
-  constructor(root: HTMLDivElement) {
+  constructor(root: HTMLDivElement, onLoad = () => {}) {
     this.root = root
     this.canvas = document.createElement(`canvas`)
     this.root.appendChild(this.canvas)
     this.canvas.id = 'canvas'
 
-    this.gl = this.canvas.getContext('webgl2')
+    this.gl = this.canvas.getContext('webgl2')!
 
     this.setCanvasSize()
 
     window.addEventListener('resize', this.setCanvasSize.bind(this))
+    this.onLoad = onLoad
   }
 
   async init(): Promise<void> {
@@ -147,6 +150,10 @@ export default class Renderer {
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0)
     this.gl.clear(this.gl.COLOR_BUFFER_BIT)
     this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_SHORT, 0)
+    if (!this.ready) {
+      this.onLoad()
+      this.ready = true
+    }
   }
 
   setUniforms(): void {
@@ -177,21 +184,21 @@ export default class Renderer {
   }
 
   calculateMVP(width: number, height: number): number[] {
-    const left = -width / height
-    const right = width / height
+    const l = -width / height // left
+    const r = width / height // right
 
-    const bottom = -1.0
-    const top = 1.0
+    const b = -1.0 // bottom
+    const t = 1.0 // top
 
-    const near = -1.0
-    const far = 1.0
+    const n = -1.0 // near
+    const f = 1.0 // far
 
     // prettier-ignore
     return [
-      2 / (right - left),                   0,                 0,  -(right + left) / (right - left),
-                       0,  2 / (top - bottom),                 0,  -(top + bottom) / (top - bottom),
-                       0,                   0,  2 / (far - near),    -(far + near) /   (far - near),
-                       0,                   0,                 0,                                 1,
+      2 / (r - l),            0,            0,  -(r + l) / (r - l),
+                0,  2 / (t - b),            0,  -(t + b) / (t - b),
+                0,            0,  2 / (f - n),  -(f + n) / (f - n),
+                0,            0,            0,                   1,
     ];
   }
 
