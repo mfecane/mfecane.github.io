@@ -19,7 +19,9 @@ const update = function () {
   )
   renderer.update()
 
-  requestAnimationFrame(update)
+  setTimeout(() => {
+    requestAnimationFrame(update)
+  }, 5)
 }
 
 const handleMouseMove = (e: MouseEvent) => {

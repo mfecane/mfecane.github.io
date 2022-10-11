@@ -111,11 +111,27 @@ const initAnimations = () => {
 
   transition.createFullScreenTransition({
     selector: '.works-item__title',
-    transition: (el, value) => {
-      const v = mapclamp(value, 0, 0.4, 0, 1)
-      el.style.transform = `translateX(${150 - v * 150}px)`
+    transition: (el: HTMLElement, value: number) => {
+      const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
+      el.style.transform = `translateX(${200 - v1 * 300}px)`
       const v2 = mapclamp(value, 0, 0.5, 0, 1)
       el.style.opacity = v2.toString()
+    },
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.works-item__layout',
+    transition: (el: HTMLElement, value: number) => {
+      const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
+      el.style.transform = `translateX(${200 - v1 * 300}px)`
+    },
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.works-item__image',
+    transition: (el: HTMLElement, value: number) => {
+      const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
+      el.style.transform = `translateX(${100 - v1 * 200}px)`
     },
   })
 

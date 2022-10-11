@@ -68,7 +68,7 @@ const works = [
     title: 'Mandelbruh fractal',
     tags: ['C++', 'OpenGL', 'WebGL'],
     github: 'https://github.com/mfecane/mandelbruh',
-    link: 'https://mfecane.github.io/mandelbruh/',
+    link: 'https://mfecane.github.io/web-mandelbrot/',
     image: 'assets/img/mandelbrot.png',
     video: 'assets/video/mandelbruh.webm',
     descr:
