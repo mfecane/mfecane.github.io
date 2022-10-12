@@ -68,7 +68,15 @@ const initScroller = () => {
 }
 
 const initAnimations = () => {
-  // TODO ::: do thiese transitions by adding class
+  // ABOUT
+
+  animationManager.createFullScreenTransition({
+    selector: '.experience-section-outer',
+    transition: (el: HTMLElement, value: number) => {
+      const v1 = value
+      el.style.transform = `translateX(${100 - v1 * 200}px)`
+    },
+  })
 
   animationManager.createScreenTransition({
     selector: '.about-section__text-wrapper',
@@ -106,6 +114,8 @@ const initAnimations = () => {
       el.style.transform = `translateX(${125 - v1 * 150}px)`
       const v2 = mapclamp(value, 0, 0.5, 0, 1)
       el.style.opacity = v2.toString()
+      const v3 = mapclamp(value, 0, 0.5, 0, 1)
+      el.style.letterSpacing = `${3 + 30 * (1 - v3)}px`
     },
   })
 

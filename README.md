@@ -40,3 +40,4 @@ rotates on animation
 - Save this color #0d1014
 - slightly shift on mouse move
 - check blueyard.com
+- add more parallax with screen transitions
