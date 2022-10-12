@@ -1,4 +1,4 @@
-@import 'css/config.scss';
+@import "css/config.scss";
 
 .about-page {
   z-index: 2;
@@ -112,11 +112,7 @@
   .static-mode & {
     display: flex;
     flex-direction: column;
-    background: radial-gradient(
-      circle at 55% 40%,
-      rgba(23, 25, 28, 0.7) 0%,
-      rgba(14, 14, 15, 0.7) 100%
-    );
+    background: radial-gradient(circle at 55% 40%, rgba(23, 25, 28, 0.7) 0%, rgba(14, 14, 15, 0.7) 100%);
     backdrop-filter: blur(10px);
   }
 }
@@ -143,6 +139,13 @@
   color: $light;
   font-size: 3em;
   margin-bottom: 32px;
+}
+
+.experience-section-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .experience-item {

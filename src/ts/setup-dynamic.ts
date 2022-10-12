@@ -81,7 +81,7 @@ const initAnimations = () => {
   transition.createFullScreenTransition({
     selector: '.works-title',
     easing: easeOutCubic,
-    transition: (el, value: number) => {
+    transition: (el: HTMLElement, value: number) => {
       el.style.transform = `translateX(${-300 + value * 300}px)`
     },
   })
@@ -132,6 +132,19 @@ const initAnimations = () => {
     transition: (el: HTMLElement, value: number) => {
       const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
       el.style.transform = `translateX(${100 - v1 * 200}px)`
+    },
+  })
+
+  transition.createFullScreenTransition({
+    selector: '.work-item__overlay-inner',
+    transition: (el: HTMLElement, value: number) => {
+      let v2
+      if (value < 0.5) {
+        v2 = mapclamp(value, 0.1, 0.3, 1, 0)
+      } else {
+        v2 = mapclamp(value, 0.5, 0.8, 0, 1)
+      }
+      el.style.opacity = v2.toString()
     },
   })
 
