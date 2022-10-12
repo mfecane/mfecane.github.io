@@ -163,7 +163,7 @@
           </div>
         </div>
         <div class="experience-section-outer draggable">
-          <div class="container">
+          <div class="container experience-section-container">
             <h2 class="experience-header">Work experience</h2>
             <div class="experience-section">
               <div class="experience-item">
@@ -244,45 +244,7 @@
             </h3>
 
             <ul class="contact__list">
-              <li class="contact__item">
-                <a href="mailto: aaliapkin@gmail.com" target="_blank">
-                  <span class="contact__icon icon icon--mail"></span>
-                  aaliapkin@gmail.com
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="tel:+7 (916) 426-5709" target="_blank">
-                  <span class="contact__icon icon icon--phone"></span>
-                  +7 (916) 426-5709
-                </a>
-              </li>
-              <li class="contact__item">
-                <a
-                  href="https://www.linkedin.com/in/aleksei-aliapkin/"
-                  target="_blank"
-                >
-                  <span class="contact__icon icon icon--linkedin"></span>
-                  aleksei-aliapkin
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="https://github.com/mfecane" target="_blank">
-                  <span class="contact__icon icon icon--github"></span>
-                  Mfecane
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="https://t.me/mfecane" target="_blank">
-                  <span class="contact__icon icon icon--telegram"></span>
-                  mfecane
-                </a>
-              </li>
-              <li class="contact__item">
-                <a href="https://www.instagram.com/hatis_ustes" target="_blank">
-                  <span class="contact__icon icon icon--inst"></span>
-                  hatis_ustes
-                </a>
-              </li>
+              {{#each contacts}} {{> contacts-item}} {{/each}}
             </ul>
           </div>
         </div>

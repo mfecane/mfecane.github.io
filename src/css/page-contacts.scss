@@ -42,8 +42,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 0 0 32px;
-  gap: 32px;
+  padding: 0 0 0 24px;
+  gap: 27px;
   border-left: 4px solid $accent;
 }
 
@@ -79,12 +79,42 @@
   cursor: pointer;
 }
 
+.contact-item__layout {
+  display: grid;
+  grid-template-columns: 40px auto;
+  grid-template-rows: 12px auto;
+  grid-template-areas:
+    "icon label"
+    "icon link";
+  gap: 3px 16px;
+}
+
+.contact-item__icon-container {
+  grid-area: icon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    display: block;
+  }
+}
+
+.contact-item__label {
+  grid-area: label;
+  color: rgb(174, 176, 170);
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.contact-item__icon-link {
+  grid-area: link;
+}
+
 .contact__icon {
   width: 32px;
   height: 32px;
   background: $accent;
-  margin: 8px 16px 0 8px;
-  transform: translateY(-4px);
 
   .contact__item:hover & {
     background: $light !important;
