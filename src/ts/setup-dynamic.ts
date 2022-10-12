@@ -1,11 +1,17 @@
 import transition from 'ts/animation/transition'
 import scroller2 from 'ts/animation/scroller'
-import { easeOutCubic } from 'ts/lib/easing-functions'
+import {
+  easeInSquare,
+  easeOutCubic,
+  easeOutSquare,
+} from 'ts/lib/easing-functions'
 
 import mainBackground from 'ts/components/main-background'
 import { Spinner } from 'ts/components/spinner'
 import { ScrollerGroup } from 'ts/components/scroller-group'
 import { mapclamp } from './lib/lib'
+
+import animationManager from 'ts/animation/animation-manager'
 
 let shaderCanvasContainer: HTMLDivElement
 let menuHome: HTMLDivElement
@@ -64,37 +70,28 @@ const initScroller = () => {
 const initAnimations = () => {
   // TODO ::: do thiese transitions by adding class
 
-  transition.createScreenTransition({
+  animationManager.createScreenTransition({
     selector: '.about-section__text-wrapper',
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
     offset: 200,
   })
 
-  transition.createScreenTransition({
+  animationManager.createScreenTransition({
     selector: '.about-seciton__skills-header',
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
     offset: 200,
   })
 
-  transition.createFullScreenTransition({
+  animationManager.createFullScreenTransition({
     selector: '.works-title',
-    easing: easeOutCubic,
     transition: (el: HTMLElement, value: number) => {
       el.style.transform = `translateX(${-300 + value * 300}px)`
     },
   })
 
-  // transition.createFullScreenTransition({
-  //   selector: '.about-section',
-  //   easing: easeOutCubic,
-  //   transition: (el, value) => {
-  //     el.style.transform = `translateX(${-100 + value * 120}px)`
-  //   },
-  // })
-
-  transition.createScreenTransition({
+  animationManager.createScreenTransition({
     selector: '.skills__item',
     transitionIn: transition.fadeSlideIn,
     transitionOut: NOOP,
@@ -102,58 +99,51 @@ const initAnimations = () => {
     offset: 50,
   })
 
-  // transition.createFullScreenTransition({
-  //   selector: '.experience-section',
-  //   transition: (el, value) => {
-  //     el.style.transform = `translateX(${-20 + value * 50}px)`
-  //   },
-  // })
-
-  transition.createFullScreenTransition({
+  animationManager.createFullScreenTransition({
     selector: '.works-item__title',
     transition: (el: HTMLElement, value: number) => {
       const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
-      el.style.transform = `translateX(${200 - v1 * 300}px)`
+      el.style.transform = `translateX(${125 - v1 * 150}px)`
       const v2 = mapclamp(value, 0, 0.5, 0, 1)
       el.style.opacity = v2.toString()
     },
   })
 
-  transition.createFullScreenTransition({
+  animationManager.createFullScreenTransition({
     selector: '.works-item__layout',
     transition: (el: HTMLElement, value: number) => {
       const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
-      el.style.transform = `translateX(${200 - v1 * 300}px)`
+      el.style.transform = `translateX(${125 - v1 * 150}px)`
     },
   })
 
-  transition.createFullScreenTransition({
+  animationManager.createFullScreenTransition({
     selector: '.works-item__image',
     transition: (el: HTMLElement, value: number) => {
       const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
-      el.style.transform = `translateX(${100 - v1 * 200}px)`
+      el.style.transform = `translateX(${125 - v1 * 150}px)`
     },
   })
 
-  transition.createFullScreenTransition({
+  animationManager.createFullScreenTransition({
     selector: '.work-item__overlay-inner',
     transition: (el: HTMLElement, value: number) => {
       let v2
       if (value < 0.5) {
         v2 = mapclamp(value, 0.1, 0.3, 1, 0)
       } else {
-        v2 = mapclamp(value, 0.5, 0.8, 0, 1)
+        v2 = mapclamp(value, 0.7, 0.9, 0, 1)
       }
       el.style.opacity = v2.toString()
     },
   })
 
-  transition.createClassTransition({
+  animationManager.createClassTransition({
     selector: '.experience-item',
     offset: 100,
   })
 
-  transition.createScreenTransition({
+  animationManager.createScreenTransition({
     selector: '.education',
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
@@ -162,12 +152,12 @@ const initAnimations = () => {
 
   // TODO ::: extract common transitions into common classes
   // TODO ::: check this, its kinda not working with default offset
-  transition.createClassTransition({
+  animationManager.createClassTransition({
     selector: '.works-item__descr-text',
     offset: 10,
   })
 
-  transition.createAnimation({
+  animationManager.createAnimation({
     selector: '.contacts__title',
     start: contactsPos - 500,
     end: contactsPos,
@@ -178,7 +168,7 @@ const initAnimations = () => {
     },
   })
 
-  transition.createClassTransition({
+  animationManager.createClassTransition({
     selector: '.contact__item',
     offset: 70,
   })
@@ -325,10 +315,12 @@ export const init = (): void => {
   // path.init()
   // path.run()
 
+  animationManager.init()
+
   scroller2.addListener(updateScroller)
   // scroller2.addListener(updatePath)
   scroller2.addListener(updateMenu)
   scroller2.addListener(updateMouse)
-  scroller2.addListener(transition.update)
+  // scroller2.addListener(transition.update)
   update()
 }
