@@ -27,6 +27,7 @@ export default class Renderer {
   animId = 0
   ready = false
   onLoad = () => {}
+  downScaleFactor = 1
 
   texture: Texture = null
   textureCube: TextureCube = null
@@ -176,11 +177,16 @@ export default class Renderer {
     this.width = this.root.clientWidth
     this.height = this.root.clientHeight
 
-    this.canvas.width = this.width
-    this.canvas.height = this.height
+    this.canvas.width = this.width / this.downScaleFactor
+    this.canvas.height = this.height / this.downScaleFactor
     this.canvas.style.width = `${this.width}px`
     this.canvas.style.height = `${this.height}px`
-    this.gl.viewport(0, 0, this.width, this.height)
+    this.gl.viewport(
+      0,
+      0,
+      this.width / this.downScaleFactor,
+      this.height / this.downScaleFactor
+    )
   }
 
   calculateMVP(width: number, height: number): number[] {
@@ -203,6 +209,7 @@ export default class Renderer {
   }
 
   updateFps(): void {
+    // TODO dynamic ITERATIONS
     const now = Date.now()
     if (now === this.fpsTime) {
       return

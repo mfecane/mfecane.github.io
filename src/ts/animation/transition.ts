@@ -1,4 +1,4 @@
-import { easeOutCubic } from 'ts/lib/easing-functions'
+import { easeOutCubic, easeOutSquare } from 'ts/lib/easing-functions'
 
 const fadeScaleIn = (el: HTMLElement, value: number) => {
   const val = (0.9 + value * 0.1) * 100
@@ -8,7 +8,7 @@ const fadeScaleIn = (el: HTMLElement, value: number) => {
 }
 
 const fadeIn = (el: HTMLElement, value: number) => {
-  const val1 = easeOutCubic(value)
+  const val1 = easeOutSquare(value)
   el.style.opacity = `${val1}`
 }
 

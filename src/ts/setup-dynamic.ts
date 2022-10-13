@@ -74,7 +74,7 @@ const initAnimations = () => {
     selector: '.experience-section-outer',
     transition: (el: HTMLElement, value: number) => {
       const v1 = value
-      el.style.transform = `translateX(${100 - v1 * 200}px)`
+      el.style.transform = `translateX(${120 - v1 * 200}px)`
     },
   })
 
@@ -82,14 +82,21 @@ const initAnimations = () => {
     selector: '.about-section__text-wrapper',
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
-    offset: 200,
+    margin: 1000,
   })
 
   animationManager.createScreenTransition({
     selector: '.about-seciton__skills-header',
     transitionIn: transition.fadeIn,
     transitionOut: NOOP,
-    offset: 200,
+    margin: 1000,
+  })
+
+  animationManager.createScreenTransition({
+    selector: '.education',
+    transitionIn: transition.fadeIn,
+    transitionOut: NOOP,
+    margin: 1000,
   })
 
   animationManager.createFullScreenTransition({
@@ -129,9 +136,10 @@ const initAnimations = () => {
 
   animationManager.createFullScreenTransition({
     selector: '.works-item__image',
+    easing: easeOutSquare,
     transition: (el: HTMLElement, value: number) => {
       const v1 = (0.5 * value + mapclamp(value, 0, 0.7, 0, 1)) / 1.5
-      el.style.transform = `translateX(${125 - v1 * 150}px)`
+      el.style.transform = `translateX(${200 - v1 * 210}px)`
     },
   })
 
@@ -152,14 +160,6 @@ const initAnimations = () => {
     selector: '.experience-item',
     offset: 100,
   })
-
-  animationManager.createScreenTransition({
-    selector: '.education',
-    transitionIn: transition.fadeIn,
-    transitionOut: NOOP,
-    offset: 300,
-  })
-
   // TODO ::: extract common transitions into common classes
   // TODO ::: check this, its kinda not working with default offset
   animationManager.createClassTransition({

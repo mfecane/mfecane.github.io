@@ -17,7 +17,7 @@ uniform samplerCube u_Sampler2;
 #define TAU 6.28318530718
 #define EXP 2.71828182846
 
-#define ITER 3
+#define ITER 2
 #define MAX_ITERATIONS 256
 #define SURF_DIST 0.005
 #define MAX_DIST 10.0

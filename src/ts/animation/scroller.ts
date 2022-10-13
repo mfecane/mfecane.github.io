@@ -3,11 +3,12 @@ import { throttle } from 'lodash'
 let maxScrollValue = 1.0
 let scrollValue = 0.0
 let targetScrollValue = 0.0
-let scrollStep = 0.5
+let scrollStep = 0.9
 let scrollSpeed = 0
 
-const ACCELERATION = 0.08
-const DRAG = 0.8
+const SPEED_FACTOR = 0.12
+const SMALL_DELTA = 5
+const SMALL_SPEED = 2
 
 const points: Point[] = []
 
@@ -29,7 +30,6 @@ const listeners: Callback[] = []
 let timeOut: NodeJS.Timeout = null
 
 const STICKY_TIMEOUT = 500
-const SCROLL_THRESHOLD = 5
 const SCROLL_SPEED_THRESHOLD = 2
 
 const init = function (options: Options): void {
@@ -105,9 +105,16 @@ const handleScroll = function (e) {
   const value = e.deltaY
   if (value > 0 && targetScrollValue < maxScrollValue) {
     targetScrollValue += scrollStep
-  } else if (value < 0 && targetScrollValue > 0.0) {
+  } else if (value < 0 && targetScrollValue > 0) {
     targetScrollValue -= scrollStep
   }
+  if (targetScrollValue > maxScrollValue) {
+    targetScrollValue = maxScrollValue
+  }
+  if (targetScrollValue < 0) {
+    targetScrollValue = 0
+  }
+
   setStickyTimeout()
 }
 
@@ -135,20 +142,29 @@ const setStickyTimeout = function () {
 }
 
 const update = function (): void {
-  if (Math.abs(scrollValue - targetScrollValue) < SCROLL_THRESHOLD) {
+  console.log('targetScrollValue', targetScrollValue)
+  if (
+    Math.abs(targetScrollValue - scrollValue) < SMALL_DELTA &&
+    scrollSpeed < SMALL_SPEED
+  ) {
     scrollSpeed = 0
-    updateScrollValue(targetScrollValue)
-    return
+    scrollValue = targetScrollValue
+    runCallbacks()
+  } else {
+    // speed based on factor
+    scrollSpeed = (targetScrollValue - scrollValue) * SPEED_FACTOR
+    // ensure min speed
+    scrollSpeed =
+      (Math.abs(scrollSpeed) > 1 ? Math.abs(scrollSpeed) : 1) *
+      Math.sign(scrollSpeed)
+
+    scrollValue = scrollValue + scrollSpeed
+    runCallbacks()
   }
-  const accel =
-    (targetScrollValue - scrollValue) * ACCELERATION - scrollSpeed * DRAG + 2
-  scrollSpeed += accel
-  updateScrollValue(scrollValue + scrollSpeed)
 }
 
-const updateScrollValue = function (value: number): void {
-  scrollValue = value
-  listeners.forEach((cb) => cb(value))
+const runCallbacks = function (): void {
+  listeners.forEach((cb) => cb(scrollValue))
 }
 
 const getScrollValue = function (): number {
