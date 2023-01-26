@@ -7,7 +7,7 @@ interface ClassTransitionOptions {
   offset?: number
   offsetIn?: number
   offsetOut?: number
-  index?: index
+  index?: number
 }
 
 export class ClassTransition extends TransitionBase {

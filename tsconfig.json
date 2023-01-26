@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
     "baseUrl": ".",
     "paths": {
       "ts/*": ["src/ts/*"]
     }
   },
-  "include": ["src", "src/ts/custom.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "src/ts/custom.d.ts"]
 }

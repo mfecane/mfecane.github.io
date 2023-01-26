@@ -1,19 +1,19 @@
 import Shader, { Arguments } from 'ts/webgl/shader'
 
-import vertSource from 'shaders/square.vert?raw'
-import fragSource from 'shaders/cubes.frag?raw'
+import vertSource from '../../shaders/square.vert'
+import fragSource from '../../shaders/cubes.frag'
 
 import TextureCube from 'ts/webgl/texture-cube'
 import Texture from 'ts/webgl/texture'
 
-import posX01 from 'assets/peppermint_powerplant/posx.png'
-import negX01 from 'assets/peppermint_powerplant/negx.png'
-import posY01 from 'assets/peppermint_powerplant/posy.png'
-import negY01 from 'assets/peppermint_powerplant/negy.png'
-import posZ01 from 'assets/peppermint_powerplant/posz.png'
-import negZ01 from 'assets/peppermint_powerplant/negz.png'
+import posX01 from '../../../assets/peppermint_powerplant/posx.png'
+import negX01 from '../../../assets/peppermint_powerplant/negx.png'
+import posY01 from '../../../assets/peppermint_powerplant/posy.png'
+import negY01 from '../../../assets/peppermint_powerplant/negy.png'
+import posZ01 from '../../../assets/peppermint_powerplant/posz.png'
+import negZ01 from '../../../assets/peppermint_powerplant/negz.png'
 
-import texSrc from 'assets/img/colors.png'
+import texSrc from '../../../assets/img/colors.png'
 
 export default class Renderer {
   width = 0

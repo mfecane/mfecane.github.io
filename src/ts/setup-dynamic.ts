@@ -43,9 +43,15 @@ const panic = (type: 'element') => {
   }
 }
 
+type Point = {
+  value: number
+  from?: number
+  to?: number
+}
+
 const initScroller = () => {
   scrollerGroup = new ScrollerGroup('.scroller')
-  const points = scrollerGroup.getPoints().map((p: number) => ({
+  const points: Point[] = scrollerGroup.getPoints().map((p: number) => ({
     value: p,
   }))
 

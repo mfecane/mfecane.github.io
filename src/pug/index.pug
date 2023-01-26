@@ -1,0 +1,318 @@
+mixin works-item(options)
+  .works-item.draggable
+    h3.works-item__title
+      a(target='_blank' href=options.link)= options.title
+    .works-item__layout
+      .works-item__descr-block
+        .works-item__tags
+          each tag in options.tags
+            .works-item__tag= tag
+        .works-item__descr-text= options.descr
+        .works-item__buttons
+          a.btn.btn_secondary.works-item__button(target='_blank' href=options.github).
+            GitHub #[i.icon.icon--github]
+          a.btn.btn_secondary.works-item__button(target='_blank' href=options.link).
+            View #[i.icon.icon--right]
+      .works-item__image
+        a(target='_blank' href=options.link)
+          .work-item__overlay-inner
+            img.work-item__image-overlay(src=options.image alt=options.title)
+            video(preload='none' src=options.video autoplay muted loop)
+
+mixin contacts-item(options)
+  li.contact__item.contact-item__layout
+    .contact-item__icon-container
+      a(href='{{link}}' target='_blank')
+        i.contact__icon.icon(class='icon--' + options.type)
+
+    p.contact-item__label= options.type
+    a.contact-item__icon-link(href=options.link target='_blank')= options.name
+
+-
+  const works = [
+    {
+      title: 'Shadercity',
+      tags: ['React', 'WebGL', 'Firebase', 'GLSL'],
+      github: 'https://github.com/mfecane/shadercity',
+      link: 'https://shadercity.web.app/',
+      image: 'assets/img/shadercity.png',
+      video: 'assets/video/shadercity.webm',
+      descr:
+        'My biggest app to date. An alpha version of online shader playground. Uses firebase backend. Anyone can register and start having fun playing with shaders.',
+    },
+    {
+      title: 'Boot store app',
+      tags: ['React', 'WebGL', 'GLSL'],
+      github: 'https://github.com/mfecane/boot',
+      link: 'https://mfecane.github.io/boot/',
+      image: 'assets/img/boot.png',
+      video: 'assets/video/bootDemo.webm',
+      descr:
+        'An app for configuring of custom boot for imaginary cobbler shop. Allows selecting different materials and material colors for different parts. All design work, 3d modelling, sculpting and texturing were made by myself, no assets were outsorced. Rendering was done using THREE.JS.',
+    },
+    {
+      title: 'Hair generator',
+      tags: ['React', 'Three.js'],
+      github: 'https://github.com/mfecane/js-hair',
+      link: 'https://mfecane.github.io/js-hair/',
+      image: 'assets/img/js-hair.png',
+      video: 'assets/video/js-hair.webm',
+      descr:
+        'A tool for generation of hair textures for real time rendering. It is able to generate large amount of hair geometry and bake high resolution information to albedo, normal, ambient occlusion, height, id and alpha cutout maps. Textures are applied to "hair card" meshes to render high quality and high performance believable hair in real time rendering engines, i.e. game engines.',
+    },
+    {
+      title: 'Shader gallery',
+      tags: ['React', 'WebGL'],
+      github: 'https://github.com/mfecane/nebula',
+      link: 'https://mfecane.github.io/nebula/',
+      image: 'assets/img/nebula.png',
+      video: 'assets/video/nebula.webm',
+      descr:
+        'An exhibition of shaders made by me for fun. Some shaders are customizable. Features simple UI using React.',
+    },
+    {
+      title: 'Weather app',
+      tags: ['React', 'Redux'],
+      github: 'https://github.com/mfecane/weather-app/',
+      link: 'https://mfecane.github.io/weather-app/',
+      image: 'assets/img/weather.png',
+      video: 'assets/video/weather-app.webm',
+      descr:
+        'Application, which displays current weather, 5 day forecast, and hourly weather for the next 24 hours. Using both OpenWeatherMap API and WeatherAPI.com.',
+    },
+    {
+      title: 'Todo app',
+      tags: ['React', 'Bootstrap'],
+      github: 'https://github.com/mfecane/to-do_app',
+      link: 'https://mfecane.github.io/to-do_app/',
+      image: 'assets/img/todo.png',
+      video: 'assets/video/to-do_list.webm',
+      descr:
+        'Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.',
+    },
+    {
+      title: 'Mandelbruh fractal',
+      tags: ['C++', 'OpenGL', 'WebGL'],
+      github: 'https://github.com/mfecane/mandelbruh',
+      link: 'https://mfecane.github.io/web-mandelbrot/',
+      image: 'assets/img/mandelbrot.png',
+      video: 'assets/video/mandelbruh.webm',
+      descr:
+        'Several implementations of mandelbrot fractal zooming applications. There are CPU, GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of floating point numbers in WebGL, zooming in web version is limited.',
+    },
+    {
+      title: 'Screen recording app',
+      tags: ['C++', 'Qt', 'FFMPEG'],
+      github: 'https://github.com/mfecane/rec_app',
+      link: 'https://github.com/mfecane/rec_app/releases',
+      image: 'assets/img/rec-app.png',
+      video: 'assets/video/rec-app.webm',
+      descr:
+        'Windows application for easy creating time lapse recordings of user screen. This app was developed for myself for recording of my drawing and sculpting sessions.',
+    },
+  ]
+
+  const contacts = [
+    {
+      type: 'mail',
+      link: 'mailto: aaliapkin@gmail.com',
+      name: 'aaliapkin@gmail.com',
+    },
+    {
+      type: 'phone',
+      link: 'tel:+7 (916) 426-5709',
+      name: '+7 (916) 426-5709',
+    },
+    {
+      link: 'https://www.linkedin.com/in/aleksei-aliapkin/',
+      type: 'linkedin',
+      name: 'aleksei-aliapkin',
+    },
+    {
+      link: 'https://github.com/mfecane',
+      type: 'github',
+      name: 'Mfecane',
+    },
+    {
+      link: 'https://t.me/mfecane',
+      type: 'telegram',
+      name: 'mfecane',
+    },
+    {
+      link: 'https://www.instagram.com/hatis_ustes',
+      type: 'instagram',
+      name: 'hatis_ustes',
+    },
+    {
+      type: 'artstation',
+      link: 'https://www.artstation.com/mfecane',
+      name: 'mfecane',
+    },
+  ]
+
+
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge" )
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Aleksei Aliapkin - FrontEnd developer
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true")
+    link(rel="icon" type="image/png" href="assets/img/favicon.png")
+    link(rel="stylesheet" href="css/index.css")
+    link(
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet")
+    link(
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet")
+
+  body.dynamic-mode
+    noscript You need to enable JavaScript to view this site
+
+    .loading-screen
+      .loading-screen__spinner
+
+    #shader-canvas-container
+
+    ul.nav
+      li.nav_item#menu_home
+        a(href="#") home
+      li.nav_spacer
+      li.nav_item#menu_about
+        a(href="#about-section") about
+      li.nav_spacer
+      li.nav_item#menu_works
+        a(href="#works-section") projects
+      li.nav_spacer
+      li.nav_item#menu_contacts
+        a(href="#contacts-section") contacts
+
+    .mouse__container
+      .mouse__mouse
+        .mouse__wheel
+      .mouse__label scroll
+
+    .scroller
+      .hero-page
+        .hero-image
+          include ../svg/logo.svg
+        .hero-page__column.draggable
+          h1.hero-page__title I expand web along third dimension
+
+          .avatar-group
+            .avatar-group___titles
+              h2.avatar-group___name Aleksei Aliapkin
+              h2.avatar-group___job frontend developer
+            .avatar-group__image__container
+              .avatar-grop__image
+
+          .hero-section__button-container
+            button.btn.btn_primary#contacts-button Contact me
+            a.btn.btn_secondary(target="_blank" href="/cv.pdf") Download CV
+
+      .about-page
+        .about-section.draggable#about-section
+          .container
+            .about-section__text-wrapper
+              h2.about-section__header Hi, my name is Aliapkin Aleksei
+              p.about-section__text.
+                Hi, my name is Aliapkin Aleksei and i am a front-end developer
+                located in Moscow, Russia. Senior front-end developer
+                specializing in Javascript, Vue and jQuery technologies. I
+                performed well, and received rapid career growth to became a
+                team leader. I have a strong mathematical background and
+                significant artistic skills, in particular 3D modeling.
+
+            .about-section__skills-wrapper
+              h2.about-seciton__skills-header Key skills
+              .skills__wrapper
+                .skills__item.
+                  #[i.skills-icon.icon.icon--vue]
+                  Vue
+                .skills__item.
+                  #[i.skills-icon.icon.icon--git]
+                  Git
+                .skills__item.
+                  #[i.skills-icon.icon.icon--react]
+                  React
+                .skills__item.
+                  #[i.skills-icon.icon.icon--js]
+                  Typescript
+                .skills__item.
+                  #[i.skills-icon.icon.icon--html]
+                  HTML
+                .skills__item.
+                  #[i.skills-icon.icon.icon--sass]
+                  SASS
+                .skills__item.
+                  #[i.skills-icon.icon.icon--webgl]
+                  WebGL
+
+        .experience-section-outer.draggable
+          .container.experience-section-container
+            h2.experience-header Work experience
+            .experience-section
+              .experience-item
+                .experience-item__years 2021 - NOW
+                .experience-item__header Senior Developer, Online Reservation Systems
+                .experience-item__subheader ONLINE RESERVATION SYSTEMS
+                .experience-item__descr.
+                  Shortly after joining became team lead. Started to manage
+                  team's tasks, perform code reviews I take only most complex
+                  tasks. I perform different related activities, such as DevOps
+                  tasks, deployment, developement of in-house e2e testing helper
+                  framework.
+
+              .experience-item
+                .experience-item__years  2020 - 2021
+                .experience-item__header Frontend Developer
+                .experience-item__subheader GRIDNINE SYSTEMS
+                .experience-item__descr.
+                  Finished my tasks timely with good quality. Received positive
+                  feedback from client for my work.
+
+              hr
+              .experience-item
+                .experience-item__years 2008 - 2019
+                .experience-item__header Financial analyst
+                .experience-item__descr.
+                  Previously I was working in largest Russian banks as financial
+                  analyst, such as Rosbank, Societe Generale Group, Open Bank,
+                  Russian Standard Bank. I started my career in Russian branch
+                  of KPMG as audit associate.
+
+        .education.draggable
+          .container
+            h2.experience-header Education
+            .experience-item__years 2002 - 2007
+            .experience-item__header Lomonosov Moscow State University
+            .experience-item__subheader Department of mechanics and mathematics
+            .experience-item__descr.
+              Graduated from department of mechanics and mathematics. Received
+              specialist degree with honors. Specialized in optimization of
+              control of dynamic systems
+
+
+      .works__title-container
+        .container
+          .works-title__outer
+            h2.works-title My projects
+
+      .works-page#works-section
+        each work in works
+          +works-item(work)
+
+      .contacts-page#contacts-section
+        .container
+          .contacts__container
+            h3.contacts__title
+              span Contacts
+
+            ul.contact__list
+              each contact in contacts
+                +contacts-item(contact)
+
+  script(type="module" src="js/bundle.js")

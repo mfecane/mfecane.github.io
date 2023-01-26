@@ -6,3 +6,7 @@
 /garbage
 
 /package-lock.json
+
+/cv/*.css
+/cv/*.css.map
+/cv/*.pdf

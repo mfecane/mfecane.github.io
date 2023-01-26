@@ -1,5 +1,3 @@
-import 'css/components/spinner.scss'
-
 export class Spinner {
   root: HTMLDivElement | null = null
 
