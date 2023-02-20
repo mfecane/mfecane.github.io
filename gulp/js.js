@@ -1,12 +1,13 @@
 import gulp from 'gulp'
 import plumber from 'gulp-plumber'
 // import gbr from 'gulp-better-rollup'
-// import typescript from '@rollup/plugin-typescript'
+import typescript from '@rollup/plugin-typescript'
 import sourcemaps from 'gulp-sourcemaps'
 import { string } from 'rollup-plugin-string'
 import alias from '@rollup/plugin-alias'
 import image from '@rollup/plugin-image'
-import typescript from 'rollup-plugin-typescript2'
+// import typescript from 'rollup-plugin-typescript2'
+
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 
@@ -31,6 +32,14 @@ export default (dirs) => {
           input: 'src/ts/index.ts',
           external: ['window'],
           plugins: [
+            alias({
+              entries: [
+                {
+                  find: 'shaders',
+                  replacement: 'src/shaders',
+                },
+              ],
+            }),
             string({
               include: ['**/*.frag', '**/*.vert'],
             }),
