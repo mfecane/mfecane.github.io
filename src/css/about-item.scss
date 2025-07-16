@@ -1,0 +1,37 @@
+.experience {
+	display: flex;
+	align-items: stretch;
+
+	margin-bottom: 2.4rem;
+
+	&__left {
+		flex: 0 0 240px;
+		border-right: 4px solid var(--color-accent2);
+	}
+
+	&__right {
+		padding-left: 1rem;
+	}
+
+	&__years {
+		color: vAr(--color-dark);
+		font-size: 0.8rem;
+		margin-bottom: 1rem;
+	}
+
+	&__header {
+		line-height: 1.4;
+		color: var(--color-accent2);
+		font-size: 1.4rem;
+	}
+
+	&__subheader {
+		color: vAr(--color-dark);
+		font-size: 0.8rem;
+		margin-bottom: 1rem;
+	}
+
+	&__descr {
+		line-height: 1.4;
+	}
+}

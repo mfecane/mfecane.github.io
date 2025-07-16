@@ -1,0 +1,59 @@
+.contact {
+	display: grid;
+	grid-template-columns: 40px auto;
+	grid-template-rows: 12px auto;
+	grid-template-areas:
+		"icon label"
+		"icon link";
+	gap: 0.8rem 2rem;
+
+	&:not(:last-child) {
+		margin-bottom: 2.4rem;
+	}
+}
+
+.contact a {
+	font-size: 1rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: var(--color-accent2);
+	transition: all 0.2s ease-out 0s;
+}
+
+.contact:hover a {
+	color: var(--color-dark) !important;
+	transition: all 0.2s ease-out 0s;
+	cursor: pointer;
+}
+
+.contact-item__icon-container {
+	grid-area: icon;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	a {
+		display: block;
+	}
+}
+
+.contact-item__label {
+	grid-area: label;
+	color: var(--color-dark);
+	text-transform: uppercase;
+}
+
+.contact-item__icon-link {
+	grid-area: link;
+}
+
+.contact__icon {
+	width: 32px;
+	height: 32px;
+	background: var(--color-accent2);
+
+	.contact__item:hover & {
+		background: var(--color-accent2) !important;
+		cursor: pointer;
+	}
+}

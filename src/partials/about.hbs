@@ -1,0 +1,64 @@
+<section class="about section" id="about">
+	<div class="container">
+
+		<h2>About Me</h2>
+
+		<div class="about__text">
+			<p>
+				Hi, my name is Aliapkin Aleksei.
+			</p>
+			<p>
+				I am crafting digital experiences at the intersection of
+				mathematics and visual design.
+			</p>
+			<p>
+				I specialize in TypeScript, React and Three.js technologies. I
+				have knowledge of 3d rendering pipeline, mathematical background
+				and strong 3D modeling skills.
+			</p>
+			<p>
+				Based in Belgrade, Serbia — open to relocation and available for
+				projects worldwide.
+			</p>
+		</div>
+
+		<h2>Key skills</h2>
+
+		<div class="about__skills">
+			<div class="skills__item">
+				<i class="icon icon--vue"></i><span>Vue</span>
+			</div>
+			<div class="skills__item">
+				<i class="icon icon--git"></i><span>Git</span>
+			</div>
+			<div class="skills__item">
+				<i class="icon icon--react"></i><span>React</span>
+			</div>
+			<div class="skills__item">
+				<i class="icon icon--js"></i><span>Typescript</span>
+			</div>
+			<div class="skills__item">
+				<i class="icon icon--html"></i><span>HTML</span>
+			</div>
+			<div class="skills__item">
+				<i class="icon icon--sass"></i><span>SASS</span>
+			</div>
+			{{!-- <div class="skills__item">
+				<i class="icon icon--three"></i><span>Three.Js</span>
+			</div> --}}
+			<div class="skills__item">
+				<i class="icon icon--webgl"></i><span>WebGL</span>
+			</div>
+		</div>
+
+		<h2>Work experience</h2>
+
+		{{#each about.experience}} {{> about-item}} {{/each}}
+
+		<h2>Education</h2>
+
+		{{#each about.education}} {{> about-item}} {{/each}}
+
+	</div>
+
+</section>

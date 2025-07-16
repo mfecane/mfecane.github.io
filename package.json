@@ -1,35 +1,24 @@
 {
   "name": "mfecane.github.io",
-  "version": "1.0.0",
-  "description": "Mfecane personal dev site",
-  "main": "main.ts",
-  "url": "http://mfecane.github.io",
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@github.com:mfecane/mfecane.github.io.git"
-  },
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
   "scripts": {
-    "lint": "eslint . --ext .ts",
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "tsc && vite build",
     "deploy": "vite build && gh-pages -d dist"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@types/node": "^17.0.35",
-    "autoprefixer": "^10.4.7",
-    "gh-pages": "^4.0.0",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.4.14",
     "sass": "^1.49.9",
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0",
-    "vite-plugin-handlebars": "^1.6.0"
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
   },
   "dependencies": {
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.0.13",
     "lodash": "^4.17.21",
-    "vite-plugin-ejs": "^1.4.4"
+    "vite-plugin-handlebars": "^2.0.0"
   }
 }

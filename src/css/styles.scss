@@ -1,159 +1,99 @@
-@import "css/config.scss";
+@use "null.scss";
+@use "hero.scss";
+@use "nav.scss";
+@use "icons.scss";
+@use "about.scss";
+@use "about-item.scss";
+@use "works";
+@use "works-item";
+@use "contacts";
+@use "contacts-item";
 
 :root {
-  --header-font: "PT Serif";
-  --color-light: white;
-  --color-accent: #ccff00;
+	--color1: #f7b7c2;
+	--color2: #e87c91;
+	--color3: #70263d;
+	--color4: #4c5c66;
+	--color5: #f1f1f1;
+
+	--color-light: #f1f1f1;
+	--color-light2: #7a929e;
+
+	--color-dark: #384551;
+	--color-dark2: #1d2833;
+
+	--color-accent: #f8d5e0;
+	--color-accent2: #ff4164;
 }
 
-body {
-  width: 100%;
-  height: 100%;
-  font-family: $mainFont;
-  background: black;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-  &.dynamic-mode {
-    overflow: hidden;
-  }
-
-  &.static-mode {
-    overflow: visible;
-    min-height: 100vh;
-  }
+body,
+html {
+	height: 100%;
+	font-family: "Noto Sans", sans-serif;
+	background: var(--color5);
 }
 
 .container {
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-
-  .static-mode & {
-    padding: 0 20px;
-  }
+	width: 100%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 3rem;
+	padding-right: 3rem;
 }
 
-.scroller {
-  display: inline-flex;
-  align-items: stretch;
-
-  .dynamic-mode & {
-    position: absolute;
-    min-width: 100vw;
-    top: 0;
-    left: 0;
-    height: 100vh;
-  }
-
-  .static-mode & {
-    flex-direction: column;
-  }
+.btn {
+	display: grid;
+	place-content: center;
+	width: 150px;
+	padding: 8px 12px;
+	background: transparent;
+	font-size: 1rem;
+	font-weight: 600;
+	transition: all 0.15s ease-out;
+	white-space: nowrap;
+	border-radius: 4px;
 }
 
-.scroller-border {
-  flex: 0 0 48px;
-  height: 48px;
-  width: 100%;
-  position: relative;
-
-  .dynamic-mode & {
-    display: block;
-  }
-
-  .static-mode & {
-    display: none;
-  }
+.btn_primary {
+	background: var(--color-accent2);
+	color: var(--color-dark);
+	border: 1px solid var(--color-accent2);
 }
 
-.scroller-border:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 600px;
-  width: 100%;
-  height: 1px;
-  background: rgb(57, 62, 69);
+.btn_primary:hover {
+	border-color: var(--color-light) !important;
+	color: var(--color-light);
 }
 
-#shader-canvas-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #05080b 5vw center / cover url(assets/img/bg.jpg) fixed no-repeat;
+.btn_secondary {
+	background: transparent;
+	color: var(--color-accent2);
+	border: 1px solid var(--color-accent2);
 }
 
-.nav {
-  position: fixed;
-  right: 50px;
-  display: flex;
-  gap: 25px;
-  z-index: 5;
-  padding: 20px;
-
-  a:visited,
-  a:active {
-    color: $accent;
-  }
-
-  @media (max-width: $bp2) {
-    justify-content: center;
-    background-color: black;
-  }
-
-  .static-mode & {
-    justify-content: flex-end;
-    right: unset;
-    width: 100%;
-    transition: background-color 400ms ease-out;
-  }
-
-  .static-mode &.black {
-    background-color: black;
-  }
+.btn_secondary:hover {
+	border-color: var(--color-light) !important;
+	color: var(--color-light) !important;
 }
 
-.nav_spacer {
-  background-color: $accent;
-  width: 4px;
-  height: 12px;
-  transform: translateY(-1px);
+h1,
+h2,
+h3,
+h4 {
+	font-weight: 500;
 }
 
-.nav_item {
-  text-transform: uppercase;
-  font-size: 0.8em;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-  font-weight: 600;
-  position: relative;
+.section {
+	padding: 5rem 0;
 }
 
-.nav_item a {
-  color: $accent;
-}
-
-.nav_item.active a {
-  color: $light;
-}
-
-.nav_item:hover {
-  color: white;
-}
-
-.nav_item:before {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  transform: translateX(-50%);
-  transition: all 200ms ease-in-out;
-  background-color: $accent;
-}
-
-.nav_item:hover:before {
-  width: 100%;
-  background-color: white;
+a {
+	transition: color 200ms ease;
 }

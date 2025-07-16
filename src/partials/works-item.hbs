@@ -1,35 +1,44 @@
-<div class='works-item draggable'>
-  <h3 class='works-item__title'>
-    <a target='_blank' href='{{link}}'>{{title}}</a>
-  </h3>
-  <div class='works-item__layout'>
-    <div class='works-item__descr-block'>
-      <div class='works-item__tags'>
-        {{#each tags}}
-          <div class='works-item__tag'>{{this}}</div>
-        {{/each}}
-      </div>
-      <div class='works-item__descr-text'>{{descr}}</div>
-      <div class='works-item__buttons'>
-        <a
-          target='_blank'
-          href='{{github}}'
-          class='btn btn_secondary works-item__button'
-        >
-          GitHub<i class='icon icon--github'></i></a>
-        <a
-          class='btn btn_secondary works-item__button'
-          target='_blank'
-          href='{{link}}'
-        >
-          View<i class='icon icon--right'></i></a>
-      </div>
-    </div>
-    <div class='works-item__image'>
-      <a target='_blank' href='{{link}}'>
-        <div class='work-item__overlay-inner'></div>
-        <img class='work-item__image-overlay' src='{{image}}' alt='{{title}}' />
-        <video preload='none' src='{{video}}' autoplay muted loop></video>
-      </a>
-    </div></div>
+<div class="works-item">
+	<div class="works-item__layout">
+		<div class="works-item__left">
+			<h3 class="works-item__title">
+				<a target="_blank" href="{{link}}">{{title}}</a>
+			</h3>
+			<div class="works-item__tags">
+				{{#each tags}}
+					<div class="works-item__tag">{{this}}</div>
+				{{/each}}
+			</div>
+			<div class="works-item__descr-text">{{descr}}</div>
+			<div class="works-item__buttons">
+				<a
+					target="_blank"
+					href="{{github}}"
+					class="btn btn_secondary works-item__button"
+				>
+					GitHub<i class="icon icon--github"></i></a>
+				<a
+					class="btn btn_secondary works-item__button"
+					target="_blank"
+					href="{{link}}"
+				>
+					Live<i class="icon icon--right"></i></a>
+			</div>
+		</div>
+		<div class="works-item__right">
+			<a target="_blank" href="{{link}}">
+				<img
+					class="work-item__image-overlay"
+					src="{{image}}"
+					alt="{{title}}"
+				/>
+				<video
+					preload="none"
+					src="{{video}}"
+					autoplay
+					muted
+					loop
+				></video>
+			</a>
+		</div></div>
 </div>
