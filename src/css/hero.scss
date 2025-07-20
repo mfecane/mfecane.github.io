@@ -9,16 +9,16 @@
 		var(--color-dark2) 100%
 	);
 
-	&__content-right {
-		width: fit-content;
-	}
-
 	h1 {
 		text-align: right;
 		font-size: 3rem;
 		color: var(--color-accent);
 		margin-bottom: 2.3rem;
 		margin-top: 1rem;
+
+		@media (max-width: $sm) {
+			text-align: left;
+		}
 	}
 
 	h2 {
@@ -27,6 +27,10 @@
 		font-weight: bold;
 		color: var(--color-accent2);
 		margin-bottom: 0.5rem;
+
+		@media (max-width: $sm) {
+			text-align: left;
+		}
 	}
 
 	&__subtitle {
@@ -34,6 +38,10 @@
 		font-size: 1.5rem;
 		color: var(--color-accent2);
 		margin-bottom: 2rem;
+
+		@media (max-width: $sm) {
+			text-align: left;
+		}
 	}
 
 	&__photo {
@@ -69,6 +77,10 @@
 		max-width: unset;
 	}
 
+	@media (max-width: $sm) {
+		align-items: start;
+	}
+
 	& > * {
 		z-index: 2;
 	}
@@ -93,7 +105,7 @@
 }
 
 svg.hero-image {
-	min-height: 380px;
+	min-height: 42vmin;
 
 	line {
 		stroke: #ff7791;
@@ -106,6 +118,14 @@ svg.hero-image {
 	}
 
 	@media (max-width: $md) {
+		display: none;
+	}
+}
+
+.hero__content-right {
+	width: fit-content;
+
+	@media (max-width: $sm) {
 		display: none;
 	}
 }
