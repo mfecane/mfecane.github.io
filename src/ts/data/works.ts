@@ -6,7 +6,6 @@ export default [
 		github: "https://github.com/mfecane/shadowcrypt",
 		link: "https://shadowcrypt.web.app",
 		image: "assets/images/shadowcrypt.png",
-
 		descr: "An app for collecting, organizing, and viewing reference images, built as a focused personal alternative to PureRef and Pinterest, tailored to suit creative workflows without distractions.",
 	},
 	{
@@ -16,7 +15,6 @@ export default [
 		github: "https://github.com/mfecane/thri-playground",
 		link: "https://mfecane.github.io/thri-playground/#/",
 		image: "assets/images/thri.png",
-
 		descr: "My collection of THREE.js rendering techniques and experiments.",
 	},
 	{
@@ -26,8 +24,7 @@ export default [
 		github: "https://github.com/mfecane/shadercity",
 		link: "https://shadercity.web.app/",
 		image: "assets/images/shadercity.png",
-
-		descr: "My biggest app to date. An alpha version of online shader playground. Uses firebase backend. Anyone can register and start having fun playing with shaders.",
+		descr: "An alpha version of online shader playground. Uses firebase backend. Anyone can register and start having fun playing with shaders.",
 	},
 	{
 		active: true,
