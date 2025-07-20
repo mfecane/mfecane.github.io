@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .works-item {
 	margin-bottom: 5rem;
 
@@ -32,6 +34,10 @@
 	&__layout {
 		display: flex;
 		gap: 2rem;
+
+		@media (max-width: $md) {
+			flex-direction: column;
+		}
 	}
 
 	&__left {

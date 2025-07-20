@@ -11,6 +11,8 @@
     	Change favicon
     	Fix artstation logo
     	clear up commit history
+    	remove video
+    	add ...more button with popup
 
 # Git
 

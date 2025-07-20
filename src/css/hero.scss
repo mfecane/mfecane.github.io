@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .hero {
 	height: 100vh;
 
@@ -6,31 +8,6 @@
 		var(--color-dark) 0%,
 		var(--color-dark2) 100%
 	);
-
-	&__content {
-		margin: auto;
-		display: flex;
-		height: 100%;
-		overflow: hidden;
-		margin: 0 5rem;
-	}
-
-	&__content-left {
-		max-width: 50vw;
-
-		flex: 1 1 50%;
-
-		display: flex;
-		flex-direction: column;
-		align-items: end;
-		justify-content: center;
-		position: relative;
-		padding: 2rem;
-
-		& > * {
-			z-index: 2;
-		}
-	}
 
 	&__content-right {
 		width: fit-content;
@@ -45,6 +22,7 @@
 	}
 
 	h2 {
+		text-align: right;
 		font-size: 2rem;
 		font-weight: bold;
 		color: var(--color-accent2);
@@ -52,6 +30,7 @@
 	}
 
 	&__subtitle {
+		text-align: right;
 		font-size: 1.5rem;
 		color: var(--color-accent2);
 		margin-bottom: 2rem;
@@ -62,10 +41,45 @@
 		opacity: 70%;
 		object-fit: contain;
 	}
+}
 
-	&__buttons {
-		display: flex;
-		gap: 1rem;
+.hero__content {
+	display: flex;
+	height: 100%;
+	overflow: hidden;
+
+	@media (max-width: $md) {
+		height: 100%;
+	}
+}
+
+.hero__content-left {
+	max-width: 50vw;
+	flex: 1 0 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	justify-content: center;
+	position: relative;
+	padding: 2rem;
+
+	@media (max-width: $md) {
+		padding: 1rem;
+		flex: 1 0 60%;
+		max-width: unset;
+	}
+
+	& > * {
+		z-index: 2;
+	}
+}
+
+.hero__buttons {
+	display: flex;
+	gap: 1rem;
+
+	@media (max-width: $md) {
+		flex-direction: column;
 	}
 }
 
@@ -76,28 +90,6 @@
 	aspect-ratio: 1 / 2;
 	height: 100%;
 	z-index: 1;
-}
-
-.image-mask {
-	position: relative;
-	display: inline-block;
-}
-
-.image-mask::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(
-		to bottom,
-		rgba(255, 255, 255, 0) 0%,
-		rgba(255, 255, 255, 1) 100%
-	);
-	mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-	-webkit-mask-image: linear-gradient(
-		to bottom,
-		rgba(0, 0, 0, 1),
-		rgba(0, 0, 0, 0)
-	);
 }
 
 svg.hero-image {
@@ -112,21 +104,20 @@ svg.hero-image {
 		stroke: #ff7791;
 		fill: none;
 	}
-}
 
-#canvas {
-	width: 300px;
-	height: 300px;
+	@media (max-width: $md) {
+		display: none;
+	}
 }
 
 .hero__content-righter {
 	flex: 0 0 auto;
 	height: 100%;
-
 	padding: 8rem 2rem;
-	// display: flex;
-	// flex-direction: column;
-	// justify-content: flex-end;
+
+	@media (max-width: $xl) {
+		display: none;
+	}
 }
 
 .hero__menu {

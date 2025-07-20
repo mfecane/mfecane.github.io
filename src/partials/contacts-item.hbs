@@ -1,10 +1,14 @@
 <li class="contact">
 	<div class="contact-item__icon-container">
 		<a href="{{link}}" target="_blank">
-			<i class="contact__icon icon icon--{{type}}"></i>
+			<svg class="icon">
+				<use href="/assets/images/icons.svg#icon-{{type}}"></use>
+			</svg>
 		</a>
 	</div>
-	<p class="contact-item__label">{{type}}</p>
+	<p class="contact-item__label">
+		{{type}}
+	</p>
 	<a href="{{link}}" target="_blank" class="contact-item__icon-link">
 		{{name}}
 	</a>

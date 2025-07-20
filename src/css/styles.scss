@@ -1,13 +1,14 @@
 @use "null.scss";
 @use "hero.scss";
 @use "nav.scss";
-@use "icons.scss";
 @use "about.scss";
 @use "about-item.scss";
 @use "works";
 @use "works-item";
 @use "contacts";
 @use "contacts-item";
+
+@import "variables";
 
 :root {
 	--color1: #f7b7c2;

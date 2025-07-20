@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.52 150.09"><defs><style>.a{fill:#231f20;}</style></defs><polygon class="a" points="21.35 150.09 0 113.1 110.04 113.1 131.39 150.09 21.35 150.09"/><polygon class="a" points="69.52 0 111.72 0 175.52 110.51 154.53 147.23 69.52 0"/><polygon class="a" points="5.33 91.42 53.93 13.5 97.75 91.42 5.33 91.42"/></svg>
+<svg width="176" height="151" viewBox="0 0 176 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.35 150.09L0 113.1H110.04L131.39 150.09H21.35Z" fill="currentColor"/>
+<path d="M69.5195 0H111.72L175.52 110.51L154.53 147.23L69.5195 0Z" fill="currentColor"/>
+<path d="M5.33008 91.42L53.9301 13.5L97.7501 91.42H5.33008Z" fill="currentColor"/>
+</svg>
