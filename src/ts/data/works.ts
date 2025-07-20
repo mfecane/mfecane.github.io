@@ -1,6 +1,16 @@
 export default [
 	{
 		active: true,
+		title: "Shadowcrypt",
+		tags: ["Vue.js", "Canvas"],
+		github: "https://github.com/mfecane/shadowcrypt",
+		link: "https://shadowcrypt.web.app",
+		image: "assets/images/shadowcrypt.png",
+
+		descr: "An app for collecting, organizing, and viewing reference images, built as a focused personal alternative to PureRef and Pinterest, tailored to suit creative workflows without distractions.",
+	},
+	{
+		active: true,
 		title: "Three.js playground",
 		tags: ["Three.js"],
 		github: "https://github.com/mfecane/thri-playground",
@@ -65,7 +75,7 @@ export default [
 		descr: "Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.",
 	},
 	{
-		active: true,
+		active: false,
 		title: "Mandelbruh fractal",
 		tags: ["C++", "OpenGL", "WebGL"],
 		github: "https://github.com/mfecane/mandelbruh",
