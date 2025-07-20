@@ -1,6 +1,9 @@
 <section class="works section" id="works">
 	<div class="container">
-		{{#each works}} {{> works-item}} {{/each}}
-		{{! <h2>Other stoff to check out</h2> }}
+		{{#each works}}
+			{{#if active}}
+				{{> works-item}}
+			{{/if}}
+		{{/each}}
 	</div>
 </section>

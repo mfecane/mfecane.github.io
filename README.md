@@ -6,12 +6,10 @@
 
     	Update projects
     	Add three js to skills
-    	make more responsive
     	Clean up everything
     	Change favicon
     	Fix artstation logo
-    	clear up commit history
-    	remove video
+    	clean up commit history
     	add ...more button with popup
 
 # Git
