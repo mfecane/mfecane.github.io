@@ -31,7 +31,7 @@ export const works: WorkItem[] = [
 	{
 		big: true,
 		title: "Wave function collapse castle",
-		tags: ["Three.js"],
+		tags: ["Three.js", "React"],
 		github: "https://github.com/mfecane/wave-function-collapse",
 		link: "https://mfecane.github.io/wave-function-collapse/#/",
 		image: "assets/images/castle.png",

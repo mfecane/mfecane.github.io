@@ -2,6 +2,7 @@
 
 .small-works-item {
 	display: flex;
+	gap: 1rem;
 
 	&:not(:last-child) {
 		margin-bottom: 2rem;
@@ -29,4 +30,9 @@
 .small-works-item__buttons {
 	display: flex;
 	gap: 1rem;
+
+	& .btn {
+		padding: 4px 8px;
+		font-size: 0.8rem;
+	}
 }
