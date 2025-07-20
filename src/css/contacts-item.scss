@@ -1,6 +1,6 @@
 .contact {
 	display: grid;
-	grid-template-columns: 40px auto;
+	grid-template-columns: 24px auto;
 	grid-template-rows: 12px auto;
 	grid-template-areas:
 		"icon label"
@@ -8,14 +8,12 @@
 	gap: 0.8rem 2rem;
 
 	&:not(:last-child) {
-		margin-bottom: 2.4rem;
+		margin-bottom: 1.5rem;
 	}
 }
 
 .contact a {
 	font-size: 1rem;
-	letter-spacing: 2px;
-	text-transform: uppercase;
 	color: var(--color-accent2);
 	transition: all 0.2s ease-out 0s;
 }
@@ -39,8 +37,9 @@
 
 .contact-item__label {
 	grid-area: label;
+	font-weight: 600;
+	text-transform: capitalize;
 	color: var(--color-dark);
-	text-transform: uppercase;
 }
 
 .contact-item__icon-link {

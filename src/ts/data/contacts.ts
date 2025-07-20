@@ -10,23 +10,23 @@ export default [
 		name: "+7 (916) 426-5709",
 	},
 	{
-		link: "https://www.linkedin.com/in/mfecane/",
 		type: "linkedin",
+		link: "https://www.linkedin.com/in/mfecane/",
 		name: "mfecane",
 	},
 	{
-		link: "https://github.com/mfecane",
 		type: "github",
-		name: "Mfecane",
-	},
-	{
-		link: "https://t.me/mfecane",
-		type: "telegram",
+		link: "https://github.com/mfecane",
 		name: "mfecane",
 	},
 	{
-		link: "https://www.instagram.com/mfecanics",
+		type: "telegram",
+		link: "https://t.me/mfecane",
+		name: "mfecane",
+	},
+	{
 		type: "instagram",
+		link: "https://www.instagram.com/mfecanics",
 		name: "mfecanics",
 	},
 	{
