@@ -4,13 +4,13 @@
 
 # TODO
 
-    	Update projects
-    	Add three js to skills
-    	Clean up everything
-    	Change favicon
-    	Fix artstation logo
-    	clean up commit history
-    	add ...more button with popup
+-   Add three js to skills
+-   Clean up everything
+-   Change favicon
+-   Fix artstation logo
+-   clean up commit history
+-   add ...more button with popup
+-   improve burger menu ux
 
 # Git
 

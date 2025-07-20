@@ -18,6 +18,10 @@
 		max-width: 1200px;
 		width: 90%;
 		margin: 0 auto;
+
+		@media (max-width: $md) {
+			justify-content: end;
+		}
 	}
 
 	&__logo {
@@ -28,36 +32,81 @@
 			display: none;
 		}
 	}
+}
 
-	&__menu {
-		list-style: none;
-		display: flex;
-		gap: 2rem;
+.nav__menu {
+	list-style: none;
+	display: flex;
+	gap: 2rem;
 
-		li a {
-			text-decoration: none;
-			color: var(--color5);
-			font-weight: 500;
-			transition: color 0.2s;
+	li a {
+		text-decoration: none;
+		color: var(--color5);
+		font-weight: 500;
+		transition: color 0.2s;
 
-			&:hover {
-				color: var(--color-accent2);
-			}
+		&:hover {
+			color: var(--color-accent2);
 		}
 	}
 
-	&:not(.active) {
+	@media (max-width: $md) {
+		position: absolute;
+		top: -100px;
+		opacity: 0;
+		transition: all 200ms ease;
+		flex-direction: column;
+		left: 0;
+		width: 100%;
+		background-color: var(--color-dark);
+		z-index: 1;
+		padding: 2rem;
+
+		.nav.open & {
+			top: 0;
+			opacity: 1;
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.nav__container > * {
+		transform: translateY(-20px);
+		transition: all 300ms ease;
+		opacity: 0;
+
+		.nav.active & {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+
+	.nav:not(.active) {
 		opacity: 0;
 	}
 }
 
-.nav__container > * {
-	transform: translateY(-20px);
-	transition: all 300ms ease;
-	opacity: 0;
+.burger {
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 24px;
+	height: 18px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	justify-self: end;
+	position: relative;
+	z-index: 2;
 
-	.nav.active & {
-		opacity: 1;
-		transform: translateY(0px);
+	span {
+		display: block;
+		height: 3px;
+		background: white;
+		border-radius: 2px;
+	}
+
+	@media (max-width: $md) {
+		display: flex;
 	}
 }
