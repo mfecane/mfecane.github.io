@@ -1,7 +1,7 @@
 import { defineConfig } from "vite"
 import handlebars from "vite-plugin-handlebars"
 import path from "path"
-import works from "./src/ts/data/works"
+import { works } from "./src/ts/data/works"
 import about from "./src/ts/data/about"
 import contacts from "./src/ts/data/contacts"
 

@@ -1,8 +1,15 @@
 <section class="works section" id="works">
 	<div class="container">
 		{{#each works}}
-			{{#if active}}
+			{{#if big}}
 				{{> works-item}}
+			{{/if}}
+		{{/each}}
+
+		<h2>Other small and fun stuff to check out</h2>
+		{{#each works}}
+			{{#if small}}
+				{{> small-works-item}}
 			{{/if}}
 		{{/each}}
 	</div>

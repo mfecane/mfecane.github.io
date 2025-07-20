@@ -1,0 +1,32 @@
+@use "variables" as *;
+
+.small-works-item {
+	display: flex;
+
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+
+	@media (max-width: $md) {
+		flex-direction: column;
+	}
+}
+
+.small-works-item__title {
+	flex: 1 0 auto;
+	font-size: 1.2rem;
+
+	a {
+		transition: color 0.2s ease-out;
+		color: var(--color-accent2);
+	}
+
+	a:hover {
+		color: var(--color-light);
+	}
+}
+
+.small-works-item__buttons {
+	display: flex;
+	gap: 1rem;
+}
