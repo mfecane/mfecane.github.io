@@ -19,6 +19,15 @@ export default [
 	},
 	{
 		active: true,
+		title: "Wave function collapse castle",
+		tags: ["Three.js"],
+		github: "https://github.com/mfecane/wave-function-collapse",
+		link: "https://mfecane.github.io/wave-function-collapse/#/",
+		image: "assets/images/castle.png",
+		descr: "An implementation of the Wave Function Collapse algorithm for generating randomized 3D castles. It analyzes a pre-built castle model and constructs new variations based on its structure.",
+	},
+	{
+		active: true,
 		title: "Shadercity",
 		tags: ["React", "WebGL", "Firebase", "GLSL"],
 		github: "https://github.com/mfecane/shadercity",
