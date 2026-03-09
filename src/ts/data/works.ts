@@ -12,6 +12,15 @@ interface WorkItem {
 export const works: WorkItem[] = [
 	{
 		big: true,
+		title: "Tattoo demo",
+		tags: ["Three.js", "React"],
+		github: "https://github.com/mfecane/tattoo-editor-demo",
+		link: "https://mfecane.github.io/tattoo-editor-demo/",
+		image: "assets/images/tattoo-demo.png",
+		descr: "A real-time 3D tattoo placement editor built with React, TypeScript, and Three.js. It allows users to drag tattoo images onto a 3D arm model, project them into UV space, and refine them with move, scale, rotate, and warp tools, all supported by an undo/redo command system.",
+	},
+	{
+		big: true,
 		title: "Shadowcrypt",
 		tags: ["Vue.js", "Canvas"],
 		github: "https://github.com/mfecane/shadowcrypt",
@@ -90,7 +99,7 @@ export const works: WorkItem[] = [
 		descr: "Application frontend for managing tasks. All items can be sorted by dragging, filtered, edited inline.",
 	},
 	{
-		big: true,
+		small: true,
 		title: "Screen recording app",
 		tags: ["C++", "Qt", "FFMPEG"],
 		github: "https://github.com/mfecane/rec_app",
@@ -112,10 +121,5 @@ export const works: WorkItem[] = [
 		link: "https://mfecane.github.io/web-mandelbrot/",
 		image: "assets/images/mandelbrot.png",
 		descr: "Several implementations of mandelbrot fractal zooming applications. There are CPU, GPU (OpenGL), and GPU (Web-GL) versions. Due to the limit of precision of floating point numbers in WebGL, zooming in web version is limited.",
-	},
-	{
-		title: "SVG Effect",
-		github: "https://github.com/mfecane/effect",
-		link: "https://mfecane.github.io/effect/",
 	},
 ]
