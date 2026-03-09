@@ -74,6 +74,15 @@ export const works: WorkItem[] = [
 		descr: "An exhibition of shaders made by me for fun. Some shaders are customizable. Features simple UI using React.",
 	},
 	{
+		big: true,
+		title: "TAA fog implmentation",
+		tags: ["React", "WebGL"],
+		github: "https://github.com/mfecane/taa-fog",
+		link: "https://mfecane.github.io/taa-fog/",
+		image: "assets/images/taa-fog.png",
+		descr: "Volumetric fog + Stochastic transparency + TAA rendering experiments.",
+	},
+	{
 		title: "Weather app",
 		tags: ["React", "Redux"],
 		github: "https://github.com/mfecane/weather-app/",
