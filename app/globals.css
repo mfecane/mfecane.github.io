@@ -24,6 +24,11 @@
 }
 
 @layer components {
+	/* Tailwind’s `container` is width-only; add gutters on narrow viewports */
+	.container {
+		@apply px-4 sm:px-6;
+	}
+
 	#hero-menu {
 		@apply opacity-0;
 		transform: translateY(-50px);
