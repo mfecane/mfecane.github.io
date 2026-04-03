@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.js";
+
+@theme {
+	--color-paper: #f1f1f1;
+	--color-muted: #7a929e;
+	--color-ink: #384551;
+	--color-ink-deep: #1d2833;
+	--color-body: #4c5c66;
+	--color-rose: #f8d5e0;
+	--color-brand: #ff4164;
+}
+
+@layer base {
+	html,
+	body {
+		@apply min-h-full bg-paper text-body antialiased;
+	}
+
+	a {
+		@apply transition-colors duration-200;
+	}
+}
+
+@layer components {
+	#hero-menu {
+		@apply opacity-0;
+		transform: translateY(-50px);
+		transition: all 300ms ease;
+	}
+
+	#hero-menu.active {
+		@apply opacity-100;
+		transform: translateY(0);
+	}
+
+	@media (min-width: 768px) {
+		#nav .nav-reveal {
+			@apply -translate-y-5 opacity-0 transition-all duration-300;
+		}
+
+		#nav.active .nav-reveal {
+			@apply translate-y-0 opacity-100;
+		}
+
+		#nav:not(.active) {
+			@apply opacity-0;
+		}
+	}
+
+	@media (max-width: 767px) {
+		#nav-items {
+			@apply absolute top-[-100px] left-0 z-1 flex w-full flex-col gap-8 bg-ink p-8 opacity-0 transition-all duration-200;
+		}
+
+		#nav.open #nav-items {
+			@apply top-0 opacity-100;
+		}
+	}
+}

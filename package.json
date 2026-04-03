@@ -1,24 +1,45 @@
 {
-  "name": "mfecane.github.io",
-  "private": true,
-  "version": "0.0.1",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "deploy": "vite build && gh-pages -d dist"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "postcss": "^8.4.14",
-    "sass": "^1.49.9",
-    "typescript": "~5.8.3",
-    "vite": "^7.0.4"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.17.20",
-    "@types/node": "^24.0.13",
-    "lodash": "^4.17.21",
-    "vite-plugin-handlebars": "^2.0.0"
-  }
+	"name": "mfecane.github.io",
+	"description": "Aleksei Aliapkin's portfolio",
+	"author": "Aleksei Aliapkin",
+	"license": "MIT",
+	"homepage": "https://mfecane.github.io",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mfecane/mfecane.github.io.git"
+	},
+	"private": true,
+	"version": "1.0.0",
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/node": "^25.5.0",
+		"@types/react": "^19.2.14",
+		"eslint": "^9.39.2",
+		"eslint-config-next": "^16.2.2",
+		"husky": "^9.1.7",
+		"prettier": "^3.7.4",
+		"sass": "^1.49.9",
+		"typescript": "~5.8.3"
+	},
+	"dependencies": {
+		"@tailwindcss/postcss": "^4.2.2",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.554.0",
+		"next": "^16.2.2",
+		"postcss": "^8.5.8",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4",
+		"tailwind-merge": "^3.5.0",
+		"tailwindcss": "^4.2.2"
+	}
 }

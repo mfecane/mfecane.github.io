@@ -1,18 +1,19 @@
-# Run
+# mfecane.github.io
 
-        nvm use v24.4.0 && npm run dev
+Portfolio site (Next.js, TypeScript, Tailwind). **Live:** [mfecane.github.io](https://mfecane.github.io)
 
-# TODO
+## Docker
 
--   Add three js to skills
--   Clean up everything
--   Change favicon
--   Fix artstation logo
--   clean up commit history
--   add ...more button with popup
--   improve burger menu ux
+`docker compose up` — dev server at [localhost:3000](http://127.0.0.1:3000). See [`docker-compose.yml`](docker-compose.yml).
 
-# Git
+## Husky
 
-    	git config user.name "Aleskei Aliapkin"
-    	git config user.email "aaliapkin@gmail.com"
+[`.husky/pre-push`](.husky/pre-push) runs `npm run typecheck` before `git push`.
+
+## GitHub Actions
+
+Push to `master` → [deploy workflow](.github/workflows/deploy.yml) runs lint, typecheck, build, deploys `out/` to GitHub Pages.
+
+## License
+
+MIT — [LICENSE](LICENSE).
